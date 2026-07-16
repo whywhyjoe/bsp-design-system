@@ -1,0 +1,23 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><link rel="stylesheet" href="_card.css"></head><body><div class="preview">
+<div class="label" style="margin-bottom:12px">Motion · functional, not decorative</div>
+<div style="display:flex;gap:14px;flex-wrap:wrap">
+  <div class="card" style="flex:1;min-width:150px">
+    <h4 class="card__title">Reveal on scroll</h4>
+    <p class="card__body">Fade + rise 14px once, then settle.</p>
+    <p class="token" style="margin-top:8px;color:var(--accent-rest)">550ms · --ease-out</p>
+  </div>
+  <div class="card" style="flex:1;min-width:150px">
+    <h4 class="card__title">Hover lift</h4>
+    <p class="card__body">Cards rise 3px, deepen to shadow-16. Hover me →</p>
+    <div class="lift" style="background:var(--surface-image-ph);border:1px solid var(--stroke-divider);border-radius:var(--radius-large);height:46px;display:flex;align-items:center;justify-content:center;font:var(--type-caption1-strong);color:var(--fg-secondary);margin-top:10px;cursor:pointer">hover</div>
+    <p class="token" style="margin-top:8px;color:var(--accent-rest)">160ms · --ease-out</p>
+  </div>
+  <div class="card" style="flex:1;min-width:150px">
+    <h4 class="card__title">Reduced motion</h4>
+    <p class="card__body">Hidden start-state only when motion is allowed — print &amp; no-JS show content.</p>
+    <p class="token" style="margin-top:8px;color:var(--accent-rest)">prefers-reduced-motion</p>
+  </div>
+</div>
+<div class="callout">Tokens: <span class="token">--motion-fast/normal/slow/reveal</span> + <span class="token">--ease-out/in/in-out</span>. 100–250ms for UI, 550ms for reveals. No bounce, no spring. The hover box uses the canonical <code class="token">.lift</code> utility.</div>
+</div></body></html>

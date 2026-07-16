@@ -1,0 +1,30 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><link rel="stylesheet" href="_card.css">
+<style>
+  /* Catalog scaffolding — documentation layout, not components. */
+  .ig{display:grid;grid-template-columns:repeat(8,1fr);gap:14px 10px;color:var(--fg-primary)}
+  .ic-cell{display:flex;flex-direction:column;align-items:center;gap:6px}
+  .ic-cell .frame{width:36px;height:36px;display:flex;align-items:center;justify-content:center;border:1px solid var(--f2-grey-88);border-radius:var(--radius-medium);background:var(--bmo-white)}
+  .ic-cell .nm{font:var(--type-caption2);font-family:var(--font-family-mono);color:var(--fg-secondary);text-align:center}
+</style></head><body><div class="preview">
+<div class="label" style="margin-bottom:14px">Iconography · Fluent System Icons · name token = ic-fluent-{name}-24-regular</div>
+<div class="ig">
+  <div class="ic-cell"><div class="frame"><svg class="icon icon--20"><use href="../../bmo-icons.svg#ic-fluent-home-24-regular"/></svg></div><div class="nm">home</div></div>
+  <div class="ic-cell"><div class="frame"><svg class="icon icon--20"><use href="../../bmo-icons.svg#ic-fluent-document-24-regular"/></svg></div><div class="nm">document</div></div>
+  <div class="ic-cell"><div class="frame"><svg class="icon icon--20"><use href="../../bmo-icons.svg#ic-fluent-folder-24-regular"/></svg></div><div class="nm">folder</div></div>
+  <div class="ic-cell"><div class="frame"><svg class="icon icon--20"><use href="../../bmo-icons.svg#ic-fluent-search-24-regular"/></svg></div><div class="nm">search</div></div>
+  <div class="ic-cell"><div class="frame"><svg class="icon icon--20"><use href="../../bmo-icons.svg#ic-fluent-add-24-regular"/></svg></div><div class="nm">add</div></div>
+  <div class="ic-cell"><div class="frame"><svg class="icon icon--20"><use href="../../bmo-icons.svg#ic-fluent-edit-24-regular"/></svg></div><div class="nm">edit</div></div>
+  <div class="ic-cell"><div class="frame"><svg class="icon icon--20"><use href="../../bmo-icons.svg#ic-fluent-delete-24-regular"/></svg></div><div class="nm">delete</div></div>
+  <div class="ic-cell"><div class="frame"><svg class="icon icon--20"><use href="../../bmo-icons.svg#ic-fluent-checkmark-24-regular"/></svg></div><div class="nm">checkmark</div></div>
+  <div class="ic-cell"><div class="frame"><svg class="icon icon--20"><use href="../../bmo-icons.svg#ic-fluent-chevron-right-24-regular"/></svg></div><div class="nm">chevron-right</div></div>
+  <div class="ic-cell"><div class="frame"><svg class="icon icon--20"><use href="../../bmo-icons.svg#ic-fluent-arrow-up-24-regular"/></svg></div><div class="nm">arrow-up</div></div>
+  <div class="ic-cell"><div class="frame"><svg class="icon icon--20"><use href="../../bmo-icons.svg#ic-fluent-mail-24-regular"/></svg></div><div class="nm">mail</div></div>
+  <div class="ic-cell"><div class="frame"><svg class="icon icon--20"><use href="../../bmo-icons.svg#ic-fluent-person-24-regular"/></svg></div><div class="nm">person</div></div>
+  <div class="ic-cell"><div class="frame"><svg class="icon icon--20"><use href="../../bmo-icons.svg#ic-fluent-settings-24-regular"/></svg></div><div class="nm">settings</div></div>
+  <div class="ic-cell"><div class="frame"><svg class="icon icon--20"><use href="../../bmo-icons.svg#ic-fluent-filter-24-regular"/></svg></div><div class="nm">filter</div></div>
+  <div class="ic-cell"><div class="frame"><svg class="icon icon--20"><use href="../../bmo-icons.svg#ic-fluent-calendar-ltr-24-regular"/></svg></div><div class="nm">calendar-ltr</div></div>
+  <div class="ic-cell"><div class="frame"><svg class="icon icon--20"><use href="../../bmo-icons.svg#ic-fluent-attach-24-regular"/></svg></div><div class="nm">attach</div></div>
+</div>
+<div class="callout">Inline SVG with <code class="token">currentColor</code>; size via <code class="token">.icon--N</code> helper, not the name. Self-hosted sprite <code class="token">bmo-icons.svg</code> — same name token works in the <code class="token">&lt;fluent-icon&gt;</code> element too.</div>
+</div></body></html>

@@ -1,0 +1,27 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><link rel="stylesheet" href="_card.css">
+<style>
+  /* Gallery scaffolding only — documentation layout, not components.
+     Fixed 3 columns so the thumbnail always shows the 3×2 set. */
+  .gal{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+  .gc{display:flex;flex-direction:column;gap:7px}
+  .gt{display:flex;align-items:center;gap:7px;font:var(--type-caption1-strong);color:var(--fg-primary)}
+  .gt .n{display:inline-flex;align-items:center;justify-content:center;width:16px;height:16px;border-radius:var(--radius-small);background:var(--accent-rest);color:var(--bmo-white);font:var(--weight-bold) 10px/1 var(--font-family)}
+</style></head><body><div class="preview">
+<div class="label" style="margin-bottom:12px">Card composition · one anatomy, six interchangeable parts</div>
+<div class="gal">
+  <div class="gc"><div class="gt"><span class="n">1</span> Heading</div>
+    <article class="card"><p class="card__eyebrow">Reimbursement</p><h3 class="card__title">Q3 expense report</h3><p class="card__body">Eyebrow + title + optional body.</p></article></div>
+  <div class="gc"><div class="gt"><span class="n">2</span> Footer</div>
+    <article class="card"><h3 class="card__title">Travel claim</h3><p class="card__body">Metadata left, one action right.</p><div class="card__footer"><span class="card__meta"><span class="badge badge--info">Pending</span></span><a class="card__cta" href="#">View <svg class="icon icon--16"><use href="../../bmo-icons.svg#ic-fluent-arrow-right-24-regular"/></svg></a></div></article></div>
+  <div class="gc"><div class="gt"><span class="n">3</span> Leading icon</div>
+    <article class="card" style="flex-direction:row;gap:10px;align-items:flex-start"><span class="card__icon-tile card__icon-tile--sm"><svg class="icon"><use href="../../bmo-icons.svg#ic-fluent-receipt-24-regular"/></svg></span><div><h3 class="card__title">Upload receipt</h3><p class="card__body">Tinted icon tile.</p></div></article></div>
+  <div class="gc"><div class="gt"><span class="n">4</span> Top image</div>
+    <article class="card card--flush"><div class="card__media card__media--top imgph" style="height:74px"><span class="lbl">team photo</span></div><div class="card__content"><h3 class="card__title">How approvals work</h3></div></article></div>
+  <div class="gc"><div class="gt"><span class="n">5</span> Stat block</div>
+    <article class="card"><div class="stat"><div class="stat__label">This quarter</div><div class="stat__value">$12,450</div><div class="stat__sub"><span class="stat__delta stat__delta--up">+ $1,820</span> vs Q2</div></div></article></div>
+  <div class="gc"><div class="gt"><span class="n">6</span> Left image</div>
+    <article class="card card--flush card--row"><div class="card__media card__media--left imgph" style="width:42%;min-height:0"><span class="lbl">portrait</span></div><div class="card__content"><h3 class="card__title">Spotlight</h3><p class="card__body">Full-height edge.</p></div></article></div>
+</div>
+<div class="callout">Parts compose freely on the same <code class="token">.card</code> anatomy — existing tokens, 1px divider, subtle shadow, 4px ramp. Images are <code class="token">.imgph</code> placeholders until real assets drop in.</div>
+</div></body></html>

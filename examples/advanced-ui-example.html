@@ -1,0 +1,401 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BMO SharePoint · Advanced UI example</title>
+<!-- ADVANCED UI EXAMPLE — a full composed home/landing page assembled entirely from
+     the canonical system: the richer "engagement layer" alternative to the dense
+     default app surfaces. Shows hero, surface bands, cards, feature banners, and the
+     card-composition gallery working together. Pairs with Design System Reference.html. -->
+<!-- Canonical library: tokens then components. No forked inline component CSS. -->
+<link rel="stylesheet" href="../colors_and_type.css">
+<link rel="stylesheet" href="../components.css">
+<style>
+  /* ---------------------------------------------------------------------
+     PAGE-ONLY scaffolding. Everything that is a real component now comes
+     from components.css; what remains here is documentation chrome unique
+     to this showcase (the composition gallery, token swatch chips, anatomy
+     notes, footer) and a couple of base resets. No component is re-styled.
+     --------------------------------------------------------------------- */
+  *,*::before,*::after { box-sizing: border-box; }
+  body { margin: 0; background: var(--surface-canvas); color: var(--fg-primary); font-family: var(--font-family); }
+  ::-webkit-scrollbar { width: 10px; height: 10px; }
+  ::-webkit-scrollbar-thumb { background: rgba(0,0,0,.18); border-radius: 5px; }
+
+  /* Gallery — a documentation device for showing card-composition options. */
+  .gallery { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px 20px; }
+  .gcell { display: flex; flex-direction: column; gap: 10px; }
+  .gcell.wide { grid-column: span 2; }
+  .gtag { display: flex; align-items: center; gap: 8px; font: var(--type-caption1); font-family: var(--font-family-mono); color: var(--fg-secondary); }
+  .gtag .n { display: inline-flex; align-items: center; justify-content: center; width: 18px; height: 18px; border-radius: var(--radius-medium); background: var(--accent-rest); color: var(--bmo-white); font: var(--weight-bold) 11px/1 var(--font-family); }
+  .gtag .opt { color: var(--fg-primary); font: var(--type-caption1-strong); }
+
+  /* Token swatch chips (surface tints showcase). */
+  .tints { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+  .tint { border: 1px solid var(--stroke-divider); border-radius: var(--radius-large); overflow: hidden; background: var(--surface-raised); }
+  .tint .sw { height: 72px; }
+  .tint .m { padding: 10px 14px; border-top: 1px solid var(--stroke-divider); }
+  .tint .m .nm { font: var(--type-body1-strong); color: var(--fg-primary); }
+  .tint .m .hx { font: var(--type-caption1); font-family: var(--font-family-mono); color: var(--fg-secondary); }
+
+  /* Anatomy note rows. */
+  .notes { display: grid; grid-template-columns: 1fr 1fr; gap: 14px 32px; }
+  .note { display: flex; gap: 12px; align-items: flex-start; }
+  .note .k { width: 26px; height: 26px; border-radius: var(--radius-medium); background: var(--surface-tint-blue); color: var(--accent-rest); display: flex; align-items: center; justify-content: center; flex: none; }
+  .note .b { font: var(--type-body1); color: var(--fg-secondary); }
+  .note .b strong { color: var(--fg-primary); font-weight: var(--weight-semibold); }
+  code.tok { font: var(--type-caption1); font-family: var(--font-family-mono); background: var(--f2-grey-94); border-radius: var(--radius-small); padding: 1px 5px; color: var(--fg-primary); }
+
+  .foot { padding: 40px 0 64px; border-top: 1px solid var(--stroke-divider); color: var(--fg-secondary); font: var(--type-caption1); font-family: var(--font-family-mono); }
+
+  @media (max-width: 980px) {
+    .gallery { grid-template-columns: 1fr 1fr; }
+    .gcell.wide { grid-column: span 2; }
+    .notes { grid-template-columns: 1fr; }
+    .tints { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ════════ Canonical icon sprite — inline once per page (bmo-icons.svg) ════════ -->
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true"><defs>
+  <symbol id="ic-fluent-add-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></g></symbol>
+  <symbol id="ic-fluent-alert-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4a5 5 0 0 1 5 5c0 5 2 6 2 6H5s2-1 2-6a5 5 0 0 1 5-5zM10.3 19a1.8 1.8 0 0 0 3.4 0"/></g></symbol>
+  <symbol id="ic-fluent-arrow-export-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M11 6H6a1 1 0 0 0-1 1v11a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1v-5M14 5h5v5M19 5l-8 8"/></g></symbol>
+  <symbol id="ic-fluent-arrow-right-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13M12 6l6 6-6 6"/></g></symbol>
+  <symbol id="ic-fluent-checkmark-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></g></symbol>
+  <symbol id="ic-fluent-checkmark-circle-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"/><path d="M8.5 12.2l2.4 2.4 4.6-4.9"/></g></symbol>
+  <symbol id="ic-fluent-chevron-right-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M10 7l5 5-5 5"/></g></symbol>
+  <symbol id="ic-fluent-clock-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"/><path d="M12 7.5V12l3 2"/></g></symbol>
+  <symbol id="ic-fluent-grid-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="6.5" height="6.5" rx="1"/><rect x="13.5" y="4" width="6.5" height="6.5" rx="1"/><rect x="4" y="13.5" width="6.5" height="6.5" rx="1"/><rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1"/></g></symbol>
+  <symbol id="ic-fluent-mail-inbox-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l1.8-6.2a1 1 0 0 1 1-.8h8.4a1 1 0 0 1 1 .8L19 13v4a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1v-4zM5 13h4a3 3 0 0 0 6 0h4"/></g></symbol>
+  <symbol id="ic-fluent-money-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="7" width="16" height="10" rx="1.5"/><circle cx="12" cy="12" r="2.3"/><path d="M7 12h.01M17 12h.01"/></g></symbol>
+  <symbol id="ic-fluent-person-add-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="9.5" cy="8.5" r="3.3"/><path d="M3.5 19a6 6 0 0 1 11-3.3M18 8v6M15 11h6"/></g></symbol>
+  <symbol id="ic-fluent-receipt-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 4h12v16l-2-1.3-2 1.3-2-1.3-2 1.3-2-1.3-2 1.3V4zM9 8h6M9 11.5h6M9 15h4"/></g></symbol>
+  <symbol id="ic-fluent-search-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="10.5" cy="10.5" r="5.5"/><path d="M15 15l4 4"/></g></symbol>
+  <symbol id="ic-fluent-shield-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4l7 2.5v5c0 5-3.5 8-7 9.5-3.5-1.5-7-4.5-7-9.5v-5L12 4zM9 12l2 2 4-4"/></g></symbol>
+</defs></svg>
+
+<!-- ════════════════ Suite bar ════════════════ -->
+<header class="suite">
+  <div class="suite__inner l-wrap">
+    <span class="suite__mark">B</span>
+    <span class="suite__app">Expense &amp; approvals</span>
+    <span class="suite__divider"></span>
+    <span class="suite__env">BMO · SharePoint Online</span>
+    <span class="suite__spacer"></span>
+    <button class="suite__action" aria-label="Search"><svg class="icon"><use href="#ic-fluent-search-24-regular"/></svg></button>
+    <button class="suite__action" aria-label="Notifications"><svg class="icon"><use href="#ic-fluent-alert-24-regular"/></svg></button>
+    <button class="suite__action" aria-label="App launcher"><svg class="icon"><use href="#ic-fluent-grid-24-regular"/></svg></button>
+    <span class="avatar avatar--28" style="background:var(--accent-rest)">PS</span>
+  </div>
+</header>
+
+<!-- ════════════════ Hero ════════════════ -->
+<div class="band band--sky">
+  <div class="l-wrap">
+    <nav class="crumbs reveal" aria-label="Breadcrumb" style="padding-top:14px">
+      <a href="#">Home</a><svg class="icon crumbs__sep"><use href="#ic-fluent-chevron-right-24-regular"/></svg>
+      <a href="#">Finance</a><svg class="icon crumbs__sep"><use href="#ic-fluent-chevron-right-24-regular"/></svg>
+      <span class="crumbs__current" aria-current="page">Expense &amp; approvals</span>
+    </nav>
+    <div class="hero">
+      <div class="hero__copy reveal">
+        <p class="hero__eyebrow">Expense &amp; approvals</p>
+        <h1 class="hero__title">Your claims and approvals, in one place</h1>
+        <p class="hero__lede">Submit a claim, track where every approval sits, and see your reimbursements — without leaving SharePoint.</p>
+        <div class="hero__cta">
+          <a class="btn btn--primary btn--lg" href="#"><svg class="icon icon--16"><use href="#ic-fluent-add-24-regular"/></svg> Start a new request</a>
+          <a class="btn btn--secondary btn--lg" href="#"><svg class="icon icon--16"><use href="#ic-fluent-mail-inbox-24-regular"/></svg> View my approvals</a>
+        </div>
+        <div class="trust">
+          <div class="trust__item"><span class="trust__num">1.4 days</span><span class="trust__label">Average approval time</span></div>
+          <div class="trust__item"><span class="trust__num">4</span><span class="trust__label">Awaiting your action</span></div>
+          <div class="trust__item"><span class="trust__num">98.6%</span><span class="trust__label">Reimbursed on first pass</span></div>
+        </div>
+      </div>
+      <div class="hero__media photo reveal"><img src="https://images.unsplash.com/photo-1497032628192-86f99bcd76bc?auto=format&fit=crop&w=1100&q=70" alt="Colleagues working together in a bright open-plan office" crossorigin="anonymous" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='https://picsum.photos/seed/bmo-office/1100/700'"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════ Stats ════════════════ -->
+<div class="band band--white">
+  <div class="l-wrap" style="padding-top:28px">
+    <div class="l-grid l-grid--4">
+      <div class="card lift reveal">
+        <div class="stat">
+          <div class="stat__head"><span class="card__icon-tile card__icon-tile--sm"><svg class="icon"><use href="#ic-fluent-mail-inbox-24-regular"/></svg></span><span class="stat__label">Pending approvals</span></div>
+          <div class="stat__value">4</div>
+          <div class="stat__sub"><span class="stat__delta stat__delta--up">2 new</span> since yesterday</div>
+        </div>
+      </div>
+      <div class="card lift reveal">
+        <div class="stat">
+          <div class="stat__head"><span class="card__icon-tile card__icon-tile--sm"><svg class="icon"><use href="#ic-fluent-clock-24-regular"/></svg></span><span class="stat__label">Awaiting your action</span></div>
+          <div class="stat__value">2</div>
+          <div class="stat__sub">Oldest waiting 3 days</div>
+        </div>
+      </div>
+      <div class="card lift reveal">
+        <div class="stat">
+          <div class="stat__head"><span class="card__icon-tile card__icon-tile--sm"><svg class="icon"><use href="#ic-fluent-money-24-regular"/></svg></span><span class="stat__label">Reimbursed this quarter</span></div>
+          <div class="stat__value">CAD $12,450</div>
+          <div class="stat__sub"><span class="stat__delta stat__delta--up">+ $1,820</span> vs. Q2</div>
+        </div>
+      </div>
+      <div class="card lift reveal">
+        <div class="stat">
+          <div class="stat__head"><span class="card__icon-tile card__icon-tile--sm"><svg class="icon"><use href="#ic-fluent-checkmark-circle-24-regular"/></svg></span><span class="stat__label">Submitted on time</span></div>
+          <div class="stat__value">96%</div>
+          <div class="stat__sub">Trailing 90 days</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════ Get things done — top-image cards ════════════════ -->
+<div class="band band--white">
+  <div class="l-wrap l-section">
+    <div class="section-head section-head--flex reveal">
+      <div>
+        <p class="section-head__eyebrow">Get things done</p>
+        <h2 class="section-head__title">Common tasks</h2>
+        <p class="section-head__lede">The things people open this app to do. Each card carries a top image, a heading, and a footer action.</p>
+      </div>
+      <a class="btn btn--tertiary" href="#">All tasks <svg class="icon icon--16"><use href="#ic-fluent-arrow-right-24-regular"/></svg></a>
+    </div>
+    <div class="l-grid l-grid--3">
+      <article class="card card--flush lift reveal" tabindex="0">
+        <div class="card__media card__media--top photo"><img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=600&q=70" alt="Receipts and a calculator on a desk" crossorigin="anonymous" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='https://picsum.photos/seed/bmo-receipt/600/320'"></div>
+        <div class="card__content">
+          <p class="card__eyebrow">Submit</p>
+          <h3 class="card__title">Start an expense claim</h3>
+          <p class="card__body">Add receipts, set a cost centre, and route it to the right approver.</p>
+          <div class="card__footer"><span class="card__meta"><svg class="icon"><use href="#ic-fluent-clock-24-regular"/></svg> ~ 4 min</span><a class="card__cta" href="#" onclick="return false">Open <svg class="icon icon--16"><use href="#ic-fluent-arrow-right-24-regular"/></svg></a></div>
+        </div>
+      </article>
+      <article class="card card--flush lift reveal" tabindex="0">
+        <div class="card__media card__media--top photo"><img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&w=600&q=70" alt="Two colleagues talking over a laptop" crossorigin="anonymous" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='https://picsum.photos/seed/bmo-meet/600/320'"></div>
+        <div class="card__content">
+          <p class="card__eyebrow">Set up</p>
+          <h3 class="card__title">Add a delegate approver</h3>
+          <p class="card__body">Going away? Hand approvals to a colleague for a set date range.</p>
+          <div class="card__footer"><span class="card__meta"><svg class="icon"><use href="#ic-fluent-person-add-24-regular"/></svg> Settings</span><a class="card__cta" href="#" onclick="return false">Open <svg class="icon icon--16"><use href="#ic-fluent-arrow-right-24-regular"/></svg></a></div>
+        </div>
+      </article>
+      <article class="card card--flush lift reveal" tabindex="0">
+        <div class="card__media card__media--top photo"><img src="https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?auto=format&fit=crop&w=600&q=70" alt="Person reviewing a document on a laptop" crossorigin="anonymous" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='https://picsum.photos/seed/bmo-doc/600/320'"></div>
+        <div class="card__content">
+          <p class="card__eyebrow">Read</p>
+          <h3 class="card__title">Q3 policy changes</h3>
+          <p class="card__body">Per-diem limits and the receipt threshold changed on July 1.</p>
+          <div class="card__footer"><span class="card__meta"><span class="badge badge--info">Updated</span></span><a class="card__cta" href="#" onclick="return false">Review <svg class="icon icon--16"><use href="#ic-fluent-arrow-right-24-regular"/></svg></a></div>
+        </div>
+      </article>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════ Feature banner — left full-height image ════════════════ -->
+<div class="band band--neutral">
+  <div class="l-wrap l-section">
+    <div class="feature reveal">
+      <div class="feature__media photo"><img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=760&q=70" alt="Hand holding a smartphone" crossorigin="anonymous" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='https://picsum.photos/seed/bmo-mobile/760/900'"></div>
+      <div class="feature__copy">
+        <p class="card__eyebrow">New</p>
+        <h2 class="feature__title">Approve on the go</h2>
+        <p class="feature__lede">Approvals now reach you in Teams and on mobile, with the full request detail attached. No more waiting until you are back at your desk.</p>
+        <ul class="feature__ticks">
+          <li><svg class="icon icon--20"><use href="#ic-fluent-checkmark-circle-24-regular"/></svg> One-tap approve or return with a note</li>
+          <li><svg class="icon icon--20"><use href="#ic-fluent-checkmark-circle-24-regular"/></svg> Receipts and cost centre shown inline</li>
+          <li><svg class="icon icon--20"><use href="#ic-fluent-checkmark-circle-24-regular"/></svg> Delegate rules carry over automatically</li>
+        </ul>
+        <div class="hero__cta">
+          <a class="btn btn--primary" href="#">Turn on mobile approvals</a>
+          <a class="btn btn--tertiary" href="#">See how it works <svg class="icon icon--16"><use href="#ic-fluent-arrow-right-24-regular"/></svg></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════ Quick actions — icon cards ════════════════ -->
+<div class="band band--white">
+  <div class="l-wrap l-section">
+    <div class="section-head reveal">
+      <p class="section-head__eyebrow">Shortcuts</p>
+      <h2 class="section-head__title">Quick actions</h2>
+    </div>
+    <div class="l-grid l-grid--4">
+      <a class="qcard lift reveal" href="#"><span class="card__icon-tile"><svg class="icon icon--20"><use href="#ic-fluent-add-24-regular"/></svg></span><span class="qcard__title">New request</span><span class="qcard__desc">Start a fresh claim</span></a>
+      <a class="qcard lift reveal" href="#"><span class="card__icon-tile"><svg class="icon icon--20"><use href="#ic-fluent-receipt-24-regular"/></svg></span><span class="qcard__title">Upload receipt</span><span class="qcard__desc">Add to a draft</span></a>
+      <a class="qcard lift reveal" href="#"><span class="card__icon-tile"><svg class="icon icon--20"><use href="#ic-fluent-person-add-24-regular"/></svg></span><span class="qcard__title">Add delegate</span><span class="qcard__desc">Hand off approvals</span></a>
+      <a class="qcard lift reveal" href="#"><span class="card__icon-tile"><svg class="icon icon--20"><use href="#ic-fluent-arrow-export-24-regular"/></svg></span><span class="qcard__title">Export report</span><span class="qcard__desc">CSV or PDF</span></a>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════ GALLERY — card composition options ════════════════ -->
+<div class="band band--blue">
+  <div class="l-wrap l-section">
+    <div class="section-head reveal">
+      <p class="section-head__eyebrow">Component reference</p>
+      <h2 class="section-head__title">Card composition options</h2>
+      <p class="section-head__lede">One card anatomy, six interchangeable parts. Mix any combination — every part below uses the canonical <code class="tok">.card</code> BEM classes, existing BMO tokens, subtle elevation, and the 4&nbsp;px ramp. Photos here are example stock (Unsplash); swap in licensed BMO imagery in production.</p>
+    </div>
+
+    <div class="gallery">
+      <!-- 1 · Heading -->
+      <div class="gcell reveal">
+        <div class="gtag"><span class="n">1</span><span class="opt">Heading</span><span>eyebrow + title</span></div>
+        <article class="card lift" tabindex="0">
+          <p class="card__eyebrow">Reimbursement</p>
+          <h3 class="card__title">Q3 expense report</h3>
+          <p class="card__body">An eyebrow names the category; the title is the thing itself. Body text is optional supporting detail.</p>
+        </article>
+      </div>
+
+      <!-- 2 · Footer -->
+      <div class="gcell reveal">
+        <div class="gtag"><span class="n">2</span><span class="opt">Footer</span><span>metadata + CTA</span></div>
+        <article class="card lift" tabindex="0">
+          <h3 class="card__title">Travel claim · Toronto</h3>
+          <p class="card__body">The footer sits on a 1&nbsp;px divider and pairs quiet metadata on the left with one action on the right.</p>
+          <div class="card__footer"><span class="card__meta"><span class="badge badge--info">Pending</span> with S. Chen</span><a class="card__cta" href="#" onclick="return false">View <svg class="icon icon--16"><use href="#ic-fluent-arrow-right-24-regular"/></svg></a></div>
+        </article>
+      </div>
+
+      <!-- 3 · Leading icon -->
+      <div class="gcell reveal">
+        <div class="gtag"><span class="n">3</span><span class="opt">Leading icon</span><span>40px tinted tile</span></div>
+        <article class="card lift" tabindex="0" style="display:flex;gap:14px;align-items:flex-start">
+          <span class="card__icon-tile"><svg class="icon icon--20"><use href="#ic-fluent-receipt-24-regular"/></svg></span>
+          <div>
+            <h3 class="card__title">Upload a receipt</h3>
+            <p class="card__body">A Fluent icon in a soft blue tile leads the content. Icon is interactive blue, never decorative red.</p>
+          </div>
+        </article>
+      </div>
+
+      <!-- 4 · Top full-width image -->
+      <div class="gcell reveal">
+        <div class="gtag"><span class="n">4</span><span class="opt">Top image</span><span>full-width banner</span></div>
+        <article class="card card--flush lift" tabindex="0">
+          <div class="card__media card__media--top photo"><img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=600&q=70" alt="A team collaborating at a desk" crossorigin="anonymous" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='https://picsum.photos/seed/bmo-team/600/320'"></div>
+          <div class="card__content">
+            <p class="card__eyebrow">Guide</p>
+            <h3 class="card__title">How approvals work</h3>
+            <p class="card__body">A full-width image caps the card. Keep it ~152px tall so the card stays dense.</p>
+          </div>
+        </article>
+      </div>
+
+      <!-- 5 · Stat block -->
+      <div class="gcell reveal">
+        <div class="gtag"><span class="n">5</span><span class="opt">Stat block</span><span>number + delta</span></div>
+        <article class="card lift" tabindex="0">
+          <div class="stat">
+            <div class="stat__head"><span class="card__icon-tile card__icon-tile--sm"><svg class="icon"><use href="#ic-fluent-money-24-regular"/></svg></span><span class="stat__label">Reimbursed this quarter</span></div>
+            <div class="stat__value">CAD $12,450</div>
+            <div class="stat__sub"><span class="stat__delta stat__delta--up">+ $1,820</span> vs. Q2 · 18 claims</div>
+          </div>
+        </article>
+      </div>
+
+      <!-- + · Combination teaser -->
+      <div class="gcell reveal">
+        <div class="gtag"><span class="n">+</span><span class="opt">Combined</span><span>icon + heading + footer</span></div>
+        <article class="card lift" tabindex="0">
+          <span class="card__icon-tile"><svg class="icon icon--20"><use href="#ic-fluent-shield-24-regular"/></svg></span>
+          <p class="card__eyebrow" style="margin-top:8px">Policy</p>
+          <h3 class="card__title">Per-diem update</h3>
+          <p class="card__body">Parts compose freely — here an icon, heading, and footer together.</p>
+          <div class="card__footer"><span class="card__meta"><svg class="icon"><use href="#ic-fluent-clock-24-regular"/></svg> 2 min read</span><a class="card__cta" href="#" onclick="return false">Read <svg class="icon icon--16"><use href="#ic-fluent-arrow-right-24-regular"/></svg></a></div>
+        </article>
+      </div>
+
+      <!-- 6 · Left full-height image (wide) -->
+      <div class="gcell wide reveal">
+        <div class="gtag"><span class="n">6</span><span class="opt">Left image</span><span>full-height · spans two columns</span></div>
+        <article class="card card--flush card--row lift" tabindex="0">
+          <div class="card__media card__media--left photo"><img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&w=680&q=70" alt="Professional portrait of a person at work" crossorigin="anonymous" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='https://picsum.photos/seed/bmo-portrait/680/900'"></div>
+          <div class="card__content">
+            <p class="card__eyebrow">Spotlight</p>
+            <h3 class="card__title">Approve on the go</h3>
+            <p class="card__body">A full-height image runs down the left edge while heading, body, and footer stack on the right. Use for feature spotlights and editorial rows. The image holds its own column so text never crowds it.</p>
+            <div class="card__footer"><span class="card__meta"><span class="badge badge--success">New</span> Mobile + Teams</span><a class="card__cta" href="#" onclick="return false">Turn on <svg class="icon icon--16"><use href="#ic-fluent-arrow-right-24-regular"/></svg></a></div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════ What changed — tokens + motion ════════════════ -->
+<div class="band band--white">
+  <div class="l-wrap l-section">
+    <div class="section-head reveal">
+      <p class="section-head__eyebrow">Foundations</p>
+      <h2 class="section-head__title">Built on surface tints and restrained motion</h2>
+      <p class="section-head__lede">Every surface here stays on the rules: blue is interactive only, red is logo only, surfaces stay white-dominant. Tints and motion are deliberately restrained.</p>
+    </div>
+
+    <div style="display:grid;grid-template-columns:1.1fr 1fr;gap:40px;align-items:start">
+      <div class="reveal">
+        <h3 class="h6" style="text-transform:uppercase;letter-spacing:.06em;color:var(--fg-secondary);margin:0 0 14px">Surface tints</h3>
+        <div class="tints">
+          <div class="tint"><div class="sw" style="background:var(--surface-tint-neutral)"></div><div class="m"><div class="nm">Neutral</div><div class="hx">#F4F6F8</div></div></div>
+          <div class="tint"><div class="sw" style="background:var(--surface-tint-blue)"></div><div class="m"><div class="nm">Pale blue</div><div class="hx">#EDF3F9</div></div></div>
+          <div class="tint"><div class="sw" style="background:var(--surface-tint-sky)"></div><div class="m"><div class="nm">Sky</div><div class="hx">#E4EEF6</div></div></div>
+          <div class="tint"><div class="sw" style="background:var(--surface-image-ph)"></div><div class="m"><div class="nm">Image base</div><div class="hx">#E9EDF1</div></div></div>
+        </div>
+        <p style="font:var(--type-body1);color:var(--fg-secondary);margin:14px 0 0">Solid, very-low-saturation grounds for alternating section bands — never gradients, never blue fills behind interactive content. Defined as <code class="tok">--surface-tint-*</code> in <code class="tok">colors_and_type.css</code>.</p>
+      </div>
+
+      <div class="reveal">
+        <h3 class="h6" style="text-transform:uppercase;letter-spacing:.06em;color:var(--fg-secondary);margin:0 0 14px">Motion — functional, not decorative</h3>
+        <div class="notes">
+          <div class="note"><span class="k"><svg class="icon icon--16"><use href="#ic-fluent-arrow-right-24-regular"/></svg></span><div class="b"><strong>Reveal on scroll.</strong> Content fades and rises 14&nbsp;px once, then settles. 550&nbsp;ms ease-out.</div></div>
+          <div class="note"><span class="k"><svg class="icon icon--16"><use href="#ic-fluent-grid-24-regular"/></svg></span><div class="b"><strong>Hover lift.</strong> Cards rise 3&nbsp;px and deepen to <code class="tok">shadow-16</code> at 160&nbsp;ms.</div></div>
+          <div class="note"><span class="k"><svg class="icon icon--16"><use href="#ic-fluent-chevron-right-24-regular"/></svg></span><div class="b"><strong>Arrow nudge.</strong> Footer link arrows slide 3&nbsp;px on hover — a small directional cue.</div></div>
+          <div class="note"><span class="k"><svg class="icon icon--16"><use href="#ic-fluent-checkmark-24-regular"/></svg></span><div class="b"><strong>Reduced motion honored.</strong> Under <code class="tok">prefers-reduced-motion</code> all reveals show instantly; print and no-JS show full content.</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="band band--white">
+  <div class="l-wrap foot">
+    BMO SharePoint Design System · advanced UI example · built on <code class="tok">colors_and_type.css</code> + <code class="tok">components.css</code> · pairs with <code class="tok">Design System Reference.html</code><br>
+    Imagery shown is example stock from Unsplash — no licensed BMO photography ships with this package. Swap in approved assets for production.
+  </div>
+</div>
+
+<script>
+  /* Reveal-on-scroll — vanilla, reduced-motion + no-JS safe. */
+  (function () {
+    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var els = document.querySelectorAll('.reveal');
+    if (reduce || !('IntersectionObserver' in window)) {
+      els.forEach(function (el) { el.classList.add('is-in'); });
+      return;
+    }
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+    els.forEach(function (el, i) {
+      el.style.transitionDelay = (Math.min(i % 5, 4) * 45) + 'ms';
+      io.observe(el);
+    });
+  })();
+</script>
+
+</body>
+</html>

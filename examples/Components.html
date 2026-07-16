@@ -1,0 +1,923 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BMO SharePoint Design System · Components</title>
+<link rel="stylesheet" href="../colors_and_type.css">
+<link rel="stylesheet" href="../components.css">
+<style>
+  *,*::before,*::after { box-sizing: border-box; }
+  body { margin: 0; background: var(--surface-subtle); color: var(--fg-primary); min-height: 100vh; }
+  ::-webkit-scrollbar { width: 10px; height: 10px; }
+  ::-webkit-scrollbar-thumb { background: rgba(0,0,0,.18); border-radius: 5px; }
+
+  .page { display: grid; grid-template-columns: 240px 1fr; min-height: 100vh; }
+  aside { position: sticky; top: 0; align-self: start; height: 100vh; overflow: auto; background: var(--surface-canvas); border-right: 1px solid var(--stroke-divider); padding: 22px 14px 40px; }
+  aside .brand { display: flex; align-items: center; gap: 10px; padding: 4px 8px 14px; border-bottom: 1px solid var(--stroke-divider); margin-bottom: 12px; }
+  aside .brand .mark { width: 28px; height: 28px; border-radius: 4px; background: var(--accent-rest); display: flex; align-items: center; justify-content: center; color: #fff; font: 700 13px/1 var(--font-family); }
+  aside .brand .t { font: var(--type-body1-strong); }
+  aside .brand .s { font: var(--type-caption1); color: var(--fg-secondary); }
+  aside nav { display: flex; flex-direction: column; gap: 1px; }
+  aside nav a { padding: 6px 10px; border-radius: 4px; text-decoration: none; font: var(--type-body1); color: var(--fg-primary); }
+  aside nav a:hover { background: var(--f2-grey-96); text-decoration: none; }
+  aside .links { margin-top: 16px; padding-top: 12px; border-top: 1px solid var(--stroke-divider); display: flex; flex-direction: column; gap: 6px; }
+  aside .links a { font: var(--type-caption1-strong); color: var(--accent-rest); text-decoration: none; }
+
+  main { min-width: 0; }
+  header.top { background: var(--surface-canvas); border-bottom: 1px solid var(--stroke-divider); padding: 36px 48px 26px; }
+  header.top .eyebrow { font: var(--type-caption1-strong); letter-spacing: .09em; text-transform: uppercase; color: var(--accent-rest); }
+  header.top h1 { font: 400 34px/42px var(--font-family); margin: 8px 0 6px; letter-spacing: -.01em; }
+  header.top .sub { font: var(--type-body2); color: var(--fg-secondary); max-width: 72ch; }
+  header.top .meta { display: flex; gap: 16px; margin-top: 14px; font: var(--type-caption1); font-family: var(--font-family-mono); color: var(--fg-secondary); flex-wrap: wrap; }
+
+  .inner { padding: 32px 48px 80px; max-width: 1040px; }
+  section.group { margin-bottom: 40px; scroll-margin-top: 16px; }
+  section.group > h2 { font: 400 24px/32px var(--font-family); margin: 0 0 4px; letter-spacing: -.01em; }
+  section.group > .lede { font: var(--type-body1); color: var(--fg-secondary); margin: 0 0 18px; max-width: 72ch; }
+
+  .spec { background: var(--surface-canvas); border: 1px solid var(--stroke-divider); border-radius: var(--radius-large); overflow: hidden; margin-bottom: 16px; }
+  .spec__name { font: var(--type-body1-strong); padding: 12px 16px 0; }
+  .spec__note { font: var(--type-caption1); color: var(--fg-secondary); padding: 2px 16px 0; }
+  .spec__preview { padding: 24px 16px; display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+  .spec__preview.col { flex-direction: column; align-items: stretch; }
+  .spec__preview.tint { background: var(--surface-tint-neutral); }
+  .codewrap { position: relative; border-top: 1px solid var(--stroke-divider); }
+  .codewrap pre { margin: 0; background: #0B2233; color: #D7E6F2; padding: 14px 16px; overflow-x: auto; font: 400 12.5px/1.6 var(--font-family-mono); }
+  .codewrap pre .tag { color: #73C3EB; } .codewrap pre .att { color: #E7B98A; } .codewrap pre .val { color: #9FD7A6; } .codewrap pre .c { color: #6E8BA0; }
+  .copy-btn { position: absolute; top: 8px; right: 8px; height: 24px; padding: 0 10px; font: var(--type-caption1-strong); color: #D7E6F2; background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.2); border-radius: var(--radius-small); cursor: pointer; }
+  .copy-btn:hover { background: rgba(255,255,255,.18); }
+
+  /* small swatch grid for tokens-in-context note */
+  .note { background: var(--surface-tint-blue); border: 1px solid var(--stroke-divider); border-radius: var(--radius-medium); padding: 12px 14px; font: var(--type-body1); margin-bottom: 18px; }
+  .note code { font-family: var(--font-family-mono); font-size: 12.5px; background: var(--f2-grey-94); border-radius: 3px; padding: 1px 4px; }
+
+  @media (max-width: 860px) { .page { grid-template-columns: 1fr; } aside { display: none; } .inner, header.top { padding-left: 24px; padding-right: 24px; } }
+</style>
+</head>
+<body>
+
+<!-- ════════ Canonical icon sprite — inline once per page ════════
+     This is bmo-icons.svg, dropped into the body so same-document #id refs
+     resolve for BOTH the no-JS <use> form and the <fluent-icon> element.
+     Symbol ids: ic-fluent-{name}-24-regular. Do not rename. -->
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true"><defs>
+  <symbol id="ic-fluent-add-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></g></symbol>
+  <symbol id="ic-fluent-alert-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4a5 5 0 0 1 5 5c0 5 2 6 2 6H5s2-1 2-6a5 5 0 0 1 5-5zM10.3 19a1.8 1.8 0 0 0 3.4 0"/></g></symbol>
+  <symbol id="ic-fluent-arrow-down-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v13M6 12l6 6 6-6"/></g></symbol>
+  <symbol id="ic-fluent-arrow-export-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M11 6H6a1 1 0 0 0-1 1v11a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1v-5M14 5h5v5M19 5l-8 8"/></g></symbol>
+  <symbol id="ic-fluent-arrow-right-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13M12 6l6 6-6 6"/></g></symbol>
+  <symbol id="ic-fluent-arrow-up-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V6M6 12l6-6 6 6"/></g></symbol>
+  <symbol id="ic-fluent-attach-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M16.5 8.5l-6 6a2 2 0 1 0 2.8 2.8l6-6a3.5 3.5 0 0 0-5-5l-6.5 6.5a5 5 0 0 0 7 7l5.5-5.5"/></g></symbol>
+  <symbol id="ic-fluent-calendar-ltr-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 7a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v11a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V7zM5 10h14M9 4v3M15 4v3"/></g></symbol>
+  <symbol id="ic-fluent-checkmark-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></g></symbol>
+  <symbol id="ic-fluent-checkmark-circle-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"/><path d="M8.5 12.2l2.4 2.4 4.6-4.9"/></g></symbol>
+  <symbol id="ic-fluent-chevron-down-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M7 10l5 5 5-5"/></g></symbol>
+  <symbol id="ic-fluent-chevron-right-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M10 7l5 5-5 5"/></g></symbol>
+  <symbol id="ic-fluent-clock-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"/><path d="M12 7.5V12l3 2"/></g></symbol>
+  <symbol id="ic-fluent-data-bar-vertical-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19h16M7 19v-6M12 19V6M17 19v-9"/></g></symbol>
+  <symbol id="ic-fluent-delete-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8h12M9.5 8V6a1 1 0 0 1 1-1h3a1 1 0 0 1 1 1v2M8 8l.8 11a1 1 0 0 0 1 .9h4.4a1 1 0 0 0 1-.9L16 8M10.5 11.5v5M13.5 11.5v5"/></g></symbol>
+  <symbol id="ic-fluent-dismiss-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 6l12 12M18 6L6 18"/></g></symbol>
+  <symbol id="ic-fluent-document-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M7 4h7l4 4v11a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1zM14 4v4h4"/></g></symbol>
+  <symbol id="ic-fluent-edit-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 19l1-4 9-9 3 3-9 9-4 1zM14 6l3 3"/></g></symbol>
+  <symbol id="ic-fluent-filter-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 6h14l-5.5 7v5l-3-2v-3L5 6z"/></g></symbol>
+  <symbol id="ic-fluent-folder-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7a1 1 0 0 1 1-1h4l2 2h8a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7z"/></g></symbol>
+  <symbol id="ic-fluent-grid-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="6.5" height="6.5" rx="1"/><rect x="13.5" y="4" width="6.5" height="6.5" rx="1"/><rect x="4" y="13.5" width="6.5" height="6.5" rx="1"/><rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1"/></g></symbol>
+  <symbol id="ic-fluent-home-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11.5L12 5l8 6.5V19a1 1 0 0 1-1 1h-4v-6H9v6H5a1 1 0 0 1-1-1v-7.5z"/></g></symbol>
+  <symbol id="ic-fluent-info-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"/><path d="M12 11.5v4.5"/><path d="M12 8.2h.01"/></g></symbol>
+  <symbol id="ic-fluent-mail-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 7h14a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1zM4.5 8l7.5 5 7.5-5"/></g></symbol>
+  <symbol id="ic-fluent-mail-inbox-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l1.8-6.2a1 1 0 0 1 1-.8h8.4a1 1 0 0 1 1 .8L19 13v4a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1v-4zM5 13h4a3 3 0 0 0 6 0h4"/></g></symbol>
+  <symbol id="ic-fluent-money-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="7" width="16" height="10" rx="1.5"/><circle cx="12" cy="12" r="2.3"/><path d="M7 12h.01M17 12h.01"/></g></symbol>
+  <symbol id="ic-fluent-more-horizontal-24-regular" viewBox="0 0 24 24"><g fill="currentColor" stroke="none"><circle cx="6" cy="12" r="1.4"/><circle cx="12" cy="12" r="1.4"/><circle cx="18" cy="12" r="1.4"/></g></symbol>
+  <symbol id="ic-fluent-person-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8.5" r="3.5"/><path d="M5.5 19a6.5 6.5 0 0 1 13 0"/></g></symbol>
+  <symbol id="ic-fluent-person-add-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="9.5" cy="8.5" r="3.3"/><path d="M3.5 19a6 6 0 0 1 11-3.3M18 8v6M15 11h6"/></g></symbol>
+  <symbol id="ic-fluent-phone-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 4.5l3 .8 1 3.2-1.9 1.4a10 10 0 0 0 4.6 4.6l1.4-1.9 3.2 1 .8 3a1 1 0 0 1-1 1.1A13.5 13.5 0 0 1 5.4 5.5a1 1 0 0 1 1.1-1z"/></g></symbol>
+  <symbol id="ic-fluent-receipt-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 4h12v16l-2-1.3-2 1.3-2-1.3-2 1.3-2-1.3-2 1.3V4zM9 8h6M9 11.5h6M9 15h4"/></g></symbol>
+  <symbol id="ic-fluent-search-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="10.5" cy="10.5" r="5.5"/><path d="M15 15l4 4"/></g></symbol>
+  <symbol id="ic-fluent-settings-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 4v2.2M12 17.8V20M5 7.5l1.9 1.1M17.1 15.4L19 16.5M5 16.5l1.9-1.1M17.1 8.6L19 7.5"/></g></symbol>
+  <symbol id="ic-fluent-shield-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4l7 2.5v5c0 5-3.5 8-7 9.5-3.5-1.5-7-4.5-7-9.5v-5L12 4zM9 12l2 2 4-4"/></g></symbol>
+  <symbol id="ic-fluent-warning-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5l8.5 14.5H3.5L12 5z"/><path d="M12 10.5v4M12 17h.01"/></g></symbol>
+  <symbol id="ic-fluent-checkmark-circle-24-filled" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5" fill="currentColor"/><path d="M8.4 12.2l2.5 2.5 4.7-5" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="ic-fluent-warning-24-filled" viewBox="0 0 24 24"><path d="M11.1 5.2a1 1 0 0 1 1.8 0l8 14a1 1 0 0 1-.9 1.5H4a1 1 0 0 1-.9-1.5l8-14z" fill="currentColor"/><path d="M12 10v4M12 17h.01" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+</defs></svg>
+
+<div class="page">
+  <aside>
+    <div class="brand">
+      <div class="mark">B</div>
+      <div><div class="t">Components</div><div class="s">BMO · SharePoint</div></div>
+    </div>
+    <nav>
+      <a href="#buttons">Buttons</a>
+      <a href="#icons">Icons</a>
+      <a href="#inputs">Inputs &amp; fields</a>
+      <a href="#selection">Selection controls</a>
+      <a href="#badges">Badges, tags, status</a>
+      <a href="#avatars">Avatars</a>
+      <a href="#cards">Cards</a>
+      <a href="#media-cards">Media cards</a>
+      <a href="#stats">Stat cards</a>
+      <a href="#tabs">Tabs</a>
+      <a href="#messages">Message bars</a>
+      <a href="#toolbar">Toolbar</a>
+      <a href="#grid">Data grid</a>
+      <a href="#dialog">Dialog</a>
+      <a href="#toast">Toast &amp; empty</a>
+      <a href="#engagement">Engagement layer</a>
+      <a href="#page-shell">Page shell</a>
+    </nav>
+    <div class="links">
+      <a href="Developer Guide.html">Developer guide →</a>
+      <a href="Design System Reference.html">Visual reference →</a>
+      <a href="advanced-ui-example.html">Full composition →</a>
+    </div>
+  </aside>
+
+  <main>
+    <header class="top">
+      <div class="eyebrow">BMO SharePoint design system</div>
+      <h1>Component library</h1>
+      <p class="sub">Every component as a token-built CSS class — no React, no web-component library, no build step. Link <code style="font-family:var(--font-family-mono);font-size:13px">colors_and_type.css</code> then <code style="font-family:var(--font-family-mono);font-size:13px">components.css</code>, copy the markup, wire behaviour with Alpine.</p>
+      <div class="meta">
+        <span>Stack: HTML + CSS + inline Alpine</span>
+        <span>Link: colors_and_type.css → components.css</span>
+        <span>Icons: bmo-icons.svg (ic-fluent-*)</span>
+      </div>
+    </header>
+
+    <div class="inner">
+      <div class="note">
+        <strong>How to read this page.</strong> Each specimen shows the live component on top and its exact markup below — hit <code>Copy</code> and paste. Interactivity (open, toggle, sort, filter) is yours to wire in inline Alpine; see <a href="advanced-ui-example.html" style="color:var(--accent-rest)">advanced-ui-example.html</a> for the same classes composed into a full page.
+      </div>
+
+      <!-- BUTTONS -->
+      <section class="group" id="buttons">
+        <h2>Buttons</h2>
+        <p class="lede">One <code style="font-family:var(--font-family-mono)">.btn</code> base, six variants, three sizes. Blue is the only filled accent; secondary is outline; danger is for destructive actions (never BMO Red).</p>
+        <div class="spec">
+          <div class="spec__name">Variants</div>
+          <div class="spec__preview">
+            <button class="btn btn--primary">Primary</button>
+            <button class="btn btn--secondary">Secondary</button>
+            <button class="btn btn--tertiary">Tertiary</button>
+            <button class="btn btn--subtle">Subtle</button>
+            <button class="btn btn--ghost">Ghost</button>
+            <button class="btn btn--danger">Danger</button>
+            <button class="btn btn--primary" disabled>Disabled</button>
+          </div>
+          <div class="codewrap"><button class="copy-btn" onclick="copyCode(this)">Copy</button><pre>&lt;button class="btn btn--primary"&gt;Primary&lt;/button&gt;
+&lt;button class="btn btn--secondary"&gt;Secondary&lt;/button&gt;
+&lt;button class="btn btn--tertiary"&gt;Tertiary&lt;/button&gt;
+&lt;button class="btn btn--subtle"&gt;Subtle&lt;/button&gt;
+&lt;button class="btn btn--ghost"&gt;Ghost&lt;/button&gt;
+&lt;button class="btn btn--danger"&gt;Danger&lt;/button&gt;
+&lt;button class="btn btn--primary" disabled&gt;Disabled&lt;/button&gt;</pre></div>
+        </div>
+        <div class="spec">
+          <div class="spec__name">With icons &amp; sizes</div>
+          <div class="spec__preview">
+            <button class="btn btn--primary"><svg class="icon icon--16"><use href="#ic-fluent-add-24-regular"/></svg> New request</button>
+            <button class="btn btn--secondary"><svg class="icon icon--16"><use href="#ic-fluent-filter-24-regular"/></svg> Filter</button>
+            <button class="btn btn--primary btn--sm">Small</button>
+            <button class="btn btn--primary btn--lg">Large</button>
+          </div>
+          <div class="codewrap"><button class="copy-btn" onclick="copyCode(this)">Copy</button><pre>&lt;button class="btn btn--primary"&gt;
+  &lt;svg class="icon icon--16"&gt;&lt;use href="#ic-fluent-add-24-regular"/&gt;&lt;/svg&gt; New request
+&lt;/button&gt;
+&lt;button class="btn btn--primary btn--sm"&gt;Small&lt;/button&gt;
+&lt;button class="btn btn--primary btn--lg"&gt;Large&lt;/button&gt;</pre></div>
+        </div>
+      </section>
+
+      <!-- ICONS -->
+      <section class="group" id="icons">
+        <h2>Icons</h2>
+        <p class="lede">Self-hosted Fluent sprite (<code style="font-family:var(--font-family-mono)">bmo-icons.svg</code>, ids <code style="font-family:var(--font-family-mono)">ic-fluent-{name}-24-regular</code>). <code style="font-family:var(--font-family-mono)">.icon</code> inherits <code style="font-family:var(--font-family-mono)">currentColor</code>; use the size helpers (12 / 16 / 20 / 24 only). Inline the sprite once per page so same-document <code style="font-family:var(--font-family-mono)">#id</code> refs resolve.</p>
+        <div class="note"><strong>Two SVG forms, one name token.</strong> The <strong>no-JS</strong> form needs only the two CSS files + the inlined sprite — a dev not ready for our scripting is never blocked. The optional <strong>sugar</strong> form <code>&lt;fluent-icon&gt;</code> needs one script tag (<code>fluent-icon.js</code>). Both resolve to the same <code>ic-fluent-*</code> symbol, so you can mix them and migrate between them mechanically. A <strong>third</strong> delivery — the first-party Fluent <strong>icon font</strong> (<code>&lt;i class="icon-ic_fluent_home_24_regular" aria-hidden&gt;</code>) — gives the full Fluent set with no sprite and no JS; <code>aria-hidden</code> the <code>&lt;i&gt;</code> and size via <code>font-size</code>. See the technical reference §6.</div>
+        <div class="spec">
+          <div class="spec__name">No-JS form (default)</div>
+          <div class="spec__preview">
+            <svg class="icon icon--24" style="color:var(--fg-primary)"><use href="#ic-fluent-home-24-regular"/></svg>
+            <svg class="icon icon--24" style="color:var(--fg-accent)"><use href="#ic-fluent-search-24-regular"/></svg>
+            <svg class="icon icon--24" style="color:var(--fg-secondary)"><use href="#ic-fluent-document-24-regular"/></svg>
+            <svg class="icon icon--24" style="color:var(--fg-success)"><use href="#ic-fluent-checkmark-circle-24-regular"/></svg>
+            <svg class="icon icon--24" style="color:var(--fg-danger)"><use href="#ic-fluent-warning-24-regular"/></svg>
+          </div>
+          <div class="codewrap"><button class="copy-btn" onclick="copyCode(this)">Copy</button><pre><span class="c">&lt;!-- standard UI icon (Slate, inherits color) --&gt;</span>
+&lt;svg class="icon icon--20"&gt;&lt;use href="#ic-fluent-home-24-regular"/&gt;&lt;/svg&gt;
+<span class="c">&lt;!-- actionable icon: tint with --fg-accent --&gt;</span>
+&lt;svg class="icon icon--20" style="color:var(--fg-accent)"&gt;&lt;use href="#ic-fluent-search-24-regular"/&gt;&lt;/svg&gt;</pre></div>
+        </div>
+        <div class="spec">
+          <div class="spec__name">Sugar form — &lt;fluent-icon&gt; (optional, this page loads fluent-icon.js)</div>
+          <div class="spec__preview">
+            <fluent-icon name="home-24-regular" class="icon--24" style="color:var(--fg-primary)"></fluent-icon>
+            <fluent-icon name="search-24-regular" class="icon--24" style="color:var(--fg-accent)"></fluent-icon>
+            <fluent-icon name="document-24-regular" class="icon--24" style="color:var(--fg-secondary)"></fluent-icon>
+            <fluent-icon name="checkmark-circle-24-regular" class="icon--24" style="color:var(--fg-success)"></fluent-icon>
+            <fluent-icon name="warning-24-regular" class="icon--24" style="color:var(--fg-danger)"></fluent-icon>
+          </div>
+          <div class="codewrap"><button class="copy-btn" onclick="copyCode(this)">Copy</button><pre><span class="c">&lt;!-- one script tag, once per page --&gt;</span>
+&lt;script src="fluent-icon.js" defer&gt;&lt;/script&gt;
+
+&lt;fluent-icon name="home-24-regular"&gt;&lt;/fluent-icon&gt;
+&lt;fluent-icon name="search-24-regular" class="icon--20"&gt;&lt;/fluent-icon&gt;   <span class="c">&lt;!-- size via CSS helper --&gt;</span>
+&lt;fluent-icon name="warning-24-filled" label="Warning"&gt;&lt;/fluent-icon&gt;</pre></div>
+        </div>
+      </section>
+
+      <!-- INPUTS -->
+      <section class="group" id="inputs">
+        <h2>Inputs &amp; fields</h2>
+        <p class="lede">Wrap any control in <code style="font-family:var(--font-family-mono)">.field</code> for label + hint/error. Use <code style="font-family:var(--font-family-mono)">.input-group</code> when an icon shares the control border.</p>
+        <div class="spec">
+          <div class="spec__preview col" style="max-width:420px">
+            <div class="field">
+              <label class="field__label">Subject <span class="field__req">*</span></label>
+              <input class="input" placeholder="e.g. Q3 expense report">
+              <p class="field__hint">Shown to the approver.</p>
+            </div>
+            <div class="field">
+              <label class="field__label">Amount</label>
+              <div class="input-group">
+                <svg class="icon icon--16 input-group__icon"><use href="#ic-fluent-money-24-regular"/></svg>
+                <input class="input-group__field" placeholder="0.00">
+              </div>
+            </div>
+            <div class="field">
+              <label class="field__label">Cost centre</label>
+              <select class="select"><option>CC-4012 · Capital markets</option><option>CC-2210 · Retail ops</option></select>
+            </div>
+            <div class="field">
+              <label class="field__label">Notes</label>
+              <textarea class="textarea" placeholder="Brief context…"></textarea>
+            </div>
+            <div class="field">
+              <label class="field__label">Subject <span class="field__req">*</span></label>
+              <input class="input" aria-invalid="true" value="">
+              <p class="field__error">Subject is required.</p>
+            </div>
+          </div>
+          <div class="codewrap"><button class="copy-btn" onclick="copyCode(this)">Copy</button><pre>&lt;div class="field"&gt;
+  &lt;label class="field__label"&gt;Subject &lt;span class="field__req"&gt;*&lt;/span&gt;&lt;/label&gt;
+  &lt;input class="input" placeholder="e.g. Q3 expense report"&gt;
+  &lt;p class="field__hint"&gt;Shown to the approver.&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;div class="input-group"&gt;
+  &lt;svg class="icon icon--16 input-group__icon"&gt;&lt;use href="#ic-fluent-money-24-regular"/&gt;&lt;/svg&gt;
+  &lt;input class="input-group__field" placeholder="0.00"&gt;
+&lt;/div&gt;
+
+&lt;select class="select"&gt;&lt;option&gt;CC-4012 · Capital markets&lt;/option&gt;&lt;/select&gt;
+&lt;textarea class="textarea" placeholder="Brief context…"&gt;&lt;/textarea&gt;
+
+<span class="c">&lt;!-- error state --&gt;</span>
+&lt;input class="input" aria-invalid="true"&gt;
+&lt;p class="field__error"&gt;Subject is required.&lt;/p&gt;</pre></div>
+        </div>
+      </section>
+
+      <!-- SELECTION -->
+      <section class="group" id="selection">
+        <h2>Selection controls</h2>
+        <p class="lede">Checkbox, radio, switch, and a single-select chip row. Native controls are tinted with <code style="font-family:var(--font-family-mono)">accent-color</code>; bind state with Alpine.</p>
+        <div class="spec">
+          <div class="spec__preview" style="gap:24px">
+            <label class="check"><input type="checkbox" checked> Pending</label>
+            <label class="radio"><input type="radio" name="demo-pri" checked> Normal</label>
+            <label class="radio"><input type="radio" name="demo-pri"> High</label>
+            <label class="switch"><input type="checkbox" checked><span class="switch__track"></span> Email me</label>
+          </div>
+          <div class="spec__preview" style="border-top:1px solid var(--stroke-divider)">
+            <div class="chip-row">
+              <button class="chip is-active" aria-pressed="true">Expense</button>
+              <button class="chip">Travel</button>
+              <button class="chip">Procurement</button>
+              <button class="chip">Software</button>
+            </div>
+          </div>
+          <div class="codewrap"><button class="copy-btn" onclick="copyCode(this)">Copy</button><pre>&lt;label class="check"&gt;&lt;input type="checkbox" x-model="filter"&gt; Pending&lt;/label&gt;
+&lt;label class="radio"&gt;&lt;input type="radio" name="pri" x-model="priority"&gt; High&lt;/label&gt;
+
+&lt;label class="switch"&gt;
+  &lt;input type="checkbox" x-model="notify"&gt;&lt;span class="switch__track"&gt;&lt;/span&gt; Email me
+&lt;/label&gt;
+
+&lt;div class="chip-row"&gt;
+  &lt;button class="chip" :class="{ 'is-active': type==='Expense' }"
+          x-on:click="type='Expense'"&gt;Expense&lt;/button&gt;
+&lt;/div&gt;</pre></div>
+        </div>
+      </section>
+
+      <!-- BADGES -->
+      <section class="group" id="badges">
+        <h2>Badges, tags &amp; status</h2>
+        <p class="lede">Semantic status pills, neutral metadata tags, and status dots. Each maps to a feedback token.</p>
+        <div class="spec">
+          <div class="spec__preview">
+            <span class="badge badge--info">Pending</span>
+            <span class="badge badge--success">Approved</span>
+            <span class="badge badge--warning">Returned</span>
+            <span class="badge badge--danger">Rejected</span>
+            <span class="badge">Draft</span>
+            <span class="badge badge--strong">4</span>
+            <span class="tag">Expense</span>
+            <span style="display:inline-flex;align-items:center;gap:6px"><span class="dot dot--success"></span> On track</span>
+            <span style="display:inline-flex;align-items:center;gap:6px"><span class="dot dot--danger"></span> Overdue</span>
+          </div>
+          <div class="codewrap"><button class="copy-btn" onclick="copyCode(this)">Copy</button><pre>&lt;span class="badge badge--info"&gt;Pending&lt;/span&gt;
+&lt;span class="badge badge--success"&gt;Approved&lt;/span&gt;
+&lt;span class="badge badge--warning"&gt;Returned&lt;/span&gt;
+&lt;span class="badge badge--danger"&gt;Rejected&lt;/span&gt;
+&lt;span class="badge"&gt;Draft&lt;/span&gt;        <span class="c">&lt;!-- neutral --&gt;</span>
+&lt;span class="badge badge--strong"&gt;4&lt;/span&gt; <span class="c">&lt;!-- count on active tab --&gt;</span>
+
+&lt;span class="tag"&gt;Expense&lt;/span&gt;
+&lt;span class="dot dot--success"&gt;&lt;/span&gt; On track</pre></div>
+        </div>
+      </section>
+
+      <!-- AVATARS -->
+      <section class="group" id="avatars">
+        <h2>Avatars</h2>
+        <p class="lede">Initials on a brand-palette ground. Set initials as text and the colour inline (derive it from the name in JS). Sizes 20 / 22 / 28 / 32 / 40.</p>
+        <div class="spec">
+          <div class="spec__preview">
+            <span class="avatar avatar--20" style="background:#0079C1">SC</span>
+            <span class="avatar avatar--22" style="background:#974BB7">DO</span>
+            <span class="avatar" style="background:#005789">MT</span>
+            <span class="avatar avatar--32" style="background:#0F9B2C">PS</span>
+            <span class="avatar avatar--40" style="background:#003758">RK</span>
+          </div>
+          <div class="codewrap"><button class="copy-btn" onclick="copyCode(this)">Copy</button><pre>&lt;span class="avatar" style="background:#0079C1"&gt;SC&lt;/span&gt;
+&lt;span class="avatar avatar--40" style="background:#003758"&gt;RK&lt;/span&gt;
+
+<span class="c">// in Alpine: :style and x-text from the name</span>
+&lt;span class="avatar avatar--22"
+  :style="'background:' + avatarColor(name)" x-text="initials(name)"&gt;&lt;/span&gt;</pre></div>
+        </div>
+      </section>
+
+      <!-- CARDS -->
+      <section class="group" id="cards">
+        <h2>Cards</h2>
+        <p class="lede">White surface, 1px divider, <code style="font-family:var(--font-family-mono)">--shadow-4</code>, 4–8px radius. Composition parts (eyebrow, title, body, footer, icon tile) mix freely. Add <code style="font-family:var(--font-family-mono)">.lift</code> for an interactive hover-rise.</p>
+        <div class="spec">
+          <div class="spec__preview tint" style="gap:16px">
+            <article class="card" style="width:280px">
+              <p class="card__eyebrow">Policy</p>
+              <h3 class="card__title">Q3 expense policy</h3>
+              <p class="card__body">What's reimbursable, limits, and the receipts you need to attach.</p>
+              <div class="card__footer">
+                <span class="card__meta">Updated Oct 2</span>
+                <a class="card__cta" href="#" onclick="return false">Review <svg class="icon icon--16"><use href="#ic-fluent-arrow-right-24-regular"/></svg></a>
+              </div>
+            </article>
+            <article class="card lift" tabindex="0" style="width:280px;display:flex;gap:12px;align-items:flex-start">
+              <span class="card__icon-tile"><svg class="icon icon--20"><use href="#ic-fluent-money-24-regular"/></svg></span>
+              <div>
+                <h3 class="card__title">Start a reimbursement</h3>
+                <p class="card__body">Submit a claim and route it to your approver.</p>
+              </div>
+            </article>
+          </div>
+          <div class="codewrap"><button class="copy-btn" onclick="copyCode(this)">Copy</button><pre>&lt;article class="card"&gt;
+  &lt;p class="card__eyebrow"&gt;Policy&lt;/p&gt;
+  &lt;h3 class="card__title"&gt;Q3 expense policy&lt;/h3&gt;
+  &lt;p class="card__body"&gt;What's reimbursable, limits, receipts.&lt;/p&gt;
+  &lt;div class="card__footer"&gt;
+    &lt;span class="card__meta"&gt;Updated Oct 2&lt;/span&gt;
+    &lt;a class="card__cta" href="#"&gt;Review &lt;svg class="icon icon--16"&gt;&lt;use href="#ic-fluent-arrow-right-24-regular"/&gt;&lt;/svg&gt;&lt;/a&gt;
+  &lt;/div&gt;
+&lt;/article&gt;
+
+<span class="c">&lt;!-- interactive card with leading icon tile --&gt;</span>
+&lt;article class="card lift" tabindex="0"&gt;
+  &lt;span class="card__icon-tile"&gt;&lt;svg class="icon icon--20"&gt;&lt;use href="#ic-fluent-money-24-regular"/&gt;&lt;/svg&gt;&lt;/span&gt;
+  …
+&lt;/article&gt;</pre></div>
+        </div>
+      </section>
+
+      <!-- MEDIA CARDS -->
+      <section class="group" id="media-cards">
+        <h2>Media cards</h2>
+        <p class="lede">The same card, with imagery. Pair <code style="font-family:var(--font-family-mono)">.card--flush</code> with a <code style="font-family:var(--font-family-mono)">.card__media</code> (wrap an <code style="font-family:var(--font-family-mono)">&lt;img&gt;</code> or an <code style="font-family:var(--font-family-mono)">.imgph</code> placeholder) and a <code style="font-family:var(--font-family-mono)">.card__content</code> for the text. Same eyebrow/title/body/footer parts as the base card.</p>
+        <div class="spec">
+          <div class="spec__name">Top image &amp; left image</div>
+          <div class="spec__preview tint" style="gap:16px;align-items:stretch">
+            <article class="card card--flush lift" tabindex="0" style="width:280px">
+              <div class="card__media card__media--top">
+                <div class="imgph" style="height:100%"><span class="lbl">card image · 560×304</span></div>
+              </div>
+              <div class="card__content">
+                <p class="card__eyebrow">Guide</p>
+                <h3 class="card__title">How approvals work</h3>
+                <p class="card__body">A full-width image caps the card. Keep it ~152px so the card stays dense.</p>
+                <div class="card__footer"><span class="card__meta"><svg class="icon icon--16"><use href="#ic-fluent-clock-24-regular"/></svg> 2 min read</span><a class="card__cta" href="#" onclick="return false">Read <svg class="icon icon--16"><use href="#ic-fluent-arrow-right-24-regular"/></svg></a></div>
+              </div>
+            </article>
+            <article class="card card--flush card--row lift" tabindex="0" style="flex:1;min-width:360px">
+              <div class="card__media card__media--left">
+                <div class="imgph" style="height:100%"><span class="lbl">portrait · 680×900</span></div>
+              </div>
+              <div class="card__content">
+                <p class="card__eyebrow">Spotlight</p>
+                <h3 class="card__title">Approve on the go</h3>
+                <p class="card__body">A full-height image runs down the left edge while the text stacks on the right. Use for feature spotlights and editorial rows.</p>
+                <div class="card__footer"><span class="card__meta"><span class="badge badge--success">New</span> Mobile + Teams</span><a class="card__cta" href="#" onclick="return false">Turn on <svg class="icon icon--16"><use href="#ic-fluent-arrow-right-24-regular"/></svg></a></div>
+              </div>
+            </article>
+          </div>
+          <div class="codewrap"><button class="copy-btn" onclick="copyCode(this)">Copy</button><pre><span class="c">&lt;!-- top image --&gt;</span>
+&lt;article class="card card--flush lift" tabindex="0"&gt;
+  &lt;div class="card__media card__media--top"&gt;
+    &lt;img src="…" alt="…"&gt;            <span class="c">&lt;!-- or an .imgph placeholder --&gt;</span>
+  &lt;/div&gt;
+  &lt;div class="card__content"&gt;
+    &lt;p class="card__eyebrow"&gt;Guide&lt;/p&gt;
+    &lt;h3 class="card__title"&gt;How approvals work&lt;/h3&gt;
+    &lt;p class="card__body"&gt;…&lt;/p&gt;
+    &lt;div class="card__footer"&gt;&lt;span class="card__meta"&gt;&lt;svg class="icon icon--16"&gt;&lt;use href="#ic-fluent-clock-24-regular"/&gt;&lt;/svg&gt; 2 min read&lt;/span&gt;&lt;a class="card__cta" href="#"&gt;Read &lt;svg class="icon icon--16"&gt;&lt;use href="#ic-fluent-arrow-right-24-regular"/&gt;&lt;/svg&gt;&lt;/a&gt;&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/article&gt;
+
+<span class="c">&lt;!-- left full-height image (editorial row) --&gt;</span>
+&lt;article class="card card--flush card--row lift" tabindex="0"&gt;
+  &lt;div class="card__media card__media--left"&gt;&lt;img src="…" alt="…"&gt;&lt;/div&gt;
+  &lt;div class="card__content"&gt; …eyebrow / title / body / footer… &lt;/div&gt;
+&lt;/article&gt;</pre></div>
+        </div>
+      </section>
+
+      <!-- STATS -->
+      <section class="group" id="stats">
+        <h2>Stat cards</h2>
+        <p class="lede">KPI block: label with a status dot, a large numeral, an optional up/down delta, and a sub-label.</p>
+        <div class="spec">
+          <div class="spec__preview tint">
+            <div class="card" style="width:240px">
+              <div class="stat">
+                <div class="stat__label"><span class="dot dot--info"></span> Pending your approval</div>
+                <div class="stat__row"><span class="stat__value">4</span><span class="stat__delta stat__delta--down"><svg class="icon"><use href="#ic-fluent-arrow-down-24-regular"/></svg> +2 today</span></div>
+                <div class="stat__sub">2 due in 24 hours</div>
+              </div>
+            </div>
+            <div class="card" style="width:240px">
+              <div class="stat">
+                <div class="stat__label"><span class="dot dot--success"></span> Submitted this month</div>
+                <div class="stat__row"><span class="stat__value">12</span><span class="stat__delta stat__delta--up"><svg class="icon"><use href="#ic-fluent-arrow-up-24-regular"/></svg> +33%</span></div>
+                <div class="stat__sub">vs. last month</div>
+              </div>
+            </div>
+          </div>
+          <div class="codewrap"><button class="copy-btn" onclick="copyCode(this)">Copy</button><pre>&lt;div class="card"&gt;
+  &lt;div class="stat"&gt;
+    &lt;div class="stat__label"&gt;&lt;span class="dot dot--info"&gt;&lt;/span&gt; Pending your approval&lt;/div&gt;
+    &lt;div class="stat__row"&gt;
+      &lt;span class="stat__value"&gt;4&lt;/span&gt;
+      &lt;span class="stat__delta stat__delta--down"&gt;
+        &lt;svg class="icon"&gt;&lt;use href="#ic-fluent-arrow-down-24-regular"/&gt;&lt;/svg&gt; +2 today
+      &lt;/span&gt;
+    &lt;/div&gt;
+    &lt;div class="stat__sub"&gt;2 due in 24 hours&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</pre></div>
+        </div>
+      </section>
+
+      <!-- TABS -->
+      <section class="group" id="tabs">
+        <h2>Tabs</h2>
+        <p class="lede">Underline tabs. Mark the current with <code style="font-family:var(--font-family-mono)">.is-active</code> (or <code style="font-family:var(--font-family-mono)">aria-selected="true"</code>). Optional count badge.</p>
+        <div class="spec">
+          <div class="spec__preview col">
+            <div class="tabs">
+              <button class="tab"><svg class="icon icon--16"><use href="#ic-fluent-home-24-regular"/></svg> Dashboard</button>
+              <button class="tab is-active" aria-selected="true"><svg class="icon icon--16"><use href="#ic-fluent-checkmark-24-regular"/></svg> Approvals <span class="badge badge--strong">4</span></button>
+              <button class="tab"><svg class="icon icon--16"><use href="#ic-fluent-document-24-regular"/></svg> History</button>
+            </div>
+          </div>
+          <div class="codewrap"><button class="copy-btn" onclick="copyCode(this)">Copy</button><pre>&lt;div class="tabs" role="tablist"&gt;
+  &lt;button class="tab" role="tab"
+    :class="{ 'is-active': tab==='dashboard' }" x-on:click="tab='dashboard'"&gt;
+    &lt;svg class="icon icon--16"&gt;&lt;use href="#ic-fluent-home-24-regular"/&gt;&lt;/svg&gt; Dashboard
+  &lt;/button&gt;
+  &lt;button class="tab is-active" aria-selected="true"&gt;
+    Approvals &lt;span class="badge badge--strong"&gt;4&lt;/span&gt;
+  &lt;/button&gt;
+&lt;/div&gt;</pre></div>
+        </div>
+      </section>
+
+      <!-- MESSAGE BARS -->
+      <section class="group" id="messages">
+        <h2>Message bars</h2>
+        <p class="lede">Inline feedback. Four semantics; soft tinted ground with a matching icon. BMO Red is never used here — errors are <code style="font-family:var(--font-family-mono)">--fg-danger</code>.</p>
+        <div class="spec">
+          <div class="spec__preview col">
+            <div class="msgbar msgbar--info"><svg class="icon icon--20 msgbar__icon"><use href="#ic-fluent-info-24-regular"/></svg><div class="msgbar__body"><strong>Heads up.</strong> Two approvals are due within 24 hours.</div><button class="icon-btn msgbar__close" aria-label="Dismiss"><svg class="icon"><use href="#ic-fluent-dismiss-24-regular"/></svg></button></div>
+            <div class="msgbar msgbar--success"><svg class="icon icon--20 msgbar__icon"><use href="#ic-fluent-checkmark-circle-24-regular"/></svg><div class="msgbar__body"><strong>Submitted.</strong> Approval is pending with Sarah Chen.</div></div>
+            <div class="msgbar msgbar--warning"><svg class="icon icon--20 msgbar__icon"><use href="#ic-fluent-warning-24-regular"/></svg><div class="msgbar__body"><strong>Returned for revisions.</strong> Update the receipts and resubmit.</div></div>
+            <div class="msgbar msgbar--danger"><svg class="icon icon--20 msgbar__icon"><use href="#ic-fluent-warning-24-regular"/></svg><div class="msgbar__body"><strong>We couldn't save your changes.</strong> Try again.</div></div>
+          </div>
+          <div class="codewrap"><button class="copy-btn" onclick="copyCode(this)">Copy</button><pre>&lt;div class="msgbar msgbar--warning" role="status"&gt;
+  &lt;svg class="icon icon--20 msgbar__icon"&gt;&lt;use href="#ic-fluent-warning-24-regular"/&gt;&lt;/svg&gt;
+  &lt;div class="msgbar__body"&gt;&lt;strong&gt;Returned for revisions.&lt;/strong&gt; Update and resubmit.&lt;/div&gt;
+  &lt;button class="icon-btn msgbar__close" aria-label="Dismiss"&gt;
+    &lt;svg class="icon"&gt;&lt;use href="#ic-fluent-dismiss-24-regular"/&gt;&lt;/svg&gt;
+  &lt;/button&gt;
+&lt;/div&gt;</pre></div>
+        </div>
+      </section>
+
+      <!-- TOOLBAR -->
+      <section class="group" id="toolbar">
+        <h2>Toolbar</h2>
+        <p class="lede">Actions row above content — title on the left, actions on the right via <code style="font-family:var(--font-family-mono)">.toolbar__spacer</code>.</p>
+        <div class="spec">
+          <div class="spec__preview col" style="padding:16px">
+            <div class="toolbar" style="border:1px solid var(--stroke-divider);border-radius:var(--radius-medium)">
+              <span class="toolbar__title">8 requests</span>
+              <span class="toolbar__spacer"></span>
+              <button class="btn btn--ghost btn--sm"><svg class="icon icon--16"><use href="#ic-fluent-filter-24-regular"/></svg> Add filter</button>
+              <button class="icon-btn" aria-label="More"><svg class="icon"><use href="#ic-fluent-more-horizontal-24-regular"/></svg></button>
+            </div>
+          </div>
+          <div class="codewrap"><button class="copy-btn" onclick="copyCode(this)">Copy</button><pre>&lt;div class="toolbar"&gt;
+  &lt;span class="toolbar__title"&gt;8 requests&lt;/span&gt;
+  &lt;span class="toolbar__spacer"&gt;&lt;/span&gt;
+  &lt;button class="btn btn--ghost btn--sm"&gt;Add filter&lt;/button&gt;
+  &lt;button class="icon-btn" aria-label="More"&gt;
+    &lt;svg class="icon"&gt;&lt;use href="#ic-fluent-more-horizontal-24-regular"/&gt;&lt;/svg&gt;
+  &lt;/button&gt;
+&lt;/div&gt;</pre></div>
+        </div>
+      </section>
+
+      <!-- DATA GRID -->
+      <section class="group" id="grid">
+        <h2>Data grid</h2>
+        <p class="lede">A real <code style="font-family:var(--font-family-mono)">&lt;table&gt;</code> for semantics. Right-align numerals with <code style="font-family:var(--font-family-mono)">.num</code>, mark the open row with <code style="font-family:var(--font-family-mono)">.is-selected</code>, drive sort with Alpine.</p>
+        <div class="spec">
+          <div class="spec__preview col" style="padding:0">
+            <table class="grid">
+              <thead><tr><th style="width:110px">ID</th><th>Subject</th><th class="num" style="width:140px">Amount</th><th style="width:110px">Status</th></tr></thead>
+              <tbody>
+                <tr class="is-selected"><td><span class="mono">REQ-1042</span></td><td>Q3 expense report — Toronto offsite</td><td class="num"><span class="mono" style="color:var(--fg-primary)">CAD 1,840.50</span></td><td><span class="badge badge--info">Pending</span></td></tr>
+                <tr><td><span class="mono">REQ-1038</span></td><td>Travel — NYC client visit</td><td class="num"><span class="mono" style="color:var(--fg-primary)">USD 2,210.00</span></td><td><span class="badge badge--success">Approved</span></td></tr>
+                <tr><td><span class="mono">REQ-1037</span></td><td>Adobe Creative Cloud — annual seat</td><td class="num"><span class="mono" style="color:var(--fg-primary)">CAD 779.88</span></td><td><span class="badge badge--warning">Returned</span></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="codewrap"><button class="copy-btn" onclick="copyCode(this)">Copy</button><pre>&lt;table class="grid"&gt;
+  &lt;thead&gt;&lt;tr&gt;
+    &lt;th class="grid__sort" x-on:click="sort('id')"&gt;ID&lt;/th&gt;
+    &lt;th&gt;Subject&lt;/th&gt;
+    &lt;th class="num"&gt;Amount&lt;/th&gt;
+    &lt;th&gt;Status&lt;/th&gt;
+  &lt;/tr&gt;&lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;template x-for="r in rows" :key="r.id"&gt;
+      &lt;tr :class="{ 'is-selected': selected?.id === r.id }" x-on:click="selected = r"&gt;
+        &lt;td&gt;&lt;span class="mono" x-text="r.id"&gt;&lt;/span&gt;&lt;/td&gt;
+        &lt;td x-text="r.title"&gt;&lt;/td&gt;
+        &lt;td class="num"&gt;&lt;span class="mono" x-text="fmt(r.amount)"&gt;&lt;/span&gt;&lt;/td&gt;
+        &lt;td&gt;&lt;span class="badge" :class="'badge--'+kind[r.status]" x-text="r.status"&gt;&lt;/span&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+    &lt;/template&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;</pre></div>
+        </div>
+      </section>
+
+      <!-- DIALOG -->
+      <section class="group" id="dialog">
+        <h2>Dialog</h2>
+        <p class="lede">Modal sheet on a scrim. Toggle with <code style="font-family:var(--font-family-mono)">x-show</code>; close on scrim click and <kbd>Esc</kbd>. Shown inline here (without the scrim) so you can read it.</p>
+        <div class="spec">
+          <div class="spec__preview tint">
+            <div class="dialog" style="max-width:480px;box-shadow:var(--shadow-16)">
+              <div class="dialog__head">
+                <div><h2 class="dialog__title">New request</h2><p class="dialog__sub">Fill in the details and route to your approver.</p></div>
+                <button class="icon-btn" aria-label="Close"><svg class="icon"><use href="#ic-fluent-dismiss-24-regular"/></svg></button>
+              </div>
+              <div class="dialog__body">
+                <div class="field"><label class="field__label">Subject <span class="field__req">*</span></label><input class="input" placeholder="e.g. Q3 expense report"></div>
+                <div class="dropzone"><svg class="icon icon--20"><use href="#ic-fluent-attach-24-regular"/></svg><div style="margin-top:4px">Drop files here, or <a href="#" onclick="return false">browse</a></div><div class="dropzone__hint">PDF, JPG, PNG · 10 MB max</div></div>
+              </div>
+              <div class="dialog__foot">
+                <button class="btn btn--tertiary">Cancel</button>
+                <button class="btn btn--secondary">Save as draft</button>
+                <button class="btn btn--primary">Submit for approval</button>
+              </div>
+            </div>
+          </div>
+          <div class="codewrap"><button class="copy-btn" onclick="copyCode(this)">Copy</button><pre>&lt;div class="scrim" x-show="open" x-on:click="open=false"
+     x-on:keydown.escape.window="open=false"&gt;
+  &lt;div class="dialog" x-on:click.stop&gt;
+    &lt;div class="dialog__head"&gt;
+      &lt;div&gt;&lt;h2 class="dialog__title"&gt;New request&lt;/h2&gt;
+        &lt;p class="dialog__sub"&gt;Fill in the details…&lt;/p&gt;&lt;/div&gt;
+      &lt;button class="icon-btn" x-on:click="open=false" aria-label="Close"&gt;
+        &lt;svg class="icon"&gt;&lt;use href="#ic-fluent-dismiss-24-regular"/&gt;&lt;/svg&gt;&lt;/button&gt;
+    &lt;/div&gt;
+    &lt;div class="dialog__body"&gt;…fields…&lt;/div&gt;
+    &lt;div class="dialog__foot"&gt;
+      &lt;button class="btn btn--tertiary" x-on:click="open=false"&gt;Cancel&lt;/button&gt;
+      &lt;button class="btn btn--primary"&gt;Submit for approval&lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</pre></div>
+        </div>
+      </section>
+
+      <!-- TOAST + EMPTY -->
+      <section class="group" id="toast">
+        <h2>Toast &amp; empty state</h2>
+        <p class="lede">A transient confirmation and a calm empty state — fact plus one action, never apologetic.</p>
+        <div class="spec">
+          <div class="spec__preview tint" style="gap:24px;align-items:flex-start">
+            <div class="toast" style="position:static;transform:none;animation:none">
+              <svg class="icon icon--20"><use href="#ic-fluent-checkmark-circle-24-regular"/></svg>
+              <span>Request submitted to Sarah Chen.</span>
+              <button class="toast__close" aria-label="Dismiss"><svg class="icon icon--16"><use href="#ic-fluent-dismiss-24-regular"/></svg></button>
+            </div>
+            <div class="card" style="flex:1;min-width:260px">
+              <div class="empty" style="padding:32px 16px">
+                <div class="empty__title">No active requests.</div>
+                <div class="empty__hint">Start a new request to get going.</div>
+                <button class="btn btn--primary" style="margin-top:14px"><svg class="icon icon--16"><use href="#ic-fluent-add-24-regular"/></svg> New request</button>
+              </div>
+            </div>
+          </div>
+          <div class="codewrap"><button class="copy-btn" onclick="copyCode(this)">Copy</button><pre>&lt;div class="toast" x-show="toast" x-text="toast"&gt;&lt;/div&gt;
+
+&lt;div class="empty"&gt;
+  &lt;div class="empty__title"&gt;No active requests.&lt;/div&gt;
+  &lt;div class="empty__hint"&gt;Start a new request to get going.&lt;/div&gt;
+&lt;/div&gt;</pre></div>
+        </div>
+      </section>
+
+      <!-- ENGAGEMENT LAYER -->
+      <section class="group" id="engagement">
+        <h2>Engagement layer</h2>
+        <p class="lede">Opt-in classes for richer landing/home surfaces — the dense app components above stay the default. These pair with the <code style="font-family:var(--font-family-mono)">.lift</code>, <code style="font-family:var(--font-family-mono)">.reveal</code>, <code style="font-family:var(--font-family-mono)">.imgph</code> and <code style="font-family:var(--font-family-mono)">.photo</code> utilities in <code style="font-family:var(--font-family-mono)">colors_and_type.css</code>. Full composition: <a href="advanced-ui-example.html" style="color:var(--accent-rest)">advanced-ui-example.html</a>.</p>
+
+        <div class="note"><strong>Two utilities you compose in.</strong> Add <code>.lift</code> to any card for a hover-rise + deeper shadow. Add <code>.reveal</code> to fade-and-rise on scroll — content is visible by default (print, no-JS, and reduced-motion safe); a tiny script adds <code>.is-in</code> to play it. Both are defined in <code>colors_and_type.css</code>; the reveal script is at the bottom of this section.</p></div>
+
+        <div class="spec">
+          <div class="spec__name">Surface bands</div>
+          <div class="spec__note">Alternating low-saturation grounds behind full-width sections. Solid tints only — never gradients, never a blue fill behind text.</div>
+          <div class="spec__preview col" style="padding:0;gap:0">
+            <div class="band band--neutral"><div class="band__inner" style="padding:18px 24px">band--neutral</div></div>
+            <div class="band band--blue"><div class="band__inner" style="padding:18px 24px">band--blue</div></div>
+            <div class="band band--sky"><div class="band__inner" style="padding:18px 24px">band--sky</div></div>
+          </div>
+          <div class="codewrap"><button class="copy-btn" onclick="copyCode(this)">Copy</button><pre>&lt;div class="band band--sky"&gt;
+  &lt;div class="band__inner"&gt; …section content… &lt;/div&gt;
+&lt;/div&gt;
+<span class="c">&lt;!-- tints: band--neutral · band--blue · band--sky · band--white --&gt;</span></pre></div>
+        </div>
+
+        <div class="spec">
+          <div class="spec__name">Quick-action cards</div>
+          <div class="spec__preview tint" style="gap:16px">
+            <a class="qcard lift" href="#" onclick="return false" style="width:180px"><span class="card__icon-tile"><svg class="icon icon--20"><use href="#ic-fluent-add-24-regular"/></svg></span><span class="qcard__title">New request</span><span class="qcard__desc">Start a fresh claim</span></a>
+            <a class="qcard lift" href="#" onclick="return false" style="width:180px"><span class="card__icon-tile"><svg class="icon icon--20"><use href="#ic-fluent-attach-24-regular"/></svg></span><span class="qcard__title">Upload receipt</span><span class="qcard__desc">Add to a draft</span></a>
+            <a class="qcard lift" href="#" onclick="return false" style="width:180px"><span class="card__icon-tile"><svg class="icon icon--20"><use href="#ic-fluent-money-24-regular"/></svg></span><span class="qcard__title">Export report</span><span class="qcard__desc">CSV or PDF</span></a>
+          </div>
+          <div class="codewrap"><button class="copy-btn" onclick="copyCode(this)">Copy</button><pre>&lt;a class="qcard lift" href="…"&gt;
+  &lt;span class="card__icon-tile"&gt;&lt;svg class="icon icon--20"&gt;&lt;use href="#ic-fluent-add-24-regular"/&gt;&lt;/svg&gt;&lt;/span&gt;
+  &lt;span class="qcard__title"&gt;New request&lt;/span&gt;
+  &lt;span class="qcard__desc"&gt;Start a fresh claim&lt;/span&gt;
+&lt;/a&gt;</pre></div>
+        </div>
+
+        <div class="spec">
+          <div class="spec__name">Feature banner</div>
+          <div class="spec__note">A larger split spotlight — image one side, copy the other. One per section. Add <code style="font-family:var(--font-family-mono)">.feature--media-right</code> to flip the image to the right.</div>
+          <div class="spec__preview tint">
+            <div class="feature" style="width:100%">
+              <div class="feature__media photo"><div class="imgph" style="height:100%;min-height:260px"><span class="lbl">feature image · 760×900</span></div></div>
+              <div class="feature__copy">
+                <p class="card__eyebrow">New</p>
+                <h2 class="feature__title">Approve on the go</h2>
+                <p class="feature__lede">Approvals reach you in Teams and on mobile, with the full request detail attached.</p>
+                <ul class="feature__ticks">
+                  <li><svg class="icon icon--20"><use href="#ic-fluent-checkmark-circle-24-regular"/></svg> One-tap approve or return with a note</li>
+                  <li><svg class="icon icon--20"><use href="#ic-fluent-checkmark-circle-24-regular"/></svg> Receipts and cost centre shown inline</li>
+                </ul>
+                <div style="display:flex;gap:12px;flex-wrap:wrap"><button class="btn btn--primary">Turn on mobile approvals</button></div>
+              </div>
+            </div>
+          </div>
+          <div class="codewrap"><button class="copy-btn" onclick="copyCode(this)">Copy</button><pre>&lt;div class="feature"&gt;
+  &lt;div class="feature__media photo"&gt;&lt;img src="…" alt="…"&gt;&lt;/div&gt;
+  &lt;div class="feature__copy"&gt;
+    &lt;p class="card__eyebrow"&gt;New&lt;/p&gt;
+    &lt;h2 class="feature__title"&gt;Approve on the go&lt;/h2&gt;
+    &lt;p class="feature__lede"&gt;Approvals reach you in Teams and on mobile…&lt;/p&gt;
+    &lt;ul class="feature__ticks"&gt;
+      &lt;li&gt;&lt;svg class="icon icon--20"&gt;&lt;use href="#ic-fluent-checkmark-circle-24-regular"/&gt;&lt;/svg&gt; One-tap approve&lt;/li&gt;
+    &lt;/ul&gt;
+    &lt;button class="btn btn--primary"&gt;Turn on mobile approvals&lt;/button&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</pre></div>
+        </div>
+
+        <div class="spec">
+          <div class="spec__name">Reveal-on-scroll script</div>
+          <div class="spec__note">Drop once per page. Adds <code style="font-family:var(--font-family-mono)">.is-in</code> to each <code style="font-family:var(--font-family-mono)">.reveal</code> as it enters the viewport; respects reduced-motion and degrades to fully-visible without JS.</div>
+          <div class="codewrap"><button class="copy-btn" onclick="copyCode(this)">Copy</button><pre>&lt;script&gt;
+  (function () {
+    var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var els = document.querySelectorAll('.reveal');
+    if (reduce || !('IntersectionObserver' in window)) {
+      els.forEach(function (el) { el.classList.add('is-in'); }); return;
+    }
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); }
+      });
+    }, { threshold: .12, rootMargin: '0px 0px -8% 0px' });
+    els.forEach(function (el, i) {
+      el.style.transitionDelay = (Math.min(i % 5, 4) * 45) + 'ms';
+      io.observe(el);
+    });
+  })();
+&lt;/script&gt;</pre></div>
+        </div>
+      </section>
+
+      <!-- PAGE SHELL -->
+      <section class="group" id="page-shell">
+        <h2>Page shell</h2>
+        <p class="lede">Full-width page chrome promoted from <a href="advanced-ui-example.html" style="color:var(--accent-rest)">advanced-ui-example.html</a> into canonical BEM: the SharePoint suite bar, breadcrumb, hero, and section heads, plus the centered <code style="font-family:var(--font-family-mono)">.l-wrap</code> shell and <code style="font-family:var(--font-family-mono)">.l-grid--N</code> helpers they sit in.</p>
+
+        <div class="spec">
+          <div class="spec__name">Suite bar &amp; breadcrumb</div>
+          <div class="spec__preview col" style="padding:0;gap:0;align-items:stretch">
+            <header class="suite">
+              <div class="suite__inner" style="padding:0 24px">
+                <span class="suite__mark">B</span>
+                <span class="suite__app">Expense &amp; approvals</span>
+                <span class="suite__divider"></span>
+                <span class="suite__env">BMO · SharePoint Online</span>
+                <span class="suite__spacer"></span>
+                <button class="suite__action" aria-label="Search"><svg class="icon"><use href="#ic-fluent-search-24-regular"/></svg></button>
+                <button class="suite__action" aria-label="Notifications"><svg class="icon"><use href="#ic-fluent-alert-24-regular"/></svg></button>
+                <span class="avatar avatar--28" style="background:var(--accent-rest)">PS</span>
+              </div>
+            </header>
+            <nav class="crumbs" aria-label="Breadcrumb" style="padding:14px 24px">
+              <a href="#" onclick="return false">Home</a>
+              <svg class="icon crumbs__sep"><use href="#ic-fluent-chevron-right-24-regular"/></svg>
+              <a href="#" onclick="return false">Finance</a>
+              <svg class="icon crumbs__sep"><use href="#ic-fluent-chevron-right-24-regular"/></svg>
+              <span class="crumbs__current" aria-current="page">Expense &amp; approvals</span>
+            </nav>
+          </div>
+          <div class="codewrap"><button class="copy-btn" onclick="copyCode(this)">Copy</button><pre>&lt;header class="suite"&gt;&lt;div class="suite__inner l-wrap"&gt;
+  &lt;span class="suite__mark"&gt;B&lt;/span&gt;
+  &lt;span class="suite__app"&gt;Expense &amp; approvals&lt;/span&gt;
+  &lt;span class="suite__divider"&gt;&lt;/span&gt;
+  &lt;span class="suite__env"&gt;BMO · SharePoint Online&lt;/span&gt;
+  &lt;span class="suite__spacer"&gt;&lt;/span&gt;
+  &lt;button class="suite__action" aria-label="Search"&gt;&lt;svg class="icon"&gt;&lt;use href="#ic-fluent-search-24-regular"/&gt;&lt;/svg&gt;&lt;/button&gt;
+&lt;/div&gt;&lt;/header&gt;
+
+&lt;nav class="crumbs" aria-label="Breadcrumb"&gt;
+  &lt;a href="…"&gt;Home&lt;/a&gt;
+  &lt;svg class="icon crumbs__sep"&gt;&lt;use href="#ic-fluent-chevron-right-24-regular"/&gt;&lt;/svg&gt;
+  &lt;span class="crumbs__current" aria-current="page"&gt;Expense &amp; approvals&lt;/span&gt;
+&lt;/nav&gt;</pre></div>
+        </div>
+
+        <div class="spec">
+          <div class="spec__name">Hero</div>
+          <div class="spec__note">Lives in a tinted band (<code style="font-family:var(--font-family-mono)">.band--sky</code>). Copy + media; collapses to one column under 980px.</div>
+          <div class="spec__preview" style="padding:0">
+            <div class="band band--sky" style="width:100%">
+              <div class="band__inner" style="padding:32px 24px">
+                <div class="hero" style="padding:0;gap:32px">
+                  <div class="hero__copy">
+                    <p class="hero__eyebrow">Expense &amp; approvals</p>
+                    <h1 class="hero__title">Your claims and approvals, in one place</h1>
+                    <p class="hero__lede">Submit a claim, track where every approval sits, and see your reimbursements — without leaving SharePoint.</p>
+                    <div class="hero__cta">
+                      <a class="btn btn--primary btn--lg" href="#" onclick="return false"><svg class="icon icon--16"><use href="#ic-fluent-add-24-regular"/></svg> Start a new request</a>
+                      <a class="btn btn--secondary btn--lg" href="#" onclick="return false"><svg class="icon icon--16"><use href="#ic-fluent-mail-inbox-24-regular"/></svg> View my approvals</a>
+                    </div>
+                    <div class="trust">
+                      <div class="trust__item"><span class="trust__num">1.4 days</span><span class="trust__label">Average approval time</span></div>
+                      <div class="trust__item"><span class="trust__num">4</span><span class="trust__label">Awaiting your action</span></div>
+                      <div class="trust__item"><span class="trust__num">98.6%</span><span class="trust__label">Reimbursed on first pass</span></div>
+                    </div>
+                  </div>
+                  <div class="hero__media imgph"><span class="lbl">hero image · 1100×680</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="codewrap"><button class="copy-btn" onclick="copyCode(this)">Copy</button><pre>&lt;div class="band band--sky"&gt;&lt;div class="band__inner"&gt;
+  &lt;div class="hero"&gt;
+    &lt;div class="hero__copy"&gt;
+      &lt;p class="hero__eyebrow"&gt;Expense &amp; approvals&lt;/p&gt;
+      &lt;h1 class="hero__title"&gt;Your claims and approvals, in one place&lt;/h1&gt;
+      &lt;p class="hero__lede"&gt;Submit a claim, track approvals…&lt;/p&gt;
+      &lt;div class="hero__cta"&gt;
+        &lt;a class="btn btn--primary btn--lg"&gt;Start a new request&lt;/a&gt;
+        &lt;a class="btn btn--secondary btn--lg"&gt;View my approvals&lt;/a&gt;
+      &lt;/div&gt;
+      &lt;div class="trust"&gt;
+        &lt;div class="trust__item"&gt;&lt;span class="trust__num"&gt;1.4 days&lt;/span&gt;&lt;span class="trust__label"&gt;Average approval time&lt;/span&gt;&lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="hero__media photo"&gt;&lt;img src="…" alt="…"&gt;&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;&lt;/div&gt;</pre></div>
+        </div>
+
+        <div class="spec">
+          <div class="spec__name">Section head &amp; column grids</div>
+          <div class="spec__preview col">
+            <div class="section-head section-head--flex" style="margin-bottom:16px">
+              <div>
+                <p class="section-head__eyebrow">Get things done</p>
+                <h2 class="section-head__title">Common tasks</h2>
+                <p class="section-head__lede">The things people open this app to do.</p>
+              </div>
+              <a class="btn btn--tertiary" href="#" onclick="return false">All tasks <svg class="icon icon--16"><use href="#ic-fluent-arrow-right-24-regular"/></svg></a>
+            </div>
+            <div class="l-grid l-grid--3">
+              <article class="card"><p class="card__eyebrow">Submit</p><h3 class="card__title">Start an expense claim</h3></article>
+              <article class="card"><p class="card__eyebrow">Set up</p><h3 class="card__title">Add a delegate approver</h3></article>
+              <article class="card"><p class="card__eyebrow">Read</p><h3 class="card__title">Q3 policy changes</h3></article>
+            </div>
+          </div>
+          <div class="codewrap"><button class="copy-btn" onclick="copyCode(this)">Copy</button><pre>&lt;div class="section-head section-head--flex"&gt;
+  &lt;div&gt;
+    &lt;p class="section-head__eyebrow"&gt;Get things done&lt;/p&gt;
+    &lt;h2 class="section-head__title"&gt;Common tasks&lt;/h2&gt;
+    &lt;p class="section-head__lede"&gt;The things people open this app to do.&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;a class="btn btn--tertiary"&gt;All tasks &lt;svg class="icon icon--16"&gt;&lt;use href="#ic-fluent-arrow-right-24-regular"/&gt;&lt;/svg&gt;&lt;/a&gt;
+&lt;/div&gt;
+
+&lt;div class="l-grid l-grid--3"&gt; …cards… &lt;/div&gt;
+<span class="c">&lt;!-- grids: l-grid--2 · l-grid--3 · l-grid--4 --&gt;</span></pre></div>
+        </div>
+
+        <div class="spec">
+          <div class="spec__name">Stat with icon tile · removable tag · avatar presence</div>
+          <div class="spec__preview tint" style="gap:24px">
+            <div class="card" style="width:240px">
+              <div class="stat">
+                <div class="stat__head"><span class="card__icon-tile card__icon-tile--sm"><svg class="icon"><use href="#ic-fluent-money-24-regular"/></svg></span><span class="stat__label">Reimbursed this quarter</span></div>
+                <div class="stat__value">CAD $12,450</div>
+                <div class="stat__sub"><span class="stat__delta stat__delta--up">+ $1,820</span> vs. Q2</div>
+              </div>
+            </div>
+            <span class="tag">Expense <button class="tag__remove" aria-label="Remove Expense filter"><svg class="icon"><use href="#ic-fluent-dismiss-24-regular"/></svg></button></span>
+            <span class="avatar-wrap"><span class="avatar avatar--40" style="background:var(--bmo-chart-navy)">SC</span><span class="avatar__presence avatar__presence--success"></span></span>
+          </div>
+          <div class="codewrap"><button class="copy-btn" onclick="copyCode(this)">Copy</button><pre><span class="c">&lt;!-- stat with leading icon tile --&gt;</span>
+&lt;div class="stat"&gt;
+  &lt;div class="stat__head"&gt;
+    &lt;span class="card__icon-tile card__icon-tile--sm"&gt;&lt;svg class="icon"&gt;&lt;use href="#ic-fluent-money-24-regular"/&gt;&lt;/svg&gt;&lt;/span&gt;
+    &lt;span class="stat__label"&gt;Reimbursed this quarter&lt;/span&gt;
+  &lt;/div&gt;
+  &lt;div class="stat__value"&gt;CAD $12,450&lt;/div&gt;
+&lt;/div&gt;
+
+<span class="c">&lt;!-- removable tag --&gt;</span>
+&lt;span class="tag"&gt;Expense &lt;button class="tag__remove" aria-label="Remove"&gt;&lt;svg class="icon"&gt;&lt;use href="#ic-fluent-dismiss-24-regular"/&gt;&lt;/svg&gt;&lt;/button&gt;&lt;/span&gt;
+
+<span class="c">&lt;!-- avatar with presence --&gt;</span>
+&lt;span class="avatar-wrap"&gt;&lt;span class="avatar avatar--40"&gt;SC&lt;/span&gt;
+  &lt;span class="avatar__presence avatar__presence--success"&gt;&lt;/span&gt;&lt;/span&gt;</pre></div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+</div>
+
+<script src="../fluent-icon.js" defer></script>
+<script>
+  function copyCode(btn) {
+    var pre = btn.parentElement.querySelector('pre');
+    var txt = pre.textContent;
+    navigator.clipboard.writeText(txt).then(function () {
+      var old = btn.textContent;
+      btn.textContent = 'Copied';
+      setTimeout(function () { btn.textContent = old; }, 1400);
+    });
+  }
+</script>
+</body>
+</html>

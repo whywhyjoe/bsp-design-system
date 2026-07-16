@@ -1,0 +1,95 @@
+/* =====================================================================
+   Preview harness — base for all preview/*.html gallery cards.
+   ---------------------------------------------------------------------
+   Loaded RELATIVE to preview/, so the canonical library is one level up.
+   Cards CONSUME the real system; this file adds only the gallery chrome
+   (the .preview frame, swatch/label/token/callout helpers) plus a few
+   static-state demo helpers — it does NOT redefine components.
+   ===================================================================== */
+@import url("../../colors_and_type.css");
+@import url("../../components.css");
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--surface-canvas);
+  font-family: var(--font-family);
+  color: var(--fg-primary);
+}
+
+/* The card FRAME — the padded thumbnail box each specimen sits in.
+   Named .preview (not .card) so it never collides with the real
+   .card component now that components.css is imported. */
+.preview {
+  padding: 20px 24px;
+  box-sizing: border-box;
+}
+
+/* row / column utilities */
+.row { display: flex; gap: 12px; align-items: stretch; flex-wrap: wrap; }
+.col { display: flex; flex-direction: column; gap: 4px; }
+
+/* color swatch */
+.sw {
+  width: 100%;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  border-radius: var(--radius-medium);
+  overflow: hidden;
+  border: 1px solid var(--stroke-divider);
+  background: var(--bmo-white);
+}
+.sw .chip { height: 56px; display: block; }
+.sw .meta {
+  padding: 8px 10px;
+  font: var(--type-caption1-strong);
+  color: var(--fg-primary);
+  background: var(--bmo-white);
+}
+.sw .hex {
+  font: var(--type-caption1);
+  font-family: var(--font-family-mono);
+  color: var(--fg-secondary);
+  margin-top: 2px;
+  letter-spacing: 0.02em;
+}
+
+/* specimen label */
+.label {
+  font: var(--type-caption1-strong);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--fg-secondary);
+}
+
+/* token callout text */
+.token {
+  font: var(--type-caption1);
+  font-family: var(--font-family-mono);
+  color: var(--fg-secondary);
+}
+
+/* a horizontal note strip (harness chrome — not the component layer) */
+.callout {
+  background: var(--surface-subtle);
+  border: 1px solid var(--stroke-divider);
+  border-radius: var(--radius-medium);
+  padding: 10px 12px;
+  font: var(--type-body1);
+  color: var(--fg-secondary);
+  margin-top: 12px;
+}
+
+/* ---------------------------------------------------------------------
+   Static-state demo helpers. Preview thumbnails are static, so they can't
+   trigger :hover / :focus-visible. These reproduce those states for the
+   specimens only (mirrors the .demo-focus convention used in
+   Design System Reference.html). Real pages use the native pseudo-states;
+   disabled/invalid use the real attribute, which DOES render statically.
+   --------------------------------------------------------------------- */
+.demo-focus { outline: var(--stroke-thick) solid var(--stroke-focus); outline-offset: 1px; }
+.btn--primary.demo-hover   { background: var(--accent-hover); border-color: var(--accent-hover); }
+.btn--secondary.demo-hover { color: var(--accent-hover); border-color: var(--accent-hover); }
+.btn--tertiary.demo-hover  { background: var(--f2-grey-96); }
+.input.demo-focus { outline: none; border-color: var(--stroke-accent); box-shadow: 0 0 0 1px var(--stroke-accent); }

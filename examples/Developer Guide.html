@@ -1,0 +1,455 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BMO SharePoint Design System · Developer guide</title>
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  *,*::before,*::after{box-sizing:border-box}
+  body{margin:0;background:var(--surface-subtle);color:var(--fg-primary);font-family:var(--font-family);min-height:100vh}
+  ::-webkit-scrollbar{width:10px;height:10px}
+  ::-webkit-scrollbar-thumb{background:rgba(0,0,0,.18);border-radius:5px}
+
+  .page{display:grid;grid-template-columns:248px 1fr;min-height:100vh}
+  aside{position:sticky;top:0;align-self:start;height:100vh;overflow:auto;background:var(--surface-canvas);border-right:1px solid var(--stroke-divider);padding:24px 16px 40px}
+  aside .brand{display:flex;align-items:center;gap:10px;padding:6px 8px 14px;border-bottom:1px solid var(--stroke-divider);margin-bottom:14px}
+  aside .brand .mark{width:28px;height:28px;border-radius:4px;background:var(--bmo-blue);display:flex;align-items:center;justify-content:center;color:#fff;font:700 13px/1 var(--font-family)}
+  aside .brand .title{font:600 14px/18px var(--font-family);color:var(--fg-primary)}
+  aside .brand .subtitle{font:400 11px/14px var(--font-family);color:var(--fg-secondary)}
+  aside nav{display:flex;flex-direction:column;gap:1px}
+  aside nav a{display:flex;align-items:center;gap:8px;padding:6px 10px;border-radius:4px;text-decoration:none;font:400 13px/18px var(--font-family);color:var(--fg-primary)}
+  aside nav a:hover{background:var(--f2-grey-96);text-decoration:none}
+  aside nav a.section{font-weight:600;color:var(--fg-secondary);text-transform:uppercase;letter-spacing:.04em;font-size:11px;padding:14px 10px 4px;pointer-events:none}
+  aside .links{margin-top:18px;padding-top:14px;border-top:1px solid var(--stroke-divider);display:flex;flex-direction:column;gap:6px}
+  aside .links a{font:600 12px/16px var(--font-family);color:var(--accent-rest);text-decoration:none;display:flex;align-items:center;gap:7px}
+  aside .links a:hover{color:var(--accent-hover)}
+
+  main{padding:0 0 80px;max-width:none;min-width:0}
+  .inner{max-width:920px;padding:36px 48px 0}
+
+  header.top{background:var(--surface-canvas);border-bottom:1px solid var(--stroke-divider);padding:40px 48px 28px}
+  header.top .eyebrow{font:600 11px/14px var(--font-family);letter-spacing:.09em;text-transform:uppercase;color:var(--accent-rest)}
+  header.top h1{font:400 34px/42px var(--font-family);color:var(--fg-primary);margin:8px 0 6px;letter-spacing:-.01em}
+  header.top .sub{font:400 17px/26px var(--font-family);color:var(--fg-secondary);max-width:70ch}
+  header.top .meta{display:flex;gap:16px;margin-top:16px;font:400 12px/16px var(--font-family-mono);color:var(--fg-secondary);flex-wrap:wrap}
+
+  section{margin-bottom:44px;scroll-margin-top:16px}
+  section > .eyebrow{font:600 11px/14px var(--font-family);text-transform:uppercase;letter-spacing:.08em;color:var(--accent-rest);margin-bottom:6px}
+  section > h2{font:400 26px/33px var(--font-family);color:var(--fg-primary);margin:0 0 8px;letter-spacing:-.01em}
+  section > .lede{font:400 16px/24px var(--font-family);color:var(--fg-secondary);max-width:72ch;margin-bottom:18px}
+  section > .lede + .lede{margin-top:-8px}
+  h3{font:700 12px/16px var(--font-family);color:var(--fg-primary);margin:26px 0 12px;text-transform:uppercase;letter-spacing:.06em}
+  p.body{font:400 15px/23px var(--font-family);color:var(--fg-primary);max-width:72ch;margin:0 0 12px}
+  p.body strong{font-weight:600}
+
+  .panel{background:var(--surface-canvas);border:1px solid var(--stroke-divider);border-radius:var(--radius-large);padding:20px 22px;box-shadow:var(--shadow-2)}
+  .panel + .panel{margin-top:14px}
+
+  .callout{background:var(--surface-tint-blue);border:1px solid var(--stroke-divider);border-radius:var(--radius-medium);padding:14px 16px;font:400 14px/21px var(--font-family);color:var(--fg-primary);margin:14px 0}
+  .callout strong{font-weight:600}
+  .callout.warn{background:#FFF8E1;border-color:#F4D58E}
+
+  code.t{font:400 13px/1.5 var(--font-family-mono);background:var(--f2-grey-94);border-radius:3px;padding:1px 5px;color:var(--fg-primary)}
+
+  pre{margin:0;background:#0B2233;border:1px solid #0B2233;border-radius:var(--radius-medium);padding:16px 18px;overflow-x:auto;font:400 13px/20px var(--font-family-mono);color:#D7E6F2}
+  pre .c{color:#6E8BA0}
+  pre .k{color:#73C3EB}
+  pre .s{color:#9FD7A6}
+  pre .v{color:#E7B98A}
+  .codecap{font:600 11px/16px var(--font-family);letter-spacing:.05em;text-transform:uppercase;color:var(--fg-secondary);margin:0 0 8px}
+  .codewrap{margin:14px 0}
+
+  /* file map */
+  .filemap{display:flex;flex-direction:column;gap:0}
+  .frow{display:grid;grid-template-columns:230px 1fr;gap:18px;padding:13px 4px;border-top:1px solid var(--stroke-divider);align-items:start}
+  .frow:first-child{border-top:none}
+  .frow .f{font:600 13px/18px var(--font-family-mono);color:var(--fg-primary);display:flex;align-items:center;gap:8px}
+  .frow .f .ic{color:var(--accent-rest);flex:none}
+  .frow .d{font:400 13px/19px var(--font-family);color:var(--fg-secondary)}
+  .frow .d strong{color:var(--fg-primary);font-weight:600}
+
+  /* token layers */
+  .layers3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin:6px 0 0}
+  .l3{border:1px solid var(--stroke-divider);border-radius:var(--radius-medium);padding:14px 16px;background:var(--surface-canvas)}
+  .l3 .n{font:600 11px/14px var(--font-family-mono);color:var(--fg-secondary)}
+  .l3 .t{font:600 14px/19px var(--font-family);color:var(--fg-primary);margin:5px 0 3px}
+  .l3 .x{font:400 12px/17px var(--font-family);color:var(--fg-secondary)}
+  .l3 .ex{font:400 11px/16px var(--font-family-mono);color:var(--accent-rest);margin-top:7px;display:block;word-break:break-all}
+
+  /* lookup table */
+  table.look{width:100%;border-collapse:collapse;font:400 14px/20px var(--font-family)}
+  table.look th{text-align:left;font:600 11px/14px var(--font-family);letter-spacing:.06em;text-transform:uppercase;color:var(--fg-secondary);padding:0 16px 10px}
+  table.look td{padding:12px 16px;border-top:1px solid var(--stroke-divider);vertical-align:top}
+  table.look td:first-child{font-weight:600;width:30%;color:var(--fg-primary)}
+  table.look td .tk{font:400 12.5px/18px var(--font-family-mono);color:var(--accent-rest)}
+  table.look td .nt{color:var(--fg-secondary)}
+
+  /* do / dont */
+  .dodont{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .dodont .item{border:1px solid var(--stroke-divider);border-radius:var(--radius-medium);padding:15px 16px;background:var(--surface-canvas)}
+  .dodont .head{font:600 11px/14px var(--font-family);text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px;display:flex;align-items:center;gap:6px}
+  .dodont .do .head{color:var(--fg-success)}
+  .dodont .dont .head{color:var(--fg-danger)}
+  .dodont p{font:400 13px/19px var(--font-family);color:var(--fg-secondary);margin:0}
+  .dodont code{font-family:var(--font-family-mono);font-size:12px;background:var(--f2-grey-94);border-radius:3px;padding:1px 4px;color:var(--fg-primary)}
+
+  /* checklist */
+  ol.steps{margin:0;padding:0;counter-reset:s;list-style:none;display:flex;flex-direction:column;gap:10px}
+  ol.steps li{counter-increment:s;display:grid;grid-template-columns:30px 1fr;gap:12px;align-items:start;font:400 15px/22px var(--font-family);color:var(--fg-primary)}
+  ol.steps li::before{content:counter(s);display:flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:50%;background:var(--accent-rest);color:#fff;font:700 13px/1 var(--font-family)}
+  ol.steps li .nt{color:var(--fg-secondary);font-size:14px}
+
+  ul.plain{margin:8px 0 0;padding:0;list-style:none;display:flex;flex-direction:column;gap:9px}
+  ul.plain li{display:flex;gap:10px;align-items:flex-start;font:400 14px/21px var(--font-family);color:var(--fg-primary)}
+  ul.plain li .mk{flex:none;margin-top:2px}
+  ul.plain li .mk.yes{color:var(--fg-success)}
+  ul.plain li .mk.no{color:var(--fg-danger)}
+  ul.plain li code{font-family:var(--font-family-mono);font-size:12.5px;background:var(--f2-grey-94);border-radius:3px;padding:1px 4px}
+
+  .foot{margin-top:8px;padding-top:22px;border-top:1px solid var(--stroke-divider);color:var(--fg-secondary);font:400 12px/19px var(--font-family-mono)}
+
+  @media (max-width:900px){
+    .page{grid-template-columns:1fr}
+    aside{display:none}
+    .inner,header.top{padding-left:24px;padding-right:24px}
+    .layers3,.dodont{grid-template-columns:1fr}
+    .frow{grid-template-columns:1fr;gap:4px}
+  }
+</style>
+</head>
+<body>
+
+<!-- Canonical icon sprite — inline once per page (bmo-icons.svg). Same-document
+     #id refs resolve for the no-JS <use> form below. -->
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true"><defs>
+  <symbol id="ic-fluent-add-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></g></symbol>
+  <symbol id="ic-fluent-alert-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4a5 5 0 0 1 5 5c0 5 2 6 2 6H5s2-1 2-6a5 5 0 0 1 5-5zM10.3 19a1.8 1.8 0 0 0 3.4 0"/></g></symbol>
+  <symbol id="ic-fluent-arrow-down-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v13M6 12l6 6 6-6"/></g></symbol>
+  <symbol id="ic-fluent-arrow-export-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M11 6H6a1 1 0 0 0-1 1v11a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1v-5M14 5h5v5M19 5l-8 8"/></g></symbol>
+  <symbol id="ic-fluent-arrow-right-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13M12 6l6 6-6 6"/></g></symbol>
+  <symbol id="ic-fluent-arrow-up-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V6M6 12l6-6 6 6"/></g></symbol>
+  <symbol id="ic-fluent-attach-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M16.5 8.5l-6 6a2 2 0 1 0 2.8 2.8l6-6a3.5 3.5 0 0 0-5-5l-6.5 6.5a5 5 0 0 0 7 7l5.5-5.5"/></g></symbol>
+  <symbol id="ic-fluent-calendar-ltr-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 7a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v11a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V7zM5 10h14M9 4v3M15 4v3"/></g></symbol>
+  <symbol id="ic-fluent-checkmark-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></g></symbol>
+  <symbol id="ic-fluent-checkmark-circle-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"/><path d="M8.5 12.2l2.4 2.4 4.6-4.9"/></g></symbol>
+  <symbol id="ic-fluent-chevron-down-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M7 10l5 5 5-5"/></g></symbol>
+  <symbol id="ic-fluent-chevron-right-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M10 7l5 5-5 5"/></g></symbol>
+  <symbol id="ic-fluent-clock-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"/><path d="M12 7.5V12l3 2"/></g></symbol>
+  <symbol id="ic-fluent-data-bar-vertical-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19h16M7 19v-6M12 19V6M17 19v-9"/></g></symbol>
+  <symbol id="ic-fluent-delete-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8h12M9.5 8V6a1 1 0 0 1 1-1h3a1 1 0 0 1 1 1v2M8 8l.8 11a1 1 0 0 0 1 .9h4.4a1 1 0 0 0 1-.9L16 8M10.5 11.5v5M13.5 11.5v5"/></g></symbol>
+  <symbol id="ic-fluent-dismiss-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 6l12 12M18 6L6 18"/></g></symbol>
+  <symbol id="ic-fluent-document-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M7 4h7l4 4v11a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1zM14 4v4h4"/></g></symbol>
+  <symbol id="ic-fluent-edit-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 19l1-4 9-9 3 3-9 9-4 1zM14 6l3 3"/></g></symbol>
+  <symbol id="ic-fluent-filter-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 6h14l-5.5 7v5l-3-2v-3L5 6z"/></g></symbol>
+  <symbol id="ic-fluent-folder-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7a1 1 0 0 1 1-1h4l2 2h8a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7z"/></g></symbol>
+  <symbol id="ic-fluent-grid-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="6.5" height="6.5" rx="1"/><rect x="13.5" y="4" width="6.5" height="6.5" rx="1"/><rect x="4" y="13.5" width="6.5" height="6.5" rx="1"/><rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1"/></g></symbol>
+  <symbol id="ic-fluent-home-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11.5L12 5l8 6.5V19a1 1 0 0 1-1 1h-4v-6H9v6H5a1 1 0 0 1-1-1v-7.5z"/></g></symbol>
+  <symbol id="ic-fluent-info-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"/><path d="M12 11.5v4.5"/><path d="M12 8.2h.01"/></g></symbol>
+  <symbol id="ic-fluent-mail-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 7h14a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1zM4.5 8l7.5 5 7.5-5"/></g></symbol>
+  <symbol id="ic-fluent-mail-inbox-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l1.8-6.2a1 1 0 0 1 1-.8h8.4a1 1 0 0 1 1 .8L19 13v4a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1v-4zM5 13h4a3 3 0 0 0 6 0h4"/></g></symbol>
+  <symbol id="ic-fluent-money-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="7" width="16" height="10" rx="1.5"/><circle cx="12" cy="12" r="2.3"/><path d="M7 12h.01M17 12h.01"/></g></symbol>
+  <symbol id="ic-fluent-more-horizontal-24-regular" viewBox="0 0 24 24"><g fill="currentColor" stroke="none"><circle cx="6" cy="12" r="1.4"/><circle cx="12" cy="12" r="1.4"/><circle cx="18" cy="12" r="1.4"/></g></symbol>
+  <symbol id="ic-fluent-person-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8.5" r="3.5"/><path d="M5.5 19a6.5 6.5 0 0 1 13 0"/></g></symbol>
+  <symbol id="ic-fluent-person-add-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="9.5" cy="8.5" r="3.3"/><path d="M3.5 19a6 6 0 0 1 11-3.3M18 8v6M15 11h6"/></g></symbol>
+  <symbol id="ic-fluent-phone-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 4.5l3 .8 1 3.2-1.9 1.4a10 10 0 0 0 4.6 4.6l1.4-1.9 3.2 1 .8 3a1 1 0 0 1-1 1.1A13.5 13.5 0 0 1 5.4 5.5a1 1 0 0 1 1.1-1z"/></g></symbol>
+  <symbol id="ic-fluent-receipt-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 4h12v16l-2-1.3-2 1.3-2-1.3-2 1.3-2-1.3-2 1.3V4zM9 8h6M9 11.5h6M9 15h4"/></g></symbol>
+  <symbol id="ic-fluent-search-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="10.5" cy="10.5" r="5.5"/><path d="M15 15l4 4"/></g></symbol>
+  <symbol id="ic-fluent-settings-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 4v2.2M12 17.8V20M5 7.5l1.9 1.1M17.1 15.4L19 16.5M5 16.5l1.9-1.1M17.1 8.6L19 7.5"/></g></symbol>
+  <symbol id="ic-fluent-shield-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4l7 2.5v5c0 5-3.5 8-7 9.5-3.5-1.5-7-4.5-7-9.5v-5L12 4zM9 12l2 2 4-4"/></g></symbol>
+  <symbol id="ic-fluent-warning-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5l8.5 14.5H3.5L12 5z"/><path d="M12 10.5v4M12 17h.01"/></g></symbol>
+  <symbol id="ic-fluent-checkmark-circle-24-filled" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5" fill="currentColor"/><path d="M8.4 12.2l2.5 2.5 4.7-5" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="ic-fluent-warning-24-filled" viewBox="0 0 24 24"><path d="M11.1 5.2a1 1 0 0 1 1.8 0l8 14a1 1 0 0 1-.9 1.5H4a1 1 0 0 1-.9-1.5l8-14z" fill="currentColor"/><path d="M12 10v4M12 17h.01" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+</defs></svg>
+
+<div class="page">
+  <aside>
+    <div class="brand">
+      <div class="mark">B</div>
+      <div>
+        <div class="title">Developer guide</div>
+        <div class="subtitle">BMO · SharePoint · Fluent 2</div>
+      </div>
+    </div>
+    <nav>
+      <a class="section">Orientation</a>
+      <a href="#what">What this is</a>
+      <a href="#shift">Authoring a component</a>
+      <a href="#inbox">What's in the box</a>
+      <a href="#nothere">What's not here</a>
+      <a class="section">Using it</a>
+      <a href="#consume">Consume the system</a>
+      <a href="#layers">Token layers</a>
+      <a href="#roll">Use a component</a>
+      <a href="#find">Where to find what</a>
+      <a class="section">Guardrails</a>
+      <a href="#rules">Rules you can't break</a>
+      <a href="#workflow">Build a screen</a>
+    </nav>
+    <div class="links">
+      <a href="Components.html"><svg width="14" height="14"><use href="#ic-fluent-arrow-right-24-regular"/></svg> Component library</a>
+      <a href="Design System Reference.html"><svg width="14" height="14"><use href="#ic-fluent-arrow-right-24-regular"/></svg> Visual reference</a>
+      <a href="advanced-ui-example.html"><svg width="14" height="14"><use href="#ic-fluent-arrow-right-24-regular"/></svg> Worked example</a>
+      <a href="../docs/PAGE-TEMPLATE.md"><svg width="14" height="14"><use href="#ic-fluent-arrow-right-24-regular"/></svg> Page template (start here)</a>
+      <a href="../docs/TECHNICAL-REFERENCE.md"><svg width="14" height="14"><use href="#ic-fluent-arrow-right-24-regular"/></svg> Technical reference</a>
+    </div>
+  </aside>
+
+  <main>
+    <header class="top">
+      <div class="eyebrow">BMO SharePoint design system</div>
+      <h1>Developer guide — start here</h1>
+      <p class="sub">How this design system is put together, what it gives you, and how to build BMO SharePoint apps with it in Alpine and plain HTML.</p>
+      <div class="meta">
+        <span>Audience: front-end developers</span>
+        <span>Stack: Alpine.js + HTML + CSS</span>
+        <span>Tokens: colors_and_type.css</span>
+      </div>
+    </header>
+
+    <div class="inner">
+
+      <!-- WHAT THIS IS -->
+      <section id="what">
+        <div class="eyebrow">Orientation</div>
+        <h2>What a design system is here</h2>
+        <p class="lede">This isn't an installable package you <code class="t">npm install</code> and import components from — it's a lighter shape: design tokens, ready-made CSS classes, and guidance, linked straight into the page.</p>
+        <p class="body"><strong>This system is three things: tokens, a component layer, and guidance.</strong> It ships the <em>decisions</em> — every color, size, space, radius, shadow, and motion value — as CSS custom properties in <code class="t">colors_and_type.css</code>; a set of ready, token-built component classes in <code class="t">components.css</code> (buttons, inputs, cards, badges, tabs, data grids, dialogs…); plus written rules and reference pages for combining them. You write plain markup, add a class, and it looks like BMO.</p>
+        <div class="callout">
+          <strong>One sentence:</strong> link two stylesheets — <code class="t">colors_and_type.css</code> (tokens) then <code class="t">components.css</code> (classes) — write HTML, and wire behaviour in Alpine. No npm, no build step. <code class="t">Components.html</code> renders every class with copy-paste markup.
+        </div>
+        <p class="body">Why this shape? Because these apps are embedded inside <strong>Microsoft SharePoint Online</strong>, where the production stack is Alpine.js and plain HTML/CSS, with no build pipeline. Two <code class="t">&lt;link&gt;</code> tags drop the whole system into that environment.</p>
+      </section>
+
+      <!-- THE SHIFT -->
+      <section id="shift">
+        <h2>Authoring a component</h2>
+        <p class="lede">A component here is a CSS class on plain HTML — not an imported widget. You write the element and apply the system's classes, which are built from tokens, so it renders on-brand. You keep full control of the markup, and there's nothing to install.</p>
+        <div class="codewrap">
+          <div class="codecap">Author the element, apply system classes</div>
+          <pre><span class="c">&lt;!-- a component is a class on plain HTML --&gt;</span>
+&lt;button <span class="k">class</span>=<span class="s">"btn btn--primary"</span>
+        <span class="k">x-on:click</span>=<span class="s">"submit()"</span>&gt;
+  Submit request
+&lt;/button&gt;
+
+<span class="c">&lt;!-- .btn ships in components.css, built once from tokens --&gt;</span></pre>
+        </div>
+        <p class="body" style="margin-top:14px">The key discipline: <strong>never hard-code a value the system already names.</strong> No <code class="t">#0079C1</code> in your CSS — use <code class="t">var(--accent-rest)</code>. No <code class="t">padding: 15px</code> — use the 4px ramp. When you do that, every screen stays consistent and a future token change propagates everywhere for free.</p>
+      </section>
+
+      <!-- WHAT'S IN THE BOX -->
+      <section id="inbox">
+        <h2>What's in the box</h2>
+        <p class="lede">Everything is plain files in this project — no registry, no install. Here's what each one is for.</p>
+        <div class="panel">
+          <div class="filemap">
+            <div class="frow"><div class="f"><span class="ic"><svg width="16" height="16"><use href="#ic-fluent-document-24-regular"/></svg></span>colors_and_type.css</div><div class="d"><strong>The tokens.</strong> All design tokens (color, type, spacing, radius, shadow, motion), drop-in element defaults (<code class="t">h1</code>–<code class="t">h6</code>, <code class="t">p</code>, <code class="t">a</code>), and opt-in utility classes (<code class="t">.imgph</code>, <code class="t">.lift</code>, <code class="t">.reveal</code>). Link this first.</div></div>
+            <div class="frow"><div class="f"><span class="ic"><svg width="16" height="16"><use href="#ic-fluent-document-24-regular"/></svg></span>components.css</div><div class="d"><strong>The component layer.</strong> Token-built classes for every pattern — <code class="t">.btn</code>, <code class="t">.input</code>, <code class="t">.field</code>, <code class="t">.card</code>, <code class="t">.badge</code>, <code class="t">.tabs</code>, <code class="t">.msgbar</code>, <code class="t">.grid</code>, <code class="t">.dialog</code>, and more. Link this second.</div></div>
+            <div class="frow"><div class="f"><span class="ic"><svg width="16" height="16"><use href="#ic-fluent-document-24-regular"/></svg></span>styles.css</div><div class="d"><strong>One-tag bundle.</strong> <code class="t">@import</code>s the two files above in the right order — link this <em>instead</em> if you prefer a single tag.</div></div>
+            <div class="frow"><div class="f"><span class="ic"><svg width="16" height="16"><use href="#ic-fluent-document-24-regular"/></svg></span>bmo-icons.svg</div><div class="d"><strong>The icon sprite.</strong> 37 Fluent symbols, ids <code class="t">ic-fluent-{name}-24-regular</code>. Inline it once per page; reference with <code class="t">&lt;use href="#ic-fluent-…"&gt;</code>. Do not rename or re-curate.</div></div>
+            <div class="frow"><div class="f"><span class="ic"><svg width="16" height="16"><use href="#ic-fluent-document-24-regular"/></svg></span>fluent-icon.js</div><div class="d"><strong>Optional icon element.</strong> One script tag enables <code class="t">&lt;fluent-icon name="home-24-regular"&gt;</code> — the sugar form over the same sprite. The no-JS <code class="t">&lt;use&gt;</code> form needs none of this.</div></div>
+            <div class="frow"><div class="f"><span class="ic"><svg width="16" height="16"><use href="#ic-fluent-document-24-regular"/></svg></span>Components.html</div><div class="d"><strong>The component library, rendered.</strong> Every class shown live with copy-paste markup. Your fastest path: find it, copy, wire it up.</div></div>
+            <div class="frow"><div class="f"><span class="ic"><svg width="16" height="16"><use href="#ic-fluent-document-24-regular"/></svg></span>Design System Reference.html</div><div class="d"><strong>The visual spec / source of truth.</strong> Every color, type ramp, spacing step, component state, icon, and do/don't, rendered. When the rulebook and your memory disagree, this wins.</div></div>
+            <div class="frow"><div class="f"><span class="ic"><svg width="16" height="16"><use href="#ic-fluent-document-24-regular"/></svg></span>advanced-ui-example.html</div><div class="d"><strong>A worked example.</strong> A full home surface plus the six-part card composition, assembled from tokens. Copy patterns from here.</div></div>
+            <div class="frow"><div class="f"><span class="ic"><svg width="16" height="16"><use href="#ic-fluent-document-24-regular"/></svg></span>../docs/PAGE-TEMPLATE.md</div><div class="d"><strong>Start a new page here.</strong> The smallest complete working page — CSS link order, inlined sprite, an <code class="t">x-data</code> root, sample components, deferred Alpine — plus the four load-bearing pieces that fail silently if skipped.</div></div>
+            <div class="frow"><div class="f"><span class="ic"><svg width="16" height="16"><use href="#ic-fluent-document-24-regular"/></svg></span>../docs/TECHNICAL-REFERENCE.md</div><div class="d"><strong>The developer reference.</strong> Per-component snippets, full token + class reference, the state-contract table, and the icon system. Your deep-dive companion to this guide.</div></div>
+            <div class="frow"><div class="f"><span class="ic"><svg width="16" height="16"><use href="#ic-fluent-document-24-regular"/></svg></span>../project-notes/CHANGELOG.md</div><div class="d"><strong>What changed and why.</strong> The reconciliation record — retired forks, the canonical mappings, and the icon migration. Check here before reintroducing an old pattern.</div></div>
+            <div class="frow"><div class="f"><span class="ic"><svg width="16" height="16"><use href="#ic-fluent-folder-24-regular"/></svg></span>preview/</div><div class="d">Small single-purpose cards (the Design System tab renders these). Handy as minimal, copyable snippets for one token group or one component.</div></div>
+            <div class="frow"><div class="f"><span class="ic"><svg width="16" height="16"><use href="#ic-fluent-folder-24-regular"/></svg></span>../context/</div><div class="d">The authoritative source material, verbatim — BMO brand, SharePoint context, Fluent 2 guide. Reach for these only when the reference doesn't cover an edge case.</div></div>
+            <div class="frow"><div class="f"><span class="ic"><svg width="16" height="16"><use href="#ic-fluent-folder-24-regular"/></svg></span>../assets/</div><div class="d">Placeholder BMO logo + lockup (reconstructions — request the licensed files for production). Icons now live in the canonical <code class="t">bmo-icons.svg</code> sprite; the legacy <code class="t">../assets/icons.svg</code> here is retired and unreferenced.</div></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- WHAT'S NOT HERE -->
+      <section id="nothere">
+        <h2>What's <em>not</em> here</h2>
+        <p class="lede">Knowing the edges saves you searching for things that don't exist.</p>
+        <ul class="plain">
+          <li><span class="mk no"><svg width="17" height="17"><use href="#ic-fluent-dismiss-24-regular"/></svg></span><span><strong>No npm package, no import, no build step.</strong> You will not <code>import</code> anything from this system. You link two stylesheets and write markup.</span></li>
+          <li><span class="mk no"><svg width="17" height="17"><use href="#ic-fluent-dismiss-24-regular"/></svg></span><span><strong>No framework components.</strong> There's no imported <code>&lt;Button&gt;</code> component and no web-component library (e.g. Web Awesome). A component here is a CSS class on plain HTML: <code>&lt;button class="btn btn--primary"&gt;</code>. They ship in <code>components.css</code>.</span></li>
+          <li><span class="mk no"><svg width="17" height="17"><use href="#ic-fluent-dismiss-24-regular"/></svg></span><span><strong>No JavaScript behaviour baked in.</strong> The classes style; they don't behave. Wire interactivity yourself in Alpine (<code>x-data</code>, <code>x-on</code>, <code>x-show</code>, <code>x-model</code>).</span></li>
+          <li><span class="mk no"><svg width="17" height="17"><use href="#ic-fluent-dismiss-24-regular"/></svg></span><span><strong>No licensed BMO logo or photography.</strong> The logo is a placeholder; imagery uses labeled <code>.imgph</code> placeholders until real assets are licensed.</span></li>
+          <li><span class="mk no"><svg width="17" height="17"><use href="#ic-fluent-dismiss-24-regular"/></svg></span><span><strong>No dark mode and no theming switch.</strong> One light theme, tuned for the SharePoint shell.</span></li>
+        </ul>
+      </section>
+
+      <!-- CONSUME -->
+      <section id="consume">
+        <div class="eyebrow">Using it</div>
+        <h2>Consume the system</h2>
+        <p class="lede">Step one on any page: link the system and Alpine. One <code class="t">&lt;link&gt;</code> to <code class="t">styles.css</code> pulls in every token, the styled base elements, and the component classes; Alpine drives behaviour. That's the whole runtime — no build. (Prefer the layers? Link <code class="t">colors_and_type.css</code> then <code class="t">components.css</code> instead — same result.)</p>
+        <div class="codewrap">
+          <div class="codecap">In your SharePoint page / web part</div>
+          <pre><span class="c">&lt;!-- one file: tokens + base elements + component classes --&gt;</span>
+<span class="k">&lt;link</span> rel=<span class="s">"stylesheet"</span> href=<span class="s">"styles.css"</span><span class="k">&gt;</span>
+<span class="k">&lt;script</span> defer src=<span class="s">"https://unpkg.com/alpinejs@3/dist/cdn.min.js"</span><span class="k">&gt;&lt;/script&gt;</span>
+<span class="c">&lt;!-- CDN shown for brevity; self-host alpine.min.js in SiteAssets for production --&gt;</span>
+
+<span class="c">&lt;!-- base elements already styled — no classes needed --&gt;</span>
+<span class="k">&lt;h1&gt;</span>Expense &amp; approvals<span class="k">&lt;/h1&gt;</span>      <span class="c">&lt;!-- H1, Regular weight, Slate --&gt;</span>
+<span class="k">&lt;p&gt;</span>Submit a claim and track approvals.<span class="k">&lt;/p&gt;</span>
+<span class="k">&lt;a</span> href=<span class="s">"#"</span><span class="k">&gt;</span>Review the policy<span class="k">&lt;/a&gt;</span>      <span class="c">&lt;!-- Accessible Blue link --&gt;</span></pre>
+        </div>
+        <p class="body">From there, reference tokens with <code class="t">var(--token)</code> anywhere you need a value — in a stylesheet, in a <code class="t">style</code> attribute, or in an Alpine <code class="t">:style</code> binding:</p>
+        <div class="codewrap">
+          <div class="codecap">Three ways to apply a token</div>
+          <pre><span class="c">/* 1 · in CSS */</span>
+.summary { color: <span class="k">var</span>(<span class="v">--fg-secondary</span>); padding: <span class="k">var</span>(<span class="v">--space-200</span>); }
+
+<span class="c">&lt;!-- 2 · inline style --&gt;</span>
+&lt;div style=<span class="s">"border-radius:var(--radius-large);box-shadow:var(--shadow-4)"</span>&gt;…&lt;/div&gt;
+
+<span class="c">&lt;!-- 3 · Alpine binding --&gt;</span>
+&lt;span <span class="k">:style</span>=<span class="s">"isOverdue ? 'color:var(--fg-danger)' : 'color:var(--fg-success)'"</span>&gt;…&lt;/span&gt;</pre>
+        </div>
+        <div class="callout"><strong>Rule of thumb:</strong> if you're about to type a hex code, a pixel value, or a shadow by hand, stop — there is almost certainly a token for it. Raw values are how a design system rots.</div>
+      </section>
+
+      <!-- TOKEN LAYERS -->
+      <section id="layers">
+        <h2>Token layers — reach for the semantic one</h2>
+        <p class="lede">Tokens come in three layers. Build against the <strong>semantic</strong> layer; it's the stable contract. The raw layers underneath can change without breaking your code.</p>
+        <div class="layers3">
+          <div class="l3">
+            <div class="n">LAYER 1 · RAW BRAND</div>
+            <div class="t">Brand + Fluent values</div>
+            <div class="x">Literal BMO and Fluent 2 values. Rarely reference directly.</div>
+            <span class="ex">--bmo-blue: #0079C1<br>--f2-grey-96: #F5F5F5</span>
+          </div>
+          <div class="l3">
+            <div class="n">LAYER 2 · SEMANTIC ROLE</div>
+            <div class="t">What it's for ✓</div>
+            <div class="x">Names a job, not a color. <strong>This is your layer.</strong></div>
+            <span class="ex">--fg-primary<br>--accent-rest<br>--surface-canvas</span>
+          </div>
+          <div class="l3">
+            <div class="n">LAYER 3 · SCALES</div>
+            <div class="t">Spacing · radius · shadow · motion</div>
+            <div class="x">Numeric ramps. Use the step, never an off-ramp value.</div>
+            <span class="ex">--space-160 (16px)<br>--radius-large (8px)<br>--motion-normal</span>
+          </div>
+        </div>
+        <p class="body" style="margin-top:16px">So: <code class="t">color: var(--fg-primary)</code> — not <code class="t">var(--bmo-slate)</code>, and certainly not <code class="t">#001928</code>. If a semantic token exists for your purpose, it wins, because it carries the <em>intent</em> and survives a re-theme.</p>
+      </section>
+
+      <!-- ROLL A COMPONENT -->
+      <section id="roll">
+        <h2>Use a component</h2>
+        <p class="lede">These classes ship in <code class="t">components.css</code> — you don't write them, you use them. Below is what each one is made of (all tokens, no magic) plus the markup to copy. Every class is rendered with copy-paste markup in <code class="t">Components.html</code>. Need one that's missing? Author it the same way, on tokens only.</p>
+
+        <h3>Button</h3>
+        <div class="codewrap">
+          <pre><span class="c">/* ships in components.css — here's what it's made of */</span>
+.btn{
+  font: <span class="k">var</span>(<span class="v">--type-body1-strong</span>); border-radius: <span class="k">var</span>(<span class="v">--radius-medium</span>);
+  height: 32px; padding: 0 14px; display: inline-flex; align-items: center; gap: 6px;
+  border: 1px solid transparent; cursor: pointer;
+  transition: background <span class="k">var</span>(<span class="v">--motion-normal</span>) <span class="k">var</span>(<span class="v">--ease-out</span>);
+}
+.btn--primary{ background: <span class="k">var</span>(<span class="v">--accent-rest</span>); color: <span class="k">var</span>(<span class="v">--fg-on-accent</span>); }
+.btn--primary:hover{ background: <span class="k">var</span>(<span class="v">--accent-hover</span>); }
+.btn--primary:focus-visible{ outline: 2px solid <span class="k">var</span>(<span class="v">--stroke-focus</span>); outline-offset: 1px; }
+.btn--secondary{ background:#fff; color: <span class="k">var</span>(<span class="v">--accent-rest</span>); border-color: <span class="k">var</span>(<span class="v">--accent-rest</span>); }
+
+<span class="c">&lt;!-- reuse anywhere, wire behaviour with Alpine --&gt;</span>
+&lt;button class=<span class="s">"btn btn--primary"</span> x-on:click=<span class="s">"submit()"</span>&gt;Submit request&lt;/button&gt;</pre>
+        </div>
+
+        <h3>Input with focus state</h3>
+        <div class="codewrap">
+          <pre>.input{
+  font: <span class="k">var</span>(<span class="v">--type-body1</span>); color: <span class="k">var</span>(<span class="v">--fg-primary</span>);
+  background: <span class="k">var</span>(<span class="v">--surface-input</span>); border: 1px solid <span class="k">var</span>(<span class="v">--stroke-control</span>);
+  border-radius: <span class="k">var</span>(<span class="v">--radius-medium</span>); height: 32px; padding: 6px 10px;
+}
+.input:focus{ border-color: <span class="k">var</span>(<span class="v">--stroke-accent</span>); box-shadow: 0 0 0 1px <span class="k">var</span>(<span class="v">--stroke-accent</span>); outline: none; }
+.input[aria-invalid]{ border-color: <span class="k">var</span>(<span class="v">--fg-danger</span>); }
+
+&lt;input class=<span class="s">"input"</span> x-model=<span class="s">"amount"</span> placeholder=<span class="s">"CAD $0.00"</span>&gt;</pre>
+        </div>
+
+        <h3>Card — base, then add motion</h3>
+        <div class="codewrap">
+          <pre>.card{
+  background: <span class="k">var</span>(<span class="v">--surface-raised</span>); border: 1px solid <span class="k">var</span>(<span class="v">--stroke-divider</span>);
+  border-radius: <span class="k">var</span>(<span class="v">--radius-large</span>); box-shadow: <span class="k">var</span>(<span class="v">--shadow-4</span>);
+  padding: <span class="k">var</span>(<span class="v">--space-160</span>) <span class="k">var</span>(<span class="v">--space-200</span>);
+}
+
+<span class="c">&lt;!-- .lift is a system utility — hover-rise, reduced-motion safe --&gt;</span>
+&lt;article class=<span class="s">"card lift"</span> tabindex=<span class="s">"0"</span>&gt; … &lt;/article&gt;</pre>
+        </div>
+        <div class="callout">Every class above ships in <code class="t">components.css</code> — link it, don't re-implement. The utilities <code class="t">.lift</code>, <code class="t">.imgph</code>, and <code class="t">.reveal</code> live in <code class="t">colors_and_type.css</code>. For <code class="t">.reveal</code>, add the one-line IntersectionObserver from <code class="t">advanced-ui-example.html</code> to toggle <code class="t">.is-in</code>.</div>
+      </section>
+
+      <!-- WHERE TO FIND WHAT -->
+      <section id="find">
+        <h2>Where to find what</h2>
+        <p class="lede">Quick routing when you need a value or a pattern.</p>
+        <div class="panel" style="padding:18px 8px">
+          <table class="look">
+            <thead><tr><th style="padding-left:16px">I need…</th><th>Reach for</th></tr></thead>
+            <tbody>
+              <tr><td>A color</td><td><span class="tk">var(--fg-* / --accent-* / --surface-* / --stroke-*)</span><br><span class="nt">Full list: Reference → Color. Semantic role, not raw hex.</span></td></tr>
+              <tr><td>Text size / weight</td><td><span class="tk">var(--type-*)</span> or just the <span class="tk">h1–h6 / p</span> defaults<br><span class="nt">Remember: H1–H3 Regular, H4–H6 Bold. Reference → Typography.</span></td></tr>
+              <tr><td>Spacing / padding</td><td><span class="tk">var(--space-40 … --space-480)</span> — the 4px ramp<br><span class="nt">Container padding 16–24px. Never an off-ramp value.</span></td></tr>
+              <tr><td>Corner / shadow</td><td><span class="tk">var(--radius-medium|large)</span> · <span class="tk">var(--shadow-4|8)</span><br><span class="nt">Embedded surfaces stay shadow-4/8. Never shadow-64.</span></td></tr>
+              <tr><td>Motion</td><td><span class="tk">var(--motion-*)</span> + <span class="tk">var(--ease-*)</span>; utilities <span class="tk">.lift / .reveal</span><br><span class="nt">Reference → Motion.</span></td></tr>
+              <tr><td>A component pattern</td><td><span class="nt">Components.html (live + copy-paste) or Reference (states + anatomy) → copy markup → reuse. advanced-ui-example.html for a full page in context.</span></td></tr>
+              <tr><td>An icon</td><td><span class="tk">&lt;use href="#ic-fluent-{name}-24-regular"&gt;</span> or <span class="tk">&lt;fluent-icon name="…"&gt;</span> or the Fluent <span class="tk">icon font</span> <span class="tk">&lt;i class="icon-ic_fluent_…"&gt;</span><br><span class="nt">Sprite: bmo-icons.svg (inline once per page). currentColor; size via .icon--12/16/20/24 (SVG) or font-size (font). Icon font = full set, no sprite/JS; aria-hidden the &lt;i&gt;. Details: TECHNICAL-REFERENCE §6.</span></td></tr>
+              <tr><td>Imagery</td><td><span class="tk">.imgph</span> + a <span class="tk">.lbl</span> caption<br><span class="nt">Until real assets land. Reference → Imagery.</span></td></tr>
+              <tr><td>Copy / tone</td><td><span class="nt">../context/ → BMO brand + content rules. Sentence case, plain, no emoji.</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- RULES -->
+      <section id="rules">
+        <div class="eyebrow">Guardrails</div>
+        <h2>Rules you can't break</h2>
+        <p class="lede">The handful that matter most when you're translating a design into tokens. The full set is in the Reference and README.</p>
+        <div class="dodont">
+          <div class="item do"><div class="head"><svg width="14" height="14"><use href="#ic-fluent-checkmark-24-regular"/></svg> Do</div><p>Reference <strong>semantic tokens</strong> — <code>var(--accent-rest)</code>, <code>var(--fg-primary)</code> — for every value.</p></div>
+          <div class="item dont"><div class="head"><svg width="14" height="14"><use href="#ic-fluent-dismiss-24-regular"/></svg> Don't</div><p>Hard-code <code>#0079C1</code>, <code>padding:15px</code>, or a hand-rolled shadow. If you typed a literal, you skipped a token.</p></div>
+
+          <div class="item do"><div class="head"><svg width="14" height="14"><use href="#ic-fluent-checkmark-24-regular"/></svg> Do</div><p>Keep <strong>blue interactive-only</strong> — buttons, links, focus, selected rows.</p></div>
+          <div class="item dont"><div class="head"><svg width="14" height="14"><use href="#ic-fluent-dismiss-24-regular"/></svg> Don't</div><p>Paint surfaces, headers, or hero blocks blue. And <strong>BMO Red is logo-only</strong> — errors use <code>var(--fg-danger)</code>.</p></div>
+
+          <div class="item do"><div class="head"><svg width="14" height="14"><use href="#ic-fluent-checkmark-24-regular"/></svg> Do</div><p>Use <strong>Segoe UI</strong> (the default stack), sentence case, H1–H3 Regular weight.</p></div>
+          <div class="item dont"><div class="head"><svg width="14" height="14"><use href="#ic-fluent-dismiss-24-regular"/></svg> Don't</div><p>Add a second typeface, ALL-CAPS labels, emoji, or Bold H1–H3.</p></div>
+
+          <div class="item do"><div class="head"><svg width="14" height="14"><use href="#ic-fluent-checkmark-24-regular"/></svg> Do</div><p>Stay on <strong>white surfaces</strong> with subtle elevation; soft <code>--surface-tint-*</code> only for section bands.</p></div>
+          <div class="item dont"><div class="head"><svg width="14" height="14"><use href="#ic-fluent-dismiss-24-regular"/></svg> Don't</div><p>Use gradients, heavy shadows, SharePoint's warm <code>#F3F2F1</code>, or a left-accent border on cards.</p></div>
+        </div>
+      </section>
+
+      <!-- WORKFLOW -->
+      <section id="workflow">
+        <h2>Build a screen — the loop</h2>
+        <p class="lede">A repeatable order of operations for any new view.</p>
+        <ol class="steps">
+          <li><div><strong>Link <code class="t">colors_and_type.css</code>.</strong> <span class="nt">Base elements are now correct; you have every token.</span></div></li>
+          <li><div><strong>Lay out with the spacing ramp + 12-column grid.</strong> <span class="nt">Container padding 16–24px. Information-dense is correct here.</span></div></li>
+          <li><div><strong>Reuse a documented pattern</strong> for each element. <span class="nt">Find it in the Reference, copy the markup, wire behaviour in Alpine.</span></div></li>
+          <li><div><strong>Apply only semantic tokens.</strong> <span class="nt">No literals. Blue interactive-only, red logo-only.</span></div></li>
+          <li><div><strong>Add restraint-level motion if it earns it.</strong> <span class="nt">.lift on actionable cards, .reveal on sections. Respect reduced-motion.</span></div></li>
+          <li><div><strong>Check copy against the tone rules.</strong> <span class="nt">Sentence case, plain, numerals, no emoji. ../context/ → BMO brand + content.</span></div></li>
+          <li><div><strong>Diff against the Reference.</strong> <span class="nt">When in doubt, the rendered Reference is the source of truth.</span></div></li>
+        </ol>
+        <div class="callout" style="margin-top:18px">New to the system? Start from <code class="t">../docs/PAGE-TEMPLATE.md</code>, keep <code class="t">../docs/TECHNICAL-REFERENCE.md</code> and <code class="t">Components.html</code> handy for snippets, and skim <code class="t">Design System Reference.html</code> for the visual rules — then keep this page and the Reference open in tabs while you build.</div>
+      </section>
+
+      <div class="foot">
+        BMO SharePoint Design System · developer guide · pairs with Design System Reference.html, advanced-ui-example.html, ../docs/PAGE-TEMPLATE.md, and ../docs/TECHNICAL-REFERENCE.md<br>
+        Tokens: colors_and_type.css · production stack: Alpine.js + HTML + CSS
+      </div>
+
+    </div>
+  </main>
+</div>
+
+</body>
+</html>
