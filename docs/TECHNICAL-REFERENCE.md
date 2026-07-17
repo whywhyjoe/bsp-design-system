@@ -403,18 +403,19 @@ and render an icon as a class on an `<i>`:
 ```
 
 The class is the name token with **underscores** and an `icon-ic_fluent_` prefix:
-system token `home-24-regular` → `icon-ic_fluent_home_24_regular`. (Same `-`→`_`
-transform the future `fluent-icon.js` `resolve()` uses for the SVG folder.) Add
+system token `home-24-regular` → `icon-ic_fluent_home_24_regular` (the same
+`-`→`_` transform that maps a sprite name token to a Fluent SVG filename). Add
 `FluentSystemIcons-Filled.css` for `…_filled` variants.
 
 **Why reach for it:** it's the lowest-friction way to get the **entire** Fluent
 set self-hosted with **no build and no JS** — no per-page sprite to inline, no
-37-symbol curation. It's the simplest answer when you need an icon the curated
-`bmo-icons.svg` sprite doesn't carry, and a simpler alternative to the planned
-sprite→SVG-folder migration for reaching the full set. It is **first-party Fluent,
-not a third-party icon kit**, so it's consistent with the "hand-rolled Fluent 2,
-no icon libraries" rule (that rule rejects Iconify / Font Awesome / Material — not
-Microsoft's own Fluent font).
+37-symbol curation. It's the answer when a page needs **many** icons beyond the
+curated `bmo-icons.svg` set (for just a **few** extras, copy the matching SVGs
+from the `fluentui-system-icons` repo into the sprite instead — see "Adding an
+icon" below). It is **first-party Fluent, not a third-party icon kit**, so it's
+consistent with the "hand-rolled Fluent 2, no third-party icon kits" rule — that
+rule is about not pulling in an external icon kit, not Microsoft's own Fluent
+font.
 
 **Tradeoffs (why it isn't the default):**
 - **Accessibility.** Font glyphs are Private-Use-Area characters; a screen reader
@@ -433,8 +434,8 @@ Microsoft's own Fluent font).
   *Subsetting* it to shrink the download needs a build step — which breaks the
   buildless rule — so don't subset; accept the full font, or stay on the curated
   sprite (~14 KB).
-- **Not shipped here — lives in the `fluent-system-icons` companion repo.** The
-  full Fluent library is maintained as a **separate repo** (`fluent-system-icons`)
+- **Not shipped here — lives in the `fluentui-system-icons` companion repo.** The
+  full Fluent library is maintained as a **separate repo** (`fluentui-system-icons`)
   holding the font builds (`FluentSystemIcons-{Regular,Filled,Light,Resizable}.{woff2,css}`
   with per-style HTML/JSON codepoint indexes), the per-icon SVGs, and the
   `fluent-font-library.{json,html}` master index. Take
@@ -447,9 +448,11 @@ Microsoft's own Fluent font).
 ### Which form should I use?
 - **Default → no-JS `<use>` sprite.** Most accessible, zero dependency, no font
   load, curated set. Best for the icons the system already ships.
-- **`<fluent-icon>`** when you want the sugar element + migration-for-free.
-- **Icon font** when you need **breadth** (any Fluent icon, now) or the **least
+- **`<fluent-icon>`** when you want the optional sugar element (same sprite).
+- **Icon font** when you need **breadth** (many Fluent icons) or the **least
   setup** (no per-page sprite, no JS) — and you handle the `aria-hidden` + label.
+- **A few icons the sprite lacks** → copy the real SVGs from the
+  `fluentui-system-icons` repo into `bmo-icons.svg` (see "Adding an icon").
 
 ### Sprite, sizing, and the tradeoff
 - **Inline `bmo-icons.svg` once per page** (drop it in the body). Both forms emit
@@ -459,14 +462,15 @@ Microsoft's own Fluent font).
   `name="…-24-regular" class="icon--20"` is correct — you don't need a 20px
   symbol.
 - **Color:** glyphs use `fill:none` + `currentColor`, so they inherit text color.
-- **Tradeoff to know:** the raw `<use>` form is bound to the sprite and **won't
-  auto-ride a future engine swap**; `<fluent-icon>` migrates for free (its
-  `resolve()` method is the single migration seam — sprite today, a self-hosted
-  Fluent folder later, sourced from the separate `fluent-system-icons` repo).
-  Both share the same name tokens, so moving between them is mechanical.
-- **Adding an icon:** copy a `<symbol>` in `bmo-icons.svg`, set
-  `id="ic-fluent-{name}-24-regular"`, drop in the path. Filled variants suffix
-  `-24-filled`.
+- **The two SVG forms are equivalent:** both emit a same-document `<use>` against
+  the sprite and share the same name tokens, so mixing or moving between them is
+  purely mechanical. Pick `<use>` for zero-JS, `<fluent-icon>` for the sugar.
+- **Adding an icon (the escape hatch for a few extras):** copy the matching real
+  SVG from the `fluentui-system-icons` repo (its `svg/` folder, e.g.
+  `ic_fluent_{name}_24_regular.svg`) into `bmo-icons.svg` as a `<symbol>`, set
+  `id="ic-fluent-{name}-24-regular"`, and normalize it to `fill:none` +
+  `currentColor` on the 24 viewBox. Filled variants suffix `-24-filled`. For
+  **many** extra icons, self-host the icon font instead of growing the sprite.
 
 The sprite ships 37 symbols (35 regular + `checkmark-circle-24-filled`,
 `warning-24-filled`). If you reference a name with no symbol, the icon renders

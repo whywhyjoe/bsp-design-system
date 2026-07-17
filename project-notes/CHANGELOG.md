@@ -439,11 +439,11 @@ like Iconify / Font Awesome / Material — not Microsoft's Fluent font).
 
 ---
 
-## 15. Full Fluent library extracted to the separate `fluent-system-icons` repo
+## 15. Full Fluent library extracted to the separate `fluentui-system-icons` repo
 
 The full Fluent System Icons library — formerly vendored here as the
 `/fluentui-system-icons` folder — now lives in its own **separate repo**,
-**`fluent-system-icons`**. Nothing about its contents or usage changed: the
+**`fluentui-system-icons`**. Nothing about its contents or usage changed: the
 per-icon SVGs (`ic_fluent_{name}_{size}_{style}.svg`), the font builds
 (`FluentSystemIcons-{Regular,Filled,Light,Resizable}.{woff2,css}` + per-style
 HTML/JSON codepoint indexes), and the `fluent-font-library.{json,html}` master
@@ -492,3 +492,38 @@ a rationale that no longer held.
   `AGENTS.md` (rule 1), `docs/TECHNICAL-REFERENCE.md` §5 (dialog factory
   recommendation). README / PAGE-TEMPLATE / TECH-REF §7 already said "at
   runtime" / "in production" and needed no change.
+
+---
+
+## 17. Icon default settled: sprite + repo escape hatch; `resolve()`-swap plan retired
+
+Follow-through on entry 15. With the full library now a real repo, the icon story
+is settled and the old "someday" framing is gone.
+
+- **Repo name corrected:** `fluent-system-icons` → **`fluentui-system-icons`**
+  (the real folder/repo name) everywhere in the design-system docs.
+- **Default settled = the curated sprite.** `bmo-icons.svg` is the default for
+  common UI-chrome icons (zero-JS, most accessible, works under custom-script
+  lockdown). It's *not* meant to grow into the whole set. When you need more,
+  the **`fluentui-system-icons`** repo is the already-available breadth source:
+  copy a real SVG into the sprite for a **few** extras, or self-host the Fluent
+  **icon font** for **many**. Path is set in project config.
+- **Retired the `resolve()`-swap-to-folder plan.** The old design framed the
+  sprite as a temporary bootstrap that `<fluent-icon>`'s `resolve()` would
+  "someday" swap to a runtime SVG-fetch folder. That plan is obsolete — the full
+  set exists now, and in a buildless world a runtime fetch layer is the most
+  machinery for the least benefit. Removed the commented **SWAP TARGET** block
+  from `fluent-icon.js` and reframed its `resolve()` comment; `<fluent-icon>` is
+  now documented purely as **optional authoring sugar over the sprite**, not a
+  migration vehicle. Sprite/showcase "swap to a folder" comments now say "copy
+  the real glyph from the repo."
+- **Dropped the Iconify / Font Awesome "roads not taken" cruft** from the active
+  docs. The still-true rule ("no third-party icon kits; the first-party Fluent
+  font is *not* one") stays in one line; the multi-MB/`addCollection()` rejection
+  write-up is gone.
+- **Files touched:** `.github/copilot-instructions.md` (Icons section + file
+  map), `CLAUDE.md` (icon rule + file map), `docs/TECHNICAL-REFERENCE.md` §6,
+  `README.md` (naming), `fluent-icon.js` (SWAP TARGET removed, comment reframed),
+  `bmo-icons.svg` + `examples/Design System Reference.html` (sprite-header ART
+  note). Earlier historical entries here (esp. 14) still describe the old plan as
+  it stood then — left as history; this entry supersedes.

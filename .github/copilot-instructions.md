@@ -14,7 +14,7 @@ hand-roll a scaffold from scratch.
 - `components.css` — every component as a BEM class, built from tokens.
 - `styles.css` — one-tag bundle: `@import`s the two above in the right order.
 - `bmo-icons.svg` — the icon sprite (37 `<symbol>`s, ids `ic-fluent-{name}-24-regular`).
-- `fluent-icon.js` — the optional `<fluent-icon>` element; its `resolve()` is the migration seam.
+- `fluent-icon.js` — the optional `<fluent-icon>` element (authoring sugar over the sprite).
 - `docs/PAGE-TEMPLATE.md` — start-here page scaffold.
 - `docs/TECHNICAL-REFERENCE.md` — component/token/class reference; **state contract = §5**, retired forks = §3, tokens = §4.
 - `examples/Components.html` (live specimens), `examples/Design System Reference.html` (visual), `examples/advanced-ui-example.html` (full composed page) — read for real markup; do not restyle them.
@@ -66,22 +66,22 @@ Author by the Fluent NAME TOKEN `ic-fluent-{icon}-{size}-{variant}`. Two equival
 - No-JS: `<svg class="icon icon--16"><use href="#ic-fluent-arrow-right-24-regular"/></svg>`
 - Sugar element: `<fluent-icon name="home-24-regular"></fluent-icon>` (needs `fluent-icon.js`).
 
-The sprite is a **curated bootstrap, not the end state.** It holds only icons in use today. The planned destination is a self-hosted **full** Fluent System Icons folder in SiteAssets — sourced from the separate **`fluent-system-icons`** repo (the complete library: per-icon SVGs, the font builds, and the `fluent-font-library.{json,html}` index; not part of this repo — its actual path is specified in config when developing a real project) — reached by swapping `fluent-icon.js`'s `resolve()` from "look up a sprite symbol" to "fetch the matching self-hosted SVG, cache the promise" — **one function, no markup edits.** (Today `resolve()` is the sprite version; the folder version sits commented below it in the file.)
-- The name token is durable across that swap; both forms use it.
-- **Prefer `<fluent-icon name="…">` for new code** — it rides the folder swap for free (markup unchanged, `resolve()` changes underneath).
-- The `<use href="#ic-fluent-…">` form is **bound to the sprite** and won't auto-ride the swap (refs get rewritten later). It stays fully supported and is the right choice where zero-JS is required — custom-script-disabled pages, or icons that must render with no Alpine. (`docs/PAGE-TEMPLATE.md` uses it deliberately to show the no-JS path.)
-- ❌ Don't expand the sprite speculatively toward the full set — that's the folder's job. Add a symbol only for an icon used now.
+The sprite is the **curated default** — the common UI-chrome icons, inlined once per page as real same-document symbols. It deliberately holds only icons in use today and is **not** meant to grow into the whole Fluent set. When you need an icon it doesn't carry, reach into the **`fluentui-system-icons`** repo (a **separate** repo — the complete library of per-icon SVGs, the font builds, and the `fluent-font-library.{json,html}` index; not part of this repo, its path set in project config):
+- **A few extra icons →** copy the matching real SVG from the repo into `bmo-icons.svg` as a new `<symbol id="ic-fluent-{name}">` (24 viewBox, `fill:none` + `currentColor`). Stays on the no-JS sprite path.
+- **Many / arbitrary icons →** self-host the Fluent **icon font** from that repo (full set, one cached download, no JS) — see below.
+- The two SVG forms are **equivalent** — the name token is the durable contract and both use it. Pick the no-JS `<use>` form (the documented default; `docs/PAGE-TEMPLATE.md` uses it) where zero-JS is required or preferred; `<fluent-icon>` is just optional authoring sugar over the same sprite.
+- ❌ Don't grow the sprite speculatively toward the full set — add a symbol only for an icon used now; for broad coverage use the font, not an ever-expanding sprite.
 
-Mechanical rules (true now and after the swap):
+Mechanical rules:
 1. **Size is the CSS helper class, not the name.** ✅ `<fluent-icon name="search-24-regular" class="icon--20">` · ❌ `name="search-20-regular"` (sprite is 24-viewBox normalized; never fabricate a `-20-` symbol).
 2. Inline the **whole** current sprite (the full `bmo-icons.svg`) once per page; don't ship a per-page subset.
 3. `<fluent-icon>` is **light DOM on purpose** — shadow DOM breaks `<use>`. Don't "fix" it to a shadow root.
-4. A name with no matching symbol renders **blank, no error** — add the `<symbol>` to `bmo-icons.svg` (or, post-swap, ensure the folder SVG exists). Never invent a glyph or substitute a foreign icon. Not every Fluent icon ships in every size — the size segment must match a real asset.
+4. A name with no matching symbol renders **blank, no error** — add the `<symbol>` to `bmo-icons.svg` (copy the matching real SVG from the `fluentui-system-icons` repo). Never invent a glyph or substitute a foreign icon. Not every Fluent icon ships in every size — the size segment must match a real asset.
 5. Same-document `#id` refs need the sprite physically present in the page.
 
-**Third form — the Fluent icon FONT (optional).** Microsoft also ships these icons as a self-hosted `@font-face` font — **first-party Fluent, not a third-party kit.** Self-host `FluentSystemIcons-Regular.{woff2,css}` (and `-Filled` if needed) — taken from the separate `fluent-system-icons` repo (path specified in project config) — in SiteAssets, link the CSS, and render `<i class="icon-ic_fluent_home_24_regular" aria-hidden="true"></i>` (the name token, underscored, with an `icon-ic_fluent_` prefix). It's the lowest-friction way to get the **full** Fluent set with no sprite and no JS — reach for it when you need an icon the curated `bmo-icons.svg` doesn't carry. Caveats: **always `aria-hidden` the `<i>` and label the parent** (font glyphs are Private-Use chars — the SVG `<use>` form stays the more-accessible default); size via `font-size`, not `.icon--N`; ship the full font (subsetting needs a build). Full details + when-to-use: TECHNICAL-REFERENCE §6.
+**Third form — the Fluent icon FONT (optional).** Microsoft also ships these icons as a self-hosted `@font-face` font — **first-party Fluent, not a third-party kit.** Self-host `FluentSystemIcons-Regular.{woff2,css}` (and `-Filled` if needed) — taken from the separate `fluentui-system-icons` repo (path specified in project config) — in SiteAssets, link the CSS, and render `<i class="icon-ic_fluent_home_24_regular" aria-hidden="true"></i>` (the name token, underscored, with an `icon-ic_fluent_` prefix). It's the lowest-friction way to get the **full** Fluent set with no sprite and no JS — reach for it when a page needs many icons beyond the curated `bmo-icons.svg` set. Caveats: **always `aria-hidden` the `<i>` and label the parent** (font glyphs are Private-Use chars — the SVG `<use>` form stays the more-accessible default); size via `font-size`, not `.icon--N`; ship the full font (subsetting needs a build). Full details + when-to-use: TECHNICAL-REFERENCE §6.
 
-Roads not taken (use the system instead): self-hosted Iconify + full `@iconify-json/fluent` via `addCollection()` — rejected (multi-MB / ~18k icons for a few dozen used; clean subsetting needs a Node build step that breaks buildless; adds an engine dependency). Font Awesome / Material / `<iconify-icon>` / ad-hoc web SVG — governance + brand conflict. The element + sprite→folder path keeps the full Fluent set reachable with no build step and no external engine — and the first-party Fluent icon **font** above is a supported alternative for the full set (distinct from the third-party engines rejected here).
+Never substitute a third-party icon kit or ad-hoc web SVGs — those are out. The Fluent icon **font** is first-party Microsoft Fluent, so it's *not* a third-party kit; it's the supported way to reach the full set.
 
 ## Reference pages consume the system — they don't re-style
 Demo/reference pages link the shared CSS and use canonical classes; no local component `<style>` forks (local inline `<style>` was a primary source of the original fragmentation). Build your pages the same way: link `colors_and_type.css` + `components.css` (or `styles.css`), don't re-declare component styles.

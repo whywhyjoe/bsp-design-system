@@ -30,7 +30,7 @@ interactive behavior.
 - **Tokens are the only source of values** — no raw hex, no off-ramp pixels. Use `var(--token)`.
 - **One BEM vocabulary.** Compose with existing classes + modifiers (`btn btn--primary`); don't invent component classes or restyle inline.
 - **Blue is interactive-only; BMO Red is logo-only** (errors use `--fg-danger`). White surfaces, subtle elevation.
-- **Icons** use the name token `ic-fluent-{name}-24-regular` over `bmo-icons.svg`, as no-JS `<use>` or `<fluent-icon>` (size via `.icon--12/16/20/24`), or via the first-party Fluent **icon font** for the full set with no sprite/JS (`aria-hidden` the `<i>`) — see `docs/TECHNICAL-REFERENCE.md` §6. When the **complete library** of Fluent icons is useful, use the SVG or Font options from the **`fluent-system-icons`** companion repo (a **separate repo**, not part of this one — its actual path is specified in config when developing a real project). The library SVG filenames use the ic_fluent_{name}_{size}_style.svg pattern. Reference that repo's `fluent-font-library.json` for a full index and description of all icons and font codepoints.   
+- **Icons** use the name token `ic-fluent-{name}-24-regular` over `bmo-icons.svg`, as no-JS `<use>` or `<fluent-icon>` (size via `.icon--12/16/20/24`), or via the first-party Fluent **icon font** for the full set with no sprite/JS (`aria-hidden` the `<i>`) — see `docs/TECHNICAL-REFERENCE.md` §6. When the **complete library** of Fluent icons is useful, use the SVG or Font options from the **`fluentui-system-icons`** companion repo (a **separate repo**, not part of this one — its actual path is specified in config when developing a real project). The library SVG filenames use the ic_fluent_{name}_{size}_style.svg pattern. Reference that repo's `fluent-font-library.json` for a full index and description of all icons and font codepoints.   
 - **Interactivity is inline Alpine** — every binding inside an `x-data` root.
 
 ## What's here
@@ -43,7 +43,7 @@ interactive behavior.
 | `styles.css` | One-tag bundle (`@import`s the two above in order). |
 | `bmo-icons.svg` | Icon sprite — 37 Fluent symbols, ids `ic-fluent-{name}-24-regular`. Inline once per page. |
 | `fluent-icon.js` | Optional `<fluent-icon>` custom element (sugar over the same sprite). |
-| `fluent-system-icons` (**separate repo**) | Optional full Fluent icon library with SVG and Font implementations--including all styles--and a JSON and HTML index. Not part of this repo; its actual path is specified in config when developing a real project. Use it under the same criteria as the icon docs describe. |
+| `fluentui-system-icons` (**separate repo**) | Optional full Fluent icon library with SVG and Font implementations--including all styles--and a JSON and HTML index. Not part of this repo; its actual path is specified in config when developing a real project. Use it under the same criteria as the icon docs describe. |
 
 **Browse / copy from:**
 | File | What |

@@ -18,11 +18,12 @@
      fluent-icon.js resolve() at the file path.
 
      ART: placeholder line icons on a 24x24 grid, fill:none + currentColor, so
-     they inherit text color and scale with the .icon size helpers. When you
-     swap to the real self-hosted Fluent folder (one resolve() change), real
-     Fluent 24 glyphs replace these: an expected visual change, same 24 viewBox,
-     no reflow. Not every Fluent icon ships in every size; 24 regular is the
-     most universally available, so the whole set is normalized to it.
+     they inherit text color and scale with the .icon size helpers. For a real
+     project, replace each placeholder with the matching real Fluent 24 glyph
+     copied from the fluentui-system-icons repo (its svg/ folder) — an expected
+     visual change, same 24 viewBox, no reflow. Not every Fluent icon ships in
+     every size; 24 regular is the most universally available, so the whole set
+     is normalized to it.
 
      OLD -> NEW id map (the fork this retires):
        #ic-home / semantic        ->  #ic-fluent-home-24-regular

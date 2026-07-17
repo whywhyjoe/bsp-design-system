@@ -46,7 +46,7 @@ Read those before non-trivial work.
   — the full set, no sprite, no JS; `aria-hidden` the `<i>` and label the parent,
   size via `font-size`. The **complete** Fluent library (per-icon SVGs, the font
   builds, and the `fluent-font-library.{json,html}` index) lives in the separate
-  **`fluent-system-icons`** repo — not in this one; use it under the same criteria,
+  **`fluentui-system-icons`** repo — not in this one; use it under the same criteria,
   with its actual path specified in config when developing a real project.
   See `docs/TECHNICAL-REFERENCE.md` §6.
 
@@ -56,7 +56,7 @@ Read those before non-trivial work.
 - `components.css` — every component as a BEM class, built from tokens. Link second.
 - `styles.css` — one-tag bundle: `@import`s the two above in order.
 
-**Icons:** `bmo-icons.svg` (37-symbol sprite, `ic-fluent-*`) · `fluent-icon.js` (optional `<fluent-icon>` element; its `resolve()` is the sprite→folder migration seam — leave intact). Full library (all SVGs, fonts, index): the separate `fluent-system-icons` repo — path set in project config.
+**Icons:** `bmo-icons.svg` (37-symbol sprite, `ic-fluent-*`, the curated default) · `fluent-icon.js` (optional `<fluent-icon>` element — authoring sugar over the sprite). For icons beyond the 37, the full library (all SVGs, fonts, index) is the separate `fluentui-system-icons` repo (path set in project config): copy a real SVG into the sprite for a few extras, or self-host the icon font for many.
 
 **Showcases (read for real markup; they consume the library, don't restyle):**
 - `examples/Components.html` — every component live + copy-paste snippets (fastest path).

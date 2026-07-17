@@ -35,16 +35,13 @@
     connectedCallback() { this.render(); }
     attributeChangedCallback() { if (this.isConnected) this.render(); }
 
-    /* ── MIGRATION SEAM ───────────────────────────────────────────────
-       resolve(name) -> icon markup (string OR Promise<string>).
-       This is the ONLY thing that changes to switch icon engines. No
-       component markup anywhere else is touched.
-
-       NOW (sprite-backed): reference a document-level <symbol>.
-       LATER (self-hosted Fluent folder): see the commented fetch version
-       at the bottom of this file — paste it over this method, set BASE,
-       done. render() already awaits, so sync→async needs no other edit.
-       ───────────────────────────────────────────────────────────────── */
+    /* resolve(name) -> icon markup: a same-document <use> against the
+       inlined bmo-icons.svg sprite. The sprite is the supported engine;
+       to reach icons it doesn't carry, copy the real SVG from the
+       fluentui-system-icons repo into the sprite, or use the Fluent icon
+       font (docs/TECHNICAL-REFERENCE.md §6) — not a runtime fetch here.
+       (render() wraps this in Promise.resolve, so a Promise-returning
+       resolve() would also work; the stale-guard covers that case.) */
     resolve(name) {
       return '<svg class="icon" aria-hidden="true"><use href="#ic-fluent-'
            + name + '"/></svg>';
@@ -80,46 +77,3 @@
 
   customElements.define('fluent-icon', FluentIcon);
 })();
-
-
-/* =====================================================================
-   SWAP TARGET — self-hosted Fluent SVG folder (the future version)
-   ---------------------------------------------------------------------
-   When you're ready to drop the placeholder sprite and serve the real
-   18k+ Fluent set from SiteAssets, replace resolve() above with this and
-   add the static cache + BASE. Caches the PROMISE so repeated renders of
-   the same icon dedupe to a single network request. Same `name` token in,
-   so every <fluent-icon> on every page migrates with zero markup edits.
-
-   class FluentIcon extends HTMLElement {
-     static BASE = '/sites/YOURSITE/SiteAssets/fluent-icons/';   // set this
-     static _cache = new Map();                                  // url -> Promise<svg>
-
-     resolve(name) {
-       // name token "home-24-regular" -> file "ic_fluent_home_24_regular.svg"
-       var url = FluentIcon.BASE + 'ic_fluent_' + name.replace(/-/g, '_') + '.svg';
-       var p = FluentIcon._cache.get(url);
-       if (!p) {
-         p = fetch(url)
-           .then(function (r) { return r.ok ? r.text() : ''; })
-           .catch(function () { return ''; })
-           // Normalize: strip the file's hardcoded width/height/fill so it
-           // inherits currentColor + .icon sizing, then tag it .icon.
-           .then(function (raw) {
-             if (!raw) return '<svg class="icon" aria-hidden="true"></svg>';
-             return raw
-               .replace(/<svg /, '<svg class="icon" aria-hidden="true" ')
-               .replace(/\s(width|height)="[^"]*"/g, '')
-               .replace(/fill="(?!none)[^"]*"/g, 'fill="currentColor"');
-           });
-         FluentIcon._cache.set(url, p);
-       }
-       return p;
-     }
-     // ...connectedCallback / attributeChangedCallback / render unchanged...
-   }
-
-   NOTE: Fluent does not ship every icon in every size. The size segment of
-   `name` (…-16-…, -20-, -24-, -28-, -32-, -48-) must match a file that
-   exists. Confirm availability at the Fluent System Icons reference.
-   ===================================================================== */
