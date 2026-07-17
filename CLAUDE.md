@@ -15,9 +15,14 @@ hand-roll a scaffold.
 Read those before non-trivial work.
 
 ## Non-negotiables (break these and you've broken the system)
-- **Buildless, CDN-free, self-hosted.** No bundler, no `npm install`, no ES
-  `import`, no build step, no external CDN at runtime. Everything self-hosted in
-  SiteAssets. Don't propose any of those — including for Alpine (self-host it).
+- **Buildless, CDN-free, self-hosted — this constrains the shipped artifact,
+  not the dev machine.** The deployed page can never require a build step,
+  bundler, or ES `import` (SharePoint can't build or run Node — what you author
+  is what runs), and no external CDN at runtime in production: every runtime
+  dependency self-hosted in SiteAssets, including Alpine. Local dev tooling
+  (`npm install`, Node, Python, servers, linters) is fair game *as tooling*, and
+  a CDN tag is fine during local dev — it just gets downloaded and self-hosted
+  before shipping, and nothing the artifact needs may depend on a build.
 - **One BEM vocabulary on shared tokens.** Components are BEM classes
   (`block--modifier`) built from CSS custom properties. Compose with existing
   classes + modifiers; **never invent component classes or inline-style values a
@@ -39,7 +44,11 @@ Read those before non-trivial work.
   blank — add the symbol, don't invent a glyph. A **third** delivery exists: the
   first-party Fluent **icon font** (self-hosted `@font-face`; `<i class="icon-ic_fluent_home_24_regular" aria-hidden>`)
   — the full set, no sprite, no JS; `aria-hidden` the `<i>` and label the parent,
-  size via `font-size`. See `docs/TECHNICAL-REFERENCE.md` §6.
+  size via `font-size`. The **complete** Fluent library (per-icon SVGs, the font
+  builds, and the `fluent-font-library.{json,html}` index) lives in the separate
+  **`fluent-system-icons`** repo — not in this one; use it under the same criteria,
+  with its actual path specified in config when developing a real project.
+  See `docs/TECHNICAL-REFERENCE.md` §6.
 
 ## File map
 **The library (link these):**
@@ -47,7 +56,7 @@ Read those before non-trivial work.
 - `components.css` — every component as a BEM class, built from tokens. Link second.
 - `styles.css` — one-tag bundle: `@import`s the two above in order.
 
-**Icons:** `bmo-icons.svg` (37-symbol sprite, `ic-fluent-*`) · `fluent-icon.js` (optional `<fluent-icon>` element; its `resolve()` is the sprite→folder migration seam — leave intact).
+**Icons:** `bmo-icons.svg` (37-symbol sprite, `ic-fluent-*`) · `fluent-icon.js` (optional `<fluent-icon>` element; its `resolve()` is the sprite→folder migration seam — leave intact). Full library (all SVGs, fonts, index): the separate `fluent-system-icons` repo — path set in project config.
 
 **Showcases (read for real markup; they consume the library, don't restyle):**
 - `examples/Components.html` — every component live + copy-paste snippets (fastest path).

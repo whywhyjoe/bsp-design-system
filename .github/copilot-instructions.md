@@ -24,11 +24,15 @@ hand-roll a scaffold from scratch.
 ## Architecture — buildless, CDN-free, self-hosted (non-negotiable)
 Runs as raw HTML/CSS/JS inside SharePoint. Governance: same-origin, nothing leaves
 the firewall, must work where custom-script is restricted (the no-JS icon path does).
-- ❌ Never propose a build step, `npm install`, bundler, ES `import`, or a CDN `<script>`/`<link>`. There is no compile.
+The rule constrains the **shipped artifact**, not the developer's machine:
+- ❌ The deployed page can never **require** a build/compile step, a bundler, or ES `import` — SharePoint cannot build or run Node; what you author is what runs, as-is. There is no compile.
+- ❌ No CDN `<script>`/`<link>` **in production** — every runtime dependency is self-hosted in SiteAssets. A CDN tag is fine as a convenience during local dev, but the developer must download the file and self-host it before it ships.
+- ✅ **Local dev tooling is unrestricted.** `npm install`, Node, Python, static servers, linters, screenshot tools — all fair game *as tools* on the dev machine. Propose them freely when they help; they just can't become something the artifact needs in order to build or run.
+- ✅ **Proposing a library that happens to be CDN-distributed is fine** — the developer obtains it and self-hosts it (exactly like Alpine below). What stays vetoed is the *library itself* when other rules reject it (third-party UI/icon kits, anything that forces a build step), not its CDN distribution channel.
 - ✅ Link CSS directly; self-host every dependency in SiteAssets.
 - Self-host Alpine too — load deferred, after the markup:
   - ✅ `<script defer src="alpine.min.js"></script>`
-  - ❌ `<script src="https://unpkg.com/alpinejs@3/dist/cdn.min.js"></script>`
+  - ❌ shipping `<script src="https://unpkg.com/alpinejs@3/dist/cdn.min.js"></script>` to production
 
 ## Styling — one BEM vocabulary on shared tokens
 Compose from existing classes + modifiers. Never invent component classes or inline-style values that a class/token already covers — one-off literals are how the original multi-way fork spread.
@@ -54,7 +58,7 @@ Apps here ARE interactive. Wire with minimal inline Alpine; bind to the document
 - Use native pseudo-classes/attributes where they exist; use an `.is-*` class only where there's no native equivalent. Keep ARIA synced to the visual state (`:aria-pressed`, `:aria-selected`, `:aria-invalid`).
 - The system ships **no `Alpine.data()` factory layer and no `bmo-behaviors.js`** — by design. For ordinary controls (chip/switch/tab/checkbox) write the inline one-liner from the state contract; it's simpler and binds to YOUR app's data.
   - ❌ Don't auto-scaffold a factory or `bmo-behaviors.js` for a trivial control.
-- A hand-written factory is worth it only for genuinely hard / a11y-critical widgets — **dialog** (focus trap, Escape, scroll-lock, return-focus), secondarily tabs/toast. CDN-free means **no `@alpinejs/focus`** — any focus trap is hand-rolled. Flag these as a deliberate choice; don't generate one by default.
+- A hand-written factory is worth it only for genuinely hard / a11y-critical widgets — **dialog** (focus trap, Escape, scroll-lock, return-focus), secondarily tabs/toast. For the focus trap, the first-party **`@alpinejs/focus`** plugin is **allowed** — self-host it in SiteAssets exactly like Alpine core (CDN-free bans external hosts at runtime, not self-hosted plugins); prefer it over hand-rolling a trap. Flag these as a deliberate choice; don't generate one by default.
 - For `x-show`-controlled visibility (dialog/toast), add `x-cloak` + the `[x-cloak]{display:none}` rule so they don't flash before Alpine boots.
 
 ## Icons — name token is the durable contract; two same-document forms
@@ -62,7 +66,7 @@ Author by the Fluent NAME TOKEN `ic-fluent-{icon}-{size}-{variant}`. Two equival
 - No-JS: `<svg class="icon icon--16"><use href="#ic-fluent-arrow-right-24-regular"/></svg>`
 - Sugar element: `<fluent-icon name="home-24-regular"></fluent-icon>` (needs `fluent-icon.js`).
 
-The sprite is a **curated bootstrap, not the end state.** It holds only icons in use today. The planned destination is a self-hosted **full** Fluent System Icons folder in SiteAssets, reached by swapping `fluent-icon.js`'s `resolve()` from "look up a sprite symbol" to "fetch the matching self-hosted SVG, cache the promise" — **one function, no markup edits.** (Today `resolve()` is the sprite version; the folder version sits commented below it in the file.)
+The sprite is a **curated bootstrap, not the end state.** It holds only icons in use today. The planned destination is a self-hosted **full** Fluent System Icons folder in SiteAssets — sourced from the separate **`fluent-system-icons`** repo (the complete library: per-icon SVGs, the font builds, and the `fluent-font-library.{json,html}` index; not part of this repo — its actual path is specified in config when developing a real project) — reached by swapping `fluent-icon.js`'s `resolve()` from "look up a sprite symbol" to "fetch the matching self-hosted SVG, cache the promise" — **one function, no markup edits.** (Today `resolve()` is the sprite version; the folder version sits commented below it in the file.)
 - The name token is durable across that swap; both forms use it.
 - **Prefer `<fluent-icon name="…">` for new code** — it rides the folder swap for free (markup unchanged, `resolve()` changes underneath).
 - The `<use href="#ic-fluent-…">` form is **bound to the sprite** and won't auto-ride the swap (refs get rewritten later). It stays fully supported and is the right choice where zero-JS is required — custom-script-disabled pages, or icons that must render with no Alpine. (`docs/PAGE-TEMPLATE.md` uses it deliberately to show the no-JS path.)
@@ -75,7 +79,7 @@ Mechanical rules (true now and after the swap):
 4. A name with no matching symbol renders **blank, no error** — add the `<symbol>` to `bmo-icons.svg` (or, post-swap, ensure the folder SVG exists). Never invent a glyph or substitute a foreign icon. Not every Fluent icon ships in every size — the size segment must match a real asset.
 5. Same-document `#id` refs need the sprite physically present in the page.
 
-**Third form — the Fluent icon FONT (optional).** Microsoft also ships these icons as a self-hosted `@font-face` font — **first-party Fluent, not a third-party kit.** Self-host `FluentSystemIcons-Regular.{woff2,css}` (and `-Filled` if needed) in SiteAssets, link the CSS, and render `<i class="icon-ic_fluent_home_24_regular" aria-hidden="true"></i>` (the name token, underscored, with an `icon-ic_fluent_` prefix). It's the lowest-friction way to get the **full** Fluent set with no sprite and no JS — reach for it when you need an icon the curated `bmo-icons.svg` doesn't carry. Caveats: **always `aria-hidden` the `<i>` and label the parent** (font glyphs are Private-Use chars — the SVG `<use>` form stays the more-accessible default); size via `font-size`, not `.icon--N`; ship the full font (subsetting needs a build). Full details + when-to-use: TECHNICAL-REFERENCE §6.
+**Third form — the Fluent icon FONT (optional).** Microsoft also ships these icons as a self-hosted `@font-face` font — **first-party Fluent, not a third-party kit.** Self-host `FluentSystemIcons-Regular.{woff2,css}` (and `-Filled` if needed) — taken from the separate `fluent-system-icons` repo (path specified in project config) — in SiteAssets, link the CSS, and render `<i class="icon-ic_fluent_home_24_regular" aria-hidden="true"></i>` (the name token, underscored, with an `icon-ic_fluent_` prefix). It's the lowest-friction way to get the **full** Fluent set with no sprite and no JS — reach for it when you need an icon the curated `bmo-icons.svg` doesn't carry. Caveats: **always `aria-hidden` the `<i>` and label the parent** (font glyphs are Private-Use chars — the SVG `<use>` form stays the more-accessible default); size via `font-size`, not `.icon--N`; ship the full font (subsetting needs a build). Full details + when-to-use: TECHNICAL-REFERENCE §6.
 
 Roads not taken (use the system instead): self-hosted Iconify + full `@iconify-json/fluent` via `addCollection()` — rejected (multi-MB / ~18k icons for a few dozen used; clean subsetting needs a Node build step that breaks buildless; adds an engine dependency). Font Awesome / Material / `<iconify-icon>` / ad-hoc web SVG — governance + brand conflict. The element + sprite→folder path keeps the full Fluent set reachable with no build step and no external engine — and the first-party Fluent icon **font** above is a supported alternative for the full set (distinct from the third-party engines rejected here).
 

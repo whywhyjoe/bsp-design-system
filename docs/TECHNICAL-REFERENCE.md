@@ -347,8 +347,12 @@ is genuinely hard or accessibility-critical:
 1. **Dialog — strongest candidate.** Needs a focus trap, `Escape` to close,
    body scroll-lock, and focus return to the trigger on close. Hand-rolled
    inline Alpine gets the open/close right but routinely drops focus management.
-   **Constraint:** CDN-free means **no `@alpinejs/focus` plugin** — the focus
-   trap must be hand-written in the factory.
+   **Focus trap:** the first-party **`@alpinejs/focus`** plugin is **allowed** —
+   self-host it in SiteAssets exactly like Alpine core (it's one static file;
+   CDN-free bans external hosts at runtime, not self-hosted plugins). Prefer it
+   over a hand-written trap — it's battle-tested for exactly this. Hand-rolling
+   remains the fallback when keeping the vendored script surface to Alpine core
+   alone matters more.
 2. **Tabs** — roving `tabindex` + arrow-key navigation (Home/End/Left/Right) and
    `aria-controls`/`aria-selected` wiring is fiddly to repeat correctly per page.
 3. **Toast** — a queue + auto-dismiss timer + pause-on-hover is more state than a
@@ -429,10 +433,16 @@ Microsoft's own Fluent font).
   *Subsetting* it to shrink the download needs a build step — which breaks the
   buildless rule — so don't subset; accept the full font, or stay on the curated
   sprite (~14 KB).
-- **Not shipped here.** The font files aren't vendored in this repo — download
-  `FluentSystemIcons-Regular.{woff2,css}` (and `-Filled` if needed) from Microsoft's
-  [`fluentui-system-icons/fonts`](https://github.com/microsoft/fluentui-system-icons/tree/main/fonts)
-  and self-host them in SiteAssets.
+- **Not shipped here — lives in the `fluent-system-icons` companion repo.** The
+  full Fluent library is maintained as a **separate repo** (`fluent-system-icons`)
+  holding the font builds (`FluentSystemIcons-{Regular,Filled,Light,Resizable}.{woff2,css}`
+  with per-style HTML/JSON codepoint indexes), the per-icon SVGs, and the
+  `fluent-font-library.{json,html}` master index. Take
+  `FluentSystemIcons-Regular.{woff2,css}` (and `-Filled` if needed) from there and
+  self-host them in SiteAssets — everything in that repo exists and works as
+  described here, under the same criteria. Its actual path is specified in config
+  when developing a real project. (Upstream source: Microsoft's
+  [`fluentui-system-icons`](https://github.com/microsoft/fluentui-system-icons).)
 
 ### Which form should I use?
 - **Default → no-JS `<use>` sprite.** Most accessible, zero dependency, no font
@@ -452,8 +462,8 @@ Microsoft's own Fluent font).
 - **Tradeoff to know:** the raw `<use>` form is bound to the sprite and **won't
   auto-ride a future engine swap**; `<fluent-icon>` migrates for free (its
   `resolve()` method is the single migration seam — sprite today, a self-hosted
-  Fluent folder later). Both share the same name tokens, so moving between them
-  is mechanical.
+  Fluent folder later, sourced from the separate `fluent-system-icons` repo).
+  Both share the same name tokens, so moving between them is mechanical.
 - **Adding an icon:** copy a `<symbol>` in `bmo-icons.svg`, set
   `id="ic-fluent-{name}-24-regular"`, drop in the path. Filled variants suffix
   `-24-filled`.

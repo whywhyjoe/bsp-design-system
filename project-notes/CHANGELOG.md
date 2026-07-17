@@ -436,3 +436,59 @@ like Iconify / Font Awesome / Material — not Microsoft's Fluent font).
 - **Docs updated:** `docs/TECHNICAL-REFERENCE.md` §6 (new "Form 3" + a "which form?"
   guide), `.github/copilot-instructions.md` (Icons section + "roads not taken"
   clarified), `CLAUDE.md` (icon rule). The SVG sprite remains the default.
+
+---
+
+## 15. Full Fluent library extracted to the separate `fluent-system-icons` repo
+
+The full Fluent System Icons library — formerly vendored here as the
+`/fluentui-system-icons` folder — now lives in its own **separate repo**,
+**`fluent-system-icons`**. Nothing about its contents or usage changed: the
+per-icon SVGs (`ic_fluent_{name}_{size}_{style}.svg`), the font builds
+(`FluentSystemIcons-{Regular,Filled,Light,Resizable}.{woff2,css}` + per-style
+HTML/JSON codepoint indexes), and the `fluent-font-library.{json,html}` master
+index all exist there and work exactly as documented — use them under the same
+criteria as before.
+
+- **Path is project config.** The library's actual location is specified in
+  config when developing a real project; docs reference the repo by name, not a
+  hard-coded path.
+- **Included natively, unchanged:** the design system's own icon deliveries —
+  the curated `bmo-icons.svg` sprite, `fluent-icon.js`, and the documented icon
+  **font** delivery form (TECHNICAL-REFERENCE §6 Form 3).
+- **Docs updated:** `README.md` (icons rule + file map), `CLAUDE.md` (icon rule
+  + file map), `docs/TECHNICAL-REFERENCE.md` §6 ("Not shipped here" bullet +
+  migration-seam note), `.github/copilot-instructions.md` (folder-swap
+  destination + icon-font sourcing).
+
+---
+
+## 16. Buildless/CDN-free rule rescoped to the shipped artifact; `@alpinejs/focus` allowed self-hosted
+
+Two clarifications to the architecture rule — the *policy* (buildless, CDN-free,
+self-hosted **at runtime in production**) is unchanged; what changed is scope and
+a rationale that no longer held.
+
+- **Rescoped: the rule constrains the shipped artifact, not the dev machine.**
+  The old wording ("never propose a build step, `npm install`, … or a CDN
+  `<script>`") read as a blanket ban on dev tooling. Corrected: the *deployed
+  page* can never require a build/compile step, bundler, or ES `import`
+  (SharePoint can't build or run Node — what you author is what runs), and
+  production pages self-host every runtime dependency in SiteAssets. Local dev
+  tooling (`npm install`, Node, Python, static servers, linters) is explicitly
+  fair game *as tooling*, CDN tags are fine as a dev-time convenience (download
+  + self-host before shipping), and proposing a CDN-distributed *library* is
+  fine — libraries are vetoed by the other rules (third-party UI/icon kits,
+  forced build steps), never by their distribution channel.
+- **`@alpinejs/focus` allowed, self-hosted.** The prior ban was justified by
+  "CDN-free" — but the plugin self-hosts as one static file exactly like Alpine
+  core, so that rationale doesn't hold. New policy: **prefer** the first-party
+  plugin (battle-tested focus trap) self-hosted in SiteAssets; hand-rolling
+  remains the fallback when keeping the vendored script surface to Alpine core
+  alone matters more. (Entry 5's "no `@alpinejs/focus`" note reflects the old
+  policy and is superseded here.)
+- **Docs updated:** `.github/copilot-instructions.md` (Architecture section
+  rewritten; factory/dialog bullet), `CLAUDE.md` (first non-negotiable),
+  `AGENTS.md` (rule 1), `docs/TECHNICAL-REFERENCE.md` §5 (dialog factory
+  recommendation). README / PAGE-TEMPLATE / TECH-REF §7 already said "at
+  runtime" / "in production" and needed no change.
