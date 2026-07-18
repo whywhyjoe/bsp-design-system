@@ -104,6 +104,20 @@ One base, six variants, three sizes.
 <button class="icon-btn" aria-label="More"><svg class="icon"><use href="#ic-fluent-more-horizontal-24-regular"/></svg></button>
 ```
 
+### Floating action button — `.fab`
+A persistent primary action that hovers over the content bottom-right ("New",
+"Edit"). **Not a native Fluent 2 pattern** — the Material-style floating
+affordance, added deliberately for surfaces with one obvious action. Circular +
+icon-only by default (give it an `aria-label`); `.fab--extended` for an
+icon+label pill; `.fab--sm` (40px); `.fab--secondary` for the quiet white tone;
+`.fab--fixed` pins it to the viewport bottom-right. Canonical usage:
+`examples/Ops Dashboard.html` (fixed) and `examples/Component examples.html`.
+
+```html
+<button class="fab fab--extended fab--fixed"><svg class="icon"><use href="#ic-fluent-add-24-regular"/></svg> New request</button>
+<button class="fab" aria-label="Edit"><svg class="icon"><use href="#ic-fluent-edit-24-regular"/></svg></button>
+```
+
 ### Form field — `.field` + `.input` / `.select` / `.textarea`
 Wrap a control in `.field` for label + hint/error. Controls share one surface.
 - **Parts:** `.field__label`, `.field__req` (the `*`), `.field__hint`, `.field__error`
@@ -228,6 +242,16 @@ Opt-in, for richer landing/home surfaces:
 - **Page shell:** `.suite` (SharePoint suite bar + `.suite__mark/__app/__divider/__env/__spacer/__action`), `.crumbs` (breadcrumb + `.crumbs__sep/__current`), `.hero` (`.hero__eyebrow/__title/__lede/__cta/__media`, `.trust` + `.trust__item/__num/__label`), `.section-head` (+ `--flex`, `.section-head__eyebrow/__title/__lede`).
 - **Layout helpers:** `.l-wrap` (centered max-width column), `.l-section` (vertical rhythm), `.l-grid` + `.l-grid--2/--3/--4` (responsive card grids).
 - **Utilities** (in `colors_and_type.css`): `.imgph` (striped placeholder + `.lbl`), `.photo` (real-image crop), `.lift` (hover-rise), `.reveal` (fade-rise on scroll; visible by default).
+
+### Process & filtering layer
+Dense-app components; canonical usage in `examples/Component examples.html` and
+`examples/Ops Dashboard.html`.
+- **Spinner:** `.spinner` (+ `--16/--32/--48`, default 20; `--on-accent` on filled surfaces) and `.spinner-row` for an inline label. Give it `role="progressbar"` + `aria-label`.
+- **Progress bar:** `.progress` › `.progress__meta` (`.progress__label` + `.progress__value`) + `.progress__track` › `.progress__fill`. States: `--indeterminate`, `--striped` (fill always full-width), `--subtle`, `--thick`, `--success`, `--danger`. The `__fill` `width` is the one sanctioned inline value — it *is* the data. Set `aria-valuenow/min/max`.
+- **Stepper:** `<ol class="stepper">` › `.stepper__step` (`.is-done` / `.is-current` / `.is-error`) › `.stepper__dot` + `.stepper__label`. The connector is the step's `::before`.
+- **Filter bar:** `.filterbar` — a standalone filters/sort surface (not attached to a grid/toolbar). `.filterbar__group` (label + control), `.filterbar__label`, `.filterbar__spacer` (pushes trailing groups right). Drop `.input-group`, `.chip-row`, `.select` inside.
+- **Grid header filter:** on a `<th class="grid__filter-host">`, a `.icon-btn.grid__filter-btn` (add `.is-active` when filtered) toggles a `.grid__filter-menu` of `.grid__filter-item` (`.is-active` = current). SharePoint-list-style column funnel; toggle with inline Alpine (`x-show` + `@click.outside`).
+- **Stat strip:** `.stat-strip` of `.stat.stat--plain` — card-less, value-first stats. `.stat__spark` (+ `--donut`) is an inline SVG slot (sparkline/open donut) that inherits a `--bmo-chart-*` color.
 
 ---
 

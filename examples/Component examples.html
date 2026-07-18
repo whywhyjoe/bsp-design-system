@@ -1,0 +1,729 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Component examples · BMO SharePoint</title>
+<!-- COMPONENT EXAMPLES — stat blocks, a standalone filter bar, a list grid with
+     in-heading sort + column filter, a validated submission form, a multi-page
+     intake wizard, spinners, progress bars, and a dialog. Composed entirely from
+     the canonical system; interactivity is inline Alpine against the state
+     contract. Ported from the Claude Design "Component examples" checklist.
+     The spinner / progress / stepper / filterbar / grid-header-filter / stat-strip
+     classes now live in components.css (Process + filtering layer). -->
+<link rel="stylesheet" href="../colors_and_type.css">
+<link rel="stylesheet" href="../components.css">
+<style>
+  [x-cloak] { display: none !important; }
+  body { margin: 0; background: var(--surface-subtle); }
+  a { color: var(--accent-rest); } a:hover { color: var(--accent-hover); }
+</style>
+</head>
+<body>
+
+<!-- ════════ Canonical icon sprite — inline once per page ════════
+     The full bmo-icons.svg, dropped into the body so same-document #id refs
+     resolve for both the no-JS <use> form and the <fluent-icon> element. -->
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true"><defs>
+  <symbol id="ic-fluent-add-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></g></symbol>
+  <symbol id="ic-fluent-alert-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4a5 5 0 0 1 5 5c0 5 2 6 2 6H5s2-1 2-6a5 5 0 0 1 5-5zM10.3 19a1.8 1.8 0 0 0 3.4 0"/></g></symbol>
+  <symbol id="ic-fluent-arrow-down-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v13M6 12l6 6 6-6"/></g></symbol>
+  <symbol id="ic-fluent-arrow-export-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M11 6H6a1 1 0 0 0-1 1v11a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1v-5M14 5h5v5M19 5l-8 8"/></g></symbol>
+  <symbol id="ic-fluent-arrow-right-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13M12 6l6 6-6 6"/></g></symbol>
+  <symbol id="ic-fluent-arrow-up-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V6M6 12l6-6 6 6"/></g></symbol>
+  <symbol id="ic-fluent-attach-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M16.5 8.5l-6 6a2 2 0 1 0 2.8 2.8l6-6a3.5 3.5 0 0 0-5-5l-6.5 6.5a5 5 0 0 0 7 7l5.5-5.5"/></g></symbol>
+  <symbol id="ic-fluent-calendar-ltr-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 7a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v11a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V7zM5 10h14M9 4v3M15 4v3"/></g></symbol>
+  <symbol id="ic-fluent-checkmark-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></g></symbol>
+  <symbol id="ic-fluent-checkmark-circle-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"/><path d="M8.5 12.2l2.4 2.4 4.6-4.9"/></g></symbol>
+  <symbol id="ic-fluent-chevron-down-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M7 10l5 5 5-5"/></g></symbol>
+  <symbol id="ic-fluent-chevron-right-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M10 7l5 5-5 5"/></g></symbol>
+  <symbol id="ic-fluent-clock-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"/><path d="M12 7.5V12l3 2"/></g></symbol>
+  <symbol id="ic-fluent-data-bar-vertical-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19h16M7 19v-6M12 19V6M17 19v-9"/></g></symbol>
+  <symbol id="ic-fluent-delete-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8h12M9.5 8V6a1 1 0 0 1 1-1h3a1 1 0 0 1 1 1v2M8 8l.8 11a1 1 0 0 0 1 .9h4.4a1 1 0 0 0 1-.9L16 8M10.5 11.5v5M13.5 11.5v5"/></g></symbol>
+  <symbol id="ic-fluent-dismiss-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 6l12 12M18 6L6 18"/></g></symbol>
+  <symbol id="ic-fluent-document-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M7 4h7l4 4v11a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1zM14 4v4h4"/></g></symbol>
+  <symbol id="ic-fluent-edit-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 19l1-4 9-9 3 3-9 9-4 1zM14 6l3 3"/></g></symbol>
+  <symbol id="ic-fluent-filter-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 6h14l-5.5 7v5l-3-2v-3L5 6z"/></g></symbol>
+  <symbol id="ic-fluent-folder-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7a1 1 0 0 1 1-1h4l2 2h8a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7z"/></g></symbol>
+  <symbol id="ic-fluent-grid-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="6.5" height="6.5" rx="1"/><rect x="13.5" y="4" width="6.5" height="6.5" rx="1"/><rect x="4" y="13.5" width="6.5" height="6.5" rx="1"/><rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1"/></g></symbol>
+  <symbol id="ic-fluent-home-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11.5L12 5l8 6.5V19a1 1 0 0 1-1 1h-4v-6H9v6H5a1 1 0 0 1-1-1v-7.5z"/></g></symbol>
+  <symbol id="ic-fluent-info-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"/><path d="M12 11.5v4.5"/><path d="M12 8.2h.01"/></g></symbol>
+  <symbol id="ic-fluent-mail-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 7h14a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1zM4.5 8l7.5 5 7.5-5"/></g></symbol>
+  <symbol id="ic-fluent-mail-inbox-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l1.8-6.2a1 1 0 0 1 1-.8h8.4a1 1 0 0 1 1 .8L19 13v4a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1v-4zM5 13h4a3 3 0 0 0 6 0h4"/></g></symbol>
+  <symbol id="ic-fluent-money-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="7" width="16" height="10" rx="1.5"/><circle cx="12" cy="12" r="2.3"/><path d="M7 12h.01M17 12h.01"/></g></symbol>
+  <symbol id="ic-fluent-more-horizontal-24-regular" viewBox="0 0 24 24"><g fill="currentColor" stroke="none"><circle cx="6" cy="12" r="1.4"/><circle cx="12" cy="12" r="1.4"/><circle cx="18" cy="12" r="1.4"/></g></symbol>
+  <symbol id="ic-fluent-person-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8.5" r="3.5"/><path d="M5.5 19a6.5 6.5 0 0 1 13 0"/></g></symbol>
+  <symbol id="ic-fluent-person-add-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="9.5" cy="8.5" r="3.3"/><path d="M3.5 19a6 6 0 0 1 11-3.3M18 8v6M15 11h6"/></g></symbol>
+  <symbol id="ic-fluent-phone-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 4.5l3 .8 1 3.2-1.9 1.4a10 10 0 0 0 4.6 4.6l1.4-1.9 3.2 1 .8 3a1 1 0 0 1-1 1.1A13.5 13.5 0 0 1 5.4 5.5a1 1 0 0 1 1.1-1z"/></g></symbol>
+  <symbol id="ic-fluent-receipt-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 4h12v16l-2-1.3-2 1.3-2-1.3-2 1.3-2-1.3-2 1.3V4zM9 8h6M9 11.5h6M9 15h4"/></g></symbol>
+  <symbol id="ic-fluent-search-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="10.5" cy="10.5" r="5.5"/><path d="M15 15l4 4"/></g></symbol>
+  <symbol id="ic-fluent-settings-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 4v2.2M12 17.8V20M5 7.5l1.9 1.1M17.1 15.4L19 16.5M5 16.5l1.9-1.1M17.1 8.6L19 7.5"/></g></symbol>
+  <symbol id="ic-fluent-shield-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4l7 2.5v5c0 5-3.5 8-7 9.5-3.5-1.5-7-4.5-7-9.5v-5L12 4zM9 12l2 2 4-4"/></g></symbol>
+  <symbol id="ic-fluent-warning-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5l8.5 14.5H3.5L12 5z"/><path d="M12 10.5v4M12 17h.01"/></g></symbol>
+  <symbol id="ic-fluent-checkmark-circle-24-filled" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5" fill="currentColor"/><path d="M8.4 12.2l2.5 2.5 4.7-5" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="ic-fluent-warning-24-filled" viewBox="0 0 24 24"><path d="M11.1 5.2a1 1 0 0 1 1.8 0l8 14a1 1 0 0 1-.9 1.5H4a1 1 0 0 1-.9-1.5l8-14z" fill="currentColor"/><path d="M12 10v4M12 17h.01" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+</defs></svg>
+
+
+<div x-data="componentExamples()" @keydown.escape.window="modalOpen=false; statusMenuOpen=false" style="min-height:100vh; padding-bottom:var(--space-560)">
+  <div class="l-wrap" style="padding-top:var(--space-400)">
+    <header class="section-head">
+      <p class="section-head__eyebrow">BMO SharePoint design system</p>
+      <h1 class="section-head__title">Component examples</h1>
+      <p class="section-head__lede">Stat blocks, standalone filters, list grids, forms, process indicators, and dialogs — composed from the system vocabulary. The newer classes (spinner, progress, stepper, filter bar, grid header filter) now live in <span style="font-family:var(--font-family-mono); font-size:13px">components.css</span>.</p>
+    </header>
+
+    <!-- ══════════ Stat blocks ══════════ -->
+    <section style="margin-top:var(--space-480)">
+      <div class="section-head">
+        <p class="section-head__eyebrow">Existing vocabulary</p>
+        <h2 class="section-head__title" style="font:var(--weight-regular) 22px/28px var(--font-family)">Stat blocks</h2>
+        <p class="section-head__lede">Four compositions of one anatomy: label, value, delta, sub. All sit inside a plain card.</p>
+      </div>
+      <div class="l-grid l-grid--4">
+        <article class="card">
+          <div class="stat">
+            <span class="stat__label">Open requests</span>
+            <div class="stat__row">
+              <span class="stat__value">128</span>
+              <span class="stat__delta stat__delta--down"><svg class="icon"><use href="#ic-fluent-arrow-up-24-regular"></use></svg> 9%</span>
+            </div>
+            <span class="stat__sub">vs last week</span>
+          </div>
+        </article>
+        <article class="card">
+          <div class="stat">
+            <div class="stat__head">
+              <span class="card__icon-tile card__icon-tile--sm"><svg class="icon"><use href="#ic-fluent-clock-24-regular"></use></svg></span>
+              <span class="stat__label">Avg first response</span>
+            </div>
+            <div class="stat__row">
+              <span class="stat__value">1.8 h</span>
+              <span class="stat__delta stat__delta--up"><svg class="icon"><use href="#ic-fluent-arrow-down-24-regular"></use></svg> 12%</span>
+            </div>
+            <span class="stat__sub">faster than target</span>
+          </div>
+        </article>
+        <article class="card">
+          <div class="stat">
+            <span class="stat__label"><span class="dot dot--success"></span> SLA met</span>
+            <div class="stat__row">
+              <span class="stat__value">94.2%</span>
+              <span class="stat__delta stat__delta--up"><svg class="icon"><use href="#ic-fluent-arrow-up-24-regular"></use></svg> 1.4 pts</span>
+              <svg class="stat__spark" viewBox="0 0 104 36" style="margin-left:auto" aria-hidden="true"><polyline points="2,30 16,26 30,28 44,20 58,23 72,14 86,17 102,6" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"></polyline></svg>
+            </div>
+            <span class="stat__sub">target 92%</span>
+          </div>
+        </article>
+        <article class="card">
+          <div class="stat">
+            <span class="stat__label">Backlog over 7 days</span>
+            <div class="stat__row" style="align-items:center">
+              <span class="stat__value">23</span>
+              <svg class="stat__spark stat__spark--donut" viewBox="0 0 40 40" style="margin-left:auto" aria-hidden="true">
+                <circle cx="20" cy="20" r="15" fill="none" style="stroke:var(--f2-grey-92)" stroke-width="7"></circle>
+                <circle cx="20" cy="20" r="15" fill="none" stroke="currentColor" stroke-width="7" stroke-dasharray="16.9 94.2" transform="rotate(-90 20 20)"></circle>
+              </svg>
+            </div>
+            <span class="stat__sub">18% of open tickets</span>
+          </div>
+        </article>
+      </div>
+      <p style="margin: var(--space-480) 0 var(--space-200); padding-top: var(--space-240); border-top: none; font: var(--type-caption1-strong); letter-spacing: .04em; text-transform: uppercase; color: var(--fg-secondary)">Card-less strip (.stat-strip + .stat--plain)</p>
+      <div class="stat-strip">
+        <div class="stat stat--plain">
+          <span class="stat__value">$77B</span>
+          <span class="stat__label">Total assets</span>
+        </div>
+        <div class="stat stat--plain">
+          <span class="stat__value">46,424</span>
+          <span class="stat__label">Commercial clients</span>
+          <span class="stat__delta stat__delta--up"><svg class="icon"><use href="#ic-fluent-arrow-up-24-regular"></use></svg> 12.4%</span>
+          <svg class="stat__spark" viewBox="0 0 104 36" aria-hidden="true"><polyline points="2,28 16,30 30,24 44,26 58,18 72,20 86,12 102,8" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"></polyline></svg>
+        </div>
+        <div class="stat stat--plain">
+          <span class="stat__value">1,753</span>
+          <span class="stat__label">Employees</span>
+          <span class="stat__delta stat__delta--down"><svg class="icon"><use href="#ic-fluent-arrow-down-24-regular"></use></svg> 2.1%</span>
+        </div>
+        <div class="stat stat--plain">
+          <div class="stat__row" style="align-items:center; gap:var(--space-120)">
+            <span class="stat__value">72%</span>
+            <svg class="stat__spark stat__spark--donut" viewBox="0 0 40 40" aria-hidden="true">
+              <circle cx="20" cy="20" r="15" fill="none" style="stroke:var(--f2-grey-92)" stroke-width="7"></circle>
+              <circle cx="20" cy="20" r="15" fill="none" stroke="currentColor" stroke-width="7" stroke-dasharray="67.8 94.2" transform="rotate(-90 20 20)"></circle>
+            </svg>
+          </div>
+          <span class="stat__label">Digital adoption</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════ Filter bar ══════════ -->
+    <section style="margin-top:var(--space-480)">
+      <div class="section-head">
+        <p class="section-head__eyebrow">.filterbar</p>
+        <h2 class="section-head__title" style="font:var(--weight-regular) 22px/28px var(--font-family)">Standalone filter and sort bar</h2>
+        <p class="section-head__lede">An independent surface — not attached to a grid or toolbar — dropped above any content it controls.</p>
+      </div>
+      <div class="filterbar">
+        <div class="input-group">
+          <svg class="icon icon--16 input-group__icon"><use href="#ic-fluent-search-24-regular"></use></svg>
+          <input class="input-group__field" placeholder="Search requests" x-model="q">
+        </div>
+        <div class="filterbar__group">
+          <span class="filterbar__label">Category</span>
+          <div class="chip-row">
+            <template x-for="c in cats" :key="c">
+              <button class="chip" :class="{ 'is-active': fbType===c }" :aria-pressed="fbType===c" @click="fbType=c" x-text="c"></button>
+            </template>
+          </div>
+        </div>
+        <span class="filterbar__spacer"></span>
+        <div class="filterbar__group">
+          <span class="filterbar__label">Status</span>
+          <select class="select" x-model="fbStatus">
+            <option>All statuses</option><option>Pending</option><option>In review</option><option>Approved</option><option>Returned</option>
+          </select>
+        </div>
+        <div class="filterbar__group">
+          <span class="filterbar__label">Sort</span>
+          <select class="select" x-model="sort">
+            <option>Newest first</option><option>Oldest first</option><option>Hours, high to low</option><option>Title, A to Z</option>
+          </select>
+        </div>
+      </div>
+      <p style="margin:var(--space-100) 0 0; font:var(--type-caption1); color:var(--fg-secondary)">Showing <span x-text="fbMatches.length"></span> of 6 requests · <span x-text="sort.toLowerCase()"></span></p>
+    </section>
+
+    <!-- ══════════ List grid ══════════ -->
+    <section style="margin-top:var(--space-480)">
+      <div class="section-head">
+        <p class="section-head__eyebrow">.grid + header filter</p>
+        <h2 class="section-head__title" style="font:var(--weight-regular) 22px/28px var(--font-family)">List grid with sort and filter in headings</h2>
+        <p class="section-head__lede">A SharePoint-list-style table: click a heading to sort; the funnel on Status opens a column filter. Rows select on click.</p>
+      </div>
+      <div class="card card--flush">
+        <div class="toolbar" style="border-radius:var(--radius-large) var(--radius-large) 0 0">
+          <span class="toolbar__title">Requests</span>
+          <span class="badge" x-text="rows.length + ' items'"></span>
+          <span class="toolbar__spacer"></span>
+          <button class="btn btn--ghost btn--sm"><svg class="icon icon--16"><use href="#ic-fluent-arrow-export-24-regular"></use></svg> Export</button>
+          <button class="btn btn--primary btn--sm"><svg class="icon icon--16"><use href="#ic-fluent-add-24-regular"></use></svg> New request</button>
+        </div>
+        <table class="grid">
+          <thead>
+            <tr>
+              <th style="width:36px"><label class="check" style="gap:0"><input type="checkbox" :checked="allChecked" @change="toggleAll()" aria-label="Select all"></label></th>
+              <th>ID</th>
+              <th class="grid__sort" @click="sortBy('title')">Request
+                <template x-if="sortCol==='title'"><svg class="icon"><use :href="arrow"></use></svg></template>
+              </th>
+              <th>Category</th>
+              <th>Owner</th>
+              <th class="grid__sort" @click="sortBy('submitted')">Submitted
+                <template x-if="sortCol==='submitted'"><svg class="icon"><use :href="arrow"></use></svg></template>
+              </th>
+              <th class="num grid__sort" @click="sortBy('hours')">Hours
+                <template x-if="sortCol==='hours'"><svg class="icon"><use :href="arrow"></use></svg></template>
+              </th>
+              <th class="grid__filter-host">Status
+                <button class="icon-btn grid__filter-btn" :class="{ 'is-active': statusFilter!=='All statuses' }" aria-label="Filter status" @click="statusMenuOpen=!statusMenuOpen"><svg class="icon"><use href="#ic-fluent-filter-24-regular"></use></svg></button>
+                <div class="grid__filter-menu" x-show="statusMenuOpen" x-cloak @click.outside="statusMenuOpen=false">
+                  <template x-for="s in statuses" :key="s">
+                    <button class="grid__filter-item" :class="{ 'is-active': statusFilter===s }" @click="statusFilter=s; statusMenuOpen=false" x-text="s"></button>
+                  </template>
+                </div>
+              </th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <template x-for="r in rows" :key="r.id">
+              <tr :class="{ 'is-selected': selRow===r.id }" @click="selRow = selRow===r.id ? null : r.id">
+                <td><label class="check" style="gap:0"><input type="checkbox" :checked="!!checked[r.id]" @change="toggle(r.id)" @click.stop aria-label="Select row"></label></td>
+                <td><span class="mono" x-text="r.id"></span></td>
+                <td x-text="r.title"></td>
+                <td><span class="tag" x-text="r.cat"></span></td>
+                <td><span style="display:inline-flex; align-items:center; gap:var(--space-80)"><span class="avatar avatar--22" :style="'background:'+r.ownerBg" x-text="r.owner"></span><span x-text="r.ownerName"></span></span></td>
+                <td class="cell-secondary" x-text="fmtDate(r.submitted)"></td>
+                <td class="num" x-text="r.hours"></td>
+                <td><span class="badge" :class="badgeClsFor(r.status)" x-text="r.status"></span></td>
+                <td><a class="card__cta" href="#" @click.stop.prevent style="font:var(--type-caption1-strong)">Details</a></td>
+              </tr>
+            </template>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ══════════ Submission form ══════════ -->
+    <section style="margin-top:var(--space-480)">
+      <div class="section-head">
+        <p class="section-head__eyebrow">Composition</p>
+        <h2 class="section-head__title" style="font:var(--weight-regular) 22px/28px var(--font-family)">Simple submission form</h2>
+        <p class="section-head__lede">A single-card form with required-field validation and a finished state. Try submitting empty, then filled.</p>
+      </div>
+      <div class="card" x-show="!formDone" style="max-width:520px; padding:var(--space-240) var(--space-280)">
+        <h3 style="font:var(--type-title3); font-weight:var(--weight-regular); margin:0">New transfer</h3>
+        <p style="font:var(--type-caption1); color:var(--fg-secondary); margin:var(--space-40) 0 var(--space-240)">All fields are required unless marked optional.</p>
+        <div style="display:flex; flex-direction:column; gap:var(--space-200)">
+          <div class="field">
+            <label class="field__label">Amount <span class="field__req">*</span></label>
+            <input class="input" placeholder="0.00" inputmode="decimal" x-model="amount" @input="amountErr=''" :aria-invalid="!!amountErr">
+            <template x-if="amountErr"><p class="field__error" x-text="amountErr"></p></template>
+          </div>
+          <div class="field">
+            <label class="field__label">Destination account <span class="field__req">*</span></label>
+            <select class="select" x-model="account" @change="accountErr=''" :aria-invalid="!!accountErr">
+              <option value="">Select account…</option>
+              <option>Operating — 0421 7788</option>
+              <option>Savings — 0421 9034</option>
+              <option>USD settlement — 8802 1145</option>
+            </select>
+            <template x-if="accountErr"><p class="field__error" x-text="accountErr"></p></template>
+          </div>
+          <div class="field">
+            <label class="field__label">Note <span style="font-weight:var(--weight-regular); color:var(--fg-secondary)">(optional)</span></label>
+            <textarea class="textarea" placeholder="Add a memo…" x-model="note" :aria-invalid="noteOver"></textarea>
+            <p :class="noteOver ? 'field__error' : 'field__hint'"><span x-text="note.length"></span> / 140 characters</p>
+          </div>
+        </div>
+        <div style="display:flex; justify-content:flex-end; gap:var(--space-80); margin-top:var(--space-280)">
+          <button class="btn btn--subtle" @click="cancelForm()">Cancel</button>
+          <button class="btn btn--primary" @click="submitForm()">Confirm transfer</button>
+        </div>
+      </div>
+      <div class="card" x-show="formDone" x-cloak style="max-width:520px; padding:var(--space-320) var(--space-280); text-align:center">
+        <svg class="icon" style="width:48px; height:48px; color:var(--fg-success)"><use href="#ic-fluent-checkmark-circle-24-filled"></use></svg>
+        <h3 style="font:var(--type-title3); font-weight:var(--weight-regular); margin:var(--space-160) 0 0">Transfer submitted</h3>
+        <p style="font:var(--type-body1); color:var(--fg-secondary); margin:var(--space-60) 0 0"><span x-text="formSummary"></span> Reference <span style="font-family:var(--font-family-mono); font-size:13px">TRF-20418</span>. A confirmation was sent to your inbox.</p>
+        <div style="display:flex; justify-content:center; gap:var(--space-80); margin-top:var(--space-240)">
+          <button class="btn btn--secondary" @click="resetForm()">Submit another</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════ Multi-page intake form ══════════ -->
+    <section style="margin-top:var(--space-480)">
+      <div class="section-head">
+        <p class="section-head__eyebrow">.stepper + composition</p>
+        <h2 class="section-head__title" style="font:var(--weight-regular) 22px/28px var(--font-family)">Multi-page intake form</h2>
+        <p class="section-head__lede">An MS Forms replacement: step indicator, per-step validation, and branching — the request type chosen on step 1 changes step 2.</p>
+      </div>
+      <div class="card" style="max-width:640px; padding:var(--space-240) var(--space-280)">
+        <div x-show="!wizDone">
+          <ol class="stepper" style="margin-bottom:var(--space-280)">
+            <template x-for="s in steps" :key="s.n">
+              <li class="stepper__step" :class="s.cls">
+                <span class="stepper__dot">
+                  <template x-if="s.done"><svg class="icon icon--12"><use href="#ic-fluent-checkmark-24-regular"></use></svg></template>
+                  <template x-if="!s.done"><span x-text="s.n"></span></template>
+                </span>
+                <span class="stepper__label" x-text="s.label"></span>
+              </li>
+            </template>
+          </ol>
+          <template x-if="wizError">
+            <div class="msgbar msgbar--danger" role="status" style="margin-bottom:var(--space-200)">
+              <svg class="icon icon--20 msgbar__icon"><use href="#ic-fluent-warning-24-filled"></use></svg>
+              <div class="msgbar__body" x-text="wizError"></div>
+            </div>
+          </template>
+          <!-- Step 1 · Requester -->
+          <div x-show="step===1" style="display:flex; flex-direction:column; gap:var(--space-200)">
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:var(--space-160)">
+              <div class="field">
+                <label class="field__label">Full name <span class="field__req">*</span></label>
+                <input class="input" placeholder="e.g. Priya Sharma" x-model="wName" @input="clearErr('name')" :aria-invalid="!!wErr.name">
+                <template x-if="wErr.name"><p class="field__error" x-text="wErr.name"></p></template>
+              </div>
+              <div class="field">
+                <label class="field__label">Work email <span class="field__req">*</span></label>
+                <input class="input" placeholder="name@bmo.com" x-model="wEmail" @input="clearErr('email')" :aria-invalid="!!wErr.email">
+                <template x-if="wErr.email"><p class="field__error" x-text="wErr.email"></p></template>
+              </div>
+            </div>
+            <div class="field">
+              <label class="field__label">Department <span class="field__req">*</span></label>
+              <select class="select" x-model="wDept" @change="clearErr('dept')" :aria-invalid="!!wErr.dept">
+                <option value="">Select department…</option>
+                <option>Personal banking</option><option>Commercial banking</option><option>Capital markets</option><option>Technology and operations</option><option>Risk and compliance</option>
+              </select>
+              <template x-if="wErr.dept"><p class="field__error" x-text="wErr.dept"></p></template>
+            </div>
+            <div class="field">
+              <label class="field__label">Request type <span class="field__req">*</span></label>
+              <div class="chip-row">
+                <template x-for="t in ['System access','Equipment']" :key="t">
+                  <button class="chip" :class="{ 'is-active': wType===t }" :aria-pressed="wType===t" @click="wType=t; clearErr('type')" x-text="t"></button>
+                </template>
+              </div>
+              <p class="field__hint">Determines the details we ask for next.</p>
+              <template x-if="wErr.type"><p class="field__error" x-text="wErr.type"></p></template>
+            </div>
+          </div>
+          <!-- Step 2 · Access details -->
+          <div x-show="step===2 && isAccess" style="display:flex; flex-direction:column; gap:var(--space-200)">
+            <div class="field">
+              <label class="field__label">System <span class="field__req">*</span></label>
+              <select class="select" x-model="wSystem" @change="clearErr('system')" :aria-invalid="!!wErr.system">
+                <option value="">Select system…</option>
+                <option>Client 360</option><option>Tableau server</option><option>Loan origination</option><option>Shared drive — Finance</option>
+              </select>
+              <template x-if="wErr.system"><p class="field__error" x-text="wErr.system"></p></template>
+            </div>
+            <div class="field">
+              <label class="field__label">Access level</label>
+              <div style="display:flex; gap:var(--space-240)">
+                <template x-for="o in ['Read only','Contribute','Full control']" :key="o">
+                  <label class="radio"><input type="radio" name="wAccess" :checked="wAccess===o" @change="wAccess=o"> <span x-text="o"></span></label>
+                </template>
+              </div>
+            </div>
+            <div class="field">
+              <label class="field__label">Business justification <span class="field__req">*</span></label>
+              <textarea class="textarea" placeholder="Why is this access needed, and for how long?" x-model="wJust" @input="clearErr('just')" :aria-invalid="!!wErr.just"></textarea>
+              <template x-if="wErr.just"><p class="field__error" x-text="wErr.just"></p></template>
+            </div>
+          </div>
+          <!-- Step 2 · Equipment details -->
+          <div x-show="step===2 && !isAccess" style="display:flex; flex-direction:column; gap:var(--space-200)">
+            <div class="field">
+              <label class="field__label">Equipment <span class="field__req">*</span></label>
+              <select class="select" x-model="wEquip" @change="clearErr('equip')" :aria-invalid="!!wErr.equip">
+                <option value="">Select item…</option>
+                <option>Monitor, 27 inch</option><option>Docking station</option><option>Laptop replacement</option><option>Headset</option>
+              </select>
+              <template x-if="wErr.equip"><p class="field__error" x-text="wErr.equip"></p></template>
+            </div>
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:var(--space-160)">
+              <div class="field">
+                <label class="field__label">Needed by <span class="field__req">*</span></label>
+                <input class="input" type="date" x-model="wDate" @change="clearErr('date')" :aria-invalid="!!wErr.date">
+                <template x-if="wErr.date"><p class="field__error" x-text="wErr.date"></p></template>
+              </div>
+              <div class="field">
+                <label class="field__label">Cost centre</label>
+                <input class="input" placeholder="e.g. 4420-TO" x-model="wCost">
+                <p class="field__hint">Leave blank to use your department default.</p>
+              </div>
+            </div>
+          </div>
+          <!-- Step 3 · Review -->
+          <div x-show="step===3" style="display:flex; flex-direction:column; gap:var(--space-200)">
+            <p style="font:var(--type-body1); color:var(--fg-secondary); margin:0">Review your request before submitting. Use Back to change anything.</p>
+            <dl class="facts" style="grid-template-columns:150px 1fr; margin:0">
+              <template x-for="f in reviewRows" :key="f.label">
+                <div style="display:contents"><dt x-text="f.label"></dt><dd x-text="f.value"></dd></div>
+              </template>
+            </dl>
+          </div>
+          <div style="display:flex; justify-content:space-between; gap:var(--space-80); margin-top:var(--space-280); padding-top:var(--space-160); border-top:1px solid var(--stroke-divider)">
+            <template x-if="step>1"><button class="btn btn--subtle" @click="wBack()">Back</button></template>
+            <template x-if="step===1"><span></span></template>
+            <template x-if="step<3"><button class="btn btn--primary" @click="wNext()">Next</button></template>
+            <template x-if="step===3"><button class="btn btn--primary" @click="wSubmit()">Submit request</button></template>
+          </div>
+        </div>
+        <div x-show="wizDone" x-cloak style="text-align:center; padding:var(--space-160) 0">
+          <svg class="icon" style="width:48px; height:48px; color:var(--fg-success)"><use href="#ic-fluent-checkmark-circle-24-filled"></use></svg>
+          <h3 style="font:var(--type-title3); font-weight:var(--weight-regular); margin:var(--space-160) 0 0">Request submitted</h3>
+          <p style="font:var(--type-body1); color:var(--fg-secondary); margin:var(--space-60) 0 0">Reference <span style="font-family:var(--font-family-mono); font-size:13px">REQ-1044</span>. Approval is pending with your manager — expect a decision within 2 business days.</p>
+          <div style="display:flex; justify-content:center; margin-top:var(--space-240)">
+            <button class="btn btn--secondary" @click="wReset()">Start a new request</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════ Spinners ══════════ -->
+    <section style="margin-top:var(--space-480)">
+      <div class="section-head">
+        <p class="section-head__eyebrow">.spinner</p>
+        <h2 class="section-head__title" style="font:var(--weight-regular) 22px/28px var(--font-family)">Process spinners</h2>
+        <p class="section-head__lede">Indeterminate activity. Four sanctioned sizes; inline with a label; on an accent surface inside a button.</p>
+      </div>
+      <div class="card" style="display:flex; flex-wrap:wrap; align-items:center; gap:var(--space-400); padding:var(--space-240) var(--space-280)">
+        <div style="display:flex; align-items:center; gap:var(--space-280)">
+          <span class="spinner spinner--16" role="progressbar" aria-label="Loading"></span>
+          <span class="spinner" role="progressbar" aria-label="Loading"></span>
+          <span class="spinner spinner--32" role="progressbar" aria-label="Loading"></span>
+          <span class="spinner spinner--48" role="progressbar" aria-label="Loading"></span>
+        </div>
+        <div class="spinner-row"><span class="spinner"></span> Loading requests…</div>
+        <button class="btn btn--primary" aria-disabled="true"><span class="spinner spinner--16 spinner--on-accent"></span> Submitting…</button>
+      </div>
+    </section>
+
+    <!-- ══════════ Progress bars ══════════ -->
+    <section style="margin-top:var(--space-480)">
+      <div class="section-head">
+        <p class="section-head__eyebrow">.progress</p>
+        <h2 class="section-head__title" style="font:var(--weight-regular) 22px/28px var(--font-family)">Progress bars</h2>
+        <p class="section-head__lede">Every state: pre-start, indeterminate, determinate, done, and error.</p>
+      </div>
+      <div class="card" style="display:flex; flex-direction:column; gap:var(--space-280); max-width:560px; padding:var(--space-240) var(--space-280)">
+        <div class="progress" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+          <div class="progress__meta"><span class="progress__label">Queued</span><span class="progress__value">Waiting to start</span></div>
+          <div class="progress__track"><div class="progress__fill" style="width:0"></div></div>
+        </div>
+        <div class="progress progress--indeterminate" role="progressbar" aria-label="Processing">
+          <div class="progress__meta"><span class="progress__label">Processing 1,204 records</span><span class="progress__value">Working…</span></div>
+          <div class="progress__track"><div class="progress__fill"></div></div>
+        </div>
+        <div class="progress" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="64">
+          <div class="progress__meta"><span class="progress__label">Uploading statement-q3.pdf</span><span class="progress__value">64%</span></div>
+          <div class="progress__track"><div class="progress__fill" style="width:64%"></div></div>
+        </div>
+        <div class="progress progress--success" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="100">
+          <div class="progress__meta"><span class="progress__label"><svg class="icon"><use href="#ic-fluent-checkmark-circle-24-filled"></use></svg> Import complete</span><span class="progress__value">1,204 of 1,204</span></div>
+          <div class="progress__track"><div class="progress__fill" style="width:100%"></div></div>
+        </div>
+        <div class="progress progress--danger" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="45">
+          <div class="progress__meta"><span class="progress__label"><svg class="icon"><use href="#ic-fluent-warning-24-filled"></use></svg> Upload failed</span><span class="progress__value">45% · <a href="#" @click.stop.prevent>Try again</a></span></div>
+          <div class="progress__track"><div class="progress__fill" style="width:45%"></div></div>
+        </div>
+        <hr class="divider">
+        <p style="margin:0; font:var(--type-caption1-strong); letter-spacing:.04em; text-transform:uppercase; color:var(--fg-secondary)">Variants · striped and subtle</p>
+        <div class="progress progress--striped" role="progressbar" aria-label="Deploying update">
+          <div class="progress__meta"><span class="progress__label">Deploying update</span><span class="progress__value">Working…</span></div>
+          <div class="progress__track"><div class="progress__fill"></div></div>
+        </div>
+        <div class="progress progress--subtle" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="38">
+          <div class="progress__meta"><span class="progress__label">Syncing files</span><span class="progress__value">38%</span></div>
+          <div class="progress__track"><div class="progress__fill" style="width:38%"></div></div>
+        </div>
+        <div class="progress progress--subtle progress--success" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="100">
+          <div class="progress__meta"><span class="progress__label"><svg class="icon"><use href="#ic-fluent-checkmark-circle-24-filled"></use></svg> Sync complete</span><span class="progress__value">Done</span></div>
+          <div class="progress__track"><div class="progress__fill" style="width:100%"></div></div>
+        </div>
+        <div class="progress progress--subtle progress--danger" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="61">
+          <div class="progress__meta"><span class="progress__label"><svg class="icon"><use href="#ic-fluent-warning-24-filled"></use></svg> Sync failed</span><span class="progress__value">61% · <a href="#" @click.stop.prevent>Retry</a></span></div>
+          <div class="progress__track"><div class="progress__fill" style="width:61%"></div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════ Floating action button ══════════ -->
+    <section style="margin-top:var(--space-480)">
+      <div class="section-head">
+        <p class="section-head__eyebrow">.fab</p>
+        <h2 class="section-head__title" style="font:var(--weight-regular) 22px/28px var(--font-family)">Floating action button</h2>
+        <p class="section-head__lede">A persistent primary action that hovers over the content — "New" or "Edit". Not a native Fluent pattern; reach for it when a surface has one obvious action. Extended (icon + label), icon-only, small, and a quiet secondary tone.</p>
+      </div>
+      <div class="card" style="display:flex; flex-wrap:wrap; align-items:center; gap:var(--space-400); padding:var(--space-280)">
+        <button class="fab fab--extended"><svg class="icon"><use href="#ic-fluent-add-24-regular"></use></svg> New request</button>
+        <button class="fab" aria-label="New request"><svg class="icon"><use href="#ic-fluent-add-24-regular"></use></svg></button>
+        <button class="fab fab--sm" aria-label="New request"><svg class="icon"><use href="#ic-fluent-add-24-regular"></use></svg></button>
+        <button class="fab fab--secondary" aria-label="Edit"><svg class="icon"><use href="#ic-fluent-edit-24-regular"></use></svg></button>
+        <button class="fab fab--extended fab--secondary"><svg class="icon"><use href="#ic-fluent-edit-24-regular"></use></svg> Edit</button>
+      </div>
+      <p style="margin:var(--space-160) 0 var(--space-100); font:var(--type-caption1-strong); letter-spacing:.04em; text-transform:uppercase; color:var(--fg-secondary)">In context · pinned bottom-right (.fab--fixed pins to the viewport)</p>
+      <div style="position:relative; height:220px; padding:var(--space-200); border:var(--stroke-thin) solid var(--stroke-divider); border-radius:var(--radius-large); background:var(--surface-canvas); overflow:hidden">
+        <p style="font:var(--type-body1); color:var(--fg-secondary); max-width:44ch">A list or dashboard surface. The action floats over the content on a shadow so it stays reachable as the page scrolls — here it's anchored to this box; in a real page use <span style="font-family:var(--font-family-mono); font-size:13px">.fab--fixed</span> to pin it to the viewport.</p>
+        <button class="fab fab--extended" style="position:absolute; right:var(--space-240); bottom:var(--space-240)"><svg class="icon"><use href="#ic-fluent-add-24-regular"></use></svg> New request</button>
+      </div>
+    </section>
+
+    <!-- ══════════ Dialog ══════════ -->
+    <section style="margin-top:var(--space-480)">
+      <div class="section-head">
+        <p class="section-head__eyebrow">.scrim + .dialog</p>
+        <h2 class="section-head__title" style="font:var(--weight-regular) 22px/28px var(--font-family)">Dialog</h2>
+        <p class="section-head__lede">Modal sheet on a scrim. Escape or a scrim click closes it.</p>
+      </div>
+      <button class="btn btn--primary" @click="modalOpen=true"><svg class="icon icon--16"><use href="#ic-fluent-add-24-regular"></use></svg> Add holding</button>
+    </section>
+  </div>
+
+  <div class="scrim" x-show="modalOpen" x-cloak @click="modalOpen=false">
+    <div class="dialog" role="dialog" aria-modal="true" aria-label="Add holding" @click.stop>
+      <div class="dialog__head">
+        <div>
+          <h2 class="dialog__title">Add holding</h2>
+          <p class="dialog__sub">The new position appears in the holdings table once verified.</p>
+        </div>
+        <button class="icon-btn" aria-label="Close" @click="modalOpen=false"><svg class="icon"><use href="#ic-fluent-dismiss-24-regular"></use></svg></button>
+      </div>
+      <div class="dialog__body">
+        <div class="field">
+          <label class="field__label">Fund name <span class="field__req">*</span></label>
+          <input class="input" placeholder="e.g. BMO Dividend Fund">
+        </div>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:var(--space-160)">
+          <div class="field">
+            <label class="field__label">Type</label>
+            <select class="select"><option>Equity</option><option>Fixed income</option><option>Balanced</option></select>
+          </div>
+          <div class="field">
+            <label class="field__label">Value (CAD)</label>
+            <input class="input" placeholder="0.00" inputmode="decimal">
+          </div>
+        </div>
+        <div class="dropzone">
+          <svg class="icon icon--20"><use href="#ic-fluent-attach-24-regular"></use></svg>
+          <div>Drop the fund fact sheet here, or browse</div>
+          <p class="dropzone__hint">PDF up to 10 MB</p>
+        </div>
+      </div>
+      <div class="dialog__foot">
+        <button class="btn btn--subtle" @click="modalOpen=false">Cancel</button>
+        <button class="btn btn--primary" @click="modalOpen=false">Add holding</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  function componentExamples() {
+    return {
+      // filter bar
+      q: '', fbType: 'All', fbStatus: 'All statuses', sort: 'Newest first',
+      // list grid
+      sortCol: 'submitted', sortDir: 'desc', statusFilter: 'All statuses', statusMenuOpen: false,
+      selRow: null, checked: {},
+      // simple form
+      amount: '', account: '', note: '', amountErr: '', accountErr: '', formDone: false,
+      // wizard
+      step: 1, wName: '', wEmail: '', wDept: '', wType: '', wSystem: '', wAccess: 'Read only',
+      wJust: '', wEquip: '', wCost: '', wDate: '', wErr: {}, wizError: '', wizDone: false,
+      // dialog
+      modalOpen: false,
+
+      cats: ['All', 'Access', 'Equipment', 'Finance', 'Software', 'Facilities'],
+      statuses: ['All statuses', 'Pending', 'In review', 'Approved', 'Returned'],
+
+      data: [
+        { id: 'REQ-1042', title: 'VPN access for contractor', cat: 'Access', owner: 'SC', ownerName: 'Sarah Chen', ownerBg: '#0079C1', submitted: '2026-07-14', hours: 6, status: 'Pending' },
+        { id: 'REQ-1041', title: 'Monitor and dock', cat: 'Equipment', owner: 'RK', ownerName: 'Raj Kumar', ownerBg: '#003758', submitted: '2026-07-13', hours: 2, status: 'Approved' },
+        { id: 'REQ-1039', title: 'Shared mailbox for AML team', cat: 'Access', owner: 'MO', ownerName: 'Maria Ortiz', ownerBg: '#005587', submitted: '2026-07-11', hours: 5, status: 'In review' },
+        { id: 'REQ-1038', title: 'Q3 expense report review', cat: 'Finance', owner: 'JL', ownerName: 'James Lee', ownerBg: '#646C76', submitted: '2026-07-10', hours: 4, status: 'Returned' },
+        { id: 'REQ-1036', title: 'Tableau license renewal', cat: 'Software', owner: 'SC', ownerName: 'Sarah Chen', ownerBg: '#0079C1', submitted: '2026-07-08', hours: 3, status: 'In review' },
+        { id: 'REQ-1035', title: 'Building pass replacement', cat: 'Facilities', owner: 'RK', ownerName: 'Raj Kumar', ownerBg: '#003758', submitted: '2026-07-07', hours: 1, status: 'Approved' }
+      ],
+
+      badgeClsFor(s) {
+        return { 'Pending': 'badge--info', 'Approved': 'badge--success', 'In review': 'badge--warning', 'Returned': 'badge--danger' }[s] || '';
+      },
+      fmtDate(iso) {
+        const d = new Date(iso + 'T00:00:00');
+        return d.toLocaleDateString('en-CA', { month: 'short', day: 'numeric' });
+      },
+
+      // filter-bar caption
+      get fbMatches() {
+        return this.data.filter(r =>
+          (this.fbType === 'All' || r.cat === this.fbType) &&
+          (this.fbStatus === 'All statuses' || r.status === this.fbStatus) &&
+          (!this.q.trim() || (r.title + ' ' + r.id).toLowerCase().includes(this.q.trim().toLowerCase()))
+        );
+      },
+
+      // list grid
+      get rows() {
+        let rows = this.data.filter(r => this.statusFilter === 'All statuses' || r.status === this.statusFilter);
+        const dir = this.sortDir === 'asc' ? 1 : -1;
+        return rows.slice().sort((a, b) => {
+          const va = a[this.sortCol], vb = b[this.sortCol];
+          return (va < vb ? -1 : va > vb ? 1 : 0) * dir;
+        });
+      },
+      get arrow() {
+        return '#ic-fluent-arrow-' + (this.sortDir === 'asc' ? 'up' : 'down') + '-24-regular';
+      },
+      get allChecked() {
+        return this.rows.length > 0 && this.rows.every(r => this.checked[r.id]);
+      },
+      sortBy(col) {
+        this.sortDir = this.sortCol === col ? (this.sortDir === 'asc' ? 'desc' : 'asc') : 'asc';
+        this.sortCol = col;
+      },
+      toggle(id) {
+        this.checked = { ...this.checked, [id]: !this.checked[id] };
+      },
+      toggleAll() {
+        const all = this.rows.every(r => this.checked[r.id]);
+        const c = { ...this.checked };
+        this.rows.forEach(r => { c[r.id] = !all; });
+        this.checked = c;
+      },
+
+      // simple form
+      get noteOver() { return this.note.length > 140; },
+      get formSummary() {
+        return 'CAD $' + (parseFloat(this.amount) || 0).toLocaleString('en-CA', { minimumFractionDigits: 2 }) + ' to ' + this.account + '.';
+      },
+      submitForm() {
+        const amountErr = !this.amount.trim() ? 'Amount is required.'
+          : (isNaN(parseFloat(this.amount)) || parseFloat(this.amount) <= 0) ? 'Enter an amount greater than 0.' : '';
+        const accountErr = !this.account ? 'Select a destination account.' : '';
+        if (amountErr || accountErr || this.noteOver) { this.amountErr = amountErr; this.accountErr = accountErr; return; }
+        this.formDone = true; this.amountErr = ''; this.accountErr = '';
+      },
+      cancelForm() { this.amount = ''; this.account = ''; this.note = ''; this.amountErr = ''; this.accountErr = ''; },
+      resetForm() { this.formDone = false; this.amount = ''; this.account = ''; this.note = ''; },
+
+      // wizard
+      get isAccess() { return this.wType !== 'Equipment'; },
+      get steps() {
+        const labels = ['Requester', this.wType === 'Equipment' ? 'Equipment details' : 'Access details', 'Review'];
+        return labels.map((label, i) => {
+          const n = i + 1;
+          const done = n < this.step;
+          const current = n === this.step;
+          const err = current && !!this.wizError;
+          return { n, label, done, cls: done ? 'is-done' : current ? (err ? 'is-current is-error' : 'is-current') : '' };
+        });
+      },
+      get reviewRows() {
+        const base = [
+          { label: 'Requester', value: this.wName + ' · ' + this.wEmail },
+          { label: 'Department', value: this.wDept },
+          { label: 'Request type', value: this.wType }
+        ];
+        return base.concat(this.isAccess
+          ? [{ label: 'System', value: this.wSystem }, { label: 'Access level', value: this.wAccess }, { label: 'Justification', value: this.wJust }]
+          : [{ label: 'Equipment', value: this.wEquip }, { label: 'Needed by', value: this.wDate }, { label: 'Cost centre', value: this.wCost || 'Department default' }]);
+      },
+      clearErr(key) { this.wErr = { ...this.wErr, [key]: '' }; },
+      validateStep(step) {
+        const e = {};
+        if (step === 1) {
+          if (!this.wName.trim()) e.name = 'Full name is required.';
+          if (!this.wEmail.trim()) e.email = 'Work email is required.';
+          else if (!this.wEmail.includes('@')) e.email = 'Enter a valid email address.';
+          if (!this.wDept) e.dept = 'Select your department.';
+          if (!this.wType) e.type = 'Choose a request type.';
+        } else if (step === 2) {
+          if (this.wType === 'System access') {
+            if (!this.wSystem) e.system = 'Select a system.';
+            if (!this.wJust.trim()) e.just = 'Business justification is required.';
+          } else {
+            if (!this.wEquip) e.equip = 'Select an item.';
+            if (!this.wDate) e.date = 'A needed-by date is required.';
+          }
+        }
+        return e;
+      },
+      wNext() {
+        const e = this.validateStep(this.step);
+        if (Object.keys(e).length) { this.wErr = e; this.wizError = 'Fix the highlighted fields to continue.'; return; }
+        this.step++; this.wErr = {}; this.wizError = '';
+      },
+      wBack() { this.step--; this.wErr = {}; this.wizError = ''; },
+      wSubmit() { this.wizDone = true; },
+      wReset() {
+        this.wizDone = false; this.step = 1;
+        this.wName = ''; this.wEmail = ''; this.wDept = ''; this.wType = '';
+        this.wSystem = ''; this.wAccess = 'Read only'; this.wJust = '';
+        this.wEquip = ''; this.wCost = ''; this.wDate = ''; this.wErr = {}; this.wizError = '';
+      }
+    };
+  }
+</script>
+<!-- CDN shown for local dev; self-host alpine.min.js in SiteAssets for production. -->
+<script defer src="https://unpkg.com/alpinejs@3/dist/cdn.min.js"></script>
+
+</body>
+</html>

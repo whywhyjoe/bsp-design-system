@@ -527,3 +527,112 @@ is settled and the old "someday" framing is gone.
   `bmo-icons.svg` + `examples/Design System Reference.html` (sprite-header ART
   note). Earlier historical entries here (esp. 14) still describe the old plan as
   it stood then — left as history; this entry supersedes.
+
+---
+
+## 18. Two new example pages + the process/filtering component set
+
+Ported two designs from the Claude Design "Component examples checklist" project
+into the system as **new example pages**, and merged the CSS they depend on into
+`components.css`. The designs were authored in Claude's `DCLogic` framework
+(`{{ }}` bindings, `sc-if`/`sc-for`, a `renderVals()` prop function); they were
+**translated, not restyled**, onto the canonical buildless stack — static HTML +
+the documented inline-Alpine state contract, the full `bmo-icons.svg` inlined
+once per page, canonical CSS links, deferred Alpine. The visual designs are
+unchanged.
+
+**No conflict.** The design project shipped its own `bsp/colors_and_type.css` and
+`bsp/components.css` snapshots — both were **byte-for-byte identical** to the
+repo's current files, so the designs build on the existing vocabulary with no
+token or base-CSS divergence. Every one of the 17 icons the pages use already
+exists in the 37-symbol sprite; every token the new CSS references already exists.
+Nothing had to be invented or flagged.
+
+**New pages (`examples/`):**
+- **`Component examples.html`** — stat blocks + a card-less stat strip; a
+  standalone filter bar; a list grid with in-heading sort and a column filter
+  menu; a validated single-card submission form; a multi-page intake wizard
+  (per-step validation + branching — the request type on step 1 changes step 2);
+  process spinners; progress bars (every state); a dialog. One big `x-data` root
+  (`componentExamples()`), all logic as Alpine getters/methods.
+- **`Ops Dashboard.html`** — suite bar, breadcrumb, a four-up stat row, three
+  hand-drawn SVG chart cards (bars, trend line, donut) on the `--bmo-chart-*`
+  tokens, and a queue table with a standalone filter bar + in-heading sort.
+
+**Merged into `components.css`** (new "Process + filtering layer" section; the
+design author labeled these "candidate for components.css"). All net-new class
+names — additive, no collisions with existing rules:
+- **`.spinner`** (+ `--16/--32/--48/--on-accent`, `.spinner-row`) — indeterminate
+  process indicator; reduced-motion just slows it.
+- **`.progress`** (+ `__meta/__label/__value/__track/__fill`; `--indeterminate/
+  --striped/--subtle/--thick/--success/--danger`) — determinate + indeterminate
+  bar; the `__fill` width is the one sanctioned inline value (it *is* the data).
+- **`.stepper`** (+ `__step/__dot/__label`; `.is-done/.is-current/.is-error`) —
+  multi-step form indicator; connector drawn by the step's `::before`.
+- **`.filterbar`** (+ `__group/__label/__spacer`) — a standalone filters/sort
+  surface not attached to a grid or toolbar.
+- **Grid header filter:** `.grid__filter-host/__filter-btn/__filter-menu/
+  __filter-item` — a SharePoint-list-style funnel menu on a column heading.
+- **`.stat-strip`** + **`.stat--plain`** + **`.stat__spark`** (+ `--donut`) —
+  card-less, value-first stats with an inline sparkline/donut SVG slot.
+
+**Alpine load.** Both pages use the repo's documented dev-time tag
+(`<script defer src="https://unpkg.com/alpinejs@3/…">`) with the standard
+self-host-in-SiteAssets note — matching `Developer Guide.html`.
+
+**One faithful deviation from the source, flagged:** the design's intro lede
+named the classes as "proposed in `proposed-additions.css`." Since that file was
+merged into `components.css`, the lede now reads "now live in components.css" so
+it doesn't point at a file the repo doesn't ship. The per-section eyebrows (e.g.
+`.filterbar`, `.progress`) are kept. No visual/layout change.
+
+**Verified live (in-app browser, Alpine 3.15.12 loaded, no console errors):**
+- `Ops Dashboard` — all 5 queue rows render, sorted by Open desc (41→13); stat
+  row, bar/line/donut charts, filter bar all paint.
+- `Component examples` — all 6 grid rows with formatted dates + status badges;
+  filter-bar caption computes "Showing 6 of 6 requests · newest first"; grid sort
+  (`sortBy('hours')` flips col/dir), column filter menu, and select-all wired;
+  submission-form done-state hidden until submit; wizard exercised end-to-end —
+  empty step 1 shows the error bar + 4 field errors and blocks advancing, and
+  choosing type "Equipment" on step 1 branches step 2 to the equipment fields
+  (not the access fields).
+
+---
+
+## 19. Floating action button (`.fab`)
+
+Added a **floating action button** to `components.css` — a persistent primary
+action that hovers over the content bottom-right ("New" / "Edit"). Requested off
+the Claude Design editor's own coral "Edit" pill as a *pattern* reference;
+**built in the BMO vocabulary, not copied.**
+
+- **Explicitly non-Fluent, by decision.** Fluent 2 has no FAB; this is the
+  Material-style floating affordance, added deliberately for surfaces with one
+  obvious action. The doc comment + reference say so.
+- **Ground is BMO midnight, not the interactive blue.** First cut used
+  `--accent-rest` (#0079C1); reworked because a floating action rendered in the
+  interactive blue blends into the page's own blue links, accents, and chart
+  fills and gets lost. It now uses `--bmo-chart-midnight` (#003758 — the same
+  deep tone as the `.suite` bar chrome), darkening to `--bmo-slate` on hover, so
+  it reads as a distinct, elevated object. (Coral was explicitly ruled out — one
+  brand accent, no off-brand hue.)
+- **Sizes trimmed** from the first cut (was too bulky): 48px circular / 20px
+  icon (was 56/24); `.fab--extended` pill padding `--space-160` (16px, was 24);
+  `.fab--sm` 40px / 18px icon.
+- **Heavier rest elevation** than any inline control (it floats free of the
+  surface): `--shadow-28` at rest, lifting to `--shadow-64` + a `--lift-rise`
+  translate on hover; `:active` resets to `--shadow-28`; `:focus-visible` ring.
+- **Variants (all token-built BEM):** `.fab` (circular, icon-only),
+  `.fab--extended` (icon+label pill, `border-radius:999px` — the same pill
+  radius the `.switch` track already uses), `.fab--sm`, `.fab--secondary` (quiet
+  white surface + accent text), `.fab--fixed` (pins to the viewport bottom-right
+  at `--space-320`).
+- **Demonstrated in both new pages:** a live `.fab--extended.fab--fixed`
+  "New ticket" on `Ops Dashboard.html`, and a full variant showcase + an
+  anchored "in context" demo on `Component examples.html`.
+- **Docs:** `docs/TECHNICAL-REFERENCE.md` §2 (new "Floating action button"
+  subsection).
+- **Verified live (in-app browser):** the Ops Dashboard FAB computes
+  `position:fixed`, pinned 32px from the bottom-right, `rgb(0,55,88)` midnight
+  fill, 999px pill; the showcase variants all render; icons paint. No console
+  errors.

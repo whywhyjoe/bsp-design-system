@@ -1,0 +1,17 @@
+<svg width="96" height="72" viewBox="0 0 96 72" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M22.4128 68.9716V10.2766L26.3778 6.18759L30.2608 2.55859H72.3198V68.9716H22.4128Z" fill="white"/>
+<path d="M73.3206 2.55908V68.9721H23.4136" stroke="#70C0EB" stroke-width="3" stroke-linecap="round"/>
+<path d="M22.4128 10.2764V68.9714" stroke="#0079C1" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M72.3201 2.55908H30.2611" stroke="#0078C2" stroke-width="3" stroke-linecap="round"/>
+<path d="M30.3426 10.2766L30.2606 2.55957L22.4126 10.2766" stroke="#005587" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M30.3426 10.2764H22.4126" stroke="#001928" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M55.0916 20.9712H64.8296" stroke="#0079C1" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M28.4031 20.939H58.1921" stroke="#005587" stroke-width="3" stroke-linecap="round"/>
+<path d="M28.4031 26.9736H64.8291" stroke="#0079C1" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M28.4031 33.0083H64.8291" stroke="#0079C1" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M28.4031 39H64.8291" stroke="#0079C1" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M28 46H41" stroke="#0079C1" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M57 44C62.522 44 67 48.477 67 54C67 59.523 62.522 64 57 64C51.478 64 47 59.523 47 54C47 48.477 51.478 44 57 44Z" fill="#C1E7FF"/>
+<path d="M51 55.5635L54.866 59.0005L62 49.0005" stroke="#001928" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M73.1531 4.04453C72.3321 4.15953 71.5761 3.58553 71.4621 2.76553C71.3481 1.94353 71.9211 1.18753 72.7421 1.07353C73.5621 0.959531 74.3191 1.53253 74.4331 2.35353C74.5471 3.17353 73.9741 3.93153 73.1531 4.04453Z" fill="#001928"/>
+</svg>

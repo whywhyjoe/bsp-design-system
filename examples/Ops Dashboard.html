@@ -1,0 +1,326 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Service desk performance · BMO SharePoint</title>
+<!-- OPS DASHBOARD — a service-desk performance dashboard: suite bar, breadcrumb,
+     a four-up stat row, three chart cards (bars, trend line, donut), and a queue
+     table with a standalone filter bar and in-heading sort. Composed entirely from
+     the canonical system; interactivity is inline Alpine. Ported from the Claude
+     Design "Ops Dashboard". Charts are hand-drawn SVG on the --bmo-chart-* tokens. -->
+<link rel="stylesheet" href="../colors_and_type.css">
+<link rel="stylesheet" href="../components.css">
+<style>
+  [x-cloak] { display: none !important; }
+  body { margin: 0; background: var(--surface-subtle); }
+  a { color: var(--accent-rest); } a:hover { color: var(--accent-hover); }
+</style>
+</head>
+<body>
+
+<!-- ════════ Canonical icon sprite — inline once per page ════════ -->
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true"><defs>
+  <symbol id="ic-fluent-add-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></g></symbol>
+  <symbol id="ic-fluent-alert-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4a5 5 0 0 1 5 5c0 5 2 6 2 6H5s2-1 2-6a5 5 0 0 1 5-5zM10.3 19a1.8 1.8 0 0 0 3.4 0"/></g></symbol>
+  <symbol id="ic-fluent-arrow-down-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v13M6 12l6 6 6-6"/></g></symbol>
+  <symbol id="ic-fluent-arrow-export-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M11 6H6a1 1 0 0 0-1 1v11a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1v-5M14 5h5v5M19 5l-8 8"/></g></symbol>
+  <symbol id="ic-fluent-arrow-right-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13M12 6l6 6-6 6"/></g></symbol>
+  <symbol id="ic-fluent-arrow-up-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V6M6 12l6-6 6 6"/></g></symbol>
+  <symbol id="ic-fluent-attach-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M16.5 8.5l-6 6a2 2 0 1 0 2.8 2.8l6-6a3.5 3.5 0 0 0-5-5l-6.5 6.5a5 5 0 0 0 7 7l5.5-5.5"/></g></symbol>
+  <symbol id="ic-fluent-calendar-ltr-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 7a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v11a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V7zM5 10h14M9 4v3M15 4v3"/></g></symbol>
+  <symbol id="ic-fluent-checkmark-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></g></symbol>
+  <symbol id="ic-fluent-checkmark-circle-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"/><path d="M8.5 12.2l2.4 2.4 4.6-4.9"/></g></symbol>
+  <symbol id="ic-fluent-chevron-down-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M7 10l5 5 5-5"/></g></symbol>
+  <symbol id="ic-fluent-chevron-right-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M10 7l5 5-5 5"/></g></symbol>
+  <symbol id="ic-fluent-clock-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"/><path d="M12 7.5V12l3 2"/></g></symbol>
+  <symbol id="ic-fluent-data-bar-vertical-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19h16M7 19v-6M12 19V6M17 19v-9"/></g></symbol>
+  <symbol id="ic-fluent-delete-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8h12M9.5 8V6a1 1 0 0 1 1-1h3a1 1 0 0 1 1 1v2M8 8l.8 11a1 1 0 0 0 1 .9h4.4a1 1 0 0 0 1-.9L16 8M10.5 11.5v5M13.5 11.5v5"/></g></symbol>
+  <symbol id="ic-fluent-dismiss-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 6l12 12M18 6L6 18"/></g></symbol>
+  <symbol id="ic-fluent-document-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M7 4h7l4 4v11a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1zM14 4v4h4"/></g></symbol>
+  <symbol id="ic-fluent-edit-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 19l1-4 9-9 3 3-9 9-4 1zM14 6l3 3"/></g></symbol>
+  <symbol id="ic-fluent-filter-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 6h14l-5.5 7v5l-3-2v-3L5 6z"/></g></symbol>
+  <symbol id="ic-fluent-folder-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7a1 1 0 0 1 1-1h4l2 2h8a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7z"/></g></symbol>
+  <symbol id="ic-fluent-grid-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="6.5" height="6.5" rx="1"/><rect x="13.5" y="4" width="6.5" height="6.5" rx="1"/><rect x="4" y="13.5" width="6.5" height="6.5" rx="1"/><rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1"/></g></symbol>
+  <symbol id="ic-fluent-home-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11.5L12 5l8 6.5V19a1 1 0 0 1-1 1h-4v-6H9v6H5a1 1 0 0 1-1-1v-7.5z"/></g></symbol>
+  <symbol id="ic-fluent-info-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"/><path d="M12 11.5v4.5"/><path d="M12 8.2h.01"/></g></symbol>
+  <symbol id="ic-fluent-mail-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 7h14a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1zM4.5 8l7.5 5 7.5-5"/></g></symbol>
+  <symbol id="ic-fluent-mail-inbox-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l1.8-6.2a1 1 0 0 1 1-.8h8.4a1 1 0 0 1 1 .8L19 13v4a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1v-4zM5 13h4a3 3 0 0 0 6 0h4"/></g></symbol>
+  <symbol id="ic-fluent-money-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="7" width="16" height="10" rx="1.5"/><circle cx="12" cy="12" r="2.3"/><path d="M7 12h.01M17 12h.01"/></g></symbol>
+  <symbol id="ic-fluent-more-horizontal-24-regular" viewBox="0 0 24 24"><g fill="currentColor" stroke="none"><circle cx="6" cy="12" r="1.4"/><circle cx="12" cy="12" r="1.4"/><circle cx="18" cy="12" r="1.4"/></g></symbol>
+  <symbol id="ic-fluent-person-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8.5" r="3.5"/><path d="M5.5 19a6.5 6.5 0 0 1 13 0"/></g></symbol>
+  <symbol id="ic-fluent-person-add-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="9.5" cy="8.5" r="3.3"/><path d="M3.5 19a6 6 0 0 1 11-3.3M18 8v6M15 11h6"/></g></symbol>
+  <symbol id="ic-fluent-phone-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 4.5l3 .8 1 3.2-1.9 1.4a10 10 0 0 0 4.6 4.6l1.4-1.9 3.2 1 .8 3a1 1 0 0 1-1 1.1A13.5 13.5 0 0 1 5.4 5.5a1 1 0 0 1 1.1-1z"/></g></symbol>
+  <symbol id="ic-fluent-receipt-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 4h12v16l-2-1.3-2 1.3-2-1.3-2 1.3-2-1.3-2 1.3V4zM9 8h6M9 11.5h6M9 15h4"/></g></symbol>
+  <symbol id="ic-fluent-search-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="10.5" cy="10.5" r="5.5"/><path d="M15 15l4 4"/></g></symbol>
+  <symbol id="ic-fluent-settings-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 4v2.2M12 17.8V20M5 7.5l1.9 1.1M17.1 15.4L19 16.5M5 16.5l1.9-1.1M17.1 8.6L19 7.5"/></g></symbol>
+  <symbol id="ic-fluent-shield-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4l7 2.5v5c0 5-3.5 8-7 9.5-3.5-1.5-7-4.5-7-9.5v-5L12 4zM9 12l2 2 4-4"/></g></symbol>
+  <symbol id="ic-fluent-warning-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5l8.5 14.5H3.5L12 5z"/><path d="M12 10.5v4M12 17h.01"/></g></symbol>
+  <symbol id="ic-fluent-checkmark-circle-24-filled" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5" fill="currentColor"/><path d="M8.4 12.2l2.5 2.5 4.7-5" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="ic-fluent-warning-24-filled" viewBox="0 0 24 24"><path d="M11.1 5.2a1 1 0 0 1 1.8 0l8 14a1 1 0 0 1-.9 1.5H4a1 1 0 0 1-.9-1.5l8-14z" fill="currentColor"/><path d="M12 10v4M12 17h.01" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+</defs></svg>
+
+
+<div x-data="opsDashboard()" style="min-height:100vh; padding-bottom:var(--space-560)">
+  <header class="suite">
+    <div class="suite__inner l-wrap">
+      <span class="suite__mark">B</span>
+      <span class="suite__app">Operations hub</span>
+      <span class="suite__divider"></span>
+      <span class="suite__env">Internal · SharePoint</span>
+      <span class="suite__spacer"></span>
+      <button class="suite__action" aria-label="Search"><svg class="icon"><use href="#ic-fluent-search-24-regular"></use></svg></button>
+      <button class="suite__action" aria-label="Settings"><svg class="icon"><use href="#ic-fluent-settings-24-regular"></use></svg></button>
+      <span class="avatar avatar--28" style="background:#005587">PS</span>
+    </div>
+  </header>
+
+  <div class="l-wrap" style="padding-top:var(--space-240)">
+    <nav class="crumbs">
+      <a href="#">Operations hub</a>
+      <svg class="icon crumbs__sep"><use href="#ic-fluent-chevron-right-24-regular"></use></svg>
+      <a href="#">Dashboards</a>
+      <svg class="icon crumbs__sep"><use href="#ic-fluent-chevron-right-24-regular"></use></svg>
+      <span class="crumbs__current">Service desk</span>
+    </nav>
+
+    <div class="section-head section-head--flex" style="margin-top:var(--space-240)">
+      <div>
+        <p class="section-head__eyebrow">Technology and operations</p>
+        <h1 class="section-head__title">Service desk performance</h1>
+        <p class="section-head__lede">Volumes, response times, and SLA attainment across intake queues. Data refreshes hourly from the request list.</p>
+      </div>
+      <div style="display:flex; align-items:center; gap:var(--space-80); flex:none">
+        <select class="select" style="width:auto" x-model="range">
+          <option>Last 7 days</option><option>Last 30 days</option><option>Quarter to date</option>
+        </select>
+        <button class="btn btn--subtle"><svg class="icon icon--16"><use href="#ic-fluent-arrow-export-24-regular"></use></svg> Export</button>
+      </div>
+    </div>
+
+    <!-- ══════════ Stat row ══════════ -->
+    <div class="l-grid l-grid--4">
+      <article class="card">
+        <div class="stat">
+          <div class="stat__head">
+            <span class="card__icon-tile card__icon-tile--sm"><svg class="icon"><use href="#ic-fluent-mail-inbox-24-regular"></use></svg></span>
+            <span class="stat__label">Open tickets</span>
+          </div>
+          <div class="stat__row">
+            <span class="stat__value">128</span>
+            <span class="stat__delta stat__delta--down"><svg class="icon"><use href="#ic-fluent-arrow-up-24-regular"></use></svg> 9%</span>
+          </div>
+          <span class="stat__sub">vs previous period</span>
+        </div>
+      </article>
+      <article class="card">
+        <div class="stat">
+          <div class="stat__head">
+            <span class="card__icon-tile card__icon-tile--sm"><svg class="icon"><use href="#ic-fluent-clock-24-regular"></use></svg></span>
+            <span class="stat__label">Avg first response</span>
+          </div>
+          <div class="stat__row">
+            <span class="stat__value">1.8 h</span>
+            <span class="stat__delta stat__delta--up"><svg class="icon"><use href="#ic-fluent-arrow-down-24-regular"></use></svg> 12%</span>
+          </div>
+          <span class="stat__sub">target 2.0 h</span>
+        </div>
+      </article>
+      <article class="card">
+        <div class="stat">
+          <div class="stat__head">
+            <span class="card__icon-tile card__icon-tile--sm"><svg class="icon"><use href="#ic-fluent-shield-24-regular"></use></svg></span>
+            <span class="stat__label">SLA met</span>
+          </div>
+          <div class="stat__row">
+            <span class="stat__value">94.2%</span>
+            <span class="stat__delta stat__delta--up"><svg class="icon"><use href="#ic-fluent-arrow-up-24-regular"></use></svg> 1.4 pts</span>
+          </div>
+          <span class="stat__sub">target 92%</span>
+        </div>
+      </article>
+      <article class="card">
+        <div class="stat">
+          <div class="stat__head">
+            <span class="card__icon-tile card__icon-tile--sm"><svg class="icon"><use href="#ic-fluent-checkmark-circle-24-regular"></use></svg></span>
+            <span class="stat__label">Resolved this period</span>
+          </div>
+          <div class="stat__row">
+            <span class="stat__value">1,257</span>
+            <span class="stat__delta stat__delta--up"><svg class="icon"><use href="#ic-fluent-arrow-up-24-regular"></use></svg> 6%</span>
+          </div>
+          <span class="stat__sub">across 5 queues</span>
+        </div>
+      </article>
+    </div>
+
+    <!-- ══════════ Charts ══════════ -->
+    <div class="l-grid l-grid--3" style="margin-top:var(--space-200)">
+      <article class="card">
+        <div class="stat__head" style="margin-bottom:var(--space-160)">
+          <span class="stat__label">Tickets resolved by week</span>
+        </div>
+        <div style="display:flex; align-items:flex-end; gap:var(--space-80); height:140px; border-bottom:1px solid var(--stroke-divider); padding-bottom:0">
+          <template x-for="b in bars" :key="b.label">
+            <div style="flex:1; display:flex; flex-direction:column; justify-content:flex-end; height:100%" :title="b.tip">
+              <div :style="'height:'+b.h+'; background:var(--bmo-chart-blue); border-radius:var(--radius-small) var(--radius-small) 0 0'"></div>
+            </div>
+          </template>
+        </div>
+        <div style="display:flex; gap:var(--space-80); margin-top:var(--space-60)">
+          <template x-for="b in bars" :key="b.label">
+            <span style="flex:1; text-align:center; font:var(--type-caption2); color:var(--fg-secondary)" x-text="b.label"></span>
+          </template>
+        </div>
+      </article>
+      <article class="card">
+        <div class="stat__head" style="margin-bottom:var(--space-160)">
+          <span class="stat__label">SLA attainment trend</span>
+        </div>
+        <svg viewBox="0 0 300 130" style="width:100%; height:150px; display:block" role="img" aria-label="SLA attainment trend, 91.2 to 94.2 percent over 8 weeks">
+          <line x1="10" y1="10" x2="290" y2="10" style="stroke:var(--stroke-divider)" stroke-dasharray="3 3"></line>
+          <line x1="10" y1="60" x2="290" y2="60" style="stroke:var(--stroke-divider)" stroke-dasharray="3 3"></line>
+          <line x1="10" y1="110" x2="290" y2="110" style="stroke:var(--stroke-divider)"></line>
+          <text x="294" y="13" style="font:var(--type-caption2); fill:var(--fg-secondary)" font-size="9">95</text>
+          <text x="294" y="113" style="fill:var(--fg-secondary)" font-size="9">90</text>
+          <polyline points="10,86 50,60 90,74 130,48 170,34 210,46 250,30 290,26" style="fill:none; stroke:var(--bmo-chart-navy)" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"></polyline>
+          <line x1="10" y1="46" x2="290" y2="46" style="stroke:var(--fg-success)" stroke-width="1" stroke-dasharray="4 4" opacity="0.6"></line>
+          <circle cx="290" cy="26" r="3.5" style="fill:var(--bmo-chart-navy)"></circle>
+        </svg>
+        <p style="margin:var(--space-60) 0 0; font:var(--type-caption1); color:var(--fg-secondary)">Dashed line: 92% target. Current week 94.2%.</p>
+      </article>
+      <article class="card">
+        <div class="stat__head" style="margin-bottom:var(--space-160)">
+          <span class="stat__label">Volume by channel</span>
+        </div>
+        <div style="display:flex; align-items:center; gap:var(--space-240)">
+          <svg viewBox="0 0 120 120" style="width:132px; height:132px; flex:none" role="img" aria-label="Volume by channel donut chart">
+            <circle cx="60" cy="60" r="45" fill="none" style="stroke:var(--bmo-chart-blue)" stroke-width="16" stroke-dasharray="107.4 282.7" stroke-dashoffset="0" transform="rotate(-90 60 60)"></circle>
+            <circle cx="60" cy="60" r="45" fill="none" style="stroke:var(--bmo-chart-navy)" stroke-width="16" stroke-dasharray="90.5 282.7" stroke-dashoffset="-107.4" transform="rotate(-90 60 60)"></circle>
+            <circle cx="60" cy="60" r="45" fill="none" style="stroke:var(--bmo-chart-sky)" stroke-width="16" stroke-dasharray="50.9 282.7" stroke-dashoffset="-197.9" transform="rotate(-90 60 60)"></circle>
+            <circle cx="60" cy="60" r="45" fill="none" style="stroke:var(--bmo-chart-orange)" stroke-width="16" stroke-dasharray="33.9 282.7" stroke-dashoffset="-248.8" transform="rotate(-90 60 60)"></circle>
+            <text x="60" y="57" text-anchor="middle" style="fill:var(--fg-primary)" font-size="18" font-weight="600">3,412</text>
+            <text x="60" y="72" text-anchor="middle" style="fill:var(--fg-secondary)" font-size="8.5">tickets</text>
+          </svg>
+          <div style="display:flex; flex-direction:column; gap:var(--space-80); font:var(--type-caption1); color:var(--fg-primary)">
+            <span style="display:flex; align-items:center; gap:var(--space-80)"><span class="dot dot--10" style="background:var(--bmo-chart-blue)"></span> Email · 38%</span>
+            <span style="display:flex; align-items:center; gap:var(--space-80)"><span class="dot dot--10" style="background:var(--bmo-chart-navy)"></span> Portal · 32%</span>
+            <span style="display:flex; align-items:center; gap:var(--space-80)"><span class="dot dot--10" style="background:var(--bmo-chart-sky)"></span> Phone · 18%</span>
+            <span style="display:flex; align-items:center; gap:var(--space-80)"><span class="dot dot--10" style="background:var(--bmo-chart-orange)"></span> Chat · 12%</span>
+          </div>
+        </div>
+      </article>
+    </div>
+
+    <!-- ══════════ Queue table ══════════ -->
+    <section style="margin-top:var(--space-320)">
+      <div class="filterbar" style="margin-bottom:var(--space-160)">
+        <div class="input-group">
+          <svg class="icon icon--16 input-group__icon"><use href="#ic-fluent-search-24-regular"></use></svg>
+          <input class="input-group__field" placeholder="Search queues" x-model="q">
+        </div>
+        <span class="filterbar__spacer"></span>
+        <div class="filterbar__group">
+          <span class="filterbar__label">Show</span>
+          <div class="chip-row">
+            <template x-for="c in showOpts" :key="c">
+              <button class="chip" :class="{ 'is-active': show===c }" :aria-pressed="show===c" @click="show=c" x-text="c"></button>
+            </template>
+          </div>
+        </div>
+      </div>
+      <div class="card card--flush">
+        <div class="toolbar" style="border-radius:var(--radius-large) var(--radius-large) 0 0">
+          <span class="toolbar__title">Queues</span>
+          <span class="badge" x-text="rows.length + ' queues'"></span>
+          <span class="toolbar__spacer"></span>
+          <span style="font:var(--type-caption1); color:var(--fg-secondary)">Updated 10:42 · <span x-text="range"></span></span>
+        </div>
+        <table class="grid">
+          <thead>
+            <tr>
+              <th>Queue</th>
+              <th>Lead</th>
+              <th class="num grid__sort" @click="sortBy('open')">Open
+                <template x-if="sortCol==='open'"><svg class="icon"><use :href="arrow"></use></svg></template>
+              </th>
+              <th class="num">Resolved</th>
+              <th class="num">Avg response</th>
+              <th class="num grid__sort" @click="sortBy('sla')">SLA met
+                <template x-if="sortCol==='sla'"><svg class="icon"><use :href="arrow"></use></svg></template>
+              </th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <template x-for="r in rows" :key="r.name">
+              <tr :class="{ 'is-selected': sel===r.name }" @click="sel = sel===r.name ? null : r.name">
+                <td x-text="r.name"></td>
+                <td><span style="display:inline-flex; align-items:center; gap:var(--space-80)"><span class="avatar avatar--22" :style="'background:'+r.leadBg" x-text="r.lead"></span><span x-text="r.leadName"></span></span></td>
+                <td class="num" x-text="r.open"></td>
+                <td class="num" x-text="r.resolved"></td>
+                <td class="num cell-secondary" x-text="r.resp"></td>
+                <td class="num"><span class="badge" :class="slaClsFor(r.sla)" x-text="r.sla.toFixed(1) + '%'"></span></td>
+                <td><a class="card__cta" href="#" @click.stop.prevent style="font:var(--type-caption1-strong)">Open queue</a></td>
+              </tr>
+            </template>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </div>
+
+  <!-- Floating action button — the page's one primary action, pinned bottom-right. -->
+  <button class="fab fab--extended fab--fixed"><svg class="icon"><use href="#ic-fluent-add-24-regular"></use></svg> New ticket</button>
+</div>
+
+<script>
+  function opsDashboard() {
+    return {
+      range: 'Last 7 days', q: '', show: 'All', sortCol: 'open', sortDir: 'desc', sel: null,
+      showOpts: ['All', 'Below SLA target', 'Above target'],
+
+      queues: [
+        { name: 'Card services', lead: 'SC', leadName: 'Sarah Chen', leadBg: '#0079C1', open: 34, resolved: 178, resp: '1.4 h', sla: 96.1 },
+        { name: 'Retail onboarding', lead: 'RK', leadName: 'Raj Kumar', leadBg: '#003758', open: 41, resolved: 165, resp: '2.1 h', sla: 93.4 },
+        { name: 'Fraud review', lead: 'MO', leadName: 'Maria Ortiz', leadBg: '#005587', open: 22, resolved: 142, resp: '1.2 h', sla: 97.0 },
+        { name: 'Commercial lending', lead: 'JL', leadName: 'James Lee', leadBg: '#646C76', open: 18, resolved: 96, resp: '2.8 h', sla: 89.9 },
+        { name: 'Digital banking support', lead: 'AT', leadName: 'Ana Torres', leadBg: '#0079C1', open: 13, resolved: 121, resp: '1.6 h', sla: 95.2 }
+      ],
+      weekly: [
+        { label: 'May 25', v: 142 }, { label: 'Jun 1', v: 155 }, { label: 'Jun 8', v: 138 }, { label: 'Jun 15', v: 161 },
+        { label: 'Jun 22', v: 149 }, { label: 'Jun 29', v: 170 }, { label: 'Jul 6', v: 164 }, { label: 'Jul 13', v: 178 }
+      ],
+
+      get bars() {
+        const max = Math.max(...this.weekly.map(w => w.v));
+        return this.weekly.map(w => ({
+          label: w.label, h: Math.round(w.v / max * 100) + '%', tip: w.label + ': ' + w.v + ' resolved'
+        }));
+      },
+      get rows() {
+        let rows = this.queues.filter(r =>
+          (!this.q.trim() || r.name.toLowerCase().includes(this.q.trim().toLowerCase())) &&
+          (this.show === 'All' || (this.show === 'Below SLA target' ? r.sla < 92 : r.sla >= 92))
+        );
+        const dir = this.sortDir === 'asc' ? 1 : -1;
+        return rows.slice().sort((a, b) => (a[this.sortCol] - b[this.sortCol]) * dir);
+      },
+      get arrow() {
+        return '#ic-fluent-arrow-' + (this.sortDir === 'asc' ? 'up' : 'down') + '-24-regular';
+      },
+      slaClsFor(sla) {
+        return sla >= 94 ? 'badge--success' : sla >= 92 ? 'badge--warning' : 'badge--danger';
+      },
+      sortBy(col) {
+        this.sortDir = this.sortCol === col ? (this.sortDir === 'asc' ? 'desc' : 'asc') : 'desc';
+        this.sortCol = col;
+      }
+    };
+  }
+</script>
+<!-- CDN shown for local dev; self-host alpine.min.js in SiteAssets for production. -->
+<script defer src="https://unpkg.com/alpinejs@3/dist/cdn.min.js"></script>
+
+</body>
+</html>
