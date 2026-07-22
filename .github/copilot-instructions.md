@@ -13,11 +13,12 @@ hand-roll a scaffold from scratch.
 - `colors_and_type.css` — design tokens (`:root`, defined once) + base element styles + utilities (`.imgph .photo .lift .reveal`).
 - `components.css` — every component as a BEM class, built from tokens.
 - `styles.css` — one-tag bundle: `@import`s the two above in the right order.
-- `bmo-icons.svg` — the icon sprite (37 `<symbol>`s, ids `ic-fluent-{name}-24-regular`).
+- `bmo-icons.svg` — the icon sprite (48 `<symbol>`s, ids `ic-fluent-{name}-24-regular`).
 - `fluent-icon.js` — the optional `<fluent-icon>` element (authoring sugar over the sprite).
+- `editorial.css` — the **Editorial mode** additive layer (warm content-page register): `--ed-*` tokens on a `.editorial` scope + editorial blocks. Opt-in third link, after `components.css`, only on editorial pages; never redefines `:root`. Rules + component catalog: `docs/EDITORIAL-MODE.md`. Supporting assets: `bmo-content-icons.svg` (content line-icon sprite, `bmo-ic-*`), `bokeh.svg`, `illustrations/`.
 - `docs/PAGE-TEMPLATE.md` — start-here page scaffold.
 - `docs/TECHNICAL-REFERENCE.md` — component/token/class reference; **state contract = §5**, retired forks = §3, tokens = §4.
-- `examples/Components.html` (live specimens), `examples/Design System Reference.html` (visual), `examples/advanced-ui-example.html` (full composed page) — read for real markup; do not restyle them.
+- `examples/components.html` (live specimens), `examples/design-system-reference.html` (visual), `examples/example-advanced-ui.html` (full composed page) — read for real markup; do not restyle them. Editorial-mode proof pages: `examples/editorial-learning-catalog.html`, `examples/editorial-resource-hub.html`; editorial library + guide: `examples/editorial-components.html`, `examples/editorial-design-guide.html`.
 
 ---
 

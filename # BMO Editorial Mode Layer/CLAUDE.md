@@ -55,25 +55,27 @@ Read those before non-trivial work.
 - `colors_and_type.css` — tokens (`:root`, defined once) + base element styles + utilities (`.imgph .photo .lift .reveal`). Link first.
 - `components.css` — every component as a BEM class, built from tokens. Link second.
 - `styles.css` — one-tag bundle: `@import`s the two above in order.
-- `editorial.css` — **Editorial mode** additive layer (the warm, content-page register): `--ed-*` tokens on a `.editorial` scope, SharePoint host chrome, hero brand-devices, editorial component blocks. Link **after** `components.css`, only on editorial pages (opt-in — not in the `styles.css` bundle). Built entirely on existing tokens; never redefines `:root`. Full guide: `docs/EDITORIAL-MODE.md`.
+- `editorial.css` — **Editorial mode** additive layer (the warm, content-page register): `--ed-*` tokens on a `.editorial` scope, SharePoint host chrome, hero brand-devices, editorial component blocks. Link **after** `components.css`, only on editorial pages. Built entirely on existing tokens; never redefines `:root`. Full guide: `docs/EDITORIAL-MODE.md`.
 
-**Icons:** `bmo-icons.svg` (48-symbol sprite, `ic-fluent-*`, the curated default) · `fluent-icon.js` (optional `<fluent-icon>` element — authoring sugar over the sprite). For icons beyond the 48, the full library (all SVGs, fonts, index) is the separate `fluentui-system-icons` repo (path set in project config): copy a real SVG into the sprite for a few extras, or self-host the icon font for many.
+**Icons:** `bmo-icons.svg` (37-symbol sprite, `ic-fluent-*`, the curated default) · `fluent-icon.js` (optional `<fluent-icon>` element — authoring sugar over the sprite). For icons beyond the 37, the full library (all SVGs, fonts, index) is the separate `fluentui-system-icons` repo (path set in project config): copy a real SVG into the sprite for a few extras, or self-host the icon font for many.
 
 **Showcases (read for real markup; they consume the library, don't restyle):**
-- `examples/components.html` — every component live + copy-paste snippets (fastest path).
-- `examples/design-system-reference.html` — the visual/brand spec.
-- `examples/example-advanced-ui.html` — a full composed page.
-- `examples/developer-guide.html` — in-browser onboarding guide (doc-chrome).
-- `examples/editorial-learning-catalog.html` · `examples/editorial-resource-hub.html` — the **Editorial mode** proof pages: the warm register rendered in-token, framed in SharePoint chrome, wired with inline Alpine.
-- `examples/editorial-components.html` — every editorial block live with copy-paste markup (incl. the flat **mesh register**, video player, spotlight slider) · `examples/editorial-design-guide.html` — when to use, showcase-vs-mesh, hero chooser, do/don't.
+- `examples/Components.html` — every component live + copy-paste snippets (fastest path).
+- `examples/Design System Reference.html` — the visual/brand spec.
+- `examples/advanced-ui-example.html` — a full composed page.
+- `examples/Developer Guide.html` — in-browser onboarding guide (doc-chrome).
 
-**Docs:** `docs/PAGE-TEMPLATE.md` (start here) · `docs/TECHNICAL-REFERENCE.md` (deep reference; retired→canonical map in §3) · `docs/EDITORIAL-MODE.md` (the editorial-mode layer: when to use, 3-tier art rules, component catalog, do/don't) · `.github/copilot-instructions.md` (agent rules) · `context/` (BMO brand, SharePoint, Fluent 2 source material).
+**Docs:** `docs/PAGE-TEMPLATE.md` (start here) · `docs/TECHNICAL-REFERENCE.md` (deep reference) · `docs/EDITORIAL-MODE.md` (the editorial-mode layer: when to use, 3-tier art rules, component catalog, do/don't) · `.github/copilot-instructions.md` (agent rules) · `project-notes/CHANGELOG.md` (what changed + retired→canonical map) · `context/` (BMO brand, SharePoint, Fluent 2 source material).
 
 **Editorial mode (additive layer — warm, employee-facing content pages):**
 - `editorial.css` — the layer (link after `components.css`, scoped to `.editorial`). Guide: `docs/EDITORIAL-MODE.md`.
 - `bmo-content-icons.svg` — corporate content line-icon sprite (`bmo-ic-*`, rendered with `.c-icon`); a **placeholder** for the licensed "BMO Design Icons" set. Distinct from the functional `bmo-icons.svg` Fluent sprite.
 - `bokeh.svg` — spec-compliant bokeh background artwork (blue gradient + round translucent circles).
 - `illustrations/` — spot illustrations used by the examples (subset of the 154-SVG BMO line-drawing library).
+- Proof pages: `Learning Catalog.dc.html`, `Resource Hub.dc.html` — the register rendered in-token, framed in SharePoint chrome.
+- Library + guide: `Editorial Components.dc.html` (every editorial block live with
+  copy-paste markup, incl. the flat **mesh register**, video player, spotlight slider) ·
+  `Editorial Design Guide.dc.html` (when to use, showcase-vs-mesh, hero chooser, do/don't).
 
 **Ignore (tooling/artifacts, not part of the system):** `project-notes/_adherence.oxlintrc.json`, `.claude/`. `assets/` holds placeholder logo/lockup + a retired legacy `icons.svg` (unreferenced — use `bmo-icons.svg`).
 
@@ -91,4 +93,4 @@ retired vocabulary remains, and pages link the canonical CSS.
 `.cc`/`.cc-b`/`.cc-ic` → `.card`/`.card__content`/`.card__icon-tile`;
 `.statcard` → `.card`+`.stat`; `.card-body`/`-foot`/`-img` → `.card__content`/`__footer`/`__media`;
 old icon ids (`#ic-home`, `#i-*`, `assets/icons.svg#*`) → `bmo-icons.svg#ic-fluent-*`.
-Full mapping in `docs/TECHNICAL-REFERENCE.md` §3.
+Full mapping in `project-notes/CHANGELOG.md`.

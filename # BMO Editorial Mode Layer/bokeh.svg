@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="720" viewBox="0 0 1440 720" fill="none" role="img" aria-label="BMO bokeh background">
+
+<defs>
+  <linearGradient id="bmo-bokeh-grad" x1="0" y1="0" x2="1440" y2="720" gradientUnits="userSpaceOnUse">
+    <stop offset="0" stop-color="#0079C1"></stop>
+    <stop offset="0.55" stop-color="#0091D6"></stop>
+    <stop offset="1" stop-color="#3FC3EF"></stop>
+  </linearGradient>
+  <radialGradient id="bmo-bokeh-soft" cx="0.5" cy="0.5" r="0.5">
+    <stop offset="0" stop-color="#FFFFFF" stop-opacity="0.55"></stop>
+    <stop offset="0.7" stop-color="#FFFFFF" stop-opacity="0.10"></stop>
+    <stop offset="1" stop-color="#FFFFFF" stop-opacity="0"></stop>
+  </radialGradient>
+</defs>
+
+<rect width="1440" height="720" fill="url(#bmo-bokeh-grad)"></rect>
+
+
+<g>
+  <circle cx="1230" cy="120" r="150" fill="url(#bmo-bokeh-soft)"></circle>
+  <circle cx="1040" cy="330" r="96" fill="url(#bmo-bokeh-soft)"></circle>
+  <circle cx="1330" cy="470" r="120" fill="url(#bmo-bokeh-soft)"></circle>
+  <circle cx="880" cy="90" r="64" fill="url(#bmo-bokeh-soft)"></circle>
+  <circle cx="1150" cy="620" r="80" fill="url(#bmo-bokeh-soft)"></circle>
+  <circle cx="720" cy="500" r="110" fill="url(#bmo-bokeh-soft)"></circle>
+  <circle cx="470" cy="180" r="70" fill="url(#bmo-bokeh-soft)"></circle>
+  <circle cx="300" cy="560" r="130" fill="url(#bmo-bokeh-soft)"></circle>
+  <circle cx="120" cy="300" r="88" fill="url(#bmo-bokeh-soft)"></circle>
+  <circle cx="620" cy="270" r="54" fill="url(#bmo-bokeh-soft)"></circle>
+</g>
+
+
+<g fill="none" stroke="#FFFFFF" stroke-opacity="0.18" stroke-width="2">
+  <circle cx="980" cy="180" r="52"></circle>
+  <circle cx="1290" cy="290" r="38"></circle>
+  <circle cx="540" cy="440" r="46"></circle>
+  <circle cx="200" cy="150" r="34"></circle>
+</g>
+</svg>

@@ -16,4 +16,4 @@ buildless, CDN-free, self-hosted HTML/CSS/JS component library for SharePoint.
 4. **Interactivity = inline Alpine** — every binding inside an `x-data` root; drive the documented state classes/attributes; no `Alpine.data()` factory for trivial controls.
 5. **Icons** — name token `ic-fluent-{name}-24-regular` over `bmo-icons.svg` (no-JS `<use>` or `<fluent-icon>`); size via `.icon--N`, never in the name.
 
-Copy live markup from `examples/Components.html`. The full retired→canonical mapping is in `project-notes/CHANGELOG.md`.
+Copy live markup from `examples/components.html`. The retired→canonical vocabulary mapping is in `CLAUDE.md` and `.github/copilot-instructions.md`.

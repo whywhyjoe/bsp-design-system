@@ -28,7 +28,7 @@ and explained right after.
   <!-- (2) THE SPRITE — inline the ENTIRE contents of bmo-icons.svg here, once,
        as the first thing in <body>. Both icon forms use same-document
        #id references, so the symbols must physically live in this document.
-       (Shown collapsed; paste the real 37-symbol block from bmo-icons.svg.) -->
+       (Shown collapsed; paste the real 48-symbol block from bmo-icons.svg.) -->
   <svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true">
     <defs>
       <!-- …all <symbol id="ic-fluent-…"> from bmo-icons.svg… -->
@@ -131,7 +131,7 @@ and explained right after.
 2. **The sprite must be *in the document*.** Both `<use href="#ic-fluent-…">` and
    `<fluent-icon>` resolve **same-document**. Paste the full `bmo-icons.svg`
    contents once at the top of `<body>`. If the sprite isn't on the page, every
-   icon renders blank — no error. Inline the **whole** 37-symbol sprite (don't
+   icon renders blank — no error. Inline the **whole** 48-symbol sprite (don't
    ship a per-page subset; that drift is how icon coverage silently rots).
 
 3. **The `x-data` root is the scope your bindings need.** Alpine bindings only

@@ -6,9 +6,9 @@ self-hosted. You consume it by **copy-pasting markup snippets** against shared
 CSS, and wiring interactivity with **minimal inline Alpine**.
 
 This is the developer-facing reference. For the visual/brand showcase see
-`../examples/Design System Reference.html`; for live, copy-paste specimens of every
-component see `../examples/Components.html`; for a full composed page see
-`../examples/advanced-ui-example.html`.
+`../examples/design-system-reference.html`; for live, copy-paste specimens of every
+component see `../examples/components.html`; for a full composed page see
+`../examples/example-advanced-ui.html`.
 
 ---
 
@@ -21,7 +21,7 @@ component see `../examples/Components.html`; for a full composed page see
 | `colors_and_type.css` | Design tokens (`:root` custom properties) + styled base elements (`h1`–`h6`, `a`, `code`…) + a few opt-in utilities (`.imgph`, `.photo`, `.lift`, `.reveal`). | **Yes** |
 | `components.css` | The component layer — every BEM class, built entirely from the tokens. | **Yes** |
 | `styles.css` | Convenience single entry point: `@import`s the two files above, in order. Link this *instead of* the two if you prefer one tag. | Optional |
-| `bmo-icons.svg` | The canonical icon sprite — 37 `<symbol>`s, ids `ic-fluent-{name}-24-regular`. Inline once per page. | Yes, if you use icons |
+| `bmo-icons.svg` | The canonical icon sprite — 48 `<symbol>`s, ids `ic-fluent-{name}-24-regular`. Inline once per page. | Yes, if you use icons |
 | `fluent-icon.js` | Optional `<fluent-icon>` custom element (the "sugar" icon form). | Optional |
 
 **Link order matters** — tokens before components:
@@ -66,7 +66,7 @@ fluent-icon.js        →  OPTIONAL: <fluent-icon name="…"> sugar for the same
 
 ### Copy-paste workflow
 
-1. Find the component in `../examples/Components.html`, hit **Copy**.
+1. Find the component in `../examples/components.html`, hit **Copy**.
 2. Paste the markup.
 3. Swap in your content.
 4. If it is interactive, add the inline Alpine from the component's **state
@@ -111,7 +111,7 @@ affordance, added deliberately for surfaces with one obvious action. Circular +
 icon-only by default (give it an `aria-label`); `.fab--extended` for an
 icon+label pill; `.fab--sm` (40px); `.fab--secondary` for the quiet white tone;
 `.fab--fixed` pins it to the viewport bottom-right. Canonical usage:
-`examples/Ops Dashboard.html` (fixed) and `examples/Component examples.html`.
+`examples/example-ops-dashboard.html` (fixed) and `examples/example-component-patterns.html`.
 
 ```html
 <button class="fab fab--extended fab--fixed"><svg class="icon"><use href="#ic-fluent-add-24-regular"/></svg> New request</button>
@@ -244,8 +244,8 @@ Opt-in, for richer landing/home surfaces:
 - **Utilities** (in `colors_and_type.css`): `.imgph` (striped placeholder + `.lbl`), `.photo` (real-image crop), `.lift` (hover-rise), `.reveal` (fade-rise on scroll; visible by default).
 
 ### Process & filtering layer
-Dense-app components; canonical usage in `examples/Component examples.html` and
-`examples/Ops Dashboard.html`.
+Dense-app components; canonical usage in `examples/example-component-patterns.html` and
+`examples/example-ops-dashboard.html`.
 - **Spinner:** `.spinner` (+ `--16/--32/--48`, default 20; `--on-accent` on filled surfaces) and `.spinner-row` for an inline label. Give it `role="progressbar"` + `aria-label`.
 - **Progress bar:** `.progress` › `.progress__meta` (`.progress__label` + `.progress__value`) + `.progress__track` › `.progress__fill`. States: `--indeterminate`, `--striped` (fill always full-width), `--subtle`, `--thick`, `--success`, `--danger`. The `__fill` `width` is the one sanctioned inline value — it *is* the data. Set `aria-valuenow/min/max`.
 - **Stepper:** `<ol class="stepper">` › `.stepper__step` (`.is-done` / `.is-current` / `.is-error`) › `.stepper__dot` + `.stepper__label`. The connector is the step's `::before`.
@@ -352,9 +352,16 @@ same pattern the same way everywhere.
 | **Icon button (toggle)** | pressed = `[aria-pressed="true"]` or `.is-active` | `<button class="icon-btn" :aria-pressed="grid" x-on:click="grid=!grid">` |
 | **Dialog** | open = element present / shown | `x-show="open"`, scrim `x-on:click="open=false"`, `x-on:keydown.escape.window="open=false"`, inner `x-on:click.stop` |
 | **Toast** | shown = element present | `<div class="toast" x-show="msg" x-text="msg">` |
-| **Reveal-on-scroll** | played = `.reveal.is-in` | vanilla IntersectionObserver (see `../examples/Components.html`); not Alpine |
+| **Reveal-on-scroll** | played = `.reveal.is-in` | vanilla IntersectionObserver (see `../examples/example-advanced-ui.html`); not Alpine |
 
 Rules:
+- **Reveal has two mechanisms, one class.** In **app mode** `.reveal` is transition-based
+  and hidden until a script adds `.is-in` (scroll-triggered — copy the observer from
+  `example-advanced-ui.html`). Under the **`.editorial`** scope, `.editorial .reveal` is a
+  self-sufficient CSS *animation* that plays on load with no script; the same `.is-in`
+  short-circuits it to instantly-visible. Both reuse `--motion-reveal` / `--ease-out` /
+  `--reveal-rise`, both honor `prefers-reduced-motion`, and they coexist by scope +
+  specificity (see `EDITORIAL-MODE.md`). `.lift` is shared, unchanged.
 - Bind the **class/attribute named in this table** — that is the contract. The
   CSS already styles it.
 - Do **not** wrap trivial controls in `Alpine.data()` factories. A chip, switch,
@@ -433,7 +440,7 @@ system token `home-24-regular` → `icon-ic_fluent_home_24_regular` (the same
 
 **Why reach for it:** it's the lowest-friction way to get the **entire** Fluent
 set self-hosted with **no build and no JS** — no per-page sprite to inline, no
-37-symbol curation. It's the answer when a page needs **many** icons beyond the
+48-symbol curation. It's the answer when a page needs **many** icons beyond the
 curated `bmo-icons.svg` set (for just a **few** extras, copy the matching SVGs
 from the `fluentui-system-icons` repo into the sprite instead — see "Adding an
 icon" below). It is **first-party Fluent, not a third-party icon kit**, so it's
@@ -496,7 +503,7 @@ font.
   `currentColor` on the 24 viewBox. Filled variants suffix `-24-filled`. For
   **many** extra icons, self-host the icon font instead of growing the sprite.
 
-The sprite ships 37 symbols (35 regular + `checkmark-circle-24-filled`,
+The sprite ships 48 symbols (46 regular + `checkmark-circle-24-filled`,
 `warning-24-filled`). If you reference a name with no symbol, the icon renders
 blank — add the symbol; don't invent one elsewhere.
 

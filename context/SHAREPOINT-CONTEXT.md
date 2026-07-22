@@ -97,7 +97,7 @@ Not every surface is the same. Calibrate the visual register to the surface:
   the design system's **visual-interest layer** — soft surface tints for section
   bands, functional motion, labeled imagery, and richer card composition — is
   appropriate here. It remains restrained and on-brand; see the system's
-  `advanced-ui-example.html` worked example. This is additive, never an excuse for
+  `example-advanced-ui.html` worked example. This is additive, never an excuse for
   consumer-facing playfulness.
 
 ### Tone

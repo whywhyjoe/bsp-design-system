@@ -1,0 +1,923 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="colors_and_type.css">
+<link rel="stylesheet" href="components.css">
+<link rel="stylesheet" href="editorial.css">
+<style>
+  *,*::before,*::after { box-sizing: border-box; }
+  body { margin: 0; background: var(--surface-subtle); color: var(--fg-primary); min-height: 100vh; }
+  ::-webkit-scrollbar { width: 10px; height: 10px; }
+  ::-webkit-scrollbar-thumb { background: rgba(0,0,0,.18); border-radius: 5px; }
+  .page { display: grid; grid-template-columns: 240px 1fr; min-height: 100vh; }
+  aside.docnav { position: sticky; top: 0; align-self: start; height: 100vh; overflow: auto; background: var(--surface-canvas); border-right: 1px solid var(--stroke-divider); padding: 22px 14px 40px; }
+  aside.docnav .brand { display: flex; align-items: center; gap: 10px; padding: 4px 8px 14px; border-bottom: 1px solid var(--stroke-divider); margin-bottom: 12px; }
+  aside.docnav .brand .mark { width: 28px; height: 28px; border-radius: 4px; background: var(--accent-rest); display: flex; align-items: center; justify-content: center; color: #fff; font: 700 13px/1 var(--font-family); }
+  aside.docnav .brand .t { font: var(--type-body1-strong); }
+  aside.docnav .brand .s { font: var(--type-caption1); color: var(--fg-secondary); }
+  aside.docnav nav { display: flex; flex-direction: column; gap: 1px; }
+  aside.docnav nav a { padding: 6px 10px; border-radius: 4px; text-decoration: none; font: var(--type-body1); color: var(--fg-primary); }
+  aside.docnav nav a:hover { background: var(--f2-grey-96); text-decoration: none; }
+  aside.docnav .links { margin-top: 16px; padding-top: 12px; border-top: 1px solid var(--stroke-divider); display: flex; flex-direction: column; gap: 6px; }
+  aside.docnav .links a { font: var(--type-caption1-strong); color: var(--accent-rest); text-decoration: none; }
+  main.doc { min-width: 0; }
+  header.top { background: var(--surface-canvas); border-bottom: 1px solid var(--stroke-divider); padding: 36px 48px 26px; }
+  header.top .eyebrow { font: var(--type-caption1-strong); letter-spacing: .09em; text-transform: uppercase; color: var(--accent-rest); }
+  header.top h1 { font: 400 34px/42px var(--font-family); margin: 8px 0 6px; letter-spacing: -.01em; }
+  header.top .sub { font: var(--type-body2); color: var(--fg-secondary); max-width: 72ch; }
+  header.top .meta { display: flex; gap: 16px; margin-top: 14px; font: var(--type-caption1); font-family: var(--font-family-mono); color: var(--fg-secondary); flex-wrap: wrap; }
+  .inner { padding: 32px 48px 80px; max-width: 1040px; }
+  section.group { margin-bottom: 40px; scroll-margin-top: 16px; }
+  section.group > h2 { font: 400 24px/32px var(--font-family); margin: 0 0 4px; letter-spacing: -.01em; }
+  section.group > .lede { font: var(--type-body1); color: var(--fg-secondary); margin: 0 0 18px; max-width: 72ch; }
+  .spec { background: var(--surface-canvas); border: 1px solid var(--stroke-divider); border-radius: var(--radius-large); overflow: hidden; margin-bottom: 16px; }
+  .spec__name { font: var(--type-body1-strong); padding: 12px 16px 0; }
+  .spec__name .new { display: inline-block; margin-left: 6px; padding: 1px 7px; border-radius: 999px; background: var(--surface-tint-blue); color: var(--fg-info); font: var(--type-caption1-strong); vertical-align: 2px; }
+  .spec__note { font: var(--type-caption1); color: var(--fg-secondary); padding: 2px 16px 0; max-width: 80ch; }
+  .spec__preview { padding: 24px 16px; display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+  .spec__preview.col { flex-direction: column; align-items: stretch; }
+  .spec__preview.tint { background: var(--surface-tint-neutral); }
+  .codewrap { position: relative; border-top: 1px solid var(--stroke-divider); }
+  .codewrap pre { margin: 0; background: #0B2233; color: #D7E6F2; padding: 14px 16px; overflow-x: auto; font: 400 12.5px/1.6 var(--font-family-mono); }
+  .codewrap pre .c { color: #6E8BA0; }
+  .copy-btn { position: absolute; top: 8px; right: 8px; height: 24px; padding: 0 10px; font: var(--type-caption1-strong); color: #D7E6F2; background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.2); border-radius: var(--radius-small); cursor: pointer; }
+  .copy-btn:hover { background: rgba(255,255,255,.18); }
+  .note { background: var(--surface-tint-blue); border: 1px solid var(--stroke-divider); border-radius: var(--radius-medium); padding: 12px 14px; font: var(--type-body1); margin-bottom: 18px; }
+  .note code, .lede code, .spec__note code { font-family: var(--font-family-mono); font-size: 12.5px; background: var(--f2-grey-94); border-radius: 3px; padding: 1px 4px; }
+  .hide-code .codewrap { display: none; }
+  @media (max-width: 860px) { .page { grid-template-columns: 1fr; } aside.docnav { display: none; } .inner, header.top { padding-left: 24px; padding-right: 24px; } }
+</style>
+</helmet>
+
+<!-- Functional Fluent sprite (bmo-icons.svg subset + player icons) — inline once -->
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true"><defs>
+  <symbol id="ic-fluent-grid-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="6.5" height="6.5" rx="1"></rect><rect x="13.5" y="4" width="6.5" height="6.5" rx="1"></rect><rect x="4" y="13.5" width="6.5" height="6.5" rx="1"></rect><rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1"></rect></g></symbol>
+  <symbol id="ic-fluent-search-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="10.5" cy="10.5" r="5.5"></circle><path d="M15 15l4 4"></path></g></symbol>
+  <symbol id="ic-fluent-alert-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4a5 5 0 0 1 5 5c0 5 2 6 2 6H5s2-1 2-6a5 5 0 0 1 5-5zM10.3 19a1.8 1.8 0 0 0 3.4 0"></path></g></symbol>
+  <symbol id="ic-fluent-settings-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"></circle><path d="M12 4v2.2M12 17.8V20M5 7.5l1.9 1.1M17.1 15.4L19 16.5M5 16.5l1.9-1.1M17.1 8.6L19 7.5"></path></g></symbol>
+  <symbol id="ic-fluent-question-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"></circle><path d="M9.6 9.4a2.4 2.4 0 1 1 3.3 2.6c-.7.3-1.1 1-1.1 1.8"></path><path d="M11.8 16.5h.01"></path></g></symbol>
+  <symbol id="ic-fluent-star-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4.5l2.3 4.7 5.2.8-3.8 3.7.9 5.2-4.6-2.5-4.6 2.5.9-5.2L6.5 10l5.2-.8L12 4.5z"></path></g></symbol>
+  <symbol id="ic-fluent-chevron-right-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M10 7l5 5-5 5"></path></g></symbol>
+  <symbol id="ic-fluent-chevron-left-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M14 7l-5 5 5 5"></path></g></symbol>
+  <symbol id="ic-fluent-arrow-right-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13M12 6l6 6-6 6"></path></g></symbol>
+  <symbol id="ic-fluent-open-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M11 6H6a1 1 0 0 0-1 1v11a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1v-5M14 5h5v5M19 5l-8 8"></path></g></symbol>
+  <symbol id="ic-fluent-clock-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"></circle><path d="M12 7.5V12l3 2"></path></g></symbol>
+  <symbol id="ic-fluent-document-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M7 4h7l4 4v11a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1zM14 4v4h4"></path></g></symbol>
+  <symbol id="ic-fluent-calendar-ltr-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 7a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v11a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V7zM5 10h14M9 4v3M15 4v3"></path></g></symbol>
+  <symbol id="ic-fluent-mail-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 7h14a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1zM4.5 8l7.5 5 7.5-5"></path></g></symbol>
+  <symbol id="ic-fluent-phone-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 4.5l3 .8 1 3.2-1.9 1.4a10 10 0 0 0 4.6 4.6l1.4-1.9 3.2 1 .8 3a1 1 0 0 1-1 1.1A13.5 13.5 0 0 1 5.4 5.5a1 1 0 0 1 1.1-1z"></path></g></symbol>
+  <symbol id="ic-fluent-person-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8.5" r="3.5"></circle><path d="M5.5 19a6.5 6.5 0 0 1 13 0"></path></g></symbol>
+  <symbol id="ic-fluent-checkmark-circle-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"></circle><path d="M8.5 12.2l2.4 2.4 4.6-4.9"></path></g></symbol>
+  <symbol id="ic-fluent-play-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8.5 5.5l10 6.5-10 6.5z"></path></g></symbol>
+  <symbol id="ic-fluent-pause-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M9.2 6v12M14.8 6v12"></path></g></symbol>
+  <symbol id="ic-fluent-speaker-2-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10v4h3l4.5 3.5v-11L7 10H4z"></path><path d="M15 9.5a4 4 0 0 1 0 5M17.5 7.5a7 7 0 0 1 0 9"></path></g></symbol>
+  <symbol id="ic-fluent-closed-caption-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="6" width="17" height="12" rx="1.5"></rect><path d="M10.8 10.6a2 2 0 1 0 0 2.8M16.6 10.6a2 2 0 1 0 0 2.8"></path></g></symbol>
+  <symbol id="ic-fluent-full-screen-maximize-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 9V6a1 1 0 0 1 1-1h3M15 5h3a1 1 0 0 1 1 1v3M19 15v3a1 1 0 0 1-1 1h-3M9 19H6a1 1 0 0 1-1-1v-3"></path></g></symbol>
+</defs></svg>
+
+<!-- Corporate content line-icon sprite (bmo-content-icons.svg) — inline once -->
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true"><defs>
+  <symbol id="bmo-ic-learning" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 9L12 5l9.5 4L12 13 2.5 9z"></path><path d="M6.5 11v4.2c0 .9 2.5 2.3 5.5 2.3s5.5-1.4 5.5-2.3V11"></path><path d="M21.5 9v4.5"></path></g></symbol>
+  <symbol id="bmo-ic-clients" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="8.5" cy="8" r="3"></circle><circle cx="16" cy="9.5" r="2.4"></circle><path d="M3.5 19a5 5 0 0 1 10 0"></path><path d="M14.5 19a4 4 0 0 1 6-3.4"></path></g></symbol>
+  <symbol id="bmo-ic-community" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="7" r="2.6"></circle><circle cx="5.5" cy="10.5" r="2.2"></circle><circle cx="18.5" cy="10.5" r="2.2"></circle><path d="M8 18a4 4 0 0 1 8 0"></path><path d="M2.5 18.5a3.2 3.2 0 0 1 4.2-3"></path><path d="M17.3 15.5a3.2 3.2 0 0 1 4.2 3"></path></g></symbol>
+  <symbol id="bmo-ic-regulators" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9.5L12 4l8 5.5"></path><path d="M5 9.5h14"></path><path d="M6.5 10v7M11 10v7M17.5 10v7"></path><path d="M4 19.5h16"></path></g></symbol>
+  <symbol id="bmo-ic-growth" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 18l5-5 3 3 7-7"></path><path d="M15 9h4v4"></path></g></symbol>
+  <symbol id="bmo-ic-award" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="9" r="5"></circle><path d="M9.2 13.4L8 20l4-2 4 2-1.2-6.6"></path><path d="M12 6.6l.9 1.8 2 .3-1.45 1.4.34 2L12 11.1l-1.8.95.34-2L9.1 8.7l2-.3.9-1.8z"></path></g></symbol>
+  <symbol id="bmo-ic-compass" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"></circle><path d="M15.5 8.5l-1.7 5-5 1.7 1.7-5 5-1.7z"></path></g></symbol>
+  <symbol id="bmo-ic-idea" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 16.5a6 6 0 1 1 6 0v1.5a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1v-1.5z"></path><path d="M9.5 21h5"></path></g></symbol>
+  <symbol id="bmo-ic-goals" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"></circle><circle cx="12" cy="12" r="5"></circle><circle cx="12" cy="12" r="1.6"></circle></g></symbol>
+  <symbol id="bmo-ic-security" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.5l7 2.4v5.1c0 5-3.5 8-7 9.5-3.5-1.5-7-4.5-7-9.5V5.9L12 3.5z"></path><path d="M9 12l2 2 4-4"></path></g></symbol>
+  <symbol id="bmo-ic-global" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"></circle><path d="M3.5 12h17"></path><path d="M12 3.5c2.6 2.3 4 5.4 4 8.5s-1.4 6.2-4 8.5c-2.6-2.3-4-5.4-4-8.5s1.4-6.2 4-8.5z"></path></g></symbol>
+  <symbol id="bmo-ic-knowledge" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 6.5C10.3 5.2 8 4.6 4.5 5v12c3.5-.4 5.8.2 7.5 1.5"></path><path d="M12 6.5C13.7 5.2 16 4.6 19.5 5v12c-3.5-.4-5.8.2-7.5 1.5"></path><path d="M12 6.5v12"></path></g></symbol>
+</defs></svg>
+
+<div class="page {{ codeClass }}">
+  <aside class="docnav">
+    <div class="brand">
+      <div class="mark">B</div>
+      <div><div class="t">Editorial components</div><div class="s">BMO · SharePoint</div></div>
+    </div>
+    <nav>
+      <a href="#heroes">Hero devices</a>
+      <a href="#mesh">Mesh register</a>
+      <a href="#course-cards">Course cards</a>
+      <a href="#link-rows">Link rows</a>
+      <a href="#facilitators">Facilitator cards</a>
+      <a href="#scorecard">Scorecard tiles</a>
+      <a href="#video">Video</a>
+      <a href="#slider">Spotlight slider</a>
+      <a href="#cta">CTA bands</a>
+      <a href="#art">Icons &amp; illustration</a>
+    </nav>
+    <div class="links">
+      <a href="Editorial Design Guide.dc.html">Editorial design guide →</a>
+      <a href="Learning Catalog.dc.html">Learning catalog example →</a>
+      <a href="Resource Hub.dc.html">Resource hub example →</a>
+    </div>
+  </aside>
+
+  <main class="doc">
+    <header class="top">
+      <div class="eyebrow">BMO SharePoint design system · editorial mode</div>
+      <h1>Editorial component library</h1>
+      <p class="sub">Every editorial-layer block as a token-built CSS class — the warm, employee-facing content register. Link <code>colors_and_type.css</code> → <code>components.css</code> → <code>editorial.css</code>, put content under <code>class="editorial"</code>, copy the markup, wire behaviour with Alpine.</p>
+      <div class="meta">
+        <span>Layer: editorial.css (link after components.css)</span>
+        <span>Scope: .editorial</span>
+        <span>Icons: bmo-icons.svg + bmo-content-icons.svg</span>
+      </div>
+    </header>
+
+    <div class="inner editorial">
+      <div class="note">
+        <strong>Two registers, one layer.</strong> Editorial blocks come in a <strong>showcase</strong> form (8px radius, subtle elevation — destination pages) and a <strong>mesh</strong> form (flat, hairline, square — sits flush beside out-of-box SharePoint web parts). Mesh is a modifier away: <code>.card--quiet</code>, <code>.player--flat</code>, <code>.key-messages--quiet</code> (heroes are always flat) — and the mesh-native blocks (<code>.news-list</code>, <code>.quicklink</code>, <code>.related</code>, <code>.webpart</code>) have no elevation at all.
+      </div>
+
+      <!-- ═══════════ HERO DEVICES ═══════════ -->
+      <section class="group" id="heroes">
+        <h2>Hero devices</h2>
+        <p class="lede">One brand device per hero, never stacked. Full-bleed devices (<code>--band</code>, <code>--scrim</code>, <code>--blue</code>, <code>--bokeh</code>) build on <code>.hero.hero--banner</code>; <code>--arc</code> builds on the two-column base hero. All heroes are flat/flush — square corners, no elevation — like the OOB SharePoint hero web part.</p>
+
+        <div class="spec">
+          <div class="spec__name">Blue band — the BMO Central home treatment</div>
+          <div class="spec__note">Translucent BMO-blue panel over a full-colour photo, heaviest behind the text (≤85% blue). The default when blue should clearly carry the frame.</div>
+          <div class="spec__preview col">
+            <section class="hero hero--banner hero--band" style="min-height:320px">
+              <div class="hero__bg"><img src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&amp;fit=crop&amp;w=1400&amp;q=70" alt="Colleagues learning together in a bright workshop room" crossorigin="anonymous" loading="lazy" onerror="this.onerror=null;this.src='https://picsum.photos/seed/ed-band/1400/700'"></div>
+              <div class="hero__copy">
+                <p class="hero__eyebrow">Learning &amp; development</p>
+                <h3 class="hero__title" style="font:var(--ed-title-1)">Grow your career at BMO</h3>
+                <p class="hero__lede">Courses, programs and events for every T&amp;O role.</p>
+              </div>
+            </section>
+          </div>
+          <div class="codewrap"><button class="copy-btn" onClick="{{ copyCode }}">Copy</button><pre>&lt;section class="hero hero--banner hero--band"&gt;
+  &lt;div class="hero__bg"&gt;&lt;img src="…" alt="…"&gt;&lt;/div&gt;
+  &lt;div class="hero__copy"&gt;
+    &lt;p class="hero__eyebrow"&gt;Learning &amp;amp; development&lt;/p&gt;
+    &lt;h1 class="hero__title"&gt;Grow your career at BMO&lt;/h1&gt;
+    &lt;p class="hero__lede"&gt;Courses, programs and events for every T&amp;O role.&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/section&gt;
+
+<span class="c">&lt;!-- swap the device: hero--scrim · hero--blue · hero--bokeh --&gt;</span></pre></div>
+        </div>
+
+        <div class="spec">
+          <div class="spec__name">Blue overlay — the heavier brand wash</div>
+          <div class="spec__note">100% BMO blue, Multiply blend, over a greyscale photo at ~40% opacity. Use when the photo is texture, not subject.</div>
+          <div class="spec__preview col">
+            <section class="hero hero--banner hero--blue" style="min-height:300px">
+              <div class="hero__bg"><img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&amp;fit=crop&amp;w=1400&amp;q=70" alt="Team working around a shared table" crossorigin="anonymous" loading="lazy" onerror="this.onerror=null;this.src='https://picsum.photos/seed/ed-blue/1400/700'"></div>
+              <div class="hero__copy">
+                <p class="hero__eyebrow">Operational resilience</p>
+                <h3 class="hero__title" style="font:var(--ed-title-1)">Ready for anything</h3>
+                <p class="hero__lede">The 2026 resilience program starts March 2.</p>
+              </div>
+            </section>
+          </div>
+          <div class="codewrap"><button class="copy-btn" onClick="{{ copyCode }}">Copy</button><pre>&lt;section class="hero hero--banner hero--blue"&gt;
+  &lt;div class="hero__bg"&gt;&lt;img src="…" alt="…"&gt;&lt;/div&gt;
+  &lt;div class="hero__copy"&gt;…eyebrow / title / lede…&lt;/div&gt;
+&lt;/section&gt;</pre></div>
+        </div>
+
+        <div class="spec">
+          <div class="spec__name">Arc / ring hero</div>
+          <div class="spec__note">Two-column hero with a circular photo crop inside a single-tone thin BMO-blue ring (the roundel-derived device). <code>.hero--arc--white</code> for the ring over darker grounds.</div>
+          <div class="spec__preview col">
+            <section class="hero hero--arc" style="padding:24px 8px">
+              <div class="hero__copy" style="max-width:none">
+                <p class="hero__eyebrow">Resource hub</p>
+                <h3 class="hero__title" style="font:var(--ed-title-1)">Everything your team needs</h3>
+                <p class="hero__lede" style="margin-bottom:0">Policies, tools and contacts in one place.</p>
+              </div>
+              <div class="hero__media"><span class="photo"><img src="https://images.unsplash.com/photo-1543269865-cbf427effbad?auto=format&amp;fit=crop&amp;w=800&amp;q=70" alt="Colleagues collaborating at a laptop" crossorigin="anonymous" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block" onerror="this.onerror=null;this.src='https://picsum.photos/seed/ed-arc/800/800'"></span></div>
+            </section>
+          </div>
+          <div class="codewrap"><button class="copy-btn" onClick="{{ copyCode }}">Copy</button><pre>&lt;section class="hero hero--arc"&gt;
+  &lt;div class="hero__copy"&gt;…eyebrow / title / lede / cta…&lt;/div&gt;
+  &lt;div class="hero__media"&gt;
+    &lt;span class="photo"&gt;&lt;img src="…" alt="…"&gt;&lt;/span&gt;
+  &lt;/div&gt;
+&lt;/section&gt;</pre></div>
+        </div>
+
+        <div class="spec">
+          <div class="spec__name">Arc on blue <span class="new">New</span></div>
+          <div class="spec__note">The photo circle atop a full-width solid BMO-blue block — white ring, white copy (a sanctioned blue-fill exception: text + at most one inverted CTA, never controls).</div>
+          <div class="spec__preview col" style="gap:20px">
+            <section class="hero hero--arc hero--arc-blue" style="padding:32px 40px">
+              <div class="hero__copy" style="max-width:none">
+                <p class="hero__eyebrow">Refer with confidence</p>
+                <h3 class="hero__title" style="font:var(--ed-title-1)">Tools and resources to refer business to the bank</h3>
+                <div class="hero__cta" style="margin-top:16px"><a class="btn btn--secondary" href="#" style="background:#fff;border-color:#fff">See the toolkit</a></div>
+              </div>
+              <div class="hero__media"><span class="photo"><img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&amp;fit=crop&amp;w=800&amp;q=70" alt="Colleague smiling while working at a laptop" crossorigin="anonymous" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block" onerror="this.onerror=null;this.src='https://picsum.photos/seed/ed-arcblue/800/800'"></span></div>
+            </section>
+          </div>
+          <div class="codewrap"><button class="copy-btn" onClick="{{ copyCode }}">Copy</button><pre>&lt;section class="hero hero--arc hero--arc-blue"&gt;
+  &lt;div class="hero__copy"&gt;…eyebrow / title / lede / cta…&lt;/div&gt;
+  &lt;div class="hero__media"&gt;&lt;span class="photo"&gt;&lt;img src="…" alt="…"&gt;&lt;/span&gt;&lt;/div&gt;
+&lt;/section&gt;
+
+<span class="c">&lt;!-- white ring on a photo/dark ground (no blue block): hero--arc--white --&gt;</span></pre></div>
+        </div>
+
+        <div class="spec">
+          <div class="spec__name">Masonry hero <span class="new">New</span></div>
+          <div class="spec__note">The SP tiled hero web part — count-aware: same markup, the grid reshapes by tile count. 2 tiles sit side by side in one row; 3 gives a lead spanning two equal rows with two stacked right; 4 adds a third column with a wide tile top-right and two below. Each tile is a photo link with a functional scrim and white title. Flat/flush by design — it never takes the showcase frame.</div>
+          <div class="spec__preview col" style="padding:24px 0;gap:24px">
+            <div class="hero-masonry">
+              <a class="hero-masonry__tile" href="#">
+                <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&amp;fit=crop&amp;w=1200&amp;q=70" alt="" crossorigin="anonymous" loading="lazy" onerror="this.onerror=null;this.src='https://picsum.photos/seed/ed-mas1/1200/800'">
+                <span class="hero-masonry__title">Improved Microsoft Teams meeting security and data classification enhancements</span>
+              </a>
+              <a class="hero-masonry__tile" href="#">
+                <img src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&amp;fit=crop&amp;w=800&amp;q=70" alt="" crossorigin="anonymous" loading="lazy" onerror="this.onerror=null;this.src='https://picsum.photos/seed/ed-mas2/800/500'">
+                <span class="hero-masonry__title">How to spot executive impersonation scams</span>
+              </a>
+              <a class="hero-masonry__tile" href="#">
+                <img src="https://images.unsplash.com/photo-1581579438747-1dc8d17bbce4?auto=format&amp;fit=crop&amp;w=800&amp;q=70" alt="" crossorigin="anonymous" loading="lazy" onerror="this.onerror=null;this.src='https://picsum.photos/seed/ed-mas3/800/500'">
+                <span class="hero-masonry__title">Help protect older adults from fraud and financial abuse</span>
+              </a>
+            </div>
+            <div class="hero-masonry">
+              <a class="hero-masonry__tile" href="#">
+                <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&amp;fit=crop&amp;w=1200&amp;q=70" alt="" crossorigin="anonymous" loading="lazy" onerror="this.onerror=null;this.src='https://picsum.photos/seed/ed-mas1/1200/800'">
+                <span class="hero-masonry__title">Improved Microsoft Teams meeting security and data classification enhancements</span>
+              </a>
+              <a class="hero-masonry__tile" href="#">
+                <img src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&amp;fit=crop&amp;w=900&amp;q=70" alt="" crossorigin="anonymous" loading="lazy" onerror="this.onerror=null;this.src='https://picsum.photos/seed/ed-mas2/900/500'">
+                <span class="hero-masonry__title">How to spot executive impersonation scams</span>
+              </a>
+              <a class="hero-masonry__tile" href="#">
+                <img src="https://images.unsplash.com/photo-1581579438747-1dc8d17bbce4?auto=format&amp;fit=crop&amp;w=800&amp;q=70" alt="" crossorigin="anonymous" loading="lazy" onerror="this.onerror=null;this.src='https://picsum.photos/seed/ed-mas3/800/500'">
+                <span class="hero-masonry__title">Help protect older adults from fraud</span>
+              </a>
+              <a class="hero-masonry__tile" href="#">
+                <img src="https://images.unsplash.com/photo-1543269865-cbf427effbad?auto=format&amp;fit=crop&amp;w=800&amp;q=70" alt="" crossorigin="anonymous" loading="lazy" onerror="this.onerror=null;this.src='https://picsum.photos/seed/ed-mas4/800/500'">
+                <span class="hero-masonry__title">Quarterly town hall: watch the replay</span>
+              </a>
+            </div>
+            <div class="hero-masonry">
+              <a class="hero-masonry__tile" href="#">
+                <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&amp;fit=crop&amp;w=1200&amp;q=70" alt="" crossorigin="anonymous" loading="lazy" onerror="this.onerror=null;this.src='https://picsum.photos/seed/ed-mas1/1200/800'">
+                <span class="hero-masonry__title">Improved Microsoft Teams meeting security and data classification enhancements</span>
+              </a>
+              <a class="hero-masonry__tile" href="#">
+                <img src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&amp;fit=crop&amp;w=900&amp;q=70" alt="" crossorigin="anonymous" loading="lazy" onerror="this.onerror=null;this.src='https://picsum.photos/seed/ed-mas2/900/500'">
+                <span class="hero-masonry__title">How to spot executive impersonation scams</span>
+              </a>
+            </div>
+          </div>
+          <div class="codewrap"><button class="copy-btn" onClick="{{ copyCode }}">Copy</button><pre>&lt;div class="hero-masonry"&gt;   <span class="c">&lt;!-- count-aware: reshapes for 2, 3 or 4 tiles --&gt;</span>
+  &lt;a class="hero-masonry__tile" href="#"&gt;   <span class="c">&lt;!-- first tile = lead --&gt;</span>
+    &lt;img src="…" alt=""&gt;
+    &lt;span class="hero-masonry__title"&gt;Improved Microsoft Teams meeting security&lt;/span&gt;
+  &lt;/a&gt;
+  &lt;a class="hero-masonry__tile" href="#"&gt;…&lt;/a&gt;   <span class="c">&lt;!-- 2 = side by side --&gt;</span>
+  &lt;a class="hero-masonry__tile" href="#"&gt;…&lt;/a&gt;   <span class="c">&lt;!-- 3 = lead + two stacked --&gt;</span>
+  &lt;a class="hero-masonry__tile" href="#"&gt;…&lt;/a&gt;   <span class="c">&lt;!-- 4 = lead + wide top-right + two below --&gt;</span>
+&lt;/div&gt;</pre></div>
+        </div>
+      </section>
+
+      <!-- ═══════════ MESH REGISTER ═══════════ -->
+      <section class="group" id="mesh">
+        <h2>Mesh register</h2>
+        <p class="lede">Flat, hairline forms that sit flush beside out-of-box SharePoint web parts — no elevation, square or 4px corners, dividers over boxes. Reach for these when editorial content shares a page with OOB web parts and must not read as a designed island.</p>
+
+        <div class="spec">
+          <div class="spec__name">Web-part shell <span class="new">New</span></div>
+          <div class="spec__note">An unboxed section with the SP web-part title. Add <code>--framed</code> for the hairline-boxed form; <code>.webpart__foot</code> centers a view-all action.</div>
+          <div class="spec__preview col">
+            <div class="webpart webpart--framed" style="max-width:420px">
+              <h3 class="webpart__title" style="font-size:20px;line-height:26px;text-align:center">Leaders' corner</h3>
+              <div style="display:flex;gap:var(--space-160);align-items:flex-start">
+                <span class="avatar avatar--40" style="background:var(--bmo-chart-midnight);flex:none">MT</span>
+                <div>
+                  <a href="#" style="font:var(--type-body2-strong);color:var(--accent-rest);text-decoration:none">Let's keep the conversation going: the survey is live</a>
+                  <p style="font:var(--type-body1);color:var(--fg-secondary);margin:6px 0 0">I take great pride in the expertise and operational excellence you all contribute…</p>
+                </div>
+              </div>
+              <div class="webpart__foot"><button class="btn btn--primary">More messages</button></div>
+            </div>
+          </div>
+          <div class="codewrap"><button class="copy-btn" onClick="{{ copyCode }}">Copy</button><pre><span class="c">&lt;!-- unboxed: title over any content --&gt;</span>
+&lt;section class="webpart"&gt;
+  &lt;h2 class="webpart__title"&gt;T&amp;O news&lt;/h2&gt;
+  …
+&lt;/section&gt;
+
+<span class="c">&lt;!-- hairline-boxed --&gt;</span>
+&lt;section class="webpart webpart--framed"&gt;
+  &lt;h2 class="webpart__title"&gt;Leaders' corner&lt;/h2&gt;
+  …
+  &lt;div class="webpart__foot"&gt;&lt;button class="btn btn--primary"&gt;More messages&lt;/button&gt;&lt;/div&gt;
+&lt;/section&gt;</pre></div>
+        </div>
+
+        <div class="spec">
+          <div class="spec__name">News list <span class="new">New</span></div>
+          <div class="spec__note">Thumbnail-left rows on dividers — the T&amp;O News web-part look. Flat by design; the title is the link.</div>
+          <div class="spec__preview col">
+            <section class="webpart" style="max-width:720px">
+              <h3 class="webpart__title">T&amp;O news</h3>
+              <div class="news-list">
+                <article class="news-item">
+                  <span class="news-item__thumb"><img src="https://images.unsplash.com/photo-1497215728101-856f4ea42174?auto=format&amp;fit=crop&amp;w=440&amp;q=60" alt="" crossorigin="anonymous" loading="lazy" onerror="this.onerror=null;this.src='https://picsum.photos/seed/ed-news1/440/248'"></span>
+                  <div class="news-item__main">
+                    <a class="news-item__title" href="#">AI in action: accelerating AML investigations</a>
+                    <p class="news-item__desc">When it comes to fighting financial crime, speed, accuracy and insight matter.</p>
+                    <span class="news-item__meta">23 hours ago</span>
+                  </div>
+                </article>
+                <article class="news-item">
+                  <span class="news-item__thumb"><img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&amp;fit=crop&amp;w=440&amp;q=60" alt="" crossorigin="anonymous" loading="lazy" onerror="this.onerror=null;this.src='https://picsum.photos/seed/ed-news2/440/248'"></span>
+                  <div class="news-item__main">
+                    <a class="news-item__title" href="#">Helping appraisal experts focus on what matters most</a>
+                    <p class="news-item__desc">The Wholesale Credit Risk team streamlines commercial real-estate reviews.</p>
+                    <span class="news-item__meta">Yesterday</span>
+                  </div>
+                </article>
+              </div>
+              <div class="webpart__foot"><button class="btn btn--primary">View all</button></div>
+            </section>
+          </div>
+          <div class="codewrap"><button class="copy-btn" onClick="{{ copyCode }}">Copy</button><pre>&lt;div class="news-list"&gt;
+  &lt;article class="news-item"&gt;
+    &lt;span class="news-item__thumb"&gt;&lt;img src="…" alt=""&gt;&lt;/span&gt;
+    &lt;div class="news-item__main"&gt;
+      &lt;a class="news-item__title" href="#"&gt;AI in action: accelerating AML investigations&lt;/a&gt;
+      &lt;p class="news-item__desc"&gt;When it comes to fighting financial crime…&lt;/p&gt;
+      &lt;span class="news-item__meta"&gt;23 hours ago&lt;/span&gt;
+    &lt;/div&gt;
+  &lt;/article&gt;
+  …
+&lt;/div&gt;</pre></div>
+        </div>
+
+        <div class="spec">
+          <div class="spec__name">Featured news <span class="new">New</span></div>
+          <div class="spec__note">The two-zone news web part (the BMO Central look): one featured story — big image, chip, headline — beside a stack of compact thumb-left rows on dividers. Chips are the existing <code>.eyebrow-chip</code>.</div>
+          <div class="spec__preview col">
+            <section class="webpart">
+              <h3 class="webpart__title">Ambition 2030 news</h3>
+              <div class="news-feature">
+                <article class="news-lead">
+                  <div class="news-lead__img"><img src="https://images.unsplash.com/photo-1543269664-56d93c1b41a6?auto=format&amp;fit=crop&amp;w=980&amp;q=70" alt="" crossorigin="anonymous" loading="lazy" onerror="this.onerror=null;this.src='https://picsum.photos/seed/ed-nl/980/613'"></div>
+                  <span class="eyebrow-chip">BMO Central</span>
+                  <a class="news-lead__title" href="#">Evolving our winning culture behaviours for a stronger Ambition 2030</a>
+                  <p class="news-lead__desc">Our engaged and high-performing winning culture is the foundation of everything we deliver for clients.</p>
+                  <span class="news-lead__meta">12 hours ago</span>
+                </article>
+                <div class="news-compact">
+                  <article class="news-compact__item">
+                    <span class="news-compact__thumb"><img src="https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&amp;fit=crop&amp;w=300&amp;q=60" alt="" crossorigin="anonymous" loading="lazy" onerror="this.onerror=null;this.src='https://picsum.photos/seed/ed-nc1/300/188'"></span>
+                    <div class="news-compact__main">
+                      <span class="eyebrow-chip">BMO Central</span>
+                      <a class="news-compact__title" href="#">BMO named Best Bank in North America: a win powered by you</a>
+                      <span class="news-compact__meta">June 18</span>
+                    </div>
+                  </article>
+                  <article class="news-compact__item">
+                    <span class="news-compact__thumb"><img src="https://images.unsplash.com/photo-1556484687-30636164638b?auto=format&amp;fit=crop&amp;w=300&amp;q=60" alt="" crossorigin="anonymous" loading="lazy" onerror="this.onerror=null;this.src='https://picsum.photos/seed/ed-nc2/300/188'"></span>
+                    <div class="news-compact__main">
+                      <span class="eyebrow-chip">BMO Central</span>
+                      <a class="news-compact__title" href="#">We want to hear from you — complete the Ambition 2030 survey</a>
+                      <span class="news-compact__meta">June 10</span>
+                    </div>
+                  </article>
+                  <article class="news-compact__item">
+                    <span class="news-compact__thumb"><img src="https://images.unsplash.com/photo-1475721027785-f74eccf877e2?auto=format&amp;fit=crop&amp;w=300&amp;q=60" alt="" crossorigin="anonymous" loading="lazy" onerror="this.onerror=null;this.src='https://picsum.photos/seed/ed-nc3/300/188'"></span>
+                    <div class="news-compact__main">
+                      <span class="eyebrow-chip">BMO Central</span>
+                      <a class="news-compact__title" href="#">Building AI capability across BMO: start small, stay curious</a>
+                      <span class="news-compact__meta">June 9</span>
+                    </div>
+                  </article>
+                </div>
+              </div>
+            </section>
+          </div>
+          <div class="codewrap"><button class="copy-btn" onClick="{{ copyCode }}">Copy</button><pre>&lt;div class="news-feature"&gt;
+  &lt;article class="news-lead"&gt;
+    &lt;div class="news-lead__img"&gt;&lt;img src="…" alt=""&gt;&lt;/div&gt;
+    &lt;span class="eyebrow-chip"&gt;BMO Central&lt;/span&gt;
+    &lt;a class="news-lead__title" href="#"&gt;Evolving our winning culture behaviours&lt;/a&gt;
+    &lt;p class="news-lead__desc"&gt;…&lt;/p&gt;
+    &lt;span class="news-lead__meta"&gt;12 hours ago&lt;/span&gt;
+  &lt;/article&gt;
+  &lt;div class="news-compact"&gt;
+    &lt;article class="news-compact__item"&gt;
+      &lt;span class="news-compact__thumb"&gt;&lt;img src="…" alt=""&gt;&lt;/span&gt;
+      &lt;div class="news-compact__main"&gt;
+        &lt;span class="eyebrow-chip"&gt;BMO Central&lt;/span&gt;
+        &lt;a class="news-compact__title" href="#"&gt;…&lt;/a&gt;
+        &lt;span class="news-compact__meta"&gt;June 18&lt;/span&gt;
+      &lt;/div&gt;
+    &lt;/article&gt;
+    …
+  &lt;/div&gt;
+&lt;/div&gt;</pre></div>
+        </div>
+
+        <div class="spec">
+          <div class="spec__name">Quick links <span class="new">New</span></div>
+          <div class="spec__note">Outlined icon + label tiles (the SP "button" quick-links layout). Corporate line-icons or Fluent icons both work in the leading slot.</div>
+          <div class="spec__preview col">
+            <div class="quicklink-grid" style="max-width:880px">
+              <a class="quicklink" href="#"><svg class="c-icon"><use href="#bmo-ic-idea"></use></svg><span class="quicklink__label">Knowledge sharing library</span></a>
+              <a class="quicklink" href="#"><svg class="c-icon"><use href="#bmo-ic-community"></use></svg><span class="quicklink__label">T&amp;O café</span></a>
+              <a class="quicklink" href="#"><svg class="c-icon"><use href="#bmo-ic-award"></use></svg><span class="quicklink__label">Winning culture hub</span></a>
+              <a class="quicklink" href="#"><svg class="c-icon"><use href="#bmo-ic-compass"></use></svg><span class="quicklink__label">Ways of working</span></a>
+            </div>
+          </div>
+          <div class="codewrap"><button class="copy-btn" onClick="{{ copyCode }}">Copy</button><pre>&lt;div class="quicklink-grid"&gt;
+  &lt;a class="quicklink" href="#"&gt;
+    &lt;svg class="c-icon"&gt;&lt;use href="#bmo-ic-idea"/&gt;&lt;/svg&gt;
+    &lt;span class="quicklink__label"&gt;Knowledge sharing library&lt;/span&gt;
+  &lt;/a&gt;
+  …
+&lt;/div&gt;</pre></div>
+        </div>
+
+        <div class="spec">
+          <div class="spec__name">Related links <span class="new">New</span></div>
+          <div class="spec__note">Plain stacked blue links — the related-links web part. <code>--divided</code> puts each link on a hairline row; trailing <code>open</code> icon marks external targets.</div>
+          <div class="spec__preview tint" style="gap:40px;align-items:flex-start">
+            <div class="related">
+              <a class="related__link" href="#">Q3 expense policy</a>
+              <a class="related__link" href="#">Travel booking standards</a>
+              <a class="related__link" href="#">Branch locators <svg class="icon"><use href="#ic-fluent-open-24-regular"></use></svg></a>
+            </div>
+            <div class="related related--divided" style="min-width:260px">
+              <a class="related__link" href="#">Code of conduct</a>
+              <a class="related__link" href="#">Intranet terms of use</a>
+              <a class="related__link" href="#">Privacy <svg class="icon"><use href="#ic-fluent-open-24-regular"></use></svg></a>
+            </div>
+          </div>
+          <div class="codewrap"><button class="copy-btn" onClick="{{ copyCode }}">Copy</button><pre>&lt;nav class="related" aria-label="Related links"&gt;
+  &lt;a class="related__link" href="#"&gt;Q3 expense policy&lt;/a&gt;
+  &lt;a class="related__link" href="#"&gt;Branch locators
+    &lt;svg class="icon"&gt;&lt;use href="#ic-fluent-open-24-regular"/&gt;&lt;/svg&gt;&lt;/a&gt;
+&lt;/nav&gt;
+
+<span class="c">&lt;!-- hairline rows --&gt;</span>
+&lt;nav class="related related--divided"&gt;…&lt;/nav&gt;</pre></div>
+        </div>
+
+        <div class="spec">
+          <div class="spec__name">Quiet card <span class="new">New</span></div>
+          <div class="spec__note">The standard card with no shadow and a 4px radius — hairline only. Skip <code>.lift</code>; a quiet card shouldn't rise.</div>
+          <div class="spec__preview tint">
+            <article class="card card--quiet" style="width:300px">
+              <p class="card__eyebrow">Policy</p>
+              <h3 class="card__title">Q3 expense policy</h3>
+              <p class="card__body">What's reimbursable, limits, and the receipts to attach.</p>
+              <div class="card__footer">
+                <span class="card__meta">Updated Jul 2</span>
+                <a class="card__cta" href="#">Review <svg class="icon icon--16"><use href="#ic-fluent-arrow-right-24-regular"></use></svg></a>
+              </div>
+            </article>
+            <article class="card" style="width:300px">
+              <p class="card__eyebrow">For contrast</p>
+              <h3 class="card__title">Showcase card</h3>
+              <p class="card__body">The default editorial card keeps 8px corners and shadow-4.</p>
+            </article>
+          </div>
+          <div class="codewrap"><button class="copy-btn" onClick="{{ copyCode }}">Copy</button><pre>&lt;article class="card card--quiet"&gt;
+  &lt;p class="card__eyebrow"&gt;Policy&lt;/p&gt;
+  &lt;h3 class="card__title"&gt;Q3 expense policy&lt;/h3&gt;
+  &lt;p class="card__body"&gt;…&lt;/p&gt;
+&lt;/article&gt;</pre></div>
+        </div>
+      </section>
+
+      <!-- ═══════════ COURSE CARDS ═══════════ -->
+      <section class="group" id="course-cards">
+        <h2>Course cards</h2>
+        <p class="lede">The flagship BMO Learning pattern: image top, blue course-name eyebrow chip, headline, blurb, meta + CTA footer. Composes on <code>.card.card--flush</code>.</p>
+        <div class="spec">
+          <div class="spec__preview tint" style="align-items:stretch">
+            <article class="card card--flush card--course lift" style="width:300px;display:flex;flex-direction:column">
+              <div class="card__media card__media--top photo"><img src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&amp;fit=crop&amp;w=640&amp;q=60" alt="Workshop discussion" crossorigin="anonymous" loading="lazy" onerror="this.onerror=null;this.src='https://picsum.photos/seed/ed-course/640/360'"></div>
+              <div class="card__content" style="display:flex;flex-direction:column;flex:1">
+                <span class="eyebrow-chip">Compliance</span>
+                <h3 class="card__title">Anti-money laundering essentials</h3>
+                <p class="card__body">Spot the signals, escalate with confidence, and know your reporting duties.</p>
+                <div class="card__footer" style="margin-top:auto">
+                  <span class="card__meta"><svg class="icon icon--16"><use href="#ic-fluent-clock-24-regular"></use></svg> 45 min · 3 modules</span>
+                  <a class="card__cta" href="#">More information <svg class="icon icon--16"><use href="#ic-fluent-arrow-right-24-regular"></use></svg></a>
+                </div>
+              </div>
+            </article>
+            <article class="card card--flush card--course lift" style="width:300px;display:flex;flex-direction:column">
+              <div class="card__media card__media--top photo"><img src="https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&amp;fit=crop&amp;w=640&amp;q=60" alt="Mentoring conversation at a desk" crossorigin="anonymous" loading="lazy" onerror="this.onerror=null;this.src='https://picsum.photos/seed/ed-course2/640/360'"></div>
+              <div class="card__content" style="display:flex;flex-direction:column;flex:1">
+                <span class="eyebrow-chip eyebrow-chip--soft">Leadership</span>
+                <h3 class="card__title">Coaching conversations</h3>
+                <p class="card__body">Structure one-on-ones that grow your people — with the soft chip variant.</p>
+                <div class="card__footer" style="margin-top:auto">
+                  <span class="card__meta"><svg class="icon icon--16"><use href="#ic-fluent-clock-24-regular"></use></svg> 60 min · live</span>
+                  <a class="card__cta" href="#">More information <svg class="icon icon--16"><use href="#ic-fluent-arrow-right-24-regular"></use></svg></a>
+                </div>
+              </div>
+            </article>
+          </div>
+          <div class="codewrap"><button class="copy-btn" onClick="{{ copyCode }}">Copy</button><pre>&lt;article class="card card--flush card--course lift"&gt;
+  &lt;div class="card__media card__media--top photo"&gt;&lt;img src="…" alt="…"&gt;&lt;/div&gt;
+  &lt;div class="card__content"&gt;
+    &lt;span class="eyebrow-chip"&gt;Compliance&lt;/span&gt;
+    &lt;h3 class="card__title"&gt;Anti-money laundering essentials&lt;/h3&gt;
+    &lt;p class="card__body"&gt;…&lt;/p&gt;
+    &lt;div class="card__footer"&gt;
+      &lt;span class="card__meta"&gt;45 min · 3 modules&lt;/span&gt;
+      &lt;a class="card__cta" href="#"&gt;More information …&lt;/a&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/article&gt;
+
+<span class="c">&lt;!-- soft chip variant: eyebrow-chip--soft --&gt;</span></pre></div>
+        </div>
+      </section>
+
+      <!-- ═══════════ LINK ROWS ═══════════ -->
+      <section class="group" id="link-rows">
+        <h2>Link rows</h2>
+        <p class="lede">Icon + link + one-line descriptor rows on dividers — course materials, downloads, resource lists.</p>
+        <div class="spec">
+          <div class="spec__preview col">
+            <div class="link-list">
+              <div class="link-row">
+                <span class="link-row__icon"><svg class="icon"><use href="#ic-fluent-document-24-regular"></use></svg></span>
+                <span class="link-row__main"><a class="link-row__title" href="#">Facilitator guide</a><span class="link-row__desc">Session plan, timings and talking points.</span></span>
+                <span class="link-row__meta">PDF · 2.4 MB</span>
+                <span class="link-row__cta"><svg class="icon"><use href="#ic-fluent-arrow-right-24-regular"></use></svg></span>
+              </div>
+              <div class="link-row">
+                <span class="link-row__icon"><svg class="icon"><use href="#ic-fluent-calendar-ltr-24-regular"></use></svg></span>
+                <span class="link-row__main"><a class="link-row__title" href="#">Book a live session</a><span class="link-row__desc">Instructor-led, 90 minutes, monthly.</span></span>
+                <span class="link-row__meta">Outlook</span>
+                <span class="link-row__cta"><svg class="icon"><use href="#ic-fluent-arrow-right-24-regular"></use></svg></span>
+              </div>
+            </div>
+          </div>
+          <div class="codewrap"><button class="copy-btn" onClick="{{ copyCode }}">Copy</button><pre>&lt;div class="link-list"&gt;
+  &lt;div class="link-row"&gt;
+    &lt;span class="link-row__icon"&gt;&lt;svg class="icon"&gt;&lt;use href="#ic-fluent-document-24-regular"/&gt;&lt;/svg&gt;&lt;/span&gt;
+    &lt;span class="link-row__main"&gt;
+      &lt;a class="link-row__title" href="#"&gt;Facilitator guide&lt;/a&gt;
+      &lt;span class="link-row__desc"&gt;Session plan, timings and talking points.&lt;/span&gt;
+    &lt;/span&gt;
+    &lt;span class="link-row__meta"&gt;PDF · 2.4 MB&lt;/span&gt;
+    &lt;span class="link-row__cta"&gt;&lt;svg class="icon"&gt;&lt;use href="#ic-fluent-arrow-right-24-regular"/&gt;&lt;/svg&gt;&lt;/span&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</pre></div>
+        </div>
+      </section>
+
+      <!-- ═══════════ FACILITATORS ═══════════ -->
+      <section class="group" id="facilitators">
+        <h2>Facilitator cards</h2>
+        <p class="lede">Avatar + name, title and contact links. People, made findable.</p>
+        <div class="spec">
+          <div class="spec__preview tint">
+            <div class="facilitator" style="width:320px">
+              <span class="avatar avatar--40" style="background:var(--bmo-chart-midnight);flex:none">SC</span>
+              <div>
+                <div class="facilitator__name">Sarah Chen</div>
+                <div class="facilitator__title">Senior learning partner, T&amp;O</div>
+                <div class="facilitator__contacts">
+                  <a class="facilitator__contact" href="#"><svg class="icon"><use href="#ic-fluent-phone-24-regular"></use></svg> 416 555 0142</a>
+                  <a class="facilitator__contact" href="#"><svg class="icon"><use href="#ic-fluent-mail-24-regular"></use></svg> sarah.chen@bmo.com</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="codewrap"><button class="copy-btn" onClick="{{ copyCode }}">Copy</button><pre>&lt;div class="facilitator"&gt;
+  &lt;span class="avatar avatar--40" style="background:var(--bmo-chart-midnight)"&gt;SC&lt;/span&gt;
+  &lt;div&gt;
+    &lt;div class="facilitator__name"&gt;Sarah Chen&lt;/div&gt;
+    &lt;div class="facilitator__title"&gt;Senior learning partner, T&amp;O&lt;/div&gt;
+    &lt;div class="facilitator__contacts"&gt;
+      &lt;a class="facilitator__contact" href="tel:…"&gt;…phone… 416 555 0142&lt;/a&gt;
+      &lt;a class="facilitator__contact" href="mailto:…"&gt;…mail… sarah.chen@bmo.com&lt;/a&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</pre></div>
+        </div>
+      </section>
+
+      <!-- ═══════════ SCORECARD ═══════════ -->
+      <section class="group" id="scorecard">
+        <h2>Scorecard tiles</h2>
+        <p class="lede">Solid BMO-blue tiles — a sanctioned, bounded exception to "blue is never decorative": white content on top, never interactive controls inside. <code>--midnight</code> deepens a tile.</p>
+        <div class="spec">
+          <div class="spec__preview col">
+            <div class="scorecard scorecard--3">
+              <div class="scorecard__tile">
+                <span class="scorecard__icon"><svg class="c-icon c-icon--32 c-icon--on-blue"><use href="#bmo-ic-goals"></use></svg></span>
+                <div class="scorecard__value">94%</div>
+                <div class="scorecard__label">Controls tested on time</div>
+                <div class="scorecard__caption">Target 90% · trailing 12 months</div>
+              </div>
+              <div class="scorecard__tile">
+                <span class="scorecard__icon"><svg class="c-icon c-icon--32 c-icon--on-blue"><use href="#bmo-ic-learning"></use></svg></span>
+                <div class="scorecard__value">12,400</div>
+                <div class="scorecard__label">Courses completed</div>
+                <div class="scorecard__caption">Year to date</div>
+              </div>
+              <div class="scorecard__tile scorecard__tile--midnight">
+                <span class="scorecard__icon"><svg class="c-icon c-icon--32 c-icon--on-blue"><use href="#bmo-ic-growth"></use></svg></span>
+                <div class="scorecard__value">+18%</div>
+                <div class="scorecard__label">Participation growth</div>
+                <div class="scorecard__caption">vs last year</div>
+              </div>
+            </div>
+          </div>
+          <div class="codewrap"><button class="copy-btn" onClick="{{ copyCode }}">Copy</button><pre>&lt;div class="scorecard scorecard--3"&gt;
+  &lt;div class="scorecard__tile"&gt;
+    &lt;span class="scorecard__icon"&gt;&lt;svg class="c-icon c-icon--32 c-icon--on-blue"&gt;&lt;use href="#bmo-ic-goals"/&gt;&lt;/svg&gt;&lt;/span&gt;
+    &lt;div class="scorecard__value"&gt;94%&lt;/div&gt;
+    &lt;div class="scorecard__label"&gt;Controls tested on time&lt;/div&gt;
+    &lt;div class="scorecard__caption"&gt;Target 90% · trailing 12 months&lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class="scorecard__tile scorecard__tile--midnight"&gt;…&lt;/div&gt;
+&lt;/div&gt;</pre></div>
+        </div>
+      </section>
+
+      <!-- ═══════════ VIDEO ═══════════ -->
+      <section class="group" id="video">
+        <h2>Video</h2>
+        <p class="lede">Two levels: the <strong>media card</strong> (thumbnail + play overlay, links out) and the full <strong>video player</strong> (Stream-style stage with a control bar). Player is rounded by default; <code>.player--flat</code> squares it for the mesh register.</p>
+
+        <div class="spec">
+          <div class="spec__name">Media card</div>
+          <div class="spec__preview tint">
+            <article class="card card--flush media-card lift" style="width:300px">
+              <div class="media-card__thumb">
+                <img src="https://images.unsplash.com/photo-1515169067868-5387ec356754?auto=format&amp;fit=crop&amp;w=640&amp;q=60" alt="Speaker presenting to a seated audience" crossorigin="anonymous" loading="lazy" onerror="this.onerror=null;this.src='https://picsum.photos/seed/ed-media/640/360'">
+                <button class="media-card__play" aria-label="Play: Behind the strategy"><svg class="icon"><use href="#ic-fluent-play-24-regular"></use></svg></button>
+                <span class="media-card__duration">4:12</span>
+              </div>
+              <div class="card__content"><p class="card__eyebrow">Watch</p><h3 class="card__title">Behind the strategy</h3></div>
+            </article>
+          </div>
+          <div class="codewrap"><button class="copy-btn" onClick="{{ copyCode }}">Copy</button><pre>&lt;article class="card card--flush media-card lift"&gt;
+  &lt;div class="media-card__thumb"&gt;
+    &lt;img src="…" alt="…"&gt;
+    &lt;button class="media-card__play" aria-label="Play: …"&gt;
+      &lt;svg class="icon"&gt;&lt;use href="#ic-fluent-play-24-regular"/&gt;&lt;/svg&gt;&lt;/button&gt;
+    &lt;span class="media-card__duration"&gt;4:12&lt;/span&gt;
+  &lt;/div&gt;
+  &lt;div class="card__content"&gt;&lt;p class="card__eyebrow"&gt;Watch&lt;/p&gt;&lt;h3 class="card__title"&gt;…&lt;/h3&gt;&lt;/div&gt;
+&lt;/article&gt;</pre></div>
+        </div>
+
+        <div class="spec">
+          <div class="spec__name">Video player <span class="new">New</span></div>
+          <div class="spec__note">16:9 stage, centered play, title band, control bar on a functional legibility scrim (the sanctioned gradient use). Static look — wire play state, progress and time with Alpine or your embed's API.</div>
+          <div class="spec__preview col" style="max-width:720px">
+            <div class="player">
+              <div class="player__stage">
+                <img src="https://images.unsplash.com/photo-1573164713988-8665fc963095?auto=format&amp;fit=crop&amp;w=1280&amp;q=60" alt="Two leaders in conversation on a studio set" crossorigin="anonymous" loading="lazy" onerror="this.onerror=null;this.src='https://picsum.photos/seed/ed-player/1280/720'">
+                <div class="player__title">Behind the strategy · Episode 4</div>
+                <button class="player__play" aria-label="Play"><svg class="icon"><use href="#ic-fluent-play-24-regular"></use></svg></button>
+                <div class="player__bar">
+                  <button class="player__btn" aria-label="Play"><svg class="icon"><use href="#ic-fluent-play-24-regular"></use></svg></button>
+                  <div class="player__progress"><div class="player__progress-fill" style="width:38%"></div></div>
+                  <span class="player__time">1:43 / 4:32</span>
+                  <button class="player__btn" aria-label="Volume"><svg class="icon"><use href="#ic-fluent-speaker-2-24-regular"></use></svg></button>
+                  <button class="player__btn" aria-label="Captions"><svg class="icon"><use href="#ic-fluent-closed-caption-24-regular"></use></svg></button>
+                  <button class="player__btn" aria-label="Full screen"><svg class="icon"><use href="#ic-fluent-full-screen-maximize-24-regular"></use></svg></button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="codewrap"><button class="copy-btn" onClick="{{ copyCode }}">Copy</button><pre>&lt;div class="player"&gt;  <span class="c">&lt;!-- add player--flat for the mesh register --&gt;</span>
+  &lt;div class="player__stage"&gt;
+    &lt;img src="poster.jpg" alt="…"&gt;
+    &lt;div class="player__title"&gt;Behind the strategy · Episode 4&lt;/div&gt;
+    &lt;button class="player__play" aria-label="Play"&gt;
+      &lt;svg class="icon"&gt;&lt;use href="#ic-fluent-play-24-regular"/&gt;&lt;/svg&gt;&lt;/button&gt;
+    &lt;div class="player__bar"&gt;
+      &lt;button class="player__btn" aria-label="Play"&gt;…play…&lt;/button&gt;
+      &lt;div class="player__progress"&gt;&lt;div class="player__progress-fill" style="width:38%"&gt;&lt;/div&gt;&lt;/div&gt;
+      &lt;span class="player__time"&gt;1:43 / 4:32&lt;/span&gt;
+      &lt;button class="player__btn" aria-label="Volume"&gt;…speaker…&lt;/button&gt;
+      &lt;button class="player__btn" aria-label="Captions"&gt;…cc…&lt;/button&gt;
+      &lt;button class="player__btn" aria-label="Full screen"&gt;…maximize…&lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</pre></div>
+        </div>
+      </section>
+
+      <!-- ═══════════ SPOTLIGHT SLIDER ═══════════ -->
+      <section class="group" id="slider">
+        <h2>Spotlight slider</h2>
+        <p class="lede">The <code>.key-messages</code> shell: media left, one message right, dot + arrow nav. Slides can be quotes <em>or</em> any spotlight content (eyebrow + title + text + link). <code>--quiet</code> flattens it for the mesh register.</p>
+
+        <div class="spec">
+          <div class="spec__name">Quote form — live demo</div>
+          <div class="spec__note">Dots and arrows drive the documented <code>.is-active</code> / <code>aria-pressed</code> contract. Try them.</div>
+          <div class="spec__preview col">
+            <div class="key-messages">
+              <div class="key-messages__media"><img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&amp;fit=crop&amp;w=800&amp;q=60" alt="Portrait of a senior leader" crossorigin="anonymous" loading="lazy" onerror="this.onerror=null;this.src='https://picsum.photos/seed/ed-km/800/900'"></div>
+              <div class="key-messages__body">
+                <p class="key-messages__quote">{{ msgQuote }}</p>
+                <p class="key-messages__cite"><strong>{{ msgName }}</strong> · {{ msgRole }}</p>
+                <div class="key-messages__nav">
+                  <button class="key-messages__arrow" aria-label="Previous message" onClick="{{ msgPrev }}"><svg class="icon"><use href="#ic-fluent-chevron-left-24-regular"></use></svg></button>
+                  <div class="key-messages__dots" role="group" aria-label="Choose a message">
+                    <sc-for list="{{ msgDots }}" as="d" hint-placeholder-count="3"><button class="{{ d.cls }}" aria-pressed="{{ d.pressed }}" aria-label="{{ d.label }}" onClick="{{ d.go }}"></button></sc-for>
+                  </div>
+                  <button class="key-messages__arrow" aria-label="Next message" onClick="{{ msgNext }}"><svg class="icon"><use href="#ic-fluent-chevron-right-24-regular"></use></svg></button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="codewrap"><button class="copy-btn" onClick="{{ copyCode }}">Copy</button><pre>&lt;div class="key-messages" x-data="deck()"&gt;
+  &lt;div class="key-messages__media"&gt;&lt;img :src="slides[i].img" alt=""&gt;&lt;/div&gt;
+  &lt;div class="key-messages__body"&gt;
+    &lt;p class="key-messages__quote" x-text="slides[i].quote"&gt;&lt;/p&gt;
+    &lt;p class="key-messages__cite"&gt;&lt;strong x-text="slides[i].name"&gt;&lt;/strong&gt; · &lt;span x-text="slides[i].role"&gt;&lt;/span&gt;&lt;/p&gt;
+    &lt;div class="key-messages__nav"&gt;
+      &lt;button class="key-messages__arrow" aria-label="Previous"
+              x-on:click="i = (i + slides.length - 1) % slides.length"&gt;…chevron-left…&lt;/button&gt;
+      &lt;div class="key-messages__dots" role="group" aria-label="Choose a message"&gt;
+        &lt;template x-for="(s, k) in slides"&gt;
+          &lt;button class="key-messages__dot" :class="{ 'is-active': i===k }"
+                  :aria-pressed="i===k" x-on:click="i=k"&gt;&lt;/button&gt;
+        &lt;/template&gt;
+      &lt;/div&gt;
+      &lt;button class="key-messages__arrow" aria-label="Next"
+              x-on:click="i = (i + 1) % slides.length"&gt;…chevron-right…&lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</pre></div>
+        </div>
+
+        <div class="spec">
+          <div class="spec__name">Spotlight form (not a quote) <span class="new">New</span></div>
+          <div class="spec__note">Same shell, generic slides: <code>__eyebrow</code> + <code>__title</code> + <code>__text</code> + <code>__link</code>. Shown here with <code>--quiet</code> — flat for the mesh register.</div>
+          <div class="spec__preview col">
+            <div class="key-messages key-messages--quiet">
+              <div class="key-messages__media"><img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&amp;fit=crop&amp;w=800&amp;q=60" alt="Team gathered around a café table" crossorigin="anonymous" loading="lazy" onerror="this.onerror=null;this.src='https://picsum.photos/seed/ed-spot/800/900'"></div>
+              <div class="key-messages__body">
+                <p class="key-messages__eyebrow">Find out more</p>
+                <h3 class="key-messages__title">T&amp;O strategy hub</h3>
+                <p class="key-messages__text">Where the bank is headed, what it means for T&amp;O, and how your work ladders up.</p>
+                <a class="key-messages__link" href="#">Visit the hub <svg class="icon"><use href="#ic-fluent-arrow-right-24-regular"></use></svg></a>
+                <div class="key-messages__nav">
+                  <button class="key-messages__arrow" aria-label="Previous"><svg class="icon"><use href="#ic-fluent-chevron-left-24-regular"></use></svg></button>
+                  <div class="key-messages__dots" role="group" aria-label="Choose a spotlight">
+                    <button class="key-messages__dot is-active" aria-pressed="true" aria-label="Spotlight 1"></button>
+                    <button class="key-messages__dot" aria-pressed="false" aria-label="Spotlight 2"></button>
+                    <button class="key-messages__dot" aria-pressed="false" aria-label="Spotlight 3"></button>
+                  </div>
+                  <button class="key-messages__arrow" aria-label="Next"><svg class="icon"><use href="#ic-fluent-chevron-right-24-regular"></use></svg></button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="codewrap"><button class="copy-btn" onClick="{{ copyCode }}">Copy</button><pre>&lt;div class="key-messages key-messages--quiet"&gt;
+  &lt;div class="key-messages__media"&gt;&lt;img src="…" alt="…"&gt;&lt;/div&gt;
+  &lt;div class="key-messages__body"&gt;
+    &lt;p class="key-messages__eyebrow"&gt;Find out more&lt;/p&gt;
+    &lt;h3 class="key-messages__title"&gt;T&amp;O strategy hub&lt;/h3&gt;
+    &lt;p class="key-messages__text"&gt;Where the bank is headed…&lt;/p&gt;
+    &lt;a class="key-messages__link" href="#"&gt;Visit the hub …arrow…&lt;/a&gt;
+    &lt;div class="key-messages__nav"&gt;…arrows + dots…&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</pre></div>
+        </div>
+      </section>
+
+      <!-- ═══════════ CTA BANDS ═══════════ -->
+      <section class="group" id="cta">
+        <h2>CTA bands</h2>
+        <p class="lede">One statement + actions, full width. On a tint band by default; <code>.band--flood</code> is the sanctioned solid-blue form with inverted buttons — at most one per page.</p>
+        <div class="spec">
+          <div class="spec__preview col" style="padding:24px 0">
+            <div class="band band--blue">
+              <div style="padding:32px 28px">
+                <div class="cta-band">
+                  <div><h3 class="cta-band__title">Ready to grow?</h3><p class="cta-band__lede">Browse the catalogue or talk to a learning partner.</p></div>
+                  <div class="cta-band__actions"><a class="btn btn--primary btn--lg" href="#">Browse courses</a><a class="btn btn--secondary btn--lg" href="#">Contact us</a></div>
+                </div>
+              </div>
+            </div>
+            <div class="band band--flood">
+              <div style="padding:32px 28px">
+                <div class="cta-band">
+                  <div><h3 class="cta-band__title">Flood of blue</h3><p class="cta-band__lede">White content, inverted primary action.</p></div>
+                  <div class="cta-band__actions"><a class="btn btn--primary btn--lg" href="#">Get started</a><a class="btn btn--secondary btn--lg" href="#">Learn more</a></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="codewrap"><button class="copy-btn" onClick="{{ copyCode }}">Copy</button><pre>&lt;div class="band band--blue"&gt;
+  &lt;div class="l-wrap" style="padding:var(--space-480) var(--space-320)"&gt;
+    &lt;div class="cta-band"&gt;
+      &lt;div&gt;&lt;h2 class="cta-band__title"&gt;Ready to grow?&lt;/h2&gt;
+           &lt;p class="cta-band__lede"&gt;…&lt;/p&gt;&lt;/div&gt;
+      &lt;div class="cta-band__actions"&gt;
+        &lt;a class="btn btn--primary btn--lg"&gt;Browse courses&lt;/a&gt;
+        &lt;a class="btn btn--secondary btn--lg"&gt;Contact us&lt;/a&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+<span class="c">&lt;!-- solid-blue statement band: band--flood (max one per page) --&gt;</span></pre></div>
+        </div>
+      </section>
+
+      <!-- ═══════════ ART ═══════════ -->
+      <section class="group" id="art">
+        <h2>Icons &amp; illustration</h2>
+        <p class="lede">Tier 2: corporate content line-icons (<code>bmo-ic-*</code>, rendered with <code>.c-icon</code>) label content — categories, scorecards, section markers. Tier 3: spot illustrations, ~1 per page, staged on white or albicant. Functional Fluent icons stay for controls.</p>
+        <div class="spec">
+          <div class="spec__name">Corporate content line-icons (placeholder set)</div>
+          <div class="spec__preview" style="gap:20px">
+            <svg class="c-icon c-icon--32"><use href="#bmo-ic-learning"></use></svg>
+            <svg class="c-icon c-icon--32"><use href="#bmo-ic-clients"></use></svg>
+            <svg class="c-icon c-icon--32"><use href="#bmo-ic-community"></use></svg>
+            <svg class="c-icon c-icon--32"><use href="#bmo-ic-regulators"></use></svg>
+            <svg class="c-icon c-icon--32"><use href="#bmo-ic-growth"></use></svg>
+            <svg class="c-icon c-icon--32"><use href="#bmo-ic-award"></use></svg>
+            <svg class="c-icon c-icon--32"><use href="#bmo-ic-compass"></use></svg>
+            <svg class="c-icon c-icon--32"><use href="#bmo-ic-idea"></use></svg>
+            <svg class="c-icon c-icon--32"><use href="#bmo-ic-goals"></use></svg>
+            <svg class="c-icon c-icon--32"><use href="#bmo-ic-security"></use></svg>
+            <svg class="c-icon c-icon--32"><use href="#bmo-ic-global"></use></svg>
+            <svg class="c-icon c-icon--32"><use href="#bmo-ic-knowledge"></use></svg>
+          </div>
+          <div class="codewrap"><button class="copy-btn" onClick="{{ copyCode }}">Copy</button><pre>&lt;svg class="c-icon c-icon--32"&gt;&lt;use href="#bmo-ic-learning"/&gt;&lt;/svg&gt;
+<span class="c">&lt;!-- sizes: c-icon--24 / --32 / --48 / --64 · on blue: c-icon--on-blue --&gt;</span></pre></div>
+        </div>
+        <div class="spec">
+          <div class="spec__name">Spot illustration</div>
+          <div class="spec__preview tint" style="gap:32px">
+            <div class="spot spot--md"><img src="illustrations/education-l.svg" alt="" aria-hidden="true"></div>
+            <div class="spot spot--sm spot--ground"><img src="illustrations/target-xs.svg" alt="" aria-hidden="true"></div>
+          </div>
+          <div class="codewrap"><button class="copy-btn" onClick="{{ copyCode }}">Copy</button><pre>&lt;div class="spot spot--md"&gt;&lt;img src="illustrations/education-l.svg" alt="" aria-hidden="true"&gt;&lt;/div&gt;
+<span class="c">&lt;!-- staged on an albicant round ground --&gt;</span>
+&lt;div class="spot spot--sm spot--ground"&gt;&lt;img src="illustrations/target-xs.svg" alt="" aria-hidden="true"&gt;&lt;/div&gt;</pre></div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;showCode&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Library&quot;}}">
+class Component extends DCLogic {
+  state = { i: 0 };
+  slides = [
+    { quote: "\u201CWe win when our clients win — every project here ladders to that.\u201D", name: "Michael Torres", role: "Chief Risk Officer, T&O" },
+    { quote: "\u201CSpeak up early. The best catch is the one that never ships.\u201D", name: "Amara Osei", role: "Head of Controls Testing" },
+    { quote: "\u201CAn hour of learning a week compounds faster than any roadmap.\u201D", name: "Priya Sharma", role: "Senior learning partner" }
+  ];
+  copy = (e) => {
+    const btn = e.currentTarget;
+    const pre = btn.parentElement.querySelector("pre");
+    if (!pre) return;
+    navigator.clipboard.writeText(pre.textContent).then(() => {
+      const t = btn.textContent;
+      btn.textContent = "Copied";
+      setTimeout(() => { btn.textContent = t; }, 1200);
+    });
+  };
+  renderVals() {
+    const n = this.slides.length, i = this.state.i, s = this.slides[i];
+    return {
+      codeClass: (this.props.showCode ?? true) ? "" : "hide-code",
+      copyCode: this.copy,
+      msgQuote: s.quote, msgName: s.name, msgRole: s.role,
+      msgPrev: () => this.setState({ i: (i + n - 1) % n }),
+      msgNext: () => this.setState({ i: (i + 1) % n }),
+      msgDots: this.slides.map((_, k) => ({
+        cls: k === i ? "key-messages__dot is-active" : "key-messages__dot",
+        pressed: k === i, label: "Message " + (k + 1),
+        go: () => this.setState({ i: k })
+      }))
+    };
+  }
+}
+</script>
+</body>
+</html>

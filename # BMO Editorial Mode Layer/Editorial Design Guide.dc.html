@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="colors_and_type.css">
+<link rel="stylesheet" href="components.css">
+<link rel="stylesheet" href="editorial.css">
+<style>
+  *,*::before,*::after{box-sizing:border-box}
+  body{margin:0;background:var(--surface-subtle);color:var(--fg-primary);font-family:var(--font-family);min-height:100vh}
+  ::-webkit-scrollbar{width:10px;height:10px}
+  ::-webkit-scrollbar-thumb{background:rgba(0,0,0,.18);border-radius:5px}
+  .page{display:grid;grid-template-columns:240px 1fr;min-height:100vh}
+  aside.docnav{position:sticky;top:0;align-self:start;height:100vh;overflow:auto;background:var(--surface-canvas);border-right:1px solid var(--stroke-divider);padding:24px 16px 32px}
+  aside.docnav .brand{display:flex;align-items:center;gap:10px;padding:6px 8px 14px;border-bottom:1px solid var(--stroke-divider);margin-bottom:14px}
+  aside.docnav .brand .mark{width:28px;height:28px;border-radius:4px;background:var(--bmo-blue);display:flex;align-items:center;justify-content:center;color:#fff;font:700 13px/1 var(--font-family)}
+  aside.docnav .brand .title{font:600 14px/18px var(--font-family);color:var(--fg-primary)}
+  aside.docnav .brand .subtitle{font:400 11px/14px var(--font-family);color:var(--fg-secondary)}
+  aside.docnav nav{display:flex;flex-direction:column;gap:1px}
+  aside.docnav nav a{display:flex;align-items:center;gap:8px;padding:6px 10px;border-radius:4px;text-decoration:none;font:400 13px/18px var(--font-family);color:var(--fg-primary)}
+  aside.docnav nav a:hover{background:var(--f2-grey-96);text-decoration:none}
+  aside.docnav nav a.section{font-weight:600;color:var(--fg-secondary);text-transform:uppercase;letter-spacing:.04em;font-size:11px;padding:14px 10px 4px;pointer-events:none}
+  main.doc{padding:32px 40px 80px;max-width:1180px;min-width:0}
+  main.doc section{margin-bottom:48px;scroll-margin-top:16px}
+  main.doc section > .eyebrow{font:600 11px/14px var(--font-family);text-transform:uppercase;letter-spacing:.08em;color:var(--accent-rest);margin-bottom:6px}
+  main.doc section > h2{font:400 28px/36px var(--font-family);color:var(--fg-primary);margin:0 0 4px}
+  main.doc section > .lede{font:400 16px/22px var(--font-family);color:var(--fg-secondary);max-width:680px;margin-bottom:24px}
+  .dpanel{background:var(--surface-canvas);border:1px solid var(--stroke-divider);border-radius:var(--radius-medium);padding:18px 20px;box-shadow:var(--shadow-2)}
+  .dpanel + .dpanel{margin-top:12px}
+  .dpanel.flush{padding:0;overflow:hidden}
+  .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  .grid-3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+  code.token{background:var(--f2-grey-94);border-radius:2px;padding:1px 5px;font:400 12px/1.4 var(--font-family-mono);color:var(--fg-primary)}
+  .callout{background:var(--surface-subtle);border:1px solid var(--stroke-divider);border-radius:var(--radius-medium);padding:14px 16px;font:400 14px/20px var(--font-family);color:var(--fg-primary)}
+  .callout strong{font-weight:600}
+  .callout.danger{background:#FBE6E6;border-color:#F0B6B6}
+  .dodont{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .dodont .item{border:1px solid var(--stroke-divider);border-radius:var(--radius-medium);padding:16px;background:var(--surface-canvas)}
+  .dodont .head{font:600 11px/14px var(--font-family);text-transform:uppercase;letter-spacing:.08em;margin-bottom:10px;display:flex;align-items:center;gap:6px}
+  .dodont .do .head{color:var(--fg-success)}
+  .dodont .dont .head{color:var(--fg-danger)}
+  .dodont ul{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:8px;font:400 13px/18px var(--font-family);color:var(--fg-secondary)}
+  .rules-table{width:100%;border-collapse:collapse;font:400 14px/20px var(--font-family)}
+  .rules-table td,.rules-table th{padding:12px 16px;border-bottom:1px solid var(--stroke-divider);vertical-align:top;text-align:left}
+  .rules-table tr:last-child td{border-bottom:0}
+  .rules-table th{font:600 11px/14px var(--font-family);text-transform:uppercase;letter-spacing:.06em;color:var(--fg-secondary)}
+  .rules-table td.k{font-weight:600;width:30%}
+  .rules-table td.d{color:var(--fg-secondary)}
+  .type-row{display:grid;grid-template-columns:210px 1fr;align-items:baseline;padding:12px 0;border-top:1px solid var(--stroke-divider)}
+  .type-row:first-child{border-top:none}
+  .type-row .spec{font:400 12px/16px var(--font-family-mono);color:var(--fg-secondary)}
+  .type-row .specimen{color:var(--fg-primary)}
+  .toc-links{display:flex;gap:14px;flex-wrap:wrap;margin-top:14px}
+  .toc-links a{font:600 12px/16px var(--font-family);color:var(--accent-rest);text-decoration:none}
+  h3.sub{font:700 11px/20px var(--font-family);color:var(--fg-primary);margin:24px 0 12px;text-transform:uppercase;letter-spacing:.06em}
+  @media (max-width:860px){.page{grid-template-columns:1fr}aside.docnav{display:none}main.doc{padding:24px 20px 60px}.grid-2,.dodont{grid-template-columns:1fr}}
+</style>
+</helmet>
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true"><defs>
+  <symbol id="ic-fluent-checkmark-circle-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"></circle><path d="M8.5 12.2l2.4 2.4 4.6-4.9"></path></g></symbol>
+  <symbol id="ic-fluent-dismiss-circle-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"></circle><path d="M9.5 9.5l5 5M14.5 9.5l-5 5"></path></g></symbol>
+  <symbol id="ic-fluent-arrow-right-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13M12 6l6 6-6 6"></path></g></symbol>
+  <symbol id="bmo-ic-goals" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"></circle><circle cx="12" cy="12" r="5"></circle><circle cx="12" cy="12" r="1.6"></circle></g></symbol>
+</defs></svg>
+
+<div class="page">
+  <aside class="docnav">
+    <div class="brand">
+      <div class="mark">B</div>
+      <div><div class="title">Editorial mode</div><div class="subtitle">Design guide</div></div>
+    </div>
+    <nav>
+      <a class="section" href="#">Foundations</a>
+      <a href="#overview">Overview</a>
+      <a href="#when">When to use</a>
+      <a href="#registers">Showcase vs mesh</a>
+      <a class="section" href="#">Visual language</a>
+      <a href="#heroes">Hero devices</a>
+      <a href="#art">The art system</a>
+      <a href="#color">Color rules</a>
+      <a href="#type">Display type</a>
+      <a href="#shape">Shape &amp; elevation</a>
+      <a href="#motion">Motion</a>
+      <a class="section" href="#">Practice</a>
+      <a href="#voice">Voice</a>
+      <a href="#dodonts">Do &amp; don't</a>
+      <a href="#files">Files</a>
+    </nav>
+  </aside>
+
+  <main class="doc">
+    <header style="margin-bottom:40px">
+      <div style="font:600 11px/14px var(--font-family);text-transform:uppercase;letter-spacing:.08em;color:var(--accent-rest);margin-bottom:6px">BMO SharePoint design system</div>
+      <h1 style="font:400 34px/42px var(--font-family);margin:0 0 6px;letter-spacing:-.01em">Editorial mode — design guide</h1>
+      <p style="font:400 16px/22px var(--font-family);color:var(--fg-secondary);max-width:720px;margin:0">
+        How to design the warm, employee-facing content register — learning catalogs, resource
+        hubs, awareness pages — on the same tokens, vocabulary and delivery constraints as the
+        app register. An additive layer, not a fork.
+      </p>
+      <div class="toc-links">
+        <a href="#registers">Showcase vs mesh</a>
+        <a href="#heroes">Hero devices</a>
+        <a href="#art">Art system</a>
+        <a href="#dodonts">Do &amp; don't</a>
+        <a href="Editorial Components.dc.html">Component library →</a>
+      </div>
+    </header>
+
+    <!-- ── Overview ── -->
+    <section id="overview">
+      <div class="eyebrow">Overview</div>
+      <h2>The register, in plain language</h2>
+      <p class="lede">
+        Warm, spacious, hero-led. Photography of real working moments. One blue family
+        carrying chrome, links and a single brand device. Big Regular-weight Segoe
+        headings with room to breathe. Calm, plain copy — warmth comes from scale,
+        space and imagery, never from tone.
+      </p>
+      <p class="lede" style="margin-top:12px">
+        Everything that makes the app register correct is unchanged: same tokens, same BEM
+        vocabulary, buildless and CDN-free, sentence case, no emoji, red for the logo only.
+        Editorial <em>relaxes the austerity dials</em> — it does not loosen the rules.
+      </p>
+    </section>
+
+    <!-- ── When ── -->
+    <section id="when">
+      <div class="eyebrow">Scope</div>
+      <h2>When to use editorial</h2>
+      <p class="lede">Editorial informs, orients and welcomes. Apps get work done. They coexist on one page — an embedded applet keeps its austere styling because it simply isn't under <code class="token">.editorial</code>.</p>
+      <div class="dpanel flush">
+        <table class="rules-table">
+          <tbody>
+            <tr><th style="width:30%"></th><th>App mode (default)</th><th>Editorial mode</th></tr>
+            <tr><td class="k">Purpose</td><td class="d">Intake, approvals, dashboards, data</td><td class="d">Catalogs, hubs, awareness, program pages</td></tr>
+            <tr><td class="k">Type</td><td class="d">14–16px, tight</td><td class="d">Display steps to 52px, generous leading</td></tr>
+            <tr><td class="k">Imagery</td><td class="d">Rare; functional icons only</td><td class="d">Photography leads; illustration for dry subjects</td></tr>
+            <tr><td class="k">Blue</td><td class="d">Interactive only</td><td class="d">Interactive + one sanctioned brand device</td></tr>
+            <tr><td class="k">Motion</td><td class="d">Minimal</td><td class="d">Reveal-on-scroll, hover-lift (still functional)</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ── Registers ── -->
+    <section id="registers">
+      <div class="eyebrow">The key decision</div>
+      <h2>Showcase vs mesh</h2>
+      <p class="lede">
+        Editorial blocks come in two finishes. Pick one per page — the choice is about what the
+        content sits <em>next to</em>, not about taste.
+      </p>
+      <div class="grid-2">
+        <div class="dpanel">
+          <h3 class="sub" style="margin-top:0">Showcase — the destination finish</h3>
+          <div class="editorial" style="margin-bottom:12px">
+            <article class="card" style="max-width:360px">
+              <p class="card__eyebrow">Rounded + elevated</p>
+              <h3 class="card__title">8px corners, shadow-4</h3>
+              <p class="card__body">Lifting cards, shadowed player and carousel shells (heroes stay flush).</p>
+            </article>
+          </div>
+          <p style="font:400 13px/19px var(--font-family);color:var(--fg-secondary);margin:0">
+            For pages you own end-to-end: a learning catalog, a program hub. The page is the
+            product; blocks read as designed objects. <code class="token">--ed-radius</code> (8px),
+            <code class="token">shadow-4</code>, <code class="token">.lift</code> on interactive cards.
+          </p>
+        </div>
+        <div class="dpanel">
+          <h3 class="sub" style="margin-top:0">Mesh — the flush finish</h3>
+          <div class="editorial" style="margin-bottom:12px">
+            <article class="card card--quiet" style="max-width:360px">
+              <p class="card__eyebrow">Flat + hairline</p>
+              <h3 class="card__title">4px or square, no shadow</h3>
+              <p class="card__body">News rows on dividers, outlined quick links, hairline cards.</p>
+            </article>
+          </div>
+          <p style="font:400 13px/19px var(--font-family);color:var(--fg-secondary);margin:0">
+            For content living beside out-of-box SharePoint web parts (the real T&amp;O Central
+            look). Nothing may read as a designed island. <code class="token">.card--quiet</code>, <code class="token">.player--flat</code>,
+            <code class="token">.key-messages--quiet</code>, plus the mesh-native blocks:
+            <code class="token">.news-list</code>, <code class="token">.quicklink</code>,
+            <code class="token">.related</code>, <code class="token">.webpart</code>.
+          </p>
+        </div>
+      </div>
+      <div class="callout" style="margin-top:14px">
+        <strong>Don't mix finishes within one surface.</strong> A flat news list beside a shadowed,
+        rounded card grid reads as two systems. Per page: pick the finish, apply it to every
+        editorial block. (An embedded app applet is exempt — it keeps app-mode styling.)
+      </div>
+    </section>
+
+    <!-- ── Heroes ── -->
+    <section id="heroes">
+      <div class="eyebrow">Visual language</div>
+      <h2>Hero devices — a kit of parts</h2>
+      <p class="lede">One device per hero, never stacked. Full-bleed devices build on <code class="token">.hero.hero--banner</code>; arc builds on the two-column base hero. All heroes are flat/flush — square corners, no elevation — in both finishes.</p>
+      <div class="dpanel flush">
+        <table class="rules-table">
+          <tbody>
+            <tr><th>Device</th><th>Class</th><th>Reach for it when</th></tr>
+            <tr><td class="k">Blue band</td><td><code class="token">.hero--band</code></td><td class="d">Default. Blue should clearly carry the frame; photo stays full-colour. The BMO Central home treatment.</td></tr>
+            <tr><td class="k">Scrim</td><td><code class="token">.hero--scrim</code></td><td class="d">The photo is the story; you only need text legibility.</td></tr>
+            <tr><td class="k">Blue overlay</td><td><code class="token">.hero--blue</code></td><td class="d">The photo is texture, not subject — the heavier brand wash (100% blue, Multiply, greyscale image at ~40%).</td></tr>
+            <tr><td class="k">Bokeh</td><td><code class="token">.hero--bokeh</code></td><td class="d">Dry content with no honest photo. The approved artwork alternative.</td></tr>
+            <tr><td class="k">Arc / ring</td><td><code class="token">.hero--arc</code></td><td class="d">A person or team is the subject — circular crop in a single-tone thin BMO-blue ring (<code class="token">--arc--white</code> on dark grounds).</td></tr>
+            <tr><td class="k">Arc on blue</td><td><code class="token">.hero--arc-blue</code></td><td class="d">The photo circle atop a solid BMO-blue block — white ring, white copy (sanctioned blue fill; text + one inverted CTA, never controls).</td></tr>
+            <tr><td class="k">Masonry</td><td><code class="token">.hero-masonry</code></td><td class="d">The SP tiled hero web part — tall lead tile + stacked side tiles, scrim + white titles. Always flat/flush.</td></tr>
+            <tr><td class="k">Spot hero</td><td><code class="token">.hero--spot</code></td><td class="d">Welcome screens and dry subjects — illustration as the deliberate photo substitute.</td></tr>
+            <tr><td class="k">Flood of blue</td><td><code class="token">.band--flood</code></td><td class="d">One solid-blue statement/CTA band per page, white content, inverted buttons.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="callout danger" style="margin-top:14px">
+        <strong>Never:</strong> triangle overlays and chevrons (print only) · the red content circle
+        (red is logo-roundel-only) · surrounding-circle icons · decorative gradients — the only
+        sanctioned gradients are the functional legibility scrim and the approved bokeh artwork.
+      </div>
+    </section>
+
+    <!-- ── Art ── -->
+    <section id="art">
+      <div class="eyebrow">Visual language</div>
+      <h2>The three-tier art system</h2>
+      <p class="lede">The guardrail that keeps warmth from becoming clip-art soup. Photography leads; everything else knows its place.</p>
+      <div class="dpanel flush">
+        <table class="rules-table">
+          <tbody>
+            <tr><th>Tier</th><th>Asset</th><th>Allowed use</th><th>Never</th></tr>
+            <tr><td class="k">0 · Photography</td><td class="d"><code class="token">.photo</code> · licensed BMO library</td><td class="d">Leads. Hero + feature moments — authentic, candid, natural light, diverse.</td><td class="d">Glossy stock, drama filters, object close-ups</td></tr>
+            <tr><td class="k">1 · Functional icons</td><td class="d">Fluent <code class="token">ic-fluent-*</code></td><td class="d">Controls, affordances, inline meaning — unchanged from app mode.</td><td class="d">Content decoration</td></tr>
+            <tr><td class="k">2 · Content line-icons</td><td class="d"><code class="token">bmo-ic-*</code> via <code class="token">.c-icon</code></td><td class="d">Content labeling — categories, scorecard glyphs, quick links, section markers.</td><td class="d">App UX (edit / save / nav)</td></tr>
+            <tr><td class="k">3 · Spot illustrations</td><td class="d"><code class="token">illustrations/</code> + <code class="token">.spot</code></td><td class="d">Hero substitute for dry subjects, ~1 per page, staged on white/albicant.</td><td class="d">Competing beside a photo hero; wallpaper repetition</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="callout" style="margin-top:14px">
+        <strong>The prominence rule.</strong> When a page has a photo hero, no spot illustration or
+        line-icon appears at competing prominence. A spot illustration as hero is a substitute,
+        never a co-star.
+      </div>
+    </section>
+
+    <!-- ── Color ── -->
+    <section id="color">
+      <div class="eyebrow">Visual language</div>
+      <h2>Color rules</h2>
+      <p class="lede">Same authority as app mode; editorial adds exactly two sanctioned blue-fill exceptions.</p>
+      <div class="dpanel flush">
+        <table class="rules-table">
+          <tbody>
+            <tr><td class="k">Blue is the unifier</td><td class="d">Chrome, links, accents, one device per page. Still never a random decorative fill.</td></tr>
+            <tr><td class="k">Sanctioned exceptions</td><td class="d">The <strong>scorecard tile</strong> and the <strong>flood-of-blue band</strong> — blessed BMO patterns, white content on top, never interactive controls inside.</td></tr>
+            <tr><td class="k">Red is logo-only</td><td class="d">The single red anywhere is the M-bar roundel in the suite bar. Errors use <code class="token">--fg-danger</code>. Never a red content circle.</td></tr>
+            <tr><td class="k">Lots of white</td><td class="d">Editorial leans on <em>more</em> whitespace than app mode. Tints (<code class="token">--surface-tint-*</code>) alternate section bands; never behind interactive surfaces.</td></tr>
+            <tr><td class="k">Chart accents are chart-only</td><td class="d">Purple/mint/etc. never decorate pages.</td></tr>
+            <tr><td class="k">Light only</td><td class="d">The SP intranet is effectively light-only; editorial does not invest in dark.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ── Type ── -->
+    <section id="type">
+      <div class="eyebrow">Visual language</div>
+      <h2>Display type</h2>
+      <p class="lede">Larger Segoe steps on the <code class="token">.editorial</code> scope — all Regular weight per BMO's H1–H3 rule, negative tracking on the big steps. Dax is never a webfont; it only appears baked into image assets.</p>
+      <div class="dpanel">
+        <div class="type-row"><div class="spec">--ed-display · 52/60 · Regular</div><div class="specimen" style="font:400 52px/60px var(--font-family);letter-spacing:-.02em">Grow your career</div></div>
+        <div class="type-row"><div class="spec">--ed-title-1 · 40/48 · Regular</div><div class="specimen" style="font:400 40px/48px var(--font-family);letter-spacing:-.01em">Section opener</div></div>
+        <div class="type-row"><div class="spec">--ed-title-2 · 32/40 · Regular</div><div class="specimen" style="font:400 32px/40px var(--font-family);letter-spacing:-.01em">Band and carousel titles</div></div>
+        <div class="type-row"><div class="spec">--ed-lede · 20/30 · Regular</div><div class="specimen" style="font:400 20px/30px var(--font-family);color:var(--fg-secondary)">Ledes and standfirsts sit under display headings at a comfortable measure.</div></div>
+      </div>
+    </section>
+
+    <!-- ── Shape ── -->
+    <section id="shape">
+      <div class="eyebrow">Visual language</div>
+      <h2>Shape &amp; elevation — two dials</h2>
+      <p class="lede">The register decides both dials at once. Elevation never exceeds the app budget (<code class="token">shadow-4</code>/<code class="token">shadow-8</code>).</p>
+      <div class="grid-2">
+        <div class="dpanel">
+          <h3 class="sub" style="margin-top:0">Showcase</h3>
+          <div style="display:flex;gap:16px;align-items:center;margin-bottom:10px">
+            <div style="width:84px;height:60px;background:#fff;border:1px solid var(--stroke-divider);border-radius:var(--radius-large);box-shadow:var(--shadow-4)"></div>
+            <div style="width:84px;height:60px;background:#fff;border:1px solid var(--stroke-divider);border-radius:var(--radius-xlarge);box-shadow:var(--shadow-8)"></div>
+          </div>
+          <p style="font:400 13px/18px var(--font-family);color:var(--fg-secondary);margin:0">Cards 8px + <code class="token">shadow-4</code> · hero media 12px + <code class="token">shadow-8</code> · <code class="token">.lift</code> rises to <code class="token">shadow-16</code> on hover.</p>
+        </div>
+        <div class="dpanel">
+          <h3 class="sub" style="margin-top:0">Mesh</h3>
+          <div style="display:flex;gap:16px;align-items:center;margin-bottom:10px">
+            <div style="width:84px;height:60px;background:#fff;border:1px solid var(--stroke-divider);border-radius:var(--radius-medium)"></div>
+            <div style="width:84px;height:60px;background:#fff;border:1px solid var(--stroke-divider)"></div>
+          </div>
+          <p style="font:400 13px/18px var(--font-family);color:var(--fg-secondary);margin:0">4px or square corners, hairline borders, no shadow, dividers over boxes. Skip <code class="token">.lift</code> entirely.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Motion ── -->
+    <section id="motion">
+      <div class="eyebrow">Visual language</div>
+      <h2>Motion</h2>
+      <p class="lede">Functional, never decorative — the app-mode curves and durations. Editorial content carries <code class="token">.reveal</code>; the layer gives it a CSS load-in fade so a page is self-sufficient without the reveal script. <code class="token">.lift</code> is showcase-only. Honour <code class="token">prefers-reduced-motion</code> everywhere.</p>
+    </section>
+
+    <!-- ── Voice ── -->
+    <section id="voice">
+      <div class="eyebrow">Practice</div>
+      <h2>Voice — unchanged</h2>
+      <p class="lede">Plain, calm, second-person, sentence case, numerals, explicit currency, no emoji, no exclamation marks. If the copy got chattier, editorial went wrong — warmth is scale, space and imagery.</p>
+      <div class="dpanel flush">
+        <table class="rules-table">
+          <tbody>
+            <tr><th>Don't</th><th>Do</th></tr>
+            <tr><td class="d">Welcome to your amazing learning journey!</td><td class="d">Grow your career at BMO</td></tr>
+            <tr><td class="d">Click here to see all courses</td><td class="d">Browse the course catalogue →</td></tr>
+            <tr><td class="d">Oops! We couldn't find that.</td><td class="d">No courses match these filters. Clear filters to see all 48.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ── Do/Don't ── -->
+    <section id="dodonts">
+      <div class="eyebrow">Practice</div>
+      <h2>Do &amp; don't</h2>
+      <div class="dodont">
+        <div class="item do">
+          <div class="head"><svg class="icon icon--16"><use href="#ic-fluent-checkmark-circle-24-regular"></use></svg> Do</div>
+          <ul>
+            <li>Pick one hero device and one finish (showcase or mesh) per page.</li>
+            <li>Let one photo or one illustration lead; lean on white space.</li>
+            <li>Use content line-icons for labels, Fluent icons for controls.</li>
+            <li>Select photography for BMO's voice: authentic, natural light, human, diverse.</li>
+            <li>Keep an embedded app applet in its own austere register.</li>
+          </ul>
+        </div>
+        <div class="item dont">
+          <div class="head"><svg class="icon icon--16"><use href="#ic-fluent-dismiss-circle-24-regular"></use></svg> Don't</div>
+          <ul>
+            <li>Stack brand devices (bokeh + arc + flood on one element).</li>
+            <li>Mix flat and elevated editorial blocks on one surface.</li>
+            <li>Paint blue behind interactive content (scorecard/flood are the only fills).</li>
+            <li>Reach for red, chart accents, decorative gradients, or Dax as a webfont.</li>
+            <li>Redefine <code class="token">:root</code> or invent values a token covers.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Files ── -->
+    <section id="files">
+      <div class="eyebrow">Practice</div>
+      <h2>Files</h2>
+      <div class="dpanel flush">
+        <table class="rules-table">
+          <tbody>
+            <tr><td class="k"><code class="token">editorial.css</code></td><td class="d">The layer — link after <code class="token">components.css</code>; content under <code class="token">class="editorial"</code>.</td></tr>
+            <tr><td class="k"><a href="Editorial Components.dc.html" style="font-weight:600">Editorial Components</a></td><td class="d">Every editorial block, live, with copy-paste markup.</td></tr>
+            <tr><td class="k"><a href="Learning Catalog.dc.html" style="font-weight:600">Learning Catalog</a></td><td class="d">Showcase-register proof page.</td></tr>
+            <tr><td class="k"><a href="Resource Hub.dc.html" style="font-weight:600">Resource Hub</a></td><td class="d">Arc hero, scorecard, video cards, key-messages carousel.</td></tr>
+            <tr><td class="k"><code class="token">docs/EDITORIAL-MODE.md</code></td><td class="d">The written spec this guide visualizes.</td></tr>
+            <tr><td class="k"><code class="token">bmo-content-icons.svg</code> · <code class="token">bokeh.svg</code> · <code class="token">illustrations/</code></td><td class="d">Content-icon sprite (placeholder), bokeh artwork, spot illustrations.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p style="font:400 12px/18px var(--font-family-mono);color:var(--fg-secondary);margin-top:24px;padding-top:16px;border-top:1px solid var(--stroke-divider)">
+        Editorial mode v1.1 · July 2026 · placeholders pending production: BMO Design Icons, official logo, approved bokeh, licensed photography
+      </p>
+    </section>
+  </main>
+</div>
+
+</x-dc>
+</body>
+</html>

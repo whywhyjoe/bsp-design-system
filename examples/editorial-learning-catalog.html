@@ -1,0 +1,463 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BMO SharePoint · Learning Catalog (Editorial mode)</title>
+<!-- LEARNING CATALOG — the flagship EDITORIAL MODE example: the warm, employee-facing
+     content register rendered natively in-token, framed in representative SharePoint
+     chrome. Proves the .editorial scope, a photo hero with the blue-band + circle-
+     overlay devices, the course-module pattern, link-rows, facilitators, a spot
+     illustration used correctly, and the flood-of-blue CTA. Guide: ../docs/EDITORIAL-MODE.md -->
+<!-- Canonical library, in order; editorial.css is the opt-in third link. -->
+<link rel="stylesheet" href="../colors_and_type.css">
+<link rel="stylesheet" href="../components.css">
+<link rel="stylesheet" href="../editorial.css">
+<style>
+  *,*::before,*::after { box-sizing: border-box; }
+  body { margin: 0; background: var(--surface-canvas); }
+  [x-cloak] { display: none !important; }
+</style>
+</head>
+<body>
+
+<!-- Functional Fluent icon sprite — inlined from ../bmo-icons.svg (keep in sync).
+     Same-document refs resolve with the page opened straight from disk. -->
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true"><defs>
+  <symbol id="ic-fluent-add-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></g></symbol>
+  <symbol id="ic-fluent-alert-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4a5 5 0 0 1 5 5c0 5 2 6 2 6H5s2-1 2-6a5 5 0 0 1 5-5zM10.3 19a1.8 1.8 0 0 0 3.4 0"/></g></symbol>
+  <symbol id="ic-fluent-arrow-down-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v13M6 12l6 6 6-6"/></g></symbol>
+  <symbol id="ic-fluent-arrow-export-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M11 6H6a1 1 0 0 0-1 1v11a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1v-5M14 5h5v5M19 5l-8 8"/></g></symbol>
+  <symbol id="ic-fluent-arrow-right-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13M12 6l6 6-6 6"/></g></symbol>
+  <symbol id="ic-fluent-arrow-up-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V6M6 12l6-6 6 6"/></g></symbol>
+  <symbol id="ic-fluent-attach-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M16.5 8.5l-6 6a2 2 0 1 0 2.8 2.8l6-6a3.5 3.5 0 0 0-5-5l-6.5 6.5a5 5 0 0 0 7 7l5.5-5.5"/></g></symbol>
+  <symbol id="ic-fluent-calendar-ltr-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 7a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v11a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V7zM5 10h14M9 4v3M15 4v3"/></g></symbol>
+  <symbol id="ic-fluent-checkmark-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></g></symbol>
+  <symbol id="ic-fluent-checkmark-circle-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"/><path d="M8.5 12.2l2.4 2.4 4.6-4.9"/></g></symbol>
+  <symbol id="ic-fluent-chevron-down-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M7 10l5 5 5-5"/></g></symbol>
+  <symbol id="ic-fluent-chevron-left-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M14 7l-5 5 5 5"/></g></symbol>
+  <symbol id="ic-fluent-chevron-right-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M10 7l5 5-5 5"/></g></symbol>
+  <symbol id="ic-fluent-clock-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"/><path d="M12 7.5V12l3 2"/></g></symbol>
+  <symbol id="ic-fluent-closed-caption-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="6" width="17" height="12" rx="1.5"/><path d="M10.8 10.6a2 2 0 1 0 0 2.8M16.6 10.6a2 2 0 1 0 0 2.8"/></g></symbol>
+  <symbol id="ic-fluent-data-bar-vertical-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19h16M7 19v-6M12 19V6M17 19v-9"/></g></symbol>
+  <symbol id="ic-fluent-delete-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8h12M9.5 8V6a1 1 0 0 1 1-1h3a1 1 0 0 1 1 1v2M8 8l.8 11a1 1 0 0 0 1 .9h4.4a1 1 0 0 0 1-.9L16 8M10.5 11.5v5M13.5 11.5v5"/></g></symbol>
+  <symbol id="ic-fluent-dismiss-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 6l12 12M18 6L6 18"/></g></symbol>
+  <symbol id="ic-fluent-dismiss-circle-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"/><path d="M9.5 9.5l5 5M14.5 9.5l-5 5"/></g></symbol>
+  <symbol id="ic-fluent-document-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M7 4h7l4 4v11a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1zM14 4v4h4"/></g></symbol>
+  <symbol id="ic-fluent-document-pdf-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M7 4h7l4 4v11a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1zM14 4v4h4"/><path d="M8.5 15.5h7"/></g></symbol>
+  <symbol id="ic-fluent-edit-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 19l1-4 9-9 3 3-9 9-4 1zM14 6l3 3"/></g></symbol>
+  <symbol id="ic-fluent-filter-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 6h14l-5.5 7v5l-3-2v-3L5 6z"/></g></symbol>
+  <symbol id="ic-fluent-folder-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7a1 1 0 0 1 1-1h4l2 2h8a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7z"/></g></symbol>
+  <symbol id="ic-fluent-full-screen-maximize-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 9V6a1 1 0 0 1 1-1h3M15 5h3a1 1 0 0 1 1 1v3M19 15v3a1 1 0 0 1-1 1h-3M9 19H6a1 1 0 0 1-1-1v-3"/></g></symbol>
+  <symbol id="ic-fluent-grid-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="6.5" height="6.5" rx="1"/><rect x="13.5" y="4" width="6.5" height="6.5" rx="1"/><rect x="4" y="13.5" width="6.5" height="6.5" rx="1"/><rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1"/></g></symbol>
+  <symbol id="ic-fluent-home-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11.5L12 5l8 6.5V19a1 1 0 0 1-1 1h-4v-6H9v6H5a1 1 0 0 1-1-1v-7.5z"/></g></symbol>
+  <symbol id="ic-fluent-info-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"/><path d="M12 11.5v4.5"/><path d="M12 8.2h.01"/></g></symbol>
+  <symbol id="ic-fluent-mail-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 7h14a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1zM4.5 8l7.5 5 7.5-5"/></g></symbol>
+  <symbol id="ic-fluent-mail-inbox-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l1.8-6.2a1 1 0 0 1 1-.8h8.4a1 1 0 0 1 1 .8L19 13v4a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1v-4zM5 13h4a3 3 0 0 0 6 0h4"/></g></symbol>
+  <symbol id="ic-fluent-money-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="7" width="16" height="10" rx="1.5"/><circle cx="12" cy="12" r="2.3"/><path d="M7 12h.01M17 12h.01"/></g></symbol>
+  <symbol id="ic-fluent-more-horizontal-24-regular" viewBox="0 0 24 24"><g fill="currentColor" stroke="none"><circle cx="6" cy="12" r="1.4"/><circle cx="12" cy="12" r="1.4"/><circle cx="18" cy="12" r="1.4"/></g></symbol>
+  <symbol id="ic-fluent-open-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M11 6H6a1 1 0 0 0-1 1v11a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1v-5M14 5h5v5M19 5l-8 8"/></g></symbol>
+  <symbol id="ic-fluent-person-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8.5" r="3.5"/><path d="M5.5 19a6.5 6.5 0 0 1 13 0"/></g></symbol>
+  <symbol id="ic-fluent-person-add-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="9.5" cy="8.5" r="3.3"/><path d="M3.5 19a6 6 0 0 1 11-3.3M18 8v6M15 11h6"/></g></symbol>
+  <symbol id="ic-fluent-phone-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 4.5l3 .8 1 3.2-1.9 1.4a10 10 0 0 0 4.6 4.6l1.4-1.9 3.2 1 .8 3a1 1 0 0 1-1 1.1A13.5 13.5 0 0 1 5.4 5.5a1 1 0 0 1 1.1-1z"/></g></symbol>
+  <symbol id="ic-fluent-pause-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M9.2 6v12M14.8 6v12"/></g></symbol>
+  <symbol id="ic-fluent-play-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8.5 5.5l10 6.5-10 6.5z"/></g></symbol>
+  <symbol id="ic-fluent-question-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M9.6 9.4a2.4 2.4 0 1 1 3.3 2.6c-.7.3-1.1 1-1.1 1.8"/><path d="M11.8 16.5h.01"/></g></symbol>
+  <symbol id="ic-fluent-receipt-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 4h12v16l-2-1.3-2 1.3-2-1.3-2 1.3-2-1.3-2 1.3V4zM9 8h6M9 11.5h6M9 15h4"/></g></symbol>
+  <symbol id="ic-fluent-search-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="10.5" cy="10.5" r="5.5"/><path d="M15 15l4 4"/></g></symbol>
+  <symbol id="ic-fluent-settings-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 4v2.2M12 17.8V20M5 7.5l1.9 1.1M17.1 15.4L19 16.5M5 16.5l1.9-1.1M17.1 8.6L19 7.5"/></g></symbol>
+  <symbol id="ic-fluent-shield-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4l7 2.5v5c0 5-3.5 8-7 9.5-3.5-1.5-7-4.5-7-9.5v-5L12 4zM9 12l2 2 4-4"/></g></symbol>
+  <symbol id="ic-fluent-speaker-2-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10v4h3l4.5 3.5v-11L7 10H4z"/><path d="M15 9.5a4 4 0 0 1 0 5M17.5 7.5a7 7 0 0 1 0 9"/></g></symbol>
+  <symbol id="ic-fluent-star-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4.5l2.3 4.7 5.2.8-3.8 3.7.9 5.2-4.6-2.5-4.6 2.5.9-5.2L6.5 10l5.2-.8L12 4.5z"/></g></symbol>
+  <symbol id="ic-fluent-warning-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5l8.5 14.5H3.5L12 5z"/><path d="M12 10.5v4M12 17h.01"/></g></symbol>
+  <symbol id="ic-fluent-checkmark-circle-24-filled" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5" fill="currentColor"/><path d="M8.4 12.2l2.5 2.5 4.7-5" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="ic-fluent-warning-24-filled" viewBox="0 0 24 24"><path d="M11.1 5.2a1 1 0 0 1 1.8 0l8 14a1 1 0 0 1-.9 1.5H4a1 1 0 0 1-.9-1.5l8-14z" fill="currentColor"/><path d="M12 10v4M12 17h.01" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+</defs></svg>
+
+<!-- Corporate content line-icon sprite — inlined from ../bmo-content-icons.svg
+     (content-labeling tier; placeholder for the licensed "BMO Design Icons" set). -->
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true"><defs>
+  <symbol id="bmo-ic-learning" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 9L12 5l9.5 4L12 13 2.5 9z"></path><path d="M6.5 11v4.2c0 .9 2.5 2.3 5.5 2.3s5.5-1.4 5.5-2.3V11"></path><path d="M21.5 9v4.5"></path></g></symbol>
+  <symbol id="bmo-ic-clients" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="8.5" cy="8" r="3"></circle><circle cx="16" cy="9.5" r="2.4"></circle><path d="M3.5 19a5 5 0 0 1 10 0"></path><path d="M14.5 19a4 4 0 0 1 6-3.4"></path></g></symbol>
+  <symbol id="bmo-ic-community" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="7" r="2.6"></circle><circle cx="5.5" cy="10.5" r="2.2"></circle><circle cx="18.5" cy="10.5" r="2.2"></circle><path d="M8 18a4 4 0 0 1 8 0"></path><path d="M2.5 18.5a3.2 3.2 0 0 1 4.2-3"></path><path d="M17.3 15.5a3.2 3.2 0 0 1 4.2 3"></path></g></symbol>
+  <symbol id="bmo-ic-regulators" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9.5L12 4l8 5.5"></path><path d="M5 9.5h14"></path><path d="M6.5 10v7M11 10v7M17.5 10v7"></path><path d="M4 19.5h16"></path></g></symbol>
+  <symbol id="bmo-ic-growth" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 18l5-5 3 3 7-7"></path><path d="M15 9h4v4"></path></g></symbol>
+  <symbol id="bmo-ic-award" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="9" r="5"></circle><path d="M9.2 13.4L8 20l4-2 4 2-1.2-6.6"></path><path d="M12 6.6l.9 1.8 2 .3-1.45 1.4.34 2L12 11.1l-1.8.95.34-2L9.1 8.7l2-.3.9-1.8z"></path></g></symbol>
+  <symbol id="bmo-ic-compass" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"></circle><path d="M15.5 8.5l-1.7 5-5 1.7 1.7-5 5-1.7z"></path></g></symbol>
+  <symbol id="bmo-ic-idea" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 16.5a6 6 0 1 1 6 0v1.5a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1v-1.5z"></path><path d="M9.5 21h5"></path></g></symbol>
+  <symbol id="bmo-ic-goals" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"></circle><circle cx="12" cy="12" r="5"></circle><circle cx="12" cy="12" r="1.6"></circle></g></symbol>
+  <symbol id="bmo-ic-security" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.5l7 2.4v5.1c0 5-3.5 8-7 9.5-3.5-1.5-7-4.5-7-9.5V5.9L12 3.5z"></path><path d="M9 12l2 2 4-4"></path></g></symbol>
+  <symbol id="bmo-ic-global" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"></circle><path d="M3.5 12h17"></path><path d="M12 3.5c2.6 2.3 4 5.4 4 8.5s-1.4 6.2-4 8.5c-2.6-2.3-4-5.4-4-8.5s1.4-6.2 4-8.5z"></path></g></symbol>
+  <symbol id="bmo-ic-knowledge" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 6.5C10.3 5.2 8 4.6 4.5 5v12c3.5-.4 5.8.2 7.5 1.5"></path><path d="M12 6.5C13.7 5.2 16 4.6 19.5 5v12c-3.5-.4-5.8.2-7.5 1.5"></path><path d="M12 6.5v12"></path></g></symbol>
+</defs></svg>
+
+<!-- ════════════════════════ SharePoint-modern host chrome ════════════════════════
+     The frame editorial content meshes with. Sits OUTSIDE .editorial. -->
+<header class="sp-suite">
+  <button class="sp-suite__btn" aria-label="App launcher"><svg class="icon"><use href="#ic-fluent-grid-24-regular"/></svg></button>
+  <span class="sp-suite__brand"><img src="../assets/bmo-logo-placeholder.svg" alt="BMO" width="26" height="26"><span class="sp-suite__word">BMO</span></span>
+  <span class="sp-suite__search"><svg class="icon"><use href="#ic-fluent-search-24-regular"/></svg> Search in SharePoint</span>
+  <div class="sp-suite__actions">
+    <button class="sp-suite__btn" aria-label="Notifications"><svg class="icon"><use href="#ic-fluent-alert-24-regular"/></svg></button>
+    <button class="sp-suite__btn" aria-label="Settings"><svg class="icon"><use href="#ic-fluent-settings-24-regular"/></svg></button>
+    <button class="sp-suite__btn" aria-label="Help"><svg class="icon"><use href="#ic-fluent-question-24-regular"/></svg></button>
+    <span class="avatar avatar--28" style="background:var(--bmo-chart-midnight)">JT</span>
+  </div>
+</header>
+
+<nav class="sp-hubnav" aria-label="BMO hubs">
+  <a class="sp-hubnav__link" href="#">BMO Central</a>
+  <a class="sp-hubnav__link" href="#">Canadian P&amp;BB</a>
+  <a class="sp-hubnav__link" href="#">Wealth</a>
+  <a class="sp-hubnav__link" href="#">Capital Markets</a>
+  <a class="sp-hubnav__link is-active" href="#" aria-current="page">Technology &amp; Operations</a>
+  <a class="sp-hubnav__link" href="#">Corporate Areas</a>
+</nav>
+
+<div class="sp-site">
+  <span class="sp-site__icon"><svg class="c-icon c-icon--24"><use href="#bmo-ic-learning"/></svg></span>
+  <span class="sp-site__title">Learning &amp; Development</span>
+  <span class="sp-site__spacer"></span>
+  <button class="sp-site__follow"><svg class="icon"><use href="#ic-fluent-star-24-regular"/></svg> Follow</button>
+  <button class="sp-site__follow"><svg class="icon"><use href="#ic-fluent-search-24-regular"/></svg> Search this site</button>
+</div>
+
+<nav class="sp-nav" aria-label="Site">
+  <a class="sp-nav__link" href="#">Home</a>
+  <a class="sp-nav__link is-active" href="#" aria-current="page">Course catalogue</a>
+  <a class="sp-nav__link" href="#">My learning</a>
+  <a class="sp-nav__link" href="#">Events</a>
+  <a class="sp-nav__link" href="#">Support</a>
+</nav>
+
+<!-- ════════════════════════ EDITORIAL CONTENT ════════════════════════ -->
+<main class="editorial">
+
+  <!-- ── Hero: full-bleed photo + blue band + circle overlay (photography leads) ── -->
+  <div class="band band--sky">
+    <div class="l-wrap" style="padding-top:var(--space-160);padding-bottom:var(--space-400)">
+      <nav class="crumbs" aria-label="Breadcrumb" style="padding:var(--space-160) 0">
+        <a href="#">T&amp;O Central</a><svg class="icon crumbs__sep"><use href="#ic-fluent-chevron-right-24-regular"/></svg>
+        <a href="#">Learning &amp; Development</a><svg class="icon crumbs__sep"><use href="#ic-fluent-chevron-right-24-regular"/></svg>
+        <span class="crumbs__current" aria-current="page">Course catalogue</span>
+      </nav>
+      <section class="hero hero--banner hero--band hero--circle reveal">
+        <div class="hero__bg">
+          <img src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&w=1600&q=70" alt="Colleagues learning together in a bright workshop room" crossorigin="anonymous" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='https://picsum.photos/seed/bmo-learning-hero/1600/800'">
+        </div>
+        <div class="hero__device" aria-hidden="true">
+          <svg viewBox="0 0 380 380" fill="none">
+            <circle cx="250" cy="130" r="172" stroke="var(--bmo-white)" stroke-opacity=".45" stroke-width="2"/>
+            <circle cx="250" cy="130" r="132" stroke="var(--bmo-blue-focus)" stroke-opacity=".85" stroke-width="7"/>
+            <circle cx="250" cy="130" r="94" stroke="var(--bmo-white)" stroke-opacity=".3" stroke-width="2"/>
+          </svg>
+        </div>
+        <div class="hero__copy">
+          <p class="hero__eyebrow">Learning catalogue</p>
+          <h1 class="hero__title">Grow your career with learning built for how BMO works</h1>
+          <p class="hero__lede">Courses, workshops, and self-serve materials — curated by the teams who do the work, for the people who do it next.</p>
+          <div class="hero__cta">
+            <a class="btn btn--primary btn--lg" href="#">Browse all courses</a>
+            <a class="btn btn--secondary btn--lg" href="#">My learning</a>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <!-- ── Catalogue: filter chips + course-module grid (inline Alpine drives the
+       .is-active / aria-pressed state contract; x-data root wraps chips AND grid) ── -->
+  <div class="band band--white">
+    <div class="l-wrap l-section" x-data="{ cat: 'all' }">
+      <div class="section-head section-head--flex reveal">
+        <div>
+          <p class="section-head__eyebrow">Course catalogue</p>
+          <h2 class="section-head__title">Find your next course</h2>
+          <p class="section-head__lede">Filter by category, or browse everything. New courses are added every quarter.</p>
+        </div>
+        <a class="btn btn--tertiary" href="#">View all courses <svg class="icon icon--16"><use href="#ic-fluent-arrow-right-24-regular"/></svg></a>
+      </div>
+
+      <div class="chip-row" role="group" aria-label="Filter courses by category" style="margin-bottom:var(--space-320)">
+        <button class="chip" :class="{ 'is-active': cat==='all' }" :aria-pressed="cat==='all'" x-on:click="cat='all'">All courses</button>
+        <button class="chip" :class="{ 'is-active': cat==='compliance' }" :aria-pressed="cat==='compliance'" x-on:click="cat='compliance'">Compliance</button>
+        <button class="chip" :class="{ 'is-active': cat==='leadership' }" :aria-pressed="cat==='leadership'" x-on:click="cat='leadership'">Leadership</button>
+        <button class="chip" :class="{ 'is-active': cat==='technology' }" :aria-pressed="cat==='technology'" x-on:click="cat='technology'">Technology</button>
+        <button class="chip" :class="{ 'is-active': cat==='onboarding' }" :aria-pressed="cat==='onboarding'" x-on:click="cat='onboarding'">Onboarding</button>
+      </div>
+
+      <div class="l-grid l-grid--3">
+        <article class="card card--flush card--course lift" tabindex="0" x-show="cat==='all' || cat==='compliance'">
+          <div class="card__media card__media--top photo">
+            <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=640&q=70" alt="A team reviewing information together, attentively, at their desks" crossorigin="anonymous" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='https://picsum.photos/seed/bmo-course-aml/640/360'">
+          </div>
+          <div class="card__content">
+            <span class="eyebrow-chip">Compliance</span>
+            <h3 class="card__title">Anti-money laundering essentials</h3>
+            <p class="card__body">Recognise, escalate, and document suspicious activity — the foundations every employee needs.</p>
+            <div class="card__footer">
+              <span class="card__meta"><svg class="icon"><use href="#ic-fluent-clock-24-regular"/></svg> 45 min · 3 modules</span>
+              <a class="card__cta" href="#">More information <svg class="icon icon--16"><use href="#ic-fluent-arrow-right-24-regular"/></svg></a>
+            </div>
+          </div>
+        </article>
+        <article class="card card--flush card--course lift" tabindex="0" x-show="cat==='all' || cat==='leadership'">
+          <div class="card__media card__media--top photo">
+            <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&w=640&q=70" alt="A manager and team member sharing an encouraging moment" crossorigin="anonymous" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='https://picsum.photos/seed/bmo-course-coach/640/360'">
+          </div>
+          <div class="card__content">
+            <span class="eyebrow-chip">Leadership</span>
+            <h3 class="card__title">Coaching for people leaders</h3>
+            <p class="card__body">Practical coaching conversations that build trust and help your team grow.</p>
+            <div class="card__footer">
+              <span class="card__meta"><svg class="icon"><use href="#ic-fluent-clock-24-regular"/></svg> 4 modules · workshop</span>
+              <a class="card__cta" href="#">More information <svg class="icon icon--16"><use href="#ic-fluent-arrow-right-24-regular"/></svg></a>
+            </div>
+          </div>
+        </article>
+        <article class="card card--flush card--course lift" tabindex="0" x-show="cat==='all' || cat==='technology'">
+          <div class="card__media card__media--top photo">
+            <img src="https://images.unsplash.com/photo-1517180102446-f3ece451e9d8?auto=format&fit=crop&w=640&q=70" alt="Laptop screen with data on a desk" crossorigin="anonymous" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='https://picsum.photos/seed/bmo-course-data/640/360'">
+          </div>
+          <div class="card__content">
+            <span class="eyebrow-chip">Technology</span>
+            <h3 class="card__title">Working securely with client data</h3>
+            <p class="card__body">How to handle, store, and share client information the right way, every time.</p>
+            <div class="card__footer">
+              <span class="card__meta"><svg class="icon"><use href="#ic-fluent-clock-24-regular"/></svg> 30 min · self-paced</span>
+              <a class="card__cta" href="#">More information <svg class="icon icon--16"><use href="#ic-fluent-arrow-right-24-regular"/></svg></a>
+            </div>
+          </div>
+        </article>
+        <article class="card card--flush card--course lift" tabindex="0" x-show="cat==='all' || cat==='onboarding'">
+          <div class="card__media card__media--top photo">
+            <img src="https://images.unsplash.com/photo-1600880292089-90a7e086ee0c?auto=format&fit=crop&w=640&q=70" alt="Colleagues welcoming a new team member" crossorigin="anonymous" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='https://picsum.photos/seed/bmo-course-onboard/640/360'">
+          </div>
+          <div class="card__content">
+            <span class="eyebrow-chip">Onboarding</span>
+            <h3 class="card__title">Your first 90 days at BMO</h3>
+            <p class="card__body">A guided path through the people, tools, and rhythms of your new team.</p>
+            <div class="card__footer">
+              <span class="card__meta"><svg class="icon"><use href="#ic-fluent-clock-24-regular"/></svg> 6 modules · self-paced</span>
+              <a class="card__cta" href="#">More information <svg class="icon icon--16"><use href="#ic-fluent-arrow-right-24-regular"/></svg></a>
+            </div>
+          </div>
+        </article>
+        <article class="card card--flush card--course lift" tabindex="0" x-show="cat==='all' || cat==='compliance'">
+          <div class="card__media card__media--top photo">
+            <img src="https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?auto=format&fit=crop&w=640&q=70" alt="A colleague focused at their laptop in natural light" crossorigin="anonymous" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='https://picsum.photos/seed/bmo-course-privacy/640/360'">
+          </div>
+          <div class="card__content">
+            <span class="eyebrow-chip">Compliance</span>
+            <h3 class="card__title">Privacy and data handling</h3>
+            <p class="card__body">Your privacy obligations in plain language, with the scenarios you will actually meet.</p>
+            <div class="card__footer">
+              <span class="card__meta"><svg class="icon"><use href="#ic-fluent-clock-24-regular"/></svg> 25 min · self-paced</span>
+              <a class="card__cta" href="#">More information <svg class="icon icon--16"><use href="#ic-fluent-arrow-right-24-regular"/></svg></a>
+            </div>
+          </div>
+        </article>
+        <article class="card card--flush card--course lift" tabindex="0" x-show="cat==='all' || cat==='leadership'">
+          <div class="card__media card__media--top photo">
+            <img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&w=640&q=70" alt="A team leader listening in a candid workplace moment" crossorigin="anonymous" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='https://picsum.photos/seed/bmo-course-change/640/360'">
+          </div>
+          <div class="card__content">
+            <span class="eyebrow-chip">Leadership</span>
+            <h3 class="card__title">Leading through change</h3>
+            <p class="card__body">Steady your team through transitions with clear communication and shared goals.</p>
+            <div class="card__footer">
+              <span class="card__meta"><svg class="icon"><use href="#ic-fluent-clock-24-regular"/></svg> 4 modules · workshop</span>
+              <a class="card__cta" href="#">More information <svg class="icon icon--16"><use href="#ic-fluent-arrow-right-24-regular"/></svg></a>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Course materials: icon + link + descriptor rows ── -->
+  <div class="band band--neutral">
+    <div class="l-wrap l-section">
+      <div class="section-head reveal">
+        <p class="section-head__eyebrow">Course materials</p>
+        <h2 class="section-head__title">Everything you need to run or take a course</h2>
+      </div>
+      <div class="card reveal" style="padding:var(--space-120) var(--space-320) var(--space-160)">
+        <div class="link-list">
+          <div class="link-row">
+            <span class="link-row__icon"><svg class="icon"><use href="#ic-fluent-document-pdf-24-regular"/></svg></span>
+            <span class="link-row__main">
+              <a class="link-row__title" href="#">Facilitator guide</a>
+              <span class="link-row__desc">Full session plan, timings, and discussion prompts for every module.</span>
+            </span>
+            <span class="link-row__meta">PDF · 2.4 MB</span>
+            <span class="link-row__cta"><svg class="icon"><use href="#ic-fluent-arrow-right-24-regular"/></svg></span>
+          </div>
+          <div class="link-row">
+            <span class="link-row__icon"><svg class="icon"><use href="#ic-fluent-document-24-regular"/></svg></span>
+            <span class="link-row__main">
+              <a class="link-row__title" href="#">Participant workbook</a>
+              <span class="link-row__desc">Exercises and note pages participants complete during the course.</span>
+            </span>
+            <span class="link-row__meta">DOCX · 680 KB</span>
+            <span class="link-row__cta"><svg class="icon"><use href="#ic-fluent-arrow-right-24-regular"/></svg></span>
+          </div>
+          <div class="link-row">
+            <span class="link-row__icon"><svg class="icon"><use href="#ic-fluent-grid-24-regular"/></svg></span>
+            <span class="link-row__main">
+              <a class="link-row__title" href="#">Slide deck</a>
+              <span class="link-row__desc">The presentation deck, branded and ready to present.</span>
+            </span>
+            <span class="link-row__meta">PPTX · 5.1 MB</span>
+            <span class="link-row__cta"><svg class="icon"><use href="#ic-fluent-arrow-right-24-regular"/></svg></span>
+          </div>
+          <div class="link-row">
+            <span class="link-row__icon"><svg class="icon"><use href="#ic-fluent-checkmark-circle-24-regular"/></svg></span>
+            <span class="link-row__main">
+              <a class="link-row__title" href="#">Knowledge check</a>
+              <span class="link-row__desc">The end-of-course assessment. A passing score records your completion.</span>
+            </span>
+            <span class="link-row__meta">Online · 10 min</span>
+            <span class="link-row__cta"><svg class="icon"><use href="#ic-fluent-arrow-right-24-regular"/></svg></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Facilitators ── -->
+  <div class="band band--white">
+    <div class="l-wrap l-section">
+      <div class="section-head reveal">
+        <p class="section-head__eyebrow">Facilitators</p>
+        <h2 class="section-head__title">The people who lead these sessions</h2>
+      </div>
+      <div class="l-grid l-grid--3">
+        <div class="facilitator reveal">
+          <span class="avatar avatar--48" style="background:var(--accent-rest)">SC</span>
+          <div>
+            <div class="facilitator__name">Sarah Chen</div>
+            <div class="facilitator__title">Senior learning partner, T&amp;O</div>
+            <div class="facilitator__contacts">
+              <a class="facilitator__contact" href="tel:+14165550142"><svg class="icon"><use href="#ic-fluent-phone-24-regular"/></svg> 416 555 0142</a>
+              <a class="facilitator__contact" href="mailto:sarah.chen@bmo.com"><svg class="icon"><use href="#ic-fluent-mail-24-regular"/></svg> sarah.chen@bmo.com</a>
+            </div>
+          </div>
+        </div>
+        <div class="facilitator reveal">
+          <span class="avatar avatar--48" style="background:var(--bmo-chart-navy)">DP</span>
+          <div>
+            <div class="facilitator__name">Devon Park</div>
+            <div class="facilitator__title">Leadership program lead</div>
+            <div class="facilitator__contacts">
+              <a class="facilitator__contact" href="tel:+14165550188"><svg class="icon"><use href="#ic-fluent-phone-24-regular"/></svg> 416 555 0188</a>
+              <a class="facilitator__contact" href="mailto:devon.park@bmo.com"><svg class="icon"><use href="#ic-fluent-mail-24-regular"/></svg> devon.park@bmo.com</a>
+            </div>
+          </div>
+        </div>
+        <div class="facilitator reveal">
+          <span class="avatar avatar--48" style="background:var(--bmo-chart-midnight)">AR</span>
+          <div>
+            <div class="facilitator__name">Amara Reddy</div>
+            <div class="facilitator__title">Technology enablement coach</div>
+            <div class="facilitator__contacts">
+              <a class="facilitator__contact" href="tel:+14165550205"><svg class="icon"><use href="#ic-fluent-phone-24-regular"/></svg> 416 555 0205</a>
+              <a class="facilitator__contact" href="mailto:amara.reddy@bmo.com"><svg class="icon"><use href="#ic-fluent-mail-24-regular"/></svg> amara.reddy@bmo.com</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Spot-illustration section marker: a "dry" self-serve area ── -->
+  <div class="band band--white" style="border-top:1px solid var(--stroke-divider)">
+    <div class="l-wrap l-section">
+      <div class="hero hero--spot reveal" style="padding:var(--space-160) 0">
+        <div class="hero__copy">
+          <p class="hero__eyebrow">Self-serve</p>
+          <h2 class="hero__title" style="font:var(--ed-title-1);letter-spacing:-.01em">Learning standards &amp; accessibility</h2>
+          <p class="hero__lede">Building a course? Start here. Our standards keep every session consistent, accessible, and on-brand — no design background needed.</p>
+          <div class="link-list" style="margin-top:var(--space-120)">
+            <div class="link-row">
+              <span class="link-row__icon"><svg class="icon"><use href="#ic-fluent-checkmark-circle-24-regular"/></svg></span>
+              <span class="link-row__main">
+                <a class="link-row__title" href="#">Course build standards</a>
+                <span class="link-row__desc">Structure, length, and naming conventions for a new course.</span>
+              </span>
+              <span class="link-row__cta"><svg class="icon"><use href="#ic-fluent-arrow-right-24-regular"/></svg></span>
+            </div>
+            <div class="link-row">
+              <span class="link-row__icon"><svg class="icon"><use href="#bmo-ic-idea"/></svg></span>
+              <span class="link-row__main">
+                <a class="link-row__title" href="#">Accessibility checklist</a>
+                <span class="link-row__desc">Captions, contrast, and keyboard access — what every course must meet.</span>
+              </span>
+              <span class="link-row__cta"><svg class="icon"><use href="#ic-fluent-arrow-right-24-regular"/></svg></span>
+            </div>
+          </div>
+        </div>
+        <div class="hero__art">
+          <img src="../illustrations/education-l.svg" alt="" aria-hidden="true">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── CTA band — BMO-blue flood ── -->
+  <div class="band band--flood">
+    <div class="l-wrap" style="padding:var(--space-480) var(--space-320)">
+      <div class="cta-band reveal">
+        <div>
+          <h2 class="cta-band__title">Can't find the course you need?</h2>
+          <p class="cta-band__lede">Tell us what would help your team. We review every request and build the ones people ask for most.</p>
+        </div>
+        <div class="cta-band__actions">
+          <a class="btn btn--primary btn--lg" href="#"><svg class="icon icon--16"><use href="#ic-fluent-add-24-regular"/></svg> Request a course</a>
+          <a class="btn btn--secondary btn--lg" href="#">Talk to L&amp;D</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<!-- ════════════════════════ Site footer ════════════════════════ -->
+<footer class="sp-footer">
+  <span>© BMO Financial Group</span>
+  <a href="#">Accessibility</a>
+  <a href="#">Privacy</a>
+  <a href="#">Terms of use</a>
+  <span class="sp-footer__spacer"></span>
+  <span>Internal use only · Learning &amp; Development, Technology &amp; Operations</span>
+</footer>
+
+<!-- Reveal-on-scroll. editorial.css also gives .reveal a CSS load-in fade, so
+     content is never stranded hidden even if this script doesn't run. -->
+<script>
+(function () {
+  var play = function () {
+    var els = Array.prototype.slice.call(document.querySelectorAll('.reveal'));
+    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduce || !('IntersectionObserver' in window)) {
+      els.forEach(function (el) { el.classList.add('is-in'); });
+      return;
+    }
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); }
+      });
+    }, { threshold: 0.05, rootMargin: '0px 0px -4% 0px' });
+    els.forEach(function (el) { io.observe(el); });
+    /* Safety net: content must never stay hidden if IO doesn't fire. */
+    setTimeout(function () { els.forEach(function (el) { el.classList.add('is-in'); }); }, 700);
+  };
+  requestAnimationFrame(play);
+})();
+</script>
+
+<!-- ALPINE LAST, deferred. CDN is fine for this local showcase; a production
+     SharePoint page self-hosts alpine.min.js in SiteAssets (see PAGE-TEMPLATE.md). -->
+<script defer src="https://unpkg.com/alpinejs@3/dist/cdn.min.js"></script>
+</body>
+</html>

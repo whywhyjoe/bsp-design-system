@@ -404,6 +404,7 @@
         <a href="#cmp-composition">Card composition</a>
         <a href="#icons-set">Icons</a>
         <a href="#dodonts">Do &amp; don't</a>
+        <a href="#editorial-mode">Editorial mode</a>
       </div>
     </header>
 
@@ -416,7 +417,19 @@
         <div style="font:700 14px/20px var(--font-family);color:var(--fg-primary)">Visual-interest layer &mdash; optional visual enhancements</div>
         <div style="font:400 13px/19px var(--font-family);color:var(--fg-secondary)">Soft surface tints, subtle motion, imagery, and richer card composition extend the restrained base. See the worked example.</div>
       </div>
-      <a class="btn btn--primary" href="advanced-ui-example.html" style="flex:none;text-decoration:none">Open the example <svg class="icon icon--16" style="margin-left:2px"><use href="#ic-fluent-chevron-right-24-regular"/></svg></a>
+      <a class="btn btn--primary" href="example-advanced-ui.html" style="flex:none;text-decoration:none">Open the example <svg class="icon icon--16" style="margin-left:2px"><use href="#ic-fluent-chevron-right-24-regular"/></svg></a>
+    </div>
+
+    <!-- ─────────────────── Editorial-mode banner ─────────────────── -->
+    <div id="editorial-mode" style="display:flex;align-items:center;gap:18px;background:var(--surface-tint-blue);border:1px solid var(--stroke-divider);border-radius:var(--radius-large);padding:16px 20px;margin-bottom:32px">
+      <div style="width:44px;height:44px;border-radius:10px;background:#fff;border:1px solid var(--stroke-divider);display:flex;align-items:center;justify-content:center;flex:none;color:var(--accent-rest)">
+        <svg class="icon icon--24"><use href="#ic-fluent-home-24-regular"/></svg>
+      </div>
+      <div style="flex:1">
+        <div style="font:700 14px/20px var(--font-family);color:var(--fg-primary)">Editorial mode &mdash; the warm content register</div>
+        <div style="font:400 13px/19px var(--font-family);color:var(--fg-secondary)">A separate additive layer for learning catalogs, resource hubs, and awareness pages &mdash; hero-led and photography-forward, on these same tokens. This reference governs <strong>app mode</strong>; editorial has its own visual guide.</div>
+      </div>
+      <a class="btn btn--secondary" href="editorial-design-guide.html" style="flex:none;text-decoration:none">Editorial design guide <svg class="icon icon--16" style="margin-left:2px"><use href="#ic-fluent-chevron-right-24-regular"/></svg></a>
     </div>
 
     <!-- ─────────────────── Overview ─────────────────── -->
@@ -830,7 +843,10 @@ BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif</pre>
         <div class="callout" style="margin-top:14px">
           <strong>Reduced-motion safe by construction.</strong> The <code class="token">.reveal</code> hidden
           start-state only exists inside <code class="token">@media (prefers-reduced-motion: no-preference)</code>,
-          so print, no-JS, and reduced-motion users always see full content. JS adds <code class="token">.is-in</code> to play it.
+          so print, no-JS, and reduced-motion users always see full content. In <strong>app mode</strong> <code class="token">.reveal</code> is transition-based &mdash; JS adds <code class="token">.is-in</code> on scroll to play it.
+        </div>
+        <div class="callout" style="margin-top:10px">
+          <strong>Editorial mode reveals the same class differently.</strong> Under the <code class="token">.editorial</code> scope, <code class="token">.reveal</code> is a self-sufficient CSS <em>animation</em> that plays on load with no script (one less load-bearing dependency). It reuses the same <code class="token">--motion-reveal</code> / <code class="token">--ease-out</code> / <code class="token">--reveal-rise</code> tokens and honors reduced-motion, and the same <code class="token">.is-in</code> short-circuits it to instantly-visible &mdash; so the two mechanisms coexist by scope + specificity without colliding. See the <a href="editorial-design-guide.html" style="color:var(--accent-rest)">editorial design guide</a>.
         </div>
       </div>
     </section>
@@ -1036,7 +1052,7 @@ BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif</pre>
         <div class="callout" style="margin-top:16px">
           Still a card: no left-accent border, no gradient, no tilt. Images are <code class="token">.imgph</code>
           placeholders. Keep top images ~120&ndash;152&nbsp;px tall so cards stay dense. See it assembled in
-          <a href="advanced-ui-example.html" style="color:var(--accent-rest)">advanced-ui-example.html</a>.
+          <a href="example-advanced-ui.html" style="color:var(--accent-rest)">example-advanced-ui.html</a>.
         </div>
       </div>
     </section>
@@ -1326,8 +1342,9 @@ BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif</pre>
 
     <!-- footer -->
     <section style="margin-top:48px;padding-top:24px;border-top:1px solid var(--stroke-divider);color:var(--fg-secondary);font:400 12px/18px var(--font-family-mono)">
-      BMO SharePoint Design System &middot; reference page &middot;
+      BMO SharePoint Design System &middot; reference page (app mode) &middot;
       tokens at <code class="token">colors_and_type.css</code> &middot;
+      editorial layer: <code class="token">editorial-design-guide.html</code> + <code class="token">../docs/EDITORIAL-MODE.md</code> &middot;
       see <code class="token">README.md</code> for the full system index.
     </section>
 

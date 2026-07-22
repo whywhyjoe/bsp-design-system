@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="colors_and_type.css">
+<link rel="stylesheet" href="components.css">
+<link rel="stylesheet" href="editorial.css">
+<style>
+  *,*::before,*::after { box-sizing: border-box; }
+  body { margin: 0; background: var(--surface-canvas); }
+</style>
+</helmet>
+
+<!-- ═══ Functional Fluent icon sprite (bmo-icons.svg subset) ═══ -->
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true"><defs>
+  <symbol id="ic-fluent-grid-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="6.5" height="6.5" rx="1"/><rect x="13.5" y="4" width="6.5" height="6.5" rx="1"/><rect x="4" y="13.5" width="6.5" height="6.5" rx="1"/><rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1"/></g></symbol>
+  <symbol id="ic-fluent-search-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="10.5" cy="10.5" r="5.5"/><path d="M15 15l4 4"/></g></symbol>
+  <symbol id="ic-fluent-alert-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4a5 5 0 0 1 5 5c0 5 2 6 2 6H5s2-1 2-6a5 5 0 0 1 5-5zM10.3 19a1.8 1.8 0 0 0 3.4 0"/></g></symbol>
+  <symbol id="ic-fluent-settings-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 4v2.2M12 17.8V20M5 7.5l1.9 1.1M17.1 15.4L19 16.5M5 16.5l1.9-1.1M17.1 8.6L19 7.5"/></g></symbol>
+  <symbol id="ic-fluent-question-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M9.6 9.4a2.4 2.4 0 1 1 3.3 2.6c-.7.3-1.1 1-1.1 1.8"/><path d="M11.8 16.5h.01"/></g></symbol>
+  <symbol id="ic-fluent-chevron-right-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M10 7l5 5-5 5"/></g></symbol>
+  <symbol id="ic-fluent-arrow-right-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13M12 6l6 6-6 6"/></g></symbol>
+  <symbol id="ic-fluent-play-24-regular" viewBox="0 0 24 24"><g fill="currentColor" stroke="none"><path d="M8 6.2c0-.8.9-1.3 1.6-.9l9 5.8c.6.4.6 1.4 0 1.8l-9 5.8c-.7.4-1.6-.1-1.6-.9V6.2z"/></g></symbol>
+  <symbol id="ic-fluent-document-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M7 4h7l4 4v11a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1zM14 4v4h4"/></g></symbol>
+  <symbol id="ic-fluent-star-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4.5l2.3 4.7 5.2.8-3.8 3.7.9 5.2-4.6-2.5-4.6 2.5.9-5.2L6.5 10l5.2-.8L12 4.5z"/></g></symbol>
+  <symbol id="ic-fluent-arrow-export-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M11 6H6a1 1 0 0 0-1 1v11a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1v-5M14 5h5v5M19 5l-8 8"/></g></symbol>
+</defs></svg>
+
+<!-- ═══ Corporate content line-icon sprite (bmo-content-icons.svg subset) ═══ -->
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true"><defs>
+  <symbol id="bmo-ic-security" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.5l7 2.4v5.1c0 5-3.5 8-7 9.5-3.5-1.5-7-4.5-7-9.5V5.9L12 3.5z"/><path d="M9 12l2 2 4-4"/></g></symbol>
+  <symbol id="bmo-ic-goals" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.6"/></g></symbol>
+  <symbol id="bmo-ic-growth" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 18l5-5 3 3 7-7"/><path d="M15 9h4v4"/></g></symbol>
+  <symbol id="bmo-ic-community" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="7" r="2.6"/><circle cx="5.5" cy="10.5" r="2.2"/><circle cx="18.5" cy="10.5" r="2.2"/><path d="M8 18a4 4 0 0 1 8 0"/><path d="M2.5 18.5a3.2 3.2 0 0 1 4.2-3"/><path d="M17.3 15.5a3.2 3.2 0 0 1 4.2 3"/></g></symbol>
+  <symbol id="bmo-ic-regulators" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9.5L12 4l8 5.5"/><path d="M5 9.5h14"/><path d="M6.5 10v7M11 10v7M17.5 10v7"/><path d="M4 19.5h16"/></g></symbol>
+  <symbol id="bmo-ic-knowledge" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 6.5C10.3 5.2 8 4.6 4.5 5v12c3.5-.4 5.8.2 7.5 1.5"/><path d="M12 6.5C13.7 5.2 16 4.6 19.5 5v12c-3.5-.4-5.8.2-7.5 1.5"/><path d="M12 6.5v12"/></g></symbol>
+  <symbol id="bmo-ic-global" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M3.5 12h17"/><path d="M12 3.5c2.6 2.3 4 5.4 4 8.5s-1.4 6.2-4 8.5c-2.6-2.3-4-5.4-4-8.5s1.4-6.2 4-8.5z"/></g></symbol>
+  <symbol id="bmo-ic-idea" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 16.5a6 6 0 1 1 6 0v1.5a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1v-1.5z"/><path d="M9.5 21h5"/></g></symbol>
+</defs></svg>
+
+<!-- ════════════════════════ SharePoint-modern host chrome ════════════════════════ -->
+<header class="sp-suite">
+  <button class="sp-suite__btn" aria-label="App launcher"><svg class="icon"><use href="#ic-fluent-grid-24-regular"/></svg></button>
+  <span class="sp-suite__brand"><img src="assets/bmo-logo-placeholder.svg" alt="BMO" width="26" height="26"><span class="sp-suite__word">BMO</span></span>
+  <span class="sp-suite__search"><svg class="icon"><use href="#ic-fluent-search-24-regular"/></svg> Search in SharePoint</span>
+  <div class="sp-suite__actions">
+    <button class="sp-suite__btn" aria-label="Notifications"><svg class="icon"><use href="#ic-fluent-alert-24-regular"/></svg></button>
+    <button class="sp-suite__btn" aria-label="Settings"><svg class="icon"><use href="#ic-fluent-settings-24-regular"/></svg></button>
+    <button class="sp-suite__btn" aria-label="Help"><svg class="icon"><use href="#ic-fluent-question-24-regular"/></svg></button>
+    <span class="avatar avatar--28" style="background:var(--bmo-chart-midnight)">JT</span>
+  </div>
+</header>
+
+<nav class="sp-hubnav" aria-label="BMO hubs">
+  <a class="sp-hubnav__link" href="#">BMO Central</a>
+  <a class="sp-hubnav__link" href="#">Canadian P&amp;BB</a>
+  <a class="sp-hubnav__link" href="#">Wealth</a>
+  <a class="sp-hubnav__link" href="#">Capital Markets</a>
+  <a class="sp-hubnav__link is-active" href="#" aria-current="page">Technology &amp; Operations</a>
+  <a class="sp-hubnav__link" href="#">Corporate Areas</a>
+</nav>
+
+<div class="sp-site">
+  <span class="sp-site__icon"><svg class="c-icon c-icon--24"><use href="#bmo-ic-security"/></svg></span>
+  <span class="sp-site__title">Risk &amp; Compliance</span>
+  <span class="sp-site__spacer"></span>
+  <button class="sp-site__follow"><svg class="icon"><use href="#ic-fluent-star-24-regular"/></svg> Follow</button>
+  <button class="sp-site__follow"><svg class="icon"><use href="#ic-fluent-search-24-regular"/></svg> Search this site</button>
+</div>
+
+<nav class="sp-nav" aria-label="Site">
+  <a class="sp-nav__link" href="#">Home</a>
+  <a class="sp-nav__link is-active" href="#" aria-current="page">Resource hub</a>
+  <a class="sp-nav__link" href="#">Standards</a>
+  <a class="sp-nav__link" href="#">Training</a>
+  <a class="sp-nav__link" href="#">Contact</a>
+</nav>
+
+<!-- ════════════════════════ EDITORIAL CONTENT ════════════════════════ -->
+<main class="editorial">
+
+  <!-- ── Hero: arc/ring device (circular photo framed by BMO arcs) ── -->
+  <div class="band band--sky">
+    <div class="l-wrap">
+      <nav class="crumbs" aria-label="Breadcrumb" style="padding-top:var(--space-160)">
+        <a href="#">T&amp;O</a><svg class="icon crumbs__sep"><use href="#ic-fluent-chevron-right-24-regular"/></svg>
+        <a href="#">Risk &amp; Compliance</a><svg class="icon crumbs__sep"><use href="#ic-fluent-chevron-right-24-regular"/></svg>
+        <span class="crumbs__current" aria-current="page">Resource hub</span>
+      </nav>
+      <section class="hero hero--arc reveal">
+        <div class="hero__copy">
+          <p class="hero__eyebrow">Resource hub</p>
+          <h1 class="hero__title">Everything you need to manage risk, in one place</h1>
+          <p class="hero__lede">Standards, tools, training, and the people behind them — brought together so you can find what you need and get back to the work.</p>
+          <div class="hero__cta">
+            <a class="btn btn--primary btn--lg" href="#">Explore resources</a>
+            <a class="btn btn--tertiary btn--lg" href="#">Watch the overview <svg class="icon icon--16"><use href="#ic-fluent-play-24-regular"/></svg></a>
+          </div>
+        </div>
+        <div class="hero__media">
+          <div class="photo"><img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&w=760&q=70" alt="A colleague at work, smiling in natural light" crossorigin="anonymous" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='https://picsum.photos/seed/bmo-hub-hero/760/760'"></div>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <!-- ── Overview + video ── -->
+  <div class="band band--white">
+    <div class="l-wrap l-section">
+      <div class="ov-grid">
+        <div>
+          <div class="section-head">
+            <p class="section-head__eyebrow">Overview</p>
+            <h2 class="section-head__title">Risk is everyone's job</h2>
+          </div>
+          <p style="font:var(--type-body2);color:var(--fg-secondary);max-width:52ch;margin:0 0 var(--space-160)">This hub brings together the standards, tools, and training that keep BMO safe and sound. Start with the 4-minute overview, then explore the resources built for your team's work.</p>
+          <p style="font:var(--type-body2);color:var(--fg-secondary);max-width:52ch;margin:0 0 var(--space-240)">Everything here is reviewed quarterly by the Risk Enablement team. If something's missing, tell us — we build what people ask for.</p>
+          <a class="btn btn--secondary" href="#"><svg class="icon icon--16"><use href="#ic-fluent-play-24-regular"/></svg> Browse the video library</a>
+        </div>
+        <article class="card card--flush media-card lift" tabindex="0">
+          <div class="media-card__thumb">
+            <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=640&q=70" alt="A team meeting in a bright room" crossorigin="anonymous" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='https://picsum.photos/seed/bmo-hub-video/640/360'">
+            <button class="media-card__play" aria-label="Play: Risk in four minutes"><svg class="icon"><use href="#ic-fluent-play-24-regular"/></svg></button>
+            <span class="media-card__duration">4:12</span>
+          </div>
+          <div class="card__content">
+            <p class="card__eyebrow">Watch first</p>
+            <h3 class="card__title">Risk in four minutes</h3>
+          </div>
+        </article>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Essential resources on a tinted band ── -->
+  <div class="band band--blue">
+    <div class="l-wrap l-section">
+      <div class="section-head section-head--flex reveal">
+        <div>
+          <p class="section-head__eyebrow">Essential resources</p>
+          <h2 class="section-head__title">Start here</h2>
+          <p class="section-head__lede">The resources most teams reach for first, grouped by the area they support.</p>
+        </div>
+        <a class="btn btn--tertiary" href="#">All resources <svg class="icon icon--16"><use href="#ic-fluent-arrow-right-24-regular"/></svg></a>
+      </div>
+      <div class="chip-row" role="group" aria-label="Resource categories" style="margin-bottom:var(--space-320)">
+        <button class="chip is-active" aria-pressed="true">All areas</button>
+        <button class="chip" aria-pressed="false">Our clients</button>
+        <button class="chip" aria-pressed="false">Regulators</button>
+        <button class="chip" aria-pressed="false">Operations</button>
+        <button class="chip" aria-pressed="false">Technology</button>
+      </div>
+      <div class="l-grid l-grid--4">
+        <article class="card lift" tabindex="0">
+          <span class="card__icon-tile"><svg class="c-icon c-icon--24"><use href="#bmo-ic-security"/></svg></span>
+          <h3 class="card__title" style="margin-top:var(--space-120)">Enterprise risk standards</h3>
+          <p class="card__body">The controls, thresholds, and escalation paths that apply across every line of business.</p>
+          <div class="card__footer"><span class="card__meta">Standards</span><a class="card__cta" href="#">Open <svg class="icon icon--16"><use href="#ic-fluent-arrow-right-24-regular"/></svg></a></div>
+        </article>
+        <article class="card lift" tabindex="0">
+          <span class="card__icon-tile"><svg class="c-icon c-icon--24"><use href="#bmo-ic-regulators"/></svg></span>
+          <h3 class="card__title" style="margin-top:var(--space-120)">Regulatory library</h3>
+          <p class="card__body">Current guidance from OSFI, FINTRAC, and the regulators that shape our work.</p>
+          <div class="card__footer"><span class="card__meta">Reference</span><a class="card__cta" href="#">Open <svg class="icon icon--16"><use href="#ic-fluent-arrow-right-24-regular"/></svg></a></div>
+        </article>
+        <article class="card lift" tabindex="0">
+          <span class="card__icon-tile"><svg class="c-icon c-icon--24"><use href="#bmo-ic-knowledge"/></svg></span>
+          <h3 class="card__title" style="margin-top:var(--space-120)">Playbooks &amp; toolkits</h3>
+          <p class="card__body">Step-by-step guides for the situations teams meet most often.</p>
+          <div class="card__footer"><span class="card__meta">Toolkits</span><a class="card__cta" href="#">Open <svg class="icon icon--16"><use href="#ic-fluent-arrow-right-24-regular"/></svg></a></div>
+        </article>
+        <article class="card lift" tabindex="0">
+          <span class="card__icon-tile"><svg class="c-icon c-icon--24"><use href="#bmo-ic-community"/></svg></span>
+          <h3 class="card__title" style="margin-top:var(--space-120)">Find your risk partner</h3>
+          <p class="card__body">The named contact for your team, and how to reach them quickly.</p>
+          <div class="card__footer"><span class="card__meta">People</span><a class="card__cta" href="#">Open <svg class="icon icon--16"><use href="#ic-fluent-arrow-right-24-regular"/></svg></a></div>
+        </article>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Scorecard: solid BMO-blue tiles (sanctioned flood-of-blue pattern) ── -->
+  <div class="band band--white">
+    <div class="l-wrap l-section">
+      <div class="section-head reveal">
+        <p class="section-head__eyebrow">Where we stand</p>
+        <h2 class="section-head__title">Risk &amp; compliance scorecard</h2>
+        <p class="section-head__lede">Our shared measures, updated at the end of each quarter.</p>
+      </div>
+      <div class="scorecard scorecard--4 reveal">
+        <div class="scorecard__tile">
+          <span class="scorecard__icon"><svg class="c-icon c-icon--32 c-icon--on-blue"><use href="#bmo-ic-goals"/></svg></span>
+          <div class="scorecard__value">94%</div>
+          <div class="scorecard__label">Controls tested on time</div>
+          <div class="scorecard__caption">Target 90% · trailing 12 months</div>
+        </div>
+        <div class="scorecard__tile">
+          <span class="scorecard__icon"><svg class="c-icon c-icon--32 c-icon--on-blue"><use href="#bmo-ic-growth"/></svg></span>
+          <div class="scorecard__value">12</div>
+          <div class="scorecard__label">New standards published</div>
+          <div class="scorecard__caption">This fiscal year</div>
+        </div>
+        <div class="scorecard__tile">
+          <span class="scorecard__icon"><svg class="c-icon c-icon--32 c-icon--on-blue"><use href="#bmo-ic-security"/></svg></span>
+          <div class="scorecard__value">0</div>
+          <div class="scorecard__label">Critical findings open</div>
+          <div class="scorecard__caption">As of quarter end</div>
+        </div>
+        <div class="scorecard__tile scorecard__tile--midnight">
+          <span class="scorecard__icon"><svg class="c-icon c-icon--32 c-icon--on-blue"><use href="#bmo-ic-community"/></svg></span>
+          <div class="scorecard__value">3,240</div>
+          <div class="scorecard__label">Colleagues trained</div>
+          <div class="scorecard__caption">Across 4 programs</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Training videos: play overlays ── -->
+  <div class="band band--neutral">
+    <div class="l-wrap l-section">
+      <div class="section-head section-head--flex reveal">
+        <div>
+          <p class="section-head__eyebrow">Training videos</p>
+          <h2 class="section-head__title">Learn in a few minutes</h2>
+        </div>
+        <a class="btn btn--tertiary" href="#">Video library <svg class="icon icon--16"><use href="#ic-fluent-arrow-right-24-regular"/></svg></a>
+      </div>
+      <div class="l-grid l-grid--3">
+        <article class="card card--flush media-card lift" tabindex="0">
+          <div class="media-card__thumb">
+            <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&w=560&q=70" alt="Two colleagues reviewing a laptop together" crossorigin="anonymous" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='https://picsum.photos/seed/bmo-vid-1/560/320'">
+            <button class="media-card__play" aria-label="Play: Spotting suspicious activity"><svg class="icon"><use href="#ic-fluent-play-24-regular"/></svg></button>
+            <span class="media-card__duration">3:48</span>
+          </div>
+          <div class="card__content"><p class="card__eyebrow">Compliance</p><h3 class="card__title">Spotting suspicious activity</h3></div>
+        </article>
+        <article class="card card--flush media-card lift" tabindex="0">
+          <div class="media-card__thumb">
+            <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=560&q=70" alt="A team working together at a table" crossorigin="anonymous" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='https://picsum.photos/seed/bmo-vid-2/560/320'">
+            <button class="media-card__play" aria-label="Play: Escalating the right way"><svg class="icon"><use href="#ic-fluent-play-24-regular"/></svg></button>
+            <span class="media-card__duration">5:02</span>
+          </div>
+          <div class="card__content"><p class="card__eyebrow">Process</p><h3 class="card__title">Escalating the right way</h3></div>
+        </article>
+        <article class="card card--flush media-card lift" tabindex="0">
+          <div class="media-card__thumb">
+            <img src="https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?auto=format&fit=crop&w=560&q=70" alt="A colleague focused at a laptop in natural light" crossorigin="anonymous" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='https://picsum.photos/seed/bmo-vid-3/560/320'">
+            <button class="media-card__play" aria-label="Play: Reading a control report"><svg class="icon"><use href="#ic-fluent-play-24-regular"/></svg></button>
+            <span class="media-card__duration">6:20</span>
+          </div>
+          <div class="card__content"><p class="card__eyebrow">Tools</p><h3 class="card__title">Reading a control report</h3></div>
+        </article>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Key messages carousel ── -->
+  <div class="band band--white">
+    <div class="l-wrap l-section">
+      <div class="section-head reveal">
+        <p class="section-head__eyebrow">Key messages</p>
+        <h2 class="section-head__title">From our risk leaders</h2>
+      </div>
+      <div class="key-messages reveal">
+        <div class="key-messages__media">
+          <img src="{{ msg.photo }}" alt="{{ msg.name }}" crossorigin="anonymous" loading="lazy" decoding="async" onerror="{{ msg.onErr }}">
+        </div>
+        <div class="key-messages__body">
+          <p class="key-messages__quote">{{ msg.quote }}</p>
+          <p class="key-messages__cite"><strong>{{ msg.name }}</strong> · {{ msg.title }}</p>
+          <div class="key-messages__dots" role="group" aria-label="Choose a message">
+            <sc-for list="{{ dots }}" as="d" hint-placeholder-count="3">
+              <button class="{{ d.cls }}" aria-label="{{ d.label }}" aria-pressed="{{ d.pressed }}" onClick="{{ d.onClick }}"></button>
+            </sc-for>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Supporting information (content-icon link rows) ── -->
+  <div class="band band--neutral">
+    <div class="l-wrap l-section">
+      <div class="section-head reveal">
+        <p class="section-head__eyebrow">Supporting information</p>
+        <h2 class="section-head__title">Related links</h2>
+      </div>
+      <div class="card reveal" style="padding:var(--space-120) var(--space-320) var(--space-160)">
+        <div class="link-list">
+          <div class="link-row">
+            <span class="link-row__icon"><svg class="c-icon c-icon--24"><use href="#bmo-ic-global"/></svg></span>
+            <span class="link-row__main"><a class="link-row__title" href="#">Enterprise policy portal</a><span class="link-row__desc">The full library of BMO enterprise policies and procedures.</span></span>
+            <span class="link-row__cta"><svg class="icon"><use href="#ic-fluent-arrow-export-24-regular"/></svg></span>
+          </div>
+          <div class="link-row">
+            <span class="link-row__icon"><svg class="c-icon c-icon--24"><use href="#bmo-ic-idea"/></svg></span>
+            <span class="link-row__main"><a class="link-row__title" href="#">Submit an idea</a><span class="link-row__desc">Suggest a new standard, tool, or piece of training.</span></span>
+            <span class="link-row__cta"><svg class="icon"><use href="#ic-fluent-arrow-right-24-regular"/></svg></span>
+          </div>
+          <div class="link-row">
+            <span class="link-row__icon"><svg class="c-icon c-icon--24"><use href="#bmo-ic-community"/></svg></span>
+            <span class="link-row__main"><a class="link-row__title" href="#">Risk community</a><span class="link-row__desc">Join the cross-team community for questions and discussion.</span></span>
+            <span class="link-row__cta"><svg class="icon"><use href="#ic-fluent-arrow-right-24-regular"/></svg></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── CTA band — BMO-blue flood ── -->
+  <div class="band band--flood">
+    <div class="l-wrap" style="padding:var(--space-480) var(--space-320)">
+      <div class="cta-band reveal">
+        <div>
+          <h2 class="cta-band__title">Not sure where to start?</h2>
+          <p class="cta-band__lede">Your risk partner can point you to the right standards and training for your team's work.</p>
+        </div>
+        <div class="cta-band__actions">
+          <a class="btn btn--primary btn--lg" href="#">Find your risk partner</a>
+          <a class="btn btn--secondary btn--lg" href="#">Contact the team</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<footer class="sp-footer">
+  <span>© BMO Financial Group</span>
+  <a href="#">Accessibility</a>
+  <a href="#">Privacy</a>
+  <a href="#">Terms of use</a>
+  <span class="sp-footer__spacer"></span>
+  <span>Internal use only · Risk &amp; Compliance, Technology &amp; Operations</span>
+</footer>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { msg: 0 };
+
+  messagesRaw = [
+    { quote: 'Strong risk management is how we earn trust — every day, in every decision.',
+      name: 'Michael Torres', title: 'Chief Risk Officer, T&O', seed: 'bmo-leader-1',
+      photo: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=760&q=70' },
+    { quote: 'The best control is a colleague who knows what to look for.',
+      name: 'Sarah Chen', title: 'Head of Risk Enablement', seed: 'bmo-leader-2',
+      photo: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=760&q=70' },
+    { quote: 'Simple, well-understood standards beat complex ones nobody follows.',
+      name: 'Devon Park', title: 'Director, Governance', seed: 'bmo-leader-3',
+      photo: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=760&q=70' },
+  ];
+
+  renderVals() {
+    const i = this.state.msg;
+    const m = this.messagesRaw[i];
+    const msg = Object.assign({}, m, {
+      onErr: "this.onerror=null;this.src='https://picsum.photos/seed/" + m.seed + "/760/800'",
+    });
+    const dots = this.messagesRaw.map((mm, ix) => ({
+      cls: ix === i ? 'key-messages__dot is-active' : 'key-messages__dot',
+      pressed: ix === i ? 'true' : 'false',
+      label: 'Show message ' + (ix + 1) + ' of ' + this.messagesRaw.length,
+      onClick: () => this.setState({ msg: ix }),
+    }));
+    return { msg, dots };
+  }
+
+  componentDidMount() {
+    const play = () => {
+      const els = Array.from(document.querySelectorAll('.reveal'));
+      const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (reduce || !('IntersectionObserver' in window)) {
+        els.forEach((el) => el.classList.add('is-in'));
+        return;
+      }
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); }
+        });
+      }, { threshold: 0.05, rootMargin: '0px 0px -4% 0px' });
+      els.forEach((el) => io.observe(el));
+      setTimeout(() => els.forEach((el) => el.classList.add('is-in')), 700);
+    };
+    requestAnimationFrame(play);
+  }
+}
+</script>
+</body>
+</html>

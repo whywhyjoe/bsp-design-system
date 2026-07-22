@@ -1,0 +1,431 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BMO SharePoint · Resource Hub (Editorial mode)</title>
+<!-- RESOURCE HUB — the second EDITORIAL MODE example: the "Programs & Resources"
+     BMO pattern rendered natively in-token, framed in representative SharePoint
+     chrome. Proves the arc/ring hero, the essential-resources tinted grid, the
+     sanctioned solid-blue scorecard tiles, media/video cards with play overlays,
+     the key-messages carousel (inline Alpine), content-icon link rows, and the
+     flood-of-blue CTA. Guide: ../docs/EDITORIAL-MODE.md -->
+<!-- Canonical library, in order; editorial.css is the opt-in third link. -->
+<link rel="stylesheet" href="../colors_and_type.css">
+<link rel="stylesheet" href="../components.css">
+<link rel="stylesheet" href="../editorial.css">
+<style>
+  *,*::before,*::after { box-sizing: border-box; }
+  body { margin: 0; background: var(--surface-canvas); }
+  [x-cloak] { display: none !important; }
+</style>
+</head>
+<body>
+
+<!-- Functional Fluent icon sprite — inlined from ../bmo-icons.svg (keep in sync).
+     Same-document refs resolve with the page opened straight from disk. -->
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true"><defs>
+  <symbol id="ic-fluent-add-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></g></symbol>
+  <symbol id="ic-fluent-alert-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4a5 5 0 0 1 5 5c0 5 2 6 2 6H5s2-1 2-6a5 5 0 0 1 5-5zM10.3 19a1.8 1.8 0 0 0 3.4 0"/></g></symbol>
+  <symbol id="ic-fluent-arrow-down-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v13M6 12l6 6 6-6"/></g></symbol>
+  <symbol id="ic-fluent-arrow-export-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M11 6H6a1 1 0 0 0-1 1v11a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1v-5M14 5h5v5M19 5l-8 8"/></g></symbol>
+  <symbol id="ic-fluent-arrow-right-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13M12 6l6 6-6 6"/></g></symbol>
+  <symbol id="ic-fluent-arrow-up-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V6M6 12l6-6 6 6"/></g></symbol>
+  <symbol id="ic-fluent-attach-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M16.5 8.5l-6 6a2 2 0 1 0 2.8 2.8l6-6a3.5 3.5 0 0 0-5-5l-6.5 6.5a5 5 0 0 0 7 7l5.5-5.5"/></g></symbol>
+  <symbol id="ic-fluent-calendar-ltr-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 7a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v11a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V7zM5 10h14M9 4v3M15 4v3"/></g></symbol>
+  <symbol id="ic-fluent-checkmark-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></g></symbol>
+  <symbol id="ic-fluent-checkmark-circle-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"/><path d="M8.5 12.2l2.4 2.4 4.6-4.9"/></g></symbol>
+  <symbol id="ic-fluent-chevron-down-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M7 10l5 5 5-5"/></g></symbol>
+  <symbol id="ic-fluent-chevron-left-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M14 7l-5 5 5 5"/></g></symbol>
+  <symbol id="ic-fluent-chevron-right-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M10 7l5 5-5 5"/></g></symbol>
+  <symbol id="ic-fluent-clock-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"/><path d="M12 7.5V12l3 2"/></g></symbol>
+  <symbol id="ic-fluent-closed-caption-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="6" width="17" height="12" rx="1.5"/><path d="M10.8 10.6a2 2 0 1 0 0 2.8M16.6 10.6a2 2 0 1 0 0 2.8"/></g></symbol>
+  <symbol id="ic-fluent-data-bar-vertical-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19h16M7 19v-6M12 19V6M17 19v-9"/></g></symbol>
+  <symbol id="ic-fluent-delete-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8h12M9.5 8V6a1 1 0 0 1 1-1h3a1 1 0 0 1 1 1v2M8 8l.8 11a1 1 0 0 0 1 .9h4.4a1 1 0 0 0 1-.9L16 8M10.5 11.5v5M13.5 11.5v5"/></g></symbol>
+  <symbol id="ic-fluent-dismiss-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 6l12 12M18 6L6 18"/></g></symbol>
+  <symbol id="ic-fluent-dismiss-circle-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"/><path d="M9.5 9.5l5 5M14.5 9.5l-5 5"/></g></symbol>
+  <symbol id="ic-fluent-document-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M7 4h7l4 4v11a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1zM14 4v4h4"/></g></symbol>
+  <symbol id="ic-fluent-document-pdf-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M7 4h7l4 4v11a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1zM14 4v4h4"/><path d="M8.5 15.5h7"/></g></symbol>
+  <symbol id="ic-fluent-edit-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 19l1-4 9-9 3 3-9 9-4 1zM14 6l3 3"/></g></symbol>
+  <symbol id="ic-fluent-filter-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 6h14l-5.5 7v5l-3-2v-3L5 6z"/></g></symbol>
+  <symbol id="ic-fluent-folder-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7a1 1 0 0 1 1-1h4l2 2h8a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7z"/></g></symbol>
+  <symbol id="ic-fluent-full-screen-maximize-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 9V6a1 1 0 0 1 1-1h3M15 5h3a1 1 0 0 1 1 1v3M19 15v3a1 1 0 0 1-1 1h-3M9 19H6a1 1 0 0 1-1-1v-3"/></g></symbol>
+  <symbol id="ic-fluent-grid-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="6.5" height="6.5" rx="1"/><rect x="13.5" y="4" width="6.5" height="6.5" rx="1"/><rect x="4" y="13.5" width="6.5" height="6.5" rx="1"/><rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1"/></g></symbol>
+  <symbol id="ic-fluent-home-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11.5L12 5l8 6.5V19a1 1 0 0 1-1 1h-4v-6H9v6H5a1 1 0 0 1-1-1v-7.5z"/></g></symbol>
+  <symbol id="ic-fluent-info-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"/><path d="M12 11.5v4.5"/><path d="M12 8.2h.01"/></g></symbol>
+  <symbol id="ic-fluent-mail-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 7h14a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1zM4.5 8l7.5 5 7.5-5"/></g></symbol>
+  <symbol id="ic-fluent-mail-inbox-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l1.8-6.2a1 1 0 0 1 1-.8h8.4a1 1 0 0 1 1 .8L19 13v4a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1v-4zM5 13h4a3 3 0 0 0 6 0h4"/></g></symbol>
+  <symbol id="ic-fluent-money-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="7" width="16" height="10" rx="1.5"/><circle cx="12" cy="12" r="2.3"/><path d="M7 12h.01M17 12h.01"/></g></symbol>
+  <symbol id="ic-fluent-more-horizontal-24-regular" viewBox="0 0 24 24"><g fill="currentColor" stroke="none"><circle cx="6" cy="12" r="1.4"/><circle cx="12" cy="12" r="1.4"/><circle cx="18" cy="12" r="1.4"/></g></symbol>
+  <symbol id="ic-fluent-open-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M11 6H6a1 1 0 0 0-1 1v11a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1v-5M14 5h5v5M19 5l-8 8"/></g></symbol>
+  <symbol id="ic-fluent-person-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8.5" r="3.5"/><path d="M5.5 19a6.5 6.5 0 0 1 13 0"/></g></symbol>
+  <symbol id="ic-fluent-person-add-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="9.5" cy="8.5" r="3.3"/><path d="M3.5 19a6 6 0 0 1 11-3.3M18 8v6M15 11h6"/></g></symbol>
+  <symbol id="ic-fluent-phone-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 4.5l3 .8 1 3.2-1.9 1.4a10 10 0 0 0 4.6 4.6l1.4-1.9 3.2 1 .8 3a1 1 0 0 1-1 1.1A13.5 13.5 0 0 1 5.4 5.5a1 1 0 0 1 1.1-1z"/></g></symbol>
+  <symbol id="ic-fluent-pause-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M9.2 6v12M14.8 6v12"/></g></symbol>
+  <symbol id="ic-fluent-play-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8.5 5.5l10 6.5-10 6.5z"/></g></symbol>
+  <symbol id="ic-fluent-question-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M9.6 9.4a2.4 2.4 0 1 1 3.3 2.6c-.7.3-1.1 1-1.1 1.8"/><path d="M11.8 16.5h.01"/></g></symbol>
+  <symbol id="ic-fluent-receipt-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 4h12v16l-2-1.3-2 1.3-2-1.3-2 1.3-2-1.3-2 1.3V4zM9 8h6M9 11.5h6M9 15h4"/></g></symbol>
+  <symbol id="ic-fluent-search-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="10.5" cy="10.5" r="5.5"/><path d="M15 15l4 4"/></g></symbol>
+  <symbol id="ic-fluent-settings-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 4v2.2M12 17.8V20M5 7.5l1.9 1.1M17.1 15.4L19 16.5M5 16.5l1.9-1.1M17.1 8.6L19 7.5"/></g></symbol>
+  <symbol id="ic-fluent-shield-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4l7 2.5v5c0 5-3.5 8-7 9.5-3.5-1.5-7-4.5-7-9.5v-5L12 4zM9 12l2 2 4-4"/></g></symbol>
+  <symbol id="ic-fluent-speaker-2-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10v4h3l4.5 3.5v-11L7 10H4z"/><path d="M15 9.5a4 4 0 0 1 0 5M17.5 7.5a7 7 0 0 1 0 9"/></g></symbol>
+  <symbol id="ic-fluent-star-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4.5l2.3 4.7 5.2.8-3.8 3.7.9 5.2-4.6-2.5-4.6 2.5.9-5.2L6.5 10l5.2-.8L12 4.5z"/></g></symbol>
+  <symbol id="ic-fluent-warning-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5l8.5 14.5H3.5L12 5z"/><path d="M12 10.5v4M12 17h.01"/></g></symbol>
+  <symbol id="ic-fluent-checkmark-circle-24-filled" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5" fill="currentColor"/><path d="M8.4 12.2l2.5 2.5 4.7-5" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="ic-fluent-warning-24-filled" viewBox="0 0 24 24"><path d="M11.1 5.2a1 1 0 0 1 1.8 0l8 14a1 1 0 0 1-.9 1.5H4a1 1 0 0 1-.9-1.5l8-14z" fill="currentColor"/><path d="M12 10v4M12 17h.01" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+</defs></svg>
+
+<!-- Corporate content line-icon sprite — inlined from ../bmo-content-icons.svg
+     (content-labeling tier; placeholder for the licensed "BMO Design Icons" set). -->
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true"><defs>
+  <symbol id="bmo-ic-learning" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 9L12 5l9.5 4L12 13 2.5 9z"></path><path d="M6.5 11v4.2c0 .9 2.5 2.3 5.5 2.3s5.5-1.4 5.5-2.3V11"></path><path d="M21.5 9v4.5"></path></g></symbol>
+  <symbol id="bmo-ic-clients" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="8.5" cy="8" r="3"></circle><circle cx="16" cy="9.5" r="2.4"></circle><path d="M3.5 19a5 5 0 0 1 10 0"></path><path d="M14.5 19a4 4 0 0 1 6-3.4"></path></g></symbol>
+  <symbol id="bmo-ic-community" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="7" r="2.6"></circle><circle cx="5.5" cy="10.5" r="2.2"></circle><circle cx="18.5" cy="10.5" r="2.2"></circle><path d="M8 18a4 4 0 0 1 8 0"></path><path d="M2.5 18.5a3.2 3.2 0 0 1 4.2-3"></path><path d="M17.3 15.5a3.2 3.2 0 0 1 4.2 3"></path></g></symbol>
+  <symbol id="bmo-ic-regulators" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9.5L12 4l8 5.5"></path><path d="M5 9.5h14"></path><path d="M6.5 10v7M11 10v7M17.5 10v7"></path><path d="M4 19.5h16"></path></g></symbol>
+  <symbol id="bmo-ic-growth" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 18l5-5 3 3 7-7"></path><path d="M15 9h4v4"></path></g></symbol>
+  <symbol id="bmo-ic-award" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="9" r="5"></circle><path d="M9.2 13.4L8 20l4-2 4 2-1.2-6.6"></path><path d="M12 6.6l.9 1.8 2 .3-1.45 1.4.34 2L12 11.1l-1.8.95.34-2L9.1 8.7l2-.3.9-1.8z"></path></g></symbol>
+  <symbol id="bmo-ic-compass" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"></circle><path d="M15.5 8.5l-1.7 5-5 1.7 1.7-5 5-1.7z"></path></g></symbol>
+  <symbol id="bmo-ic-idea" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 16.5a6 6 0 1 1 6 0v1.5a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1v-1.5z"></path><path d="M9.5 21h5"></path></g></symbol>
+  <symbol id="bmo-ic-goals" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"></circle><circle cx="12" cy="12" r="5"></circle><circle cx="12" cy="12" r="1.6"></circle></g></symbol>
+  <symbol id="bmo-ic-security" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.5l7 2.4v5.1c0 5-3.5 8-7 9.5-3.5-1.5-7-4.5-7-9.5V5.9L12 3.5z"></path><path d="M9 12l2 2 4-4"></path></g></symbol>
+  <symbol id="bmo-ic-global" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"></circle><path d="M3.5 12h17"></path><path d="M12 3.5c2.6 2.3 4 5.4 4 8.5s-1.4 6.2-4 8.5c-2.6-2.3-4-5.4-4-8.5s1.4-6.2 4-8.5z"></path></g></symbol>
+  <symbol id="bmo-ic-knowledge" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 6.5C10.3 5.2 8 4.6 4.5 5v12c3.5-.4 5.8.2 7.5 1.5"></path><path d="M12 6.5C13.7 5.2 16 4.6 19.5 5v12c-3.5-.4-5.8.2-7.5 1.5"></path><path d="M12 6.5v12"></path></g></symbol>
+</defs></svg>
+
+<!-- ════════════════════════ SharePoint-modern host chrome ════════════════════════
+     The frame editorial content meshes with. Sits OUTSIDE .editorial. -->
+<header class="sp-suite">
+  <button class="sp-suite__btn" aria-label="App launcher"><svg class="icon"><use href="#ic-fluent-grid-24-regular"/></svg></button>
+  <span class="sp-suite__brand"><img src="../assets/bmo-logo-placeholder.svg" alt="BMO" width="26" height="26"><span class="sp-suite__word">BMO</span></span>
+  <span class="sp-suite__search"><svg class="icon"><use href="#ic-fluent-search-24-regular"/></svg> Search in SharePoint</span>
+  <div class="sp-suite__actions">
+    <button class="sp-suite__btn" aria-label="Notifications"><svg class="icon"><use href="#ic-fluent-alert-24-regular"/></svg></button>
+    <button class="sp-suite__btn" aria-label="Settings"><svg class="icon"><use href="#ic-fluent-settings-24-regular"/></svg></button>
+    <button class="sp-suite__btn" aria-label="Help"><svg class="icon"><use href="#ic-fluent-question-24-regular"/></svg></button>
+    <span class="avatar avatar--28" style="background:var(--bmo-chart-midnight)">JT</span>
+  </div>
+</header>
+
+<nav class="sp-hubnav" aria-label="BMO hubs">
+  <a class="sp-hubnav__link" href="#">BMO Central</a>
+  <a class="sp-hubnav__link" href="#">Canadian P&amp;BB</a>
+  <a class="sp-hubnav__link" href="#">Wealth</a>
+  <a class="sp-hubnav__link" href="#">Capital Markets</a>
+  <a class="sp-hubnav__link is-active" href="#" aria-current="page">Technology &amp; Operations</a>
+  <a class="sp-hubnav__link" href="#">Corporate Areas</a>
+</nav>
+
+<div class="sp-site">
+  <span class="sp-site__icon"><svg class="c-icon c-icon--24"><use href="#bmo-ic-security"/></svg></span>
+  <span class="sp-site__title">Risk &amp; Compliance</span>
+  <span class="sp-site__spacer"></span>
+  <button class="sp-site__follow"><svg class="icon"><use href="#ic-fluent-star-24-regular"/></svg> Follow</button>
+  <button class="sp-site__follow"><svg class="icon"><use href="#ic-fluent-search-24-regular"/></svg> Search this site</button>
+</div>
+
+<nav class="sp-nav" aria-label="Site">
+  <a class="sp-nav__link" href="#">Home</a>
+  <a class="sp-nav__link is-active" href="#" aria-current="page">Resource hub</a>
+  <a class="sp-nav__link" href="#">Standards</a>
+  <a class="sp-nav__link" href="#">Training</a>
+  <a class="sp-nav__link" href="#">Contact</a>
+</nav>
+
+<!-- ════════════════════════ EDITORIAL CONTENT ════════════════════════ -->
+<main class="editorial">
+
+  <!-- ── Hero: arc/ring device (circular photo framed by BMO arcs) ── -->
+  <div class="band band--sky">
+    <div class="l-wrap">
+      <nav class="crumbs" aria-label="Breadcrumb" style="padding-top:var(--space-160)">
+        <a href="#">T&amp;O</a><svg class="icon crumbs__sep"><use href="#ic-fluent-chevron-right-24-regular"/></svg>
+        <a href="#">Risk &amp; Compliance</a><svg class="icon crumbs__sep"><use href="#ic-fluent-chevron-right-24-regular"/></svg>
+        <span class="crumbs__current" aria-current="page">Resource hub</span>
+      </nav>
+      <section class="hero hero--arc reveal">
+        <div class="hero__copy">
+          <p class="hero__eyebrow">Resource hub</p>
+          <h1 class="hero__title">Everything you need to manage risk, in one place</h1>
+          <p class="hero__lede">Standards, tools, training, and the people behind them — brought together so you can find what you need and get back to the work.</p>
+          <div class="hero__cta">
+            <a class="btn btn--primary btn--lg" href="#">Explore resources</a>
+            <a class="btn btn--tertiary btn--lg" href="#">Watch the overview <svg class="icon icon--16"><use href="#ic-fluent-play-24-regular"/></svg></a>
+          </div>
+        </div>
+        <div class="hero__media">
+          <div class="photo"><img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&w=760&q=70" alt="A colleague at work, smiling in natural light" crossorigin="anonymous" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='https://picsum.photos/seed/bmo-hub-hero/760/760'"></div>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <!-- ── Overview + video ── -->
+  <div class="band band--white">
+    <div class="l-wrap l-section">
+      <div class="ov-grid">
+        <div>
+          <div class="section-head">
+            <p class="section-head__eyebrow">Overview</p>
+            <h2 class="section-head__title">Risk is everyone's job</h2>
+          </div>
+          <p style="font:var(--type-body2);color:var(--fg-secondary);max-width:52ch;margin:0 0 var(--space-160)">This hub brings together the standards, tools, and training that keep BMO safe and sound. Start with the 4-minute overview, then explore the resources built for your team's work.</p>
+          <p style="font:var(--type-body2);color:var(--fg-secondary);max-width:52ch;margin:0 0 var(--space-240)">Everything here is reviewed quarterly by the Risk Enablement team. If something's missing, tell us — we build what people ask for.</p>
+          <a class="btn btn--secondary" href="#"><svg class="icon icon--16"><use href="#ic-fluent-play-24-regular"/></svg> Browse the video library</a>
+        </div>
+        <article class="card card--flush media-card lift" tabindex="0">
+          <div class="media-card__thumb">
+            <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=640&q=70" alt="A team meeting in a bright room" crossorigin="anonymous" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='https://picsum.photos/seed/bmo-hub-video/640/360'">
+            <button class="media-card__play" aria-label="Play: Risk in four minutes"><svg class="icon"><use href="#ic-fluent-play-24-regular"/></svg></button>
+            <span class="media-card__duration">4:12</span>
+          </div>
+          <div class="card__content">
+            <p class="card__eyebrow">Watch first</p>
+            <h3 class="card__title">Risk in four minutes</h3>
+          </div>
+        </article>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Essential resources on a tinted band (chips wired with inline Alpine) ── -->
+  <div class="band band--blue">
+    <div class="l-wrap l-section" x-data="{ area: 'all' }">
+      <div class="section-head section-head--flex reveal">
+        <div>
+          <p class="section-head__eyebrow">Essential resources</p>
+          <h2 class="section-head__title">Start here</h2>
+          <p class="section-head__lede">The resources most teams reach for first, grouped by the area they support.</p>
+        </div>
+        <a class="btn btn--tertiary" href="#">All resources <svg class="icon icon--16"><use href="#ic-fluent-arrow-right-24-regular"/></svg></a>
+      </div>
+      <div class="chip-row" role="group" aria-label="Resource categories" style="margin-bottom:var(--space-320)">
+        <button class="chip" :class="{ 'is-active': area==='all' }" :aria-pressed="area==='all'" x-on:click="area='all'">All areas</button>
+        <button class="chip" :class="{ 'is-active': area==='clients' }" :aria-pressed="area==='clients'" x-on:click="area='clients'">Our clients</button>
+        <button class="chip" :class="{ 'is-active': area==='regulators' }" :aria-pressed="area==='regulators'" x-on:click="area='regulators'">Regulators</button>
+        <button class="chip" :class="{ 'is-active': area==='operations' }" :aria-pressed="area==='operations'" x-on:click="area='operations'">Operations</button>
+        <button class="chip" :class="{ 'is-active': area==='technology' }" :aria-pressed="area==='technology'" x-on:click="area='technology'">Technology</button>
+      </div>
+      <div class="l-grid l-grid--4">
+        <article class="card lift" tabindex="0" x-show="area==='all' || area==='operations'">
+          <span class="card__icon-tile"><svg class="c-icon c-icon--24"><use href="#bmo-ic-security"/></svg></span>
+          <h3 class="card__title" style="margin-top:var(--space-120)">Enterprise risk standards</h3>
+          <p class="card__body">The controls, thresholds, and escalation paths that apply across every line of business.</p>
+          <div class="card__footer"><span class="card__meta">Standards</span><a class="card__cta" href="#">Open <svg class="icon icon--16"><use href="#ic-fluent-arrow-right-24-regular"/></svg></a></div>
+        </article>
+        <article class="card lift" tabindex="0" x-show="area==='all' || area==='regulators'">
+          <span class="card__icon-tile"><svg class="c-icon c-icon--24"><use href="#bmo-ic-regulators"/></svg></span>
+          <h3 class="card__title" style="margin-top:var(--space-120)">Regulatory library</h3>
+          <p class="card__body">Current guidance from OSFI, FINTRAC, and the regulators that shape our work.</p>
+          <div class="card__footer"><span class="card__meta">Reference</span><a class="card__cta" href="#">Open <svg class="icon icon--16"><use href="#ic-fluent-arrow-right-24-regular"/></svg></a></div>
+        </article>
+        <article class="card lift" tabindex="0" x-show="area==='all' || area==='operations' || area==='technology'">
+          <span class="card__icon-tile"><svg class="c-icon c-icon--24"><use href="#bmo-ic-knowledge"/></svg></span>
+          <h3 class="card__title" style="margin-top:var(--space-120)">Playbooks &amp; toolkits</h3>
+          <p class="card__body">Step-by-step guides for the situations teams meet most often.</p>
+          <div class="card__footer"><span class="card__meta">Toolkits</span><a class="card__cta" href="#">Open <svg class="icon icon--16"><use href="#ic-fluent-arrow-right-24-regular"/></svg></a></div>
+        </article>
+        <article class="card lift" tabindex="0" x-show="area==='all' || area==='clients'">
+          <span class="card__icon-tile"><svg class="c-icon c-icon--24"><use href="#bmo-ic-community"/></svg></span>
+          <h3 class="card__title" style="margin-top:var(--space-120)">Find your risk partner</h3>
+          <p class="card__body">The named contact for your team, and how to reach them quickly.</p>
+          <div class="card__footer"><span class="card__meta">People</span><a class="card__cta" href="#">Open <svg class="icon icon--16"><use href="#ic-fluent-arrow-right-24-regular"/></svg></a></div>
+        </article>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Scorecard: solid BMO-blue tiles (sanctioned flood-of-blue pattern) ── -->
+  <div class="band band--white">
+    <div class="l-wrap l-section">
+      <div class="section-head reveal">
+        <p class="section-head__eyebrow">Where we stand</p>
+        <h2 class="section-head__title">Risk &amp; compliance scorecard</h2>
+        <p class="section-head__lede">Our shared measures, updated at the end of each quarter.</p>
+      </div>
+      <div class="scorecard scorecard--4 reveal">
+        <div class="scorecard__tile">
+          <span class="scorecard__icon"><svg class="c-icon c-icon--32 c-icon--on-blue"><use href="#bmo-ic-goals"/></svg></span>
+          <div class="scorecard__value">94%</div>
+          <div class="scorecard__label">Controls tested on time</div>
+          <div class="scorecard__caption">Target 90% · trailing 12 months</div>
+        </div>
+        <div class="scorecard__tile">
+          <span class="scorecard__icon"><svg class="c-icon c-icon--32 c-icon--on-blue"><use href="#bmo-ic-growth"/></svg></span>
+          <div class="scorecard__value">12</div>
+          <div class="scorecard__label">New standards published</div>
+          <div class="scorecard__caption">This fiscal year</div>
+        </div>
+        <div class="scorecard__tile">
+          <span class="scorecard__icon"><svg class="c-icon c-icon--32 c-icon--on-blue"><use href="#bmo-ic-security"/></svg></span>
+          <div class="scorecard__value">0</div>
+          <div class="scorecard__label">Critical findings open</div>
+          <div class="scorecard__caption">As of quarter end</div>
+        </div>
+        <div class="scorecard__tile scorecard__tile--midnight">
+          <span class="scorecard__icon"><svg class="c-icon c-icon--32 c-icon--on-blue"><use href="#bmo-ic-community"/></svg></span>
+          <div class="scorecard__value">3,240</div>
+          <div class="scorecard__label">Colleagues trained</div>
+          <div class="scorecard__caption">Across 4 programs</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Training videos: play overlays ── -->
+  <div class="band band--neutral">
+    <div class="l-wrap l-section">
+      <div class="section-head section-head--flex reveal">
+        <div>
+          <p class="section-head__eyebrow">Training videos</p>
+          <h2 class="section-head__title">Learn in a few minutes</h2>
+        </div>
+        <a class="btn btn--tertiary" href="#">Video library <svg class="icon icon--16"><use href="#ic-fluent-arrow-right-24-regular"/></svg></a>
+      </div>
+      <div class="l-grid l-grid--3">
+        <article class="card card--flush media-card lift" tabindex="0">
+          <div class="media-card__thumb">
+            <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&w=560&q=70" alt="Two colleagues reviewing a laptop together" crossorigin="anonymous" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='https://picsum.photos/seed/bmo-vid-1/560/320'">
+            <button class="media-card__play" aria-label="Play: Spotting suspicious activity"><svg class="icon"><use href="#ic-fluent-play-24-regular"/></svg></button>
+            <span class="media-card__duration">3:48</span>
+          </div>
+          <div class="card__content"><p class="card__eyebrow">Compliance</p><h3 class="card__title">Spotting suspicious activity</h3></div>
+        </article>
+        <article class="card card--flush media-card lift" tabindex="0">
+          <div class="media-card__thumb">
+            <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=560&q=70" alt="A team working together at a table" crossorigin="anonymous" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='https://picsum.photos/seed/bmo-vid-2/560/320'">
+            <button class="media-card__play" aria-label="Play: Escalating the right way"><svg class="icon"><use href="#ic-fluent-play-24-regular"/></svg></button>
+            <span class="media-card__duration">5:02</span>
+          </div>
+          <div class="card__content"><p class="card__eyebrow">Process</p><h3 class="card__title">Escalating the right way</h3></div>
+        </article>
+        <article class="card card--flush media-card lift" tabindex="0">
+          <div class="media-card__thumb">
+            <img src="https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?auto=format&fit=crop&w=560&q=70" alt="A colleague focused at a laptop in natural light" crossorigin="anonymous" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='https://picsum.photos/seed/bmo-vid-3/560/320'">
+            <button class="media-card__play" aria-label="Play: Reading a control report"><svg class="icon"><use href="#ic-fluent-play-24-regular"/></svg></button>
+            <span class="media-card__duration">6:20</span>
+          </div>
+          <div class="card__content"><p class="card__eyebrow">Tools</p><h3 class="card__title">Reading a control report</h3></div>
+        </article>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Key messages carousel — inline Alpine (index state; dots drive the
+       .is-active / aria-pressed contract) ── -->
+  <div class="band band--white">
+    <div class="l-wrap l-section">
+      <div class="section-head reveal">
+        <p class="section-head__eyebrow">Key messages</p>
+        <h2 class="section-head__title">From our risk leaders</h2>
+      </div>
+      <div class="key-messages reveal" x-data="{ i: 0 }">
+        <div class="key-messages__media">
+          <img x-show="i===0" src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=760&q=70" alt="Michael Torres" crossorigin="anonymous" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='https://picsum.photos/seed/bmo-leader-1/760/800'">
+          <img x-show="i===1" x-cloak src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=760&q=70" alt="Sarah Chen" crossorigin="anonymous" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='https://picsum.photos/seed/bmo-leader-2/760/800'">
+          <img x-show="i===2" x-cloak src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=760&q=70" alt="Devon Park" crossorigin="anonymous" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='https://picsum.photos/seed/bmo-leader-3/760/800'">
+        </div>
+        <div class="key-messages__body">
+          <!-- x-show + x-cloak: message 1 is the no-JS state; 2 and 3 stay hidden
+               until Alpine boots (and forever if it never does). -->
+          <p class="key-messages__quote" x-show="i===0">Strong risk management is how we earn trust — every day, in every decision.</p>
+          <p class="key-messages__quote" x-show="i===1" x-cloak>The best control is a colleague who knows what to look for.</p>
+          <p class="key-messages__quote" x-show="i===2" x-cloak>Simple, well-understood standards beat complex ones nobody follows.</p>
+          <p class="key-messages__cite" x-show="i===0"><strong>Michael Torres</strong> · Chief Risk Officer, T&amp;O</p>
+          <p class="key-messages__cite" x-show="i===1" x-cloak><strong>Sarah Chen</strong> · Head of Risk Enablement</p>
+          <p class="key-messages__cite" x-show="i===2" x-cloak><strong>Devon Park</strong> · Director, Governance</p>
+          <div class="key-messages__dots" role="group" aria-label="Choose a message">
+            <button class="key-messages__dot" :class="{ 'is-active': i===0 }" :aria-pressed="i===0" aria-label="Show message 1 of 3" x-on:click="i=0"></button>
+            <button class="key-messages__dot" :class="{ 'is-active': i===1 }" :aria-pressed="i===1" aria-label="Show message 2 of 3" x-on:click="i=1"></button>
+            <button class="key-messages__dot" :class="{ 'is-active': i===2 }" :aria-pressed="i===2" aria-label="Show message 3 of 3" x-on:click="i=2"></button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Supporting information (content-icon link rows) ── -->
+  <div class="band band--neutral">
+    <div class="l-wrap l-section">
+      <div class="section-head reveal">
+        <p class="section-head__eyebrow">Supporting information</p>
+        <h2 class="section-head__title">Related links</h2>
+      </div>
+      <div class="card reveal" style="padding:var(--space-120) var(--space-320) var(--space-160)">
+        <div class="link-list">
+          <div class="link-row">
+            <span class="link-row__icon"><svg class="c-icon c-icon--24"><use href="#bmo-ic-global"/></svg></span>
+            <span class="link-row__main"><a class="link-row__title" href="#">Enterprise policy portal</a><span class="link-row__desc">The full library of BMO enterprise policies and procedures.</span></span>
+            <span class="link-row__cta"><svg class="icon"><use href="#ic-fluent-arrow-export-24-regular"/></svg></span>
+          </div>
+          <div class="link-row">
+            <span class="link-row__icon"><svg class="c-icon c-icon--24"><use href="#bmo-ic-idea"/></svg></span>
+            <span class="link-row__main"><a class="link-row__title" href="#">Submit an idea</a><span class="link-row__desc">Suggest a new standard, tool, or piece of training.</span></span>
+            <span class="link-row__cta"><svg class="icon"><use href="#ic-fluent-arrow-right-24-regular"/></svg></span>
+          </div>
+          <div class="link-row">
+            <span class="link-row__icon"><svg class="c-icon c-icon--24"><use href="#bmo-ic-community"/></svg></span>
+            <span class="link-row__main"><a class="link-row__title" href="#">Risk community</a><span class="link-row__desc">Join the cross-team community for questions and discussion.</span></span>
+            <span class="link-row__cta"><svg class="icon"><use href="#ic-fluent-arrow-right-24-regular"/></svg></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── CTA band — BMO-blue flood ── -->
+  <div class="band band--flood">
+    <div class="l-wrap" style="padding:var(--space-480) var(--space-320)">
+      <div class="cta-band reveal">
+        <div>
+          <h2 class="cta-band__title">Not sure where to start?</h2>
+          <p class="cta-band__lede">Your risk partner can point you to the right standards and training for your team's work.</p>
+        </div>
+        <div class="cta-band__actions">
+          <a class="btn btn--primary btn--lg" href="#">Find your risk partner</a>
+          <a class="btn btn--secondary btn--lg" href="#">Contact the team</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<!-- ════════════════════════ Site footer ════════════════════════ -->
+<footer class="sp-footer">
+  <span>© BMO Financial Group</span>
+  <a href="#">Accessibility</a>
+  <a href="#">Privacy</a>
+  <a href="#">Terms of use</a>
+  <span class="sp-footer__spacer"></span>
+  <span>Internal use only · Risk &amp; Compliance, Technology &amp; Operations</span>
+</footer>
+
+<!-- Reveal-on-scroll. editorial.css also gives .reveal a CSS load-in fade, so
+     content is never stranded hidden even if this script doesn't run. -->
+<script>
+(function () {
+  var play = function () {
+    var els = Array.prototype.slice.call(document.querySelectorAll('.reveal'));
+    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduce || !('IntersectionObserver' in window)) {
+      els.forEach(function (el) { el.classList.add('is-in'); });
+      return;
+    }
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); }
+      });
+    }, { threshold: 0.05, rootMargin: '0px 0px -4% 0px' });
+    els.forEach(function (el) { io.observe(el); });
+    /* Safety net: content must never stay hidden if IO doesn't fire. */
+    setTimeout(function () { els.forEach(function (el) { el.classList.add('is-in'); }); }, 700);
+  };
+  requestAnimationFrame(play);
+})();
+</script>
+
+<!-- ALPINE LAST, deferred. CDN is fine for this local showcase; a production
+     SharePoint page self-hosts alpine.min.js in SiteAssets (see PAGE-TEMPLATE.md). -->
+<script defer src="https://unpkg.com/alpinejs@3/dist/cdn.min.js"></script>
+</body>
+</html>

@@ -1,7 +1,7 @@
 # `preview/` update plan — bring the gallery cards onto the canonical system
 
 > Status: **DONE.** Executed across all 27 cards + `_card.css`; verified live (Vite)
-> with no console errors. See `CHANGELOG.md` §9 for the as-built record. Phase 0 was
+> with no console errors. Phase 0 was
 > resolved: the `@dsCard` generator is **not** in this repo and `_ds_manifest.json` is
 > a metadata-only index (won't overwrite hand-edits), so the cards were hand-edited;
 > the sibling `../../project/preview/` is the **backup snapshot** and was left out of
@@ -24,7 +24,7 @@ problem, not a total breakage.
    `:hover`/`:focus-visible`/`:disabled`.
 3. **Static-state specimens via baked classes.** Button/input cards fake
    hover/focus/disabled with classes (thumbnails can't trigger pseudo-states) — the
-   same problem solved in `Design System Reference.html` with native states + a
+   same problem solved in `design-system-reference.html` with native states + a
    `.demo-focus` helper. The previews never got that treatment.
 4. **Inline `<style>` forks** in 3 files: `brand-imagery.html`,
    `components-card-composition.html`, `spacing-motion.html`.
@@ -33,7 +33,7 @@ problem, not a total breakage.
 6. **Generated artifacts.** Every file carries an `@dsCard …` marker; there's a
    populated `_ds_manifest.json` (~19 KB) and `_ds_bundle.js`. A preview/thumbnail
    generator produced these — hand-edits may be overwritten on regeneration.
-7. **Consumed by the deferred `Developer Guide.html`** (the only thing referencing
+7. **Consumed by the deferred `developer-guide.html`** (the only thing referencing
    `preview/`), which is itself deferred. Previews + Developer Guide are one cluster.
 
 **Not wrong (don't over-scope):** the `class="chip"` hits in the color files are
@@ -56,7 +56,7 @@ source/manifest lives.
 - Keep only preview-harness utilities (`.sw`, `.sw .chip`, `.meta`, `.hex`, `.label`,
   `.token`, `.callout`, `.row`, `.col`, base body).
 - Add documented static-state helpers `.demo-hover` / `.demo-focus` / `.demo-disabled`,
-  mirroring the `.demo-focus` approach already in `Design System Reference.html`.
+  mirroring the `.demo-focus` approach already in `design-system-reference.html`.
 
 ### Phase 2 — Repoint preview markup to canonical BEM
 - `btn primary` → `btn btn--primary` (and `--secondary`/`--tertiary`).
@@ -81,7 +81,7 @@ source/manifest lives.
 - Serve via Vite; inspect/screenshot each card.
 - grep gates: zero retired vocabulary in `preview/` and `_card.css`; zero
   non-`ic-fluent` icon refs; every card resolves all classes against the canonical CSS.
-- **Sequence with the deferred `Developer Guide.html` update** — it embeds these cards,
+- **Sequence with the deferred `developer-guide.html` update** — it embeds these cards,
   so do them together.
 
 ## Decisions to settle when we start
