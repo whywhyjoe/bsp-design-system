@@ -186,7 +186,7 @@
    its austere sizing.
    --------------------------------------------------------------------- */
 .editorial .hero { padding: var(--space-480) 0 var(--space-520); }
-.editorial .hero__title { font: var(--ed-display); letter-spacing: -.02em; max-width: 16ch; }
+.editorial .hero__title { font: var(--ed-display); letter-spacing: -.02em; }
 .editorial .hero__lede  { font: var(--ed-lede); max-width: 44ch; }
 
 .editorial .section-head { margin-bottom: var(--space-320); }

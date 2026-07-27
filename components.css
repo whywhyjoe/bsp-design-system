@@ -743,7 +743,7 @@
                           <div class="hero__media photo">…</div> </div> */
 .hero { display: grid; grid-template-columns: 1.04fr .96fr; gap: var(--space-480); align-items: center; padding: var(--space-400) 0 var(--space-560); }
 .hero__eyebrow { font: var(--type-caption1-strong); letter-spacing: .09em; text-transform: uppercase; color: var(--accent-rest); margin: 0 0 var(--space-120); }
-.hero__title { font: var(--weight-regular) 38px/46px var(--font-family); letter-spacing: -.01em; color: var(--fg-primary); margin: 0 0 var(--space-160); max-width: 14ch; text-wrap: balance; }
+.hero__title { font: var(--weight-regular) 38px/46px var(--font-family); letter-spacing: -.01em; color: var(--fg-primary); margin: 0 0 var(--space-160); max-width: 18ch; text-wrap: balance; }
 .hero__lede { font: var(--weight-regular) 17px/26px var(--font-family); color: var(--fg-secondary); max-width: 46ch; margin: 0 0 var(--space-240); }
 .hero__cta { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-120); }
 .hero__media { height: 340px; border-radius: var(--radius-large); border: var(--stroke-thin) solid var(--stroke-divider); box-shadow: var(--shadow-8); }
