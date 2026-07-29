@@ -9,11 +9,12 @@
     and can be diffed against a tag. The single exception is DEPLOY-INFO.txt, which
     records what landed and when.
 
-    Point -Destination at the CONTAINER (e.g. your SiteAssets root). The script
-    creates the `bsp-design` folder inside it:
+    -Destination is the CONTAINER; the script creates `bsp-design` inside it. It
+    defaults to the work machine's OneDrive-synced folder for the FCUPortal Code
+    library:
 
-        <Destination>/bsp-design/                 (default)
-        <Destination>/bsp-design/1.0.0/           (with -Versioned)
+        C:\dev\fcuportal-code\bsp-design\         -> /sites/FCUPortal/Code/bsp-design
+        C:\dev\fcuportal-code\bsp-design\1.0.0\   (with -Versioned)
 
     If -Destination already ends in `bsp-design`, it is used as-is rather than
     nesting a second one.
@@ -25,12 +26,16 @@
                library's catalog.json / index.html / README.md. Those are docs and
                authoring aids — they have no business on the server.
 
-    Alpine is NOT in this repo and therefore NOT deployed. Place your self-hosted
-    alpine.min.js in the destination yourself; the script warns if it is absent.
+    Alpine is NOT in this repo and therefore NOT deployed. It lives with the other
+    script libraries in the Code library's lib/ folder (alongside pnp2.bundle.js),
+    a sibling of bsp-design/ rather than inside it.
 
 .PARAMETER Destination
-    Container folder for the deployment (created if missing). The `bsp-design`
-    folder is created inside it.
+    Container folder that the deployment goes INSIDE. Defaults to the work machine's
+    OneDrive-synced folder for the FCUPortal Code library, C:\dev\fcuportal-code,
+    which surfaces as /sites/FCUPortal/Code. The container must already exist — the
+    script creates only the `bsp-design` folder within it. Pass -Destination on any
+    other machine (staging, a scratch dir).
 
 .PARAMETER FolderName
     Override the deployed folder name. Defaults to `bsp-design`.
@@ -54,17 +59,17 @@
     Proceed even though the git working tree has uncommitted changes.
 
 .EXAMPLE
-    ./tools/Deploy-BspDesign.ps1 -Destination D:\staging -WhatIf
-    Previews:  D:\staging\bsp-design\
+    ./tools/Deploy-BspDesign.ps1 -WhatIf
+    Previews:  C:\dev\fcuportal-code\bsp-design\
 
 .EXAMPLE
-    ./tools/Deploy-BspDesign.ps1 -Destination \\host\sites\Brand\SiteAssets -Versioned
-    Deploys:   \\host\sites\Brand\SiteAssets\bsp-design\1.0.0\
+    ./tools/Deploy-BspDesign.ps1 -Destination D:\staging -Versioned
+    Deploys:   D:\staging\bsp-design\1.0.0\
 #>
 [CmdletBinding(SupportsShouldProcess, ConfirmImpact = 'Medium')]
 param(
-    [Parameter(Mandatory, Position = 0)]
-    [string] $Destination,
+    [Parameter(Position = 0)]
+    [string] $Destination = 'C:\dev\fcuportal-code',
 
     [string] $FolderName = 'bsp-design',
     [switch] $Versioned,
@@ -127,6 +132,16 @@ if ($isDirty) {
 }
 
 # ----------------------------------------------------- resolve target --------
+# The container must already exist. On the work machine it is the OneDrive-synced
+# folder that maps to the Code library; we create bsp-design INSIDE it, never the
+# container itself — auto-creating it would silently deploy into a stray local
+# folder that syncs nowhere, and report success.
+if (-not (Test-Path -LiteralPath $Destination -PathType Container)) {
+    throw ("Destination container not found: '$Destination'`n" +
+           "On the work machine this is the OneDrive-synced folder for the Code library. " +
+           "On any other machine pass -Destination explicitly, e.g. -Destination D:\staging.")
+}
+
 # Don't nest bsp-design inside bsp-design if the caller already pointed at it.
 $leaf = Split-Path $Destination -Leaf
 $target = if ($leaf -eq $FolderName) { $Destination } else { Join-Path $Destination $FolderName }
@@ -200,8 +215,8 @@ Link order (tokens before components; editorial only on editorial pages):
 Verify the live page is on this version, from devtools:
   getComputedStyle(document.documentElement).getPropertyValue('--ds-version')
 
-Alpine is not part of this deployment. Self-host alpine.min.js alongside these
-files if the consuming pages need it.
+Alpine is not part of this deployment. It lives in the shared lib/ folder next to
+this one (alongside pnp2.bundle.js), a sibling of bsp-design/.
 "@
 
 if ($PSCmdlet.ShouldProcess('DEPLOY-INFO.txt', 'write')) {
@@ -212,7 +227,16 @@ if ($PSCmdlet.ShouldProcess('DEPLOY-INFO.txt', 'write')) {
 Write-Host ""
 Write-Host "Deployed v$version ($sha) -> $target" -ForegroundColor Cyan
 Write-Host ("$copied files, {0} MB" -f [math]::Round($bytes / 1MB, 2)) -ForegroundColor Cyan
+Write-Host "Files are on disk. If this is the synced folder, OneDrive still has to upload them — check the sync icon before calling it live." -ForegroundColor DarkGray
 
-if (-not $WhatIfPreference -and -not (Test-Path (Join-Path $target 'alpine.min.js'))) {
-    Write-Warning "alpine.min.js is not in the destination. Pages using Alpine will render but silently do nothing until you place a self-hosted copy there."
+# Alpine lives with the other script libraries in the Code library's lib/ folder,
+# a SIBLING of bsp-design/ — not inside it. Check there, next to pnp2.bundle.js.
+$libDir = Join-Path (Split-Path $target -Parent) 'lib'
+if (-not $WhatIfPreference) {
+    $alpine = @(Get-ChildItem -LiteralPath $libDir -Filter 'alpine*.js' -File -ErrorAction SilentlyContinue)
+    if (-not $alpine) {
+        Write-Warning "No alpine*.js found in '$libDir'. Pages using Alpine will render but silently do nothing. Alpine is not deployed by this script - it belongs in the shared lib/ folder alongside pnp2.bundle.js."
+    } else {
+        Write-Host ("Alpine present: " + ($alpine.Name -join ', ') + " in lib/") -ForegroundColor DarkGray
+    }
 }

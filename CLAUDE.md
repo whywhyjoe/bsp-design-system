@@ -53,6 +53,16 @@ Read those before non-trivial work.
   clone whose location you should ask for rather than assume.
   See `docs/TECHNICAL-REFERENCE.md` §6.
 
+## Paths in a real page — absolute, not relative
+SharePoint does not resolve page-relative links reliably. Every URL a **page** emits is
+**server-relative from `/sites/FCUPortal`**: `/sites/FCUPortal/Code/bsp-design/components.css`,
+`/sites/FCUPortal/Code/bsp-design/abacus-icons/add-24.svg`, `/sites/FCUPortal/Code/lib/alpine.js`.
+The `examples/` pages use relative paths on purpose so they open from disk — **their
+snippets must be repointed when pasted into a real page.** The one thing that stays
+relative is `url()` *inside* the CSS (`editorial.css` → `assets/bmo-bokeh-a.svg`): CSS
+resolves those against the stylesheet URL, which is what keeps the folder relocatable.
+Alpine and pnpjs live in `/sites/FCUPortal/Code/lib/`, a sibling of `bsp-design/`.
+
 ## File map
 **The library (link these):**
 - `colors_and_type.css` — tokens (`:root`, defined once) + base element styles + utilities (`.imgph .photo .lift .reveal`). Link first.
@@ -97,7 +107,7 @@ stamps it into the `/*! … v1.0.0 … */` banner on line 1 of each shipped CSS/
 `--ds-version` in `colors_and_type.css`'s `:root` (declared inside the single existing block — this
 is **not** a second `:root`). A live page reports its own version via
 `getComputedStyle(document.documentElement).getPropertyValue('--ds-version')`. Bump → review → commit
-→ tag. `tools/Deploy-BspDesign.ps1 -Destination <container>` then does a **pure copy** of the
+→ tag. `tools/Deploy-BspDesign.ps1` (defaults to the synced `C:\dev\fcuportal-code`) then does a **pure copy** of the
 runtime files into a `bsp-design/` folder created inside that container (`-Versioned` nests
 `bsp-design/<version>/`). Runtime only — no `examples/`, `docs/`, `context/`, `tools/`,
 `index.html`, `.md`, or the libraries' `catalog.json` / `index.html` — so prod is byte-identical

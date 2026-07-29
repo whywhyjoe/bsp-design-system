@@ -14,9 +14,11 @@ and explained right after.
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Requests · BMO</title>
 
-  <!-- (1) Tokens BEFORE components. Or use the one-tag styles.css equivalent. -->
-  <link rel="stylesheet" href="colors_and_type.css">
-  <link rel="stylesheet" href="components.css">
+  <!-- (1) Tokens BEFORE components. Or use the one-tag styles.css equivalent.
+       SERVER-RELATIVE paths from /sites/FCUPortal — SharePoint does not resolve
+       page-relative links reliably. Never ship a bare "components.css". -->
+  <link rel="stylesheet" href="/sites/FCUPortal/Code/bsp-design/colors_and_type.css">
+  <link rel="stylesheet" href="/sites/FCUPortal/Code/bsp-design/components.css">
 
   <!-- x-cloak: hide Alpine-controlled (x-show) elements until Alpine boots,
        so a dialog/toast doesn't flash on load. Harmless if unused. -->
@@ -112,16 +114,42 @@ and explained right after.
   </main>
 
   <!-- (4) ALPINE LAST, deferred, SELF-HOSTED. It must load after the markup it
-       binds (defer does that). Point src at your SiteAssets copy — never an
-       external CDN on a production SharePoint page. Omit this whole tag and the
-       page is still fully styled and iconned; only the chip/switch go inert. -->
-  <script defer src="alpine.min.js"></script>
+       binds (defer does that). It lives in the shared lib/ folder beside
+       pnp2.bundle.js — never an external CDN on a production page. Omit this
+       whole tag and the page is still fully styled and iconned; only the
+       chip/switch go inert. -->
+  <script defer src="/sites/FCUPortal/Code/lib/alpine.js"></script>
 
 </body>
 </html>
 ```
 
 ### The four load-bearing pieces (and how each fails if you skip it)
+
+### Paths: absolute in SharePoint, relative in this repo
+
+Every URL a **page** emits must be **server-relative from `/sites/FCUPortal`** —
+SharePoint does not resolve page-relative links reliably, and a modern page does
+not live beside the assets anyway. That covers stylesheet links, the Alpine
+`<script>`, and every `<img src>` for an Abacus icon or spot illustration:
+
+```
+/sites/FCUPortal/Code/bsp-design/components.css
+/sites/FCUPortal/Code/bsp-design/abacus-icons/add-24.svg
+/sites/FCUPortal/Code/lib/alpine.js
+```
+
+**The example pages in `examples/` deliberately use relative paths** (`../abacus-icons/…`)
+so they open straight from disk with no server. Their copy-paste snippets show the
+short form too. When you paste one into a real page, **repoint it at the absolute
+path** — this is the most likely reason something works locally and breaks in
+SharePoint.
+
+**One exception, and it is not a mistake:** relative `url()` references *inside*
+the CSS — `editorial.css` pointing at `assets/bmo-bokeh-a.svg` — are correct and
+must stay relative. CSS resolves `url()` against the stylesheet's own URL, not the
+page's, so they land correctly wherever the folder is deployed. That is what keeps
+the tree relocatable.
 
 1. **Link order — tokens before components.** `components.css` reads
    `var(--token)`s defined in `colors_and_type.css`. Reverse them and components
@@ -143,8 +171,9 @@ and explained right after.
    more for isolated widgets.
 
 4. **Alpine loads last, deferred, self-hosted.** `defer` guarantees it
-   initializes after the DOM it binds. Self-host `alpine.min.js` in SiteAssets —
-   a production SharePoint page must not depend on an external CDN. Leaving Alpine
+   initializes after the DOM it binds. It is self-hosted at
+   `/sites/FCUPortal/Code/lib/alpine.js`, beside `pnp2.bundle.js` — a production
+   SharePoint page must not depend on an external CDN. Leaving Alpine
    out is a valid mode: the page stays fully styled and iconned (icons need zero
    JS); only the interactive bits go inert.
 

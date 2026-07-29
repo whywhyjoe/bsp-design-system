@@ -36,6 +36,12 @@ The rule constrains the **shipped artifact**, not the developer's machine:
   - ✅ `<script defer src="alpine.min.js"></script>`
   - ❌ shipping `<script src="https://unpkg.com/alpinejs@3/dist/cdn.min.js"></script>` to production
 
+## Paths — absolute in SharePoint
+- ✅ `<link rel="stylesheet" href="/sites/FCUPortal/Code/bsp-design/components.css">` · `<script defer src="/sites/FCUPortal/Code/lib/alpine.js">` · `<img src="/sites/FCUPortal/Code/bsp-design/abacus-icons/add-24.svg">`
+- ❌ `href="components.css"` / `src="../abacus-icons/add-24.svg"` in a real page — SharePoint does not resolve page-relative links reliably.
+- The `examples/` pages use relative paths **on purpose** (they open from disk). Repoint any snippet you copy from them.
+- **Do not "fix" relative `url()` inside the CSS** — those resolve against the stylesheet, not the page, and must stay as they are.
+
 ## Styling — one BEM vocabulary on shared tokens
 Compose from existing classes + modifiers. Never invent component classes or inline-style values that a class/token already covers — one-off literals are how the original multi-way fork spread.
 - ✅ `<button class="btn btn--primary btn--lg">Submit</button>`

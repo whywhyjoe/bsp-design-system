@@ -132,23 +132,28 @@ copy** — nothing is generated or rewritten — so a deployed folder is
 byte-identical to the tagged source and can be diffed against it.
 
 ```bash
-pwsh ./tools/Deploy-BspDesign.ps1 -Destination \\host\sites\Brand\SiteAssets -WhatIf
+pwsh ./tools/Deploy-BspDesign.ps1 -WhatIf
 ```
 
-Point `-Destination` at the **container** — the script creates the deployed folder
-inside it:
+`-Destination` is the **container**; the script creates the deployed folder inside
+it. It defaults to the work machine's OneDrive-synced folder for the FCUPortal
+Code library, so the usual case needs no argument at all:
 
 ```
-<Destination>/bsp-design/           default
-<Destination>/bsp-design/1.0.0/     with -Versioned
+C:\dev\fcuportal-code\bsp-design\          -> /sites/FCUPortal/Code/bsp-design
+C:\dev\fcuportal-code\bsp-design\1.0.0\    with -Versioned
 ```
+
+The container must already exist — the script creates only `bsp-design` within it,
+never the container, so a missing sync folder fails loudly instead of deploying
+into a stray local directory. Pass `-Destination` on any other machine.
 
 If `-Destination` already ends in `bsp-design` it's used as-is rather than nesting
 a second one. `-FolderName` overrides the name.
 
-Drop `-WhatIf` to run. The script ships the CSS layers, both sprites, `fluent-icon.js`,
+Drop `-WhatIf` to run. The script ships the CSS layers, the icon sprite, `fluent-icon.js`,
 everything in `assets/` (logos SVG+PNG, the five bokeh variants SVG+JPG), and both
-asset libraries' SVGs — 1,220 files, 5.8 MB. It leaves behind `examples/`, `docs/`,
+asset libraries' SVGs — 1,219 files, 5.8 MB. It leaves behind `examples/`, `docs/`,
 `context/`, `tools/`, `index.html`, every `.md`, and each library's `catalog.json` /
 `index.html` / `README.md` (authoring aids, not runtime). It writes one generated
 file, `DEPLOY-INFO.txt`, recording version, UTC timestamp, commit, and file count.
@@ -159,8 +164,20 @@ non-empty folder lacking a `DEPLOY-INFO.txt`, so a mistyped path can't wipe an
 unrelated directory. `-SkipIllustrations` / `-SkipAbacusIcons` trim the 8 MB of
 asset libraries when a target doesn't need them.
 
-**Alpine is not in this repo and is not deployed.** Place your self-hosted
-`alpine.min.js` in the destination yourself; the script warns when it's absent.
+**Alpine is not in this repo and is not deployed.** It lives with the other script
+libraries in the Code library's `lib/` folder (alongside `pnp2.bundle.js`), a
+**sibling** of `bsp-design/` rather than inside it — pnpjs isn't a design-system
+dependency, and keeping them out preserves the byte-identical-to-tag property. The
+script reports whether it can see an `alpine*.js` there.
+
+```
+/sites/FCUPortal/Code/
+├── bsp-design/     this system
+└── lib/            alpine.js, pnp2.bundle.js
+```
+
+Files reach SharePoint via OneDrive sync, so a finished copy is not yet live —
+check the sync icon.
 
 **Versioned folders + cache busting.** Deploying to `…/ds/1.1.0/` lets consumers
 opt into a new version by changing one link, and lets two versions coexist during
