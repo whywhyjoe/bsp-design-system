@@ -21,7 +21,7 @@ component see `../examples/components.html`; for a full composed page see
 | `colors_and_type.css` | Design tokens (`:root` custom properties) + styled base elements (`h1`–`h6`, `a`, `code`…) + a few opt-in utilities (`.imgph`, `.photo`, `.lift`, `.reveal`). | **Yes** |
 | `components.css` | The component layer — every BEM class, built entirely from the tokens. | **Yes** |
 | `styles.css` | Convenience single entry point: `@import`s the two files above, in order. Link this *instead of* the two if you prefer one tag. | Optional |
-| `bmo-icons.svg` | The canonical icon sprite — 48 `<symbol>`s, ids `ic-fluent-{name}-24-regular`. Inline once per page. | Yes, if you use icons |
+| `fluent-basic-icons.svg` | The canonical icon sprite — 48 `<symbol>`s, ids `ic-fluent-{name}-24-regular`. Inline once per page. | Yes, if you use icons |
 | `fluent-icon.js` | Optional `<fluent-icon>` custom element (the "sugar" icon form). | Optional |
 
 **Link order matters** — tokens before components:
@@ -42,7 +42,7 @@ component see `../examples/components.html`; for a full composed page see
 You can build a fully-styled, fully-iconned page with **zero JavaScript**:
 
 1. Link the two CSS files (or `styles.css`).
-2. Inline the contents of `bmo-icons.svg` into the page body once.
+2. Inline the contents of `fluent-basic-icons.svg` into the page body once.
 3. Write the BEM markup; render icons with the no-JS `<use>` form.
 
 Nothing else is needed. Interactivity (toggles, dialogs, sorting) is the only
@@ -58,7 +58,7 @@ components.css        →  every .class is built from those tokens
         │
 your page (HTML)      →  copy-paste BEM markup that uses those classes
         │
-bmo-icons.svg         →  inlined once; <use href="#ic-fluent-*"> resolves same-document
+fluent-basic-icons.svg         →  inlined once; <use href="#ic-fluent-*"> resolves same-document
         │
 inline Alpine         →  x-data / x-model / :class drive documented state classes
 fluent-icon.js        →  OPTIONAL: <fluent-icon name="…"> sugar for the same sprite
@@ -266,7 +266,7 @@ Dense-app components; canonical usage in `examples/example-component-patterns.ht
   `.is-*` class only where there is no native equivalent (`.is-active`,
   `.is-selected`, `.is-in`).
 - **Sizes are explicit modifiers**, not free pixels: `.btn--sm/--lg`,
-  `.icon--12/16/20/24`, `.avatar--20…64` (20/22/28/32/40/48/64), `.dot--10`.
+  `.icon--12/16/20/24/28/48`, `.avatar--20…64` (20/22/28/32/40/48/64), `.dot--10`.
 - **Don't restyle a component inline.** Compose with the provided modifiers; if
   a value is missing, it should become a token + modifier, not an inline hack.
 
@@ -398,11 +398,16 @@ above are the supported approach.
 
 ## 6. Icon system
 
-The durable contract is the **name token** `{icon}-{size}-{variant}` (Fluent
-style, e.g. `home-24-regular`), **not** any one wrapper. **Three** delivery forms
-all key off that same token — two SVG (the sprite `<use>` and the `<fluent-icon>`
-element) plus a first-party Fluent **icon font** — so a dev can adopt zero, some,
-or all of the JS, and pick the delivery that fits the page.
+For the **Fluent** family, the durable contract is the **name token**
+`{icon}-{size}-{variant}` (e.g. `home-24-regular`), **not** any one wrapper.
+Three delivery forms all key off that same token — two SVG (the sprite `<use>`
+and the `<fluent-icon>` element) plus a first-party Fluent **icon font** — so a
+dev can adopt zero, some, or all of the JS, and pick the delivery that fits the
+page.
+
+A **fourth** form (§ Form 4) covers standalone SVG files addressed by URL. That's
+how the **Abacus** icons in `abacus-icons/` are used — they are a separate
+BMO consumer-brand family, not Fluent, and are not in any sprite.
 
 ### Form 1 — no-JS `<use>` (DEFAULT, fully supported)
 Needs only the two CSS files + the inlined sprite. **A dev not ready for our
@@ -441,7 +446,7 @@ system token `home-24-regular` → `icon-ic_fluent_home_24_regular` (the same
 **Why reach for it:** it's the lowest-friction way to get the **entire** Fluent
 set self-hosted with **no build and no JS** — no per-page sprite to inline, no
 48-symbol curation. It's the answer when a page needs **many** icons beyond the
-curated `bmo-icons.svg` set (for just a **few** extras, copy the matching SVGs
+curated `fluent-basic-icons.svg` set (for just a **few** extras, copy the matching SVGs
 from the `fluentui-system-icons` repo into the sprite instead — see "Adding an
 icon" below). It is **first-party Fluent, not a third-party icon kit**, so it's
 consistent with the "hand-rolled Fluent 2, no third-party icon kits" rule — that
@@ -454,7 +459,7 @@ font.
   and put the real label on the interactive parent (`aria-label` on the button/link)
   or adjacent text. The SVG forms are more inherently accessible (they can carry a
   `<title>` / `role="img"`), which is why the no-JS `<use>` sprite stays the default.
-- **Sizing is `font-size`, not `.icon--N`.** The `.icon--12/16/20/24` helpers set
+- **Sizing is `font-size`, not `.icon--N`.** The `.icon--12/16/20/24/28/48` helpers set
   SVG width/height and don't apply to `<i>`. Size the font icon with `font-size`
   (and `line-height:1`); pick the glyph whose baked size matches (`…_24_regular`
   vs `…_20_regular`).
@@ -472,23 +477,63 @@ font.
   `fluent-font-library.{json,html}` master index. Take
   `FluentSystemIcons-Regular.{woff2,css}` (and `-Filled` if needed) from there and
   self-host them in SiteAssets — everything in that repo exists and works as
-  described here, under the same criteria. Its actual path is specified in config
-  when developing a real project. (Upstream source: Microsoft's
+  described here, under the same criteria. **No part of this system resolves a
+  path to that repo** — there is no config key and no build step that reads one.
+  In **production it deploys as its own top-level folder, `fluent-icons/`**, a
+  sibling of `bsp-design/`, so a page links it as `…/fluent-icons/FluentSystemIcons-Regular.css`.
+  On the dev machine it's a separate clone; ask where it lives rather than assuming. (Upstream source: Microsoft's
   [`fluentui-system-icons`](https://github.com/microsoft/fluentui-system-icons).)
+
+### Form 4 — direct URL `<img>` (standalone SVG files; how Abacus icons are used)
+The three forms above all key off a Fluent name token. **Abacus icons don't** —
+they're a separate BMO consumer-brand family in `abacus-icons/`, named
+`<icon>-<size>.svg`, and the **file URL is the whole contract**. No sprite, no
+name token, no JS, nothing to inline:
+
+```html
+<img class="icon icon--24" src="abacus-icons/add-24.svg" alt="">
+```
+
+This needs no new CSS. `.icon` and `.icon--N` set **geometry only** — width,
+height, `flex:none`, and a baseline nudge — with no `<use>`, sprite, or
+`currentColor` dependency, so they apply to an `<img>` exactly as they do to an
+inline `<svg>`.
+
+**Sizing.** Abacus ships at 16/24/28/48, and the `.icon--N` ladder covers all
+four — `.icon--12/16/20/24/28/48`. Always pin the size: bare `.icon` is `1.25em`,
+so it renders a 28px icon at 20px against a 16px font.
+
+**Color: none.** An `<img>` can't be tinted, and Abacus SVGs carry baked hex
+rather than `currentColor` — so you take each icon in its shipped colors. This
+costs nothing here (the two facts cancel), but it does mean any `color`-based
+tinting has **no effect**. On a blue ground use `.icon--on-blue` (editorial.css),
+which forces the glyph white with a filter. Don't use this form for Fluent
+icons you want to inherit text color; use Form 1.
+
+**Accessibility differs from the sprite forms.** The element itself carries the
+text alternative: `alt=""` when decorative, a real `alt` when the icon is the
+sole carrier of meaning. `aria-hidden` on top of `alt=""` is redundant.
+
+**In native SharePoint web parts there's no markup at all.** Image, Quick Links,
+and Hero web parts take a URL — point them at the SiteAssets path. The design
+system isn't involved; this form only matters in embed-authored HTML.
 
 ### Which form should I use?
 - **Default → no-JS `<use>` sprite.** Most accessible, zero dependency, no font
   load, curated set. Best for the icons the system already ships.
+- **Abacus icons → Form 4 (`<img src>`).** They are not in any sprite and are not
+  Fluent-token-addressable; the URL is the contract.
 - **`<fluent-icon>`** when you want the optional sugar element (same sprite).
 - **Icon font** when you need **breadth** (many Fluent icons) or the **least
   setup** (no per-page sprite, no JS) — and you handle the `aria-hidden` + label.
 - **A few icons the sprite lacks** → copy the real SVGs from the
-  `fluentui-system-icons` repo into `bmo-icons.svg` (see "Adding an icon").
+  `fluentui-system-icons` repo into `fluent-basic-icons.svg` (see "Adding an icon").
 
 ### Sprite, sizing, and the tradeoff
-- **Inline `bmo-icons.svg` once per page** (drop it in the body). Both forms emit
+- **Inline `fluent-basic-icons.svg` once per page** (drop it in the body). Both forms emit
   same-document `#id` references, so the sprite must live in the document.
-- **Sizes:** the `.icon` class is `1.25em`; pin with `.icon--12/16/20/24`. The
+- **Sizes:** the `.icon` class is `1.25em`; pin with `.icon--12/16/20/24/28/48`
+  (28 and 48 exist for the Abacus ladder but work on any icon form). The
   sprite is normalized to the **24** viewBox; size is a CSS concern, so
   `name="…-24-regular" class="icon--20"` is correct — you don't need a 20px
   symbol.
@@ -498,7 +543,7 @@ font.
   purely mechanical. Pick `<use>` for zero-JS, `<fluent-icon>` for the sugar.
 - **Adding an icon (the escape hatch for a few extras):** copy the matching real
   SVG from the `fluentui-system-icons` repo (its `svg/` folder, e.g.
-  `ic_fluent_{name}_24_regular.svg`) into `bmo-icons.svg` as a `<symbol>`, set
+  `ic_fluent_{name}_24_regular.svg`) into `fluent-basic-icons.svg` as a `<symbol>`, set
   `id="ic-fluent-{name}-24-regular"`, and normalize it to `fill:none` +
   `currentColor` on the 24 viewBox. Filled variants suffix `-24-filled`. For
   **many** extra icons, self-host the icon font instead of growing the sprite.

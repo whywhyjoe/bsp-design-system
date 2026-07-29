@@ -1,0 +1,37 @@
+<svg width="240" height="200" viewBox="0 0 240 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M54 128.716V41.1544C54 36.7463 57.5 33.1396 61.9 33.1396C82.8 32.9393 94.7 32.9393 97.6 33.2398C100.8 33.5404 103.4 35.1433 105.5 38.1489L109.7 46.6646L133.5 46.5644H133H195C199.4 46.5644 203 50.171 203 54.5791V74.2324V148.186C203 152.494 199.4 156 195 156H62C57.6 156 54 152.494 54 148.186V133.959V128.716Z" fill="#BCE4FB"/>
+<path d="M133 47H195C199.4 47 203 50.6499 203 55.1109V75" stroke="#001928" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M54 134.044V148.216C54 152.507 57.6 156 62 156H195C199.4 156 203 152.507 203 148.216V70" stroke="#005587" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M54 129V41.1786C54 36.7574 57.478 33.1401 61.8503 33.1401C82.6189 32.9391 94.444 32.9391 97.3258 33.2405C100.506 33.542 103.089 35.1497 105.176 38.1642L109.35 46.7051L133 46.6047" stroke="#0075BE" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M37 144.507V57.1366C37 52.7381 40.5 49.1393 44.9 49.1393C65.8 48.9394 77.7 48.9394 80.6 49.2393C83.8 49.5392 86.4 51.1387 88.5 54.1377L92.7 62.6348L116.5 62.5348H144.7H178C182.4 62.5348 186 66.1336 186 70.5321V147.506V158.203C186 162.501 182.4 166 178 166H45C40.6 166 37 162.501 37 158.203V144.007" fill="white"/>
+<path d="M185.5 141V159" stroke="#005587" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M38 93C41.3 117.7 53 135.4 73.3 146.2C93.4 156.9 128.8 163.3 179.5 165.4C180.3 165.4 181 166.1 181 167H47L41.1 164.6C39.2 163.8 38 162 38 160V93Z" fill="#BCE4FB"/>
+<path d="M116 62H178C182.4 62 186 65.6 186 70V147" stroke="#73C3EB" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M186 158.2C186 162.5 182.4 166 178 166H45C40.6 166 37 162.5 37 158.2V144" stroke="#005587" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M37 145V57.1786C37 52.7574 40.478 49.1401 44.8503 49.1401C65.6189 48.9391 77.444 48.9391 80.3258 49.2405C83.5057 49.542 86.0893 51.1497 88.1761 54.1642L92.3497 62.7051L116 62.6047" stroke="#005587" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<mask id="mask0_9_17919" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="54" y="84" width="6" height="6">
+<path d="M54 87C54 88.657 55.343 90 57 90C58.657 90 60 88.657 60 87C60 85.343 58.657 84 57 84C55.343 84 54 85.343 54 87Z" fill="white"/>
+</mask>
+<g mask="url(#mask0_9_17919)">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M49 95H65V79H49V95Z" fill="#0075BE"/>
+</g>
+<mask id="mask1_9_17919" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="64" y="84" width="6" height="6">
+<path d="M64 87C64 88.657 65.343 90 67 90C68.657 90 70 88.657 70 87C70 85.343 68.657 84 67 84C65.343 84 64 85.343 64 87Z" fill="white"/>
+</mask>
+<g mask="url(#mask1_9_17919)">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M59 95H75V79H59V95Z" fill="#005587"/>
+</g>
+<mask id="mask2_9_17919" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="73" y="84" width="6" height="6">
+<path d="M73 87C73 88.657 74.343 90 76 90C77.657 90 79 88.657 79 87C79 85.343 77.657 84 76 84C74.343 84 73 85.343 73 87Z" fill="white"/>
+</mask>
+<g mask="url(#mask2_9_17919)">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M68 95H84V79H68V95Z" fill="#73C3EB"/>
+</g>
+<mask id="mask3_9_17919" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="84" y="84" width="6" height="6">
+<path d="M84 87C84 88.657 85.343 90 87 90C88.657 90 90 88.657 90 87C90 85.343 88.657 84 87 84C85.343 84 84 85.343 84 87Z" fill="white"/>
+</mask>
+<g mask="url(#mask3_9_17919)">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M79 95H95V79H79V95Z" fill="#0075BE"/>
+</g>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M185.705 148.985C184.885 149.1 184.129 148.526 184.014 147.706C183.9 146.885 184.473 146.127 185.294 146.015C186.114 145.9 186.871 146.474 186.986 147.293C187.1 148.114 186.527 148.872 185.705 148.985Z" fill="#001928"/>
+</svg>

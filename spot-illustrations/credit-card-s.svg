@@ -1,0 +1,12 @@
+<svg width="120" height="96" viewBox="0 0 120 96" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M65.6436 83.5915H99.9247C107.98 83.5915 114.508 78.8437 114.508 72.9975V21.9227C114.508 16.0676 107.98 11.3286 99.9247 11.3286H86.3011L65.6436 83.5915Z" fill="#BCE4FB"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M18.6092 83.6715C18.6092 84.4067 18.0141 85.0001 17.277 85.0001C16.5399 85.0001 15.9448 84.4067 15.9448 83.6715C15.9448 82.9363 16.5399 82.3428 17.277 82.3428C18.0141 82.3428 18.6092 82.9363 18.6092 83.6715Z" fill="#001928"/>
+<path d="M17.0548 83.5915C10.4917 83.5915 5.17188 78.8437 5.17188 72.9975V21.9227C5.17188 16.0676 10.4917 11.3286 17.0548 11.3286H102.616C109.179 11.3286 114.499 16.0765 114.499 21.9227" stroke="#73C3EB" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M16.3447 42.1631H102.403" stroke="#005587" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M16.3447 55.0513H31.6824" stroke="#001928" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M40.208 55.0513H55.5457" stroke="#0075BE" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M114.508 21.9229V72.9976C114.508 78.8527 109.747 83.5917 103.886 83.5917H17.4634" stroke="#0075BE" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M17.7054 84.9854C16.8844 85.1004 16.1284 84.5264 16.0144 83.7064C15.9004 82.8844 16.4734 82.1284 17.2944 82.0144C18.1144 81.9004 18.8714 82.4744 18.9854 83.2944C19.0994 84.1144 18.5264 84.8724 17.7054 84.9854Z" fill="#001928"/>
+<path d="M88.1575 73.8211H84.0278C83.0686 73.8211 82.2871 73.0416 82.2871 72.085V63.6434C82.2871 62.6867 83.0686 61.9072 84.0278 61.9072H99.0369" stroke="#0075BE" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M99.2322 61.916H101.994C102.953 61.916 103.735 62.6955 103.735 63.6522V72.0938C103.735 73.0504 102.953 73.8299 101.994 73.8299H88.2996" stroke="#005587" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

@@ -1,3 +1,4 @@
+/*! BMO SharePoint Design System · v1.0.0 · fluent-icon.js */
 /* =====================================================================
    <fluent-icon> — BMO Design System icon element
    ---------------------------------------------------------------------
@@ -36,7 +37,7 @@
     attributeChangedCallback() { if (this.isConnected) this.render(); }
 
     /* resolve(name) -> icon markup: a same-document <use> against the
-       inlined bmo-icons.svg sprite. The sprite is the supported engine;
+       inlined fluent-basic-icons.svg sprite. The sprite is the supported engine;
        to reach icons it doesn't carry, copy the real SVG from the
        fluentui-system-icons repo into the sprite, or use the Fluent icon
        font (docs/TECHNICAL-REFERENCE.md §6) — not a runtime fetch here.

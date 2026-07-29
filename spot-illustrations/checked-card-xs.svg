@@ -1,0 +1,13 @@
+<svg width="96" height="72" viewBox="0 0 96 72" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M43.9899 52.69H65.1399C70.1099 52.69 74.1299 49.76 74.1299 46.14V14.55C74.1299 10.93 70.0999 8 65.1399 8H56.7399L43.9999 52.69H43.9899Z" fill="#BCE4FB"/>
+<path d="M13.3898 52.69C9.76984 52.69 6.83984 49.76 6.83984 46.14V14.55C6.83984 10.93 9.76984 8 13.3898 8H67.5698C71.1898 8 74.1198 10.93 74.1198 14.55" stroke="#73C3EB" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M14.4598 27.0698H66.6598" stroke="#005587" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M14.4598 35.04H22.5198" stroke="#001928" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M26.9899 35.04H35.0499" stroke="#0075BE" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M74.1298 14.5498V46.1398C74.1298 49.7598 71.1998 52.6898 67.5798 52.6898H13.3898" stroke="#0075BE" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M14.8898 52.6899C14.8898 53.5199 14.2198 54.1899 13.3898 54.1899C12.5598 54.1899 11.8898 53.5199 11.8898 52.6899C11.8898 51.8599 12.5598 51.1899 13.3898 51.1899C14.2198 51.1899 14.8898 51.8599 14.8898 52.6899Z" fill="#001928"/>
+<path d="M64.0148 39.875H54.8648C54.0226 39.875 53.3398 40.5578 53.3398 41.4V45.975C53.3398 46.8172 54.0226 47.5 54.8648 47.5H64.0148C64.8571 47.5 65.5398 46.8172 65.5398 45.975V41.4C65.5398 40.5578 64.8571 39.875 64.0148 39.875Z" stroke="#0075BE" stroke-width="3"/>
+<path d="M76.3398 63.5C83.7957 63.5 89.8398 57.4558 89.8398 50C89.8398 42.5442 83.7957 36.5 76.3398 36.5C68.884 36.5 62.8398 42.5442 62.8398 50C62.8398 57.4558 68.884 63.5 76.3398 63.5Z" fill="white" stroke="#73C3EB" stroke-width="3"/>
+<path d="M88.2298 56.3999C91.7598 49.8299 89.3098 41.6499 82.7398 38.1099C76.1698 34.5799 67.9898 37.0299 64.4498 43.5999" stroke="#0075BE" stroke-width="3"/>
+<path d="M69.5598 51.71L74.0598 55.71L83.0598 43.71" stroke="#0075BE" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

@@ -1,0 +1,19 @@
+<svg width="96" height="72" viewBox="0 0 96 72" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M24.0002 8V22.5H14.0002V62.5L15.0002 65H79.4992L81.5002 63.5L82.9992 61.501V22.5H72.5002V8H24.0002Z" fill="white"/>
+<path d="M30.5645 19.5H64.4355" stroke="#0075BE" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M30.5645 24.5H64.4355" stroke="#005587" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M23 22H13V42.5M66 65H78.593C80.475 65 82 63.49 82 61.627V22H72" stroke="#0075BE" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M13 22L39 43" stroke="#0075BE" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M23 29V8H59.5" stroke="#0075BE" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M60 8H72.5V29.5" stroke="#73C3EB" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M82 22L56 43" stroke="#73C3EB" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M14 64L42.254 42.326C44.608 40.775 46.439 40 47.748 40C49.056 40 50.887 40.775 53.242 42.326L81 63.579" stroke="#0075BE" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M13 43V62.127C13 63.99 14.525 65.5 16.407 65.5H66" stroke="#005587" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<mask id="mask0_9_4009" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="18" y="55" width="61" height="9">
+<path d="M18 64H79C67.667 58 57.5 55 48.5 55C39.5 55 29.334 58 18 64Z" fill="white"/>
+</mask>
+<g mask="url(#mask0_9_4009)">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M13 69H84V50H13V69Z" fill="#BCE4FB"/>
+</g>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M60.1986 9.48928C59.4046 9.58828 58.6096 8.99228 58.5106 8.19828C58.4116 7.40428 59.0076 6.61028 59.8016 6.51028C60.5956 6.41128 61.3896 7.00728 61.4896 7.80128C61.5886 8.59528 60.9926 9.39028 60.1986 9.48928Z" fill="#001928"/>
+</svg>

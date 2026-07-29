@@ -1,0 +1,34 @@
+<svg width="320" height="280" viewBox="0 0 320 280" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M94.96 186.07V70.05C94.96 67.54 97 65.5 99.51 65.5H279.22C281.73 65.5 283.77 67.54 283.77 70.05V186.07" fill="white"/>
+<path d="M94.96 188.75V70.05C94.96 67.54 97 65.5 99.51 65.5H279.22C281.73 65.5 283.77 67.54 283.77 70.05V186.07" stroke="#005587" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M102.98 147.33L102.92 175.83H278.08C278.08 175.83 276.68 152.13 277.43 76.8701C260.28 91.9801 231.55 136.22 102.97 147.32L102.98 147.33Z" fill="#BCE4FB"/>
+<path d="M101.79 176.97H276.95V75.7402H101.79V176.97Z" stroke="#73C3EB" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M101.79 159.91V75.7402H164.35" stroke="#0075BE" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M192.41 70.27C192.41 71.65 191.29 72.77 189.91 72.77C188.53 72.77 187.41 71.65 187.41 70.27C187.41 68.89 188.53 67.77 189.91 67.77C191.29 67.77 192.41 68.89 192.41 70.27Z" fill="#001928"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M81.3101 196.3L89.9001 200.95C92.5501 202.38 95.3701 203.12 98.2001 203.12H285.34C288.18 203.12 290.99 202.37 293.64 200.9L301.97 196.29" fill="white"/>
+<path d="M81.3101 196.3L89.9001 200.95C92.5501 202.38 95.3701 203.12 98.2001 203.12H285.34C288.18 203.12 290.99 202.37 293.64 200.9L301.97 196.29" stroke="#0075BE" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M80.1699 196.3H300.83V189.48H80.1699V196.3Z" fill="white"/>
+<path d="M80.1699 196.3H300.83V189.48H80.1699V196.3Z" stroke="#005587" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M47.4596 150.07C56.7496 147.6 117.16 132.61 117.16 132.61C117.16 132.61 119.54 132.46 119.97 134.35C120.4 136.23 94.5396 179.85 93.2396 181.55C91.9396 183.24 89.2396 182.77 87.8296 181.64C86.4196 180.51 78.1396 169.73 72.7196 165.63L108.3 140.42L64.8296 161.45C64.8296 161.45 52.2396 156.9 47.6696 155.61C43.8896 154.55 44.1396 150.94 47.4496 150.06H47.4596V150.07Z" fill="white"/>
+<path d="M47.4596 150.07C56.7496 147.6 117.16 132.61 117.16 132.61C117.16 132.61 119.54 132.46 119.97 134.35C120.4 136.23 94.5396 179.85 93.2396 181.55C91.9396 183.24 89.2396 182.77 87.8296 181.64C86.4196 180.51 78.1396 169.73 72.7196 165.63L108.3 140.42L64.8296 161.45C64.8296 161.45 52.2396 156.9 47.6696 155.61C43.8896 154.55 44.1396 150.94 47.4496 150.06H47.4596V150.07Z" stroke="#005587" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M66.5199 175.83C66.3499 176.07 65.9599 176.47 65.3799 176.97" stroke="#73C3EB" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M57.4199 182.29C48.8999 187.65 36.0499 193.66 27.3299 190.44C12.7399 185.04 22.1199 167.48 33.6899 180.59C43.2399 191.42 39.6299 200.39 22.0299 206.55" stroke="#73C3EB" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="6 6"/>
+<path d="M17.6098 207.68C16.8698 207.88 16.1098 208.09 15.3398 208.28" stroke="#73C3EB" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M112.02 138.3L64.25 161.31C64.25 161.31 66.8 170.24 68.31 172.08C69.82 173.92 70.94 167.84 72.12 165.43L112.02 138.3Z" fill="#BCE4FB"/>
+<path d="M112.02 138.3L64.25 161.31C64.25 161.31 66.8 170.24 68.31 172.08C69.82 173.92 70.94 167.84 72.12 165.43L112.02 138.3Z" stroke="#005587" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M218.94 108.72V161.04C218.94 163.55 216.9 165.59 214.39 165.59H165.48C162.97 165.59 160.93 163.55 160.93 161.04V93.9396C160.93 91.4296 162.97 89.3896 165.48 89.3896H199.6" fill="white"/>
+<path d="M218.94 109.86V162.18C218.94 164.69 216.9 166.73 214.39 166.73H165.48C162.97 166.73 160.93 164.69 160.93 162.18V95.07C160.93 92.56 162.97 90.52 165.48 90.52H199.6" stroke="#0075BE" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M218.94 109.86H204.15C201.66 109.86 199.6 107.8 199.6 105.31V90.52L218.94 109.86Z" stroke="#0075BE" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M171.17 128.06H209.84" stroke="#73C3EB" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M171.17 142.84H185.96" stroke="#005587" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M201.58 203.65C201.6 209.33 206.21 213.91 211.87 213.91H271.23C278.83 213.91 284.99 209.42 284.99 203.89V155.59C284.99 150.05 278.83 145.57 271.23 145.57H212.03C206.14 145.57 201.39 150.35 201.4 156.23L201.57 203.64L201.58 203.65Z" fill="white"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M258.23 213.84H290.56C298.16 213.84 304.32 209.35 304.32 203.82V155.52C304.32 149.98 298.16 145.5 290.56 145.5H277.71L258.23 213.84Z" fill="#BCE4FB"/>
+<path d="M212.4 213.84C206.21 213.84 201.19 209.35 201.19 203.82V155.52C201.19 149.98 206.2 145.5 212.4 145.5H293.1C299.29 145.5 304.31 149.99 304.31 155.52" stroke="#73C3EB" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M211.73 174.66H292.9" stroke="#005587" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M211.73 186.85H226.2" stroke="#001928" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M234.23 186.85H248.7" stroke="#0075BE" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M304.32 155.52V203.82C304.32 209.36 299.83 213.84 294.3 213.84H212.78" stroke="#0075BE" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M214 213.5C214 214.321 213.333 215 212.5 215C211.667 215 211 214.333 211 213.5C211 212.667 211.667 212 212.5 212C213.333 212 214 212.667 214 213.5Z" fill="#001928"/>
+<path d="M279.01 204.62H275.18C274.29 204.62 273.57 203.9 273.57 203.01V195.17C273.57 194.28 274.29 193.56 275.18 193.56H289.09" stroke="#0075BE" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M289.27 193.56H291.83C292.72 193.56 293.44 194.28 293.44 195.17V203.01C293.44 203.9 292.72 204.62 291.83 204.62H279.14" stroke="#005587" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

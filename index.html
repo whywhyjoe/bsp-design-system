@@ -1,0 +1,372 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BMO SharePoint Design System · Index</title>
+<!-- INDEX / TABLE OF CONTENTS — the human entry point to this repo. Links every
+     guide, example and reference page, lists what each shipped file does, and maps
+     the asset libraries. Doc-chrome styles below are page-only scaffolding; the
+     page itself consumes the real library so it stays honest. -->
+<link rel="stylesheet" href="colors_and_type.css">
+<link rel="stylesheet" href="components.css">
+<style>
+  *,*::before,*::after{box-sizing:border-box}
+  body{margin:0;background:var(--surface-subtle);color:var(--fg-primary);font-family:var(--font-family)}
+  .wrap{max-width:1120px;margin:0 auto;padding:0 32px}
+
+  header.top{background:var(--surface-canvas);border-bottom:1px solid var(--stroke-divider);padding:44px 0 30px}
+  header.top .eyebrow{font:600 11px/14px var(--font-family);letter-spacing:.09em;text-transform:uppercase;color:var(--accent-rest)}
+  header.top h1{font:400 36px/44px var(--font-family);margin:8px 0 8px;letter-spacing:-.01em}
+  header.top p{font:400 17px/26px var(--font-family);color:var(--fg-secondary);max-width:74ch;margin:0}
+  header.top .meta{display:flex;gap:10px;align-items:center;margin-top:18px;flex-wrap:wrap}
+
+  section{padding:40px 0 0}
+  section > h2{font:400 24px/32px var(--font-family);margin:0 0 4px;letter-spacing:-.01em}
+  section > .lede{font:400 15px/23px var(--font-family);color:var(--fg-secondary);max-width:76ch;margin:0 0 20px}
+  h3.sub{font:700 11px/16px var(--font-family);text-transform:uppercase;letter-spacing:.07em;
+         color:var(--fg-secondary);margin:26px 0 12px}
+
+  .cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(268px,1fr));gap:14px}
+  a.tile{display:block;background:var(--surface-canvas);border:1px solid var(--stroke-divider);
+         border-radius:var(--radius-large);padding:16px 18px;text-decoration:none;color:inherit;
+         transition:border-color var(--motion-fast) var(--ease-out), box-shadow var(--motion-fast) var(--ease-out)}
+  a.tile:hover{border-color:var(--accent-rest);box-shadow:var(--shadow-4);text-decoration:none}
+  a.tile .n{font:600 14px/20px var(--font-family);color:var(--accent-rest);display:flex;align-items:center;gap:8px}
+  a.tile .n .icon{flex:none}
+  a.tile .f{font:400 11px/16px var(--font-family-mono);color:var(--fg-secondary);margin-top:2px;word-break:break-all}
+  a.tile .d{font:400 13px/19px var(--font-family);color:var(--fg-secondary);margin-top:8px}
+
+  /* Wide content scrolls inside its own box — the page itself never scrolls sideways. */
+  .tablewrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+  .tablewrap + .tablewrap{margin-top:12px}
+  table.ref{width:100%;min-width:520px;border-collapse:collapse;font:400 14px/20px var(--font-family);
+            background:var(--surface-canvas);border:1px solid var(--stroke-divider);border-radius:var(--radius-large);overflow:hidden}
+  table.ref th{text-align:left;font:600 11px/14px var(--font-family);letter-spacing:.06em;text-transform:uppercase;
+               color:var(--fg-secondary);padding:12px 16px;background:var(--surface-subtle);border-bottom:1px solid var(--stroke-divider)}
+  table.ref td{padding:12px 16px;border-bottom:1px solid var(--stroke-divider);vertical-align:top;color:var(--fg-secondary)}
+  table.ref tr:last-child td{border-bottom:0}
+  table.ref td:first-child{width:230px}
+  code.t{font:400 12.5px/1.5 var(--font-family-mono);background:var(--f2-grey-94);border-radius:3px;padding:1px 5px;color:var(--fg-primary);overflow-wrap:anywhere}
+  code.t.blue{color:var(--accent-rest)}
+
+  pre.tree{margin:0;background:#0B2233;border-radius:var(--radius-medium);padding:18px 20px;overflow-x:auto;
+           font:400 13px/21px var(--font-family-mono);color:#D7E6F2}
+  pre.tree .c{color:#6E8BA0}
+  pre.tree b{color:#73C3EB;font-weight:400}
+
+  .note{background:var(--surface-tint-blue);border:1px solid var(--stroke-divider);border-radius:var(--radius-medium);
+        padding:14px 16px;font:400 14px/21px var(--font-family);margin-top:14px}
+  footer{padding:48px 0 64px;color:var(--fg-secondary);font:400 13px/20px var(--font-family)}
+  @media (max-width:720px){.wrap{padding:0 20px}table.ref td:first-child{width:auto}}
+</style>
+</head>
+<body>
+
+<!-- Functional Fluent sprite — the icons this page uses, inlined so #id refs resolve. -->
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true"><defs>
+  <symbol id="ic-fluent-document-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M7 4h7l4 4v11a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1zM14 4v4h4"/></g></symbol>
+  <symbol id="ic-fluent-grid-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="6.5" height="6.5" rx="1"/><rect x="13.5" y="4" width="6.5" height="6.5" rx="1"/><rect x="4" y="13.5" width="6.5" height="6.5" rx="1"/><rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1"/></g></symbol>
+  <symbol id="ic-fluent-info-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"/><path d="M12 11.5v4.5"/><path d="M12 8.2h.01"/></g></symbol>
+  <symbol id="ic-fluent-folder-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7a1 1 0 0 1 1-1h4l2 2h8a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7z"/></g></symbol>
+</defs></svg>
+
+<header class="top">
+  <div class="wrap">
+    <p class="eyebrow">Index</p>
+    <h1>BMO SharePoint Design System</h1>
+    <p>A buildless, CDN-free, self-hosted HTML/CSS/JS component library for pages and apps
+       embedded in SharePoint Online. This page links everything a human needs — the guides,
+       the live examples, the written references, and the asset libraries.</p>
+    <div class="meta">
+      <span class="badge badge--info">v1.0.0</span>
+      <span class="badge">Buildless</span>
+      <span class="badge">CDN-free</span>
+      <span class="badge">Self-hosted</span>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <!-- ------------------------------------------------------------------ -->
+  <section>
+    <h2>Start here</h2>
+    <p class="lede">Three doors in, depending on what you're doing.</p>
+    <div class="cards">
+      <a class="tile" href="docs/PAGE-TEMPLATE.md">
+        <span class="n"><svg class="icon icon--16"><use href="#ic-fluent-document-24-regular"/></svg> Page template</span>
+        <span class="f">docs/PAGE-TEMPLATE.md</span>
+        <span class="d">The smallest complete working page — correct CSS order, inlined sprite, an <code class="t">x-data</code> root. Copy it; don't hand-roll a scaffold.</span>
+      </a>
+      <a class="tile" href="examples/developer-guide.html">
+        <span class="n"><svg class="icon icon--16"><use href="#ic-fluent-info-24-regular"/></svg> Developer guide</span>
+        <span class="f">examples/developer-guide.html</span>
+        <span class="d">In-browser onboarding — how the pieces fit together, the token layers, do/don't, and a first-page checklist.</span>
+      </a>
+      <a class="tile" href="examples/components.html">
+        <span class="n"><svg class="icon icon--16"><use href="#ic-fluent-grid-24-regular"/></svg> Component library</span>
+        <span class="f">examples/components.html</span>
+        <span class="d">Every component rendered live with copy-paste markup. The fastest path from "I need a card" to working HTML.</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- ------------------------------------------------------------------ -->
+  <section>
+    <h2>Live pages</h2>
+    <p class="lede">Open any of these straight from disk — they are self-contained and need no server.</p>
+
+    <h3 class="sub">App mode — the default register</h3>
+    <div class="cards">
+      <a class="tile" href="examples/components.html">
+        <span class="n">Component library</span><span class="f">examples/components.html</span>
+        <span class="d">Every component live, with a Copy button on each snippet.</span>
+      </a>
+      <a class="tile" href="examples/design-system-reference.html">
+        <span class="n">Design system reference</span><span class="f">examples/design-system-reference.html</span>
+        <span class="d">The visual/brand spec — color, type, spacing, states, do/don't.</span>
+      </a>
+      <a class="tile" href="examples/example-advanced-ui.html">
+        <span class="n">Advanced UI</span><span class="f">examples/example-advanced-ui.html</span>
+        <span class="d">A full composed page assembled entirely from the system.</span>
+      </a>
+      <a class="tile" href="examples/example-component-patterns.html">
+        <span class="n">Component patterns</span><span class="f">examples/example-component-patterns.html</span>
+        <span class="d">Composition patterns — how components combine into real layouts.</span>
+      </a>
+      <a class="tile" href="examples/example-ops-dashboard.html">
+        <span class="n">Ops dashboard</span><span class="f">examples/example-ops-dashboard.html</span>
+        <span class="d">A dense data surface: grid, stats, filters, fixed FAB.</span>
+      </a>
+      <a class="tile" href="examples/preview/">
+        <span class="n">Preview cards (27)</span><span class="f">examples/preview/</span>
+        <span class="d">Single-purpose gallery cards — one token group or component each.</span>
+      </a>
+    </div>
+
+    <h3 class="sub">Editorial mode — the warm content register (opt-in layer)</h3>
+    <div class="cards">
+      <a class="tile" href="examples/editorial-design-guide.html">
+        <span class="n">Editorial design guide</span><span class="f">examples/editorial-design-guide.html</span>
+        <span class="d">When to use it, showcase-vs-mesh, the hero chooser, the 3-tier art system, do/don't.</span>
+      </a>
+      <a class="tile" href="examples/editorial-components.html">
+        <span class="n">Editorial components</span><span class="f">examples/editorial-components.html</span>
+        <span class="d">Every editorial block live with copy-paste markup — mesh register, video player, spotlight slider.</span>
+      </a>
+      <a class="tile" href="examples/editorial-learning-catalog.html">
+        <span class="n">Proof page · Learning catalog</span><span class="f">examples/editorial-learning-catalog.html</span>
+        <span class="d">Band + circle hero, course grid, materials, facilitators, flood CTA — framed in SharePoint chrome.</span>
+      </a>
+      <a class="tile" href="examples/editorial-resource-hub.html">
+        <span class="n">Proof page · Resource hub</span><span class="f">examples/editorial-resource-hub.html</span>
+        <span class="d">Arc hero, tinted resource grid, scorecard, video cards, key-messages carousel.</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- ------------------------------------------------------------------ -->
+  <section>
+    <h2>Written references</h2>
+    <p class="lede">The deep documentation. Markdown — read in an editor or on the repo host.</p>
+    <div class="cards">
+      <a class="tile" href="docs/TECHNICAL-REFERENCE.md">
+        <span class="n"><svg class="icon icon--16"><use href="#ic-fluent-document-24-regular"/></svg> Technical reference</span>
+        <span class="f">docs/TECHNICAL-REFERENCE.md</span>
+        <span class="d">The developer reference. Per-component snippets (§2), class reference (§3), tokens (§4), <strong>state contract (§5)</strong>, icon system (§6), SharePoint gotchas (§7).</span>
+      </a>
+      <a class="tile" href="docs/EDITORIAL-MODE.md">
+        <span class="n"><svg class="icon icon--16"><use href="#ic-fluent-document-24-regular"/></svg> Editorial mode</span>
+        <span class="f">docs/EDITORIAL-MODE.md</span>
+        <span class="d">The editorial layer — when to use it, the 3-tier art system, hero devices + bokeh chooser (§4), component catalog, do/don't.</span>
+      </a>
+      <a class="tile" href="docs/PAGE-TEMPLATE.md">
+        <span class="n"><svg class="icon icon--16"><use href="#ic-fluent-document-24-regular"/></svg> Page template</span>
+        <span class="f">docs/PAGE-TEMPLATE.md</span>
+        <span class="d">The start-here scaffold, with the load-bearing pieces that fail silently if skipped.</span>
+      </a>
+      <a class="tile" href="README.md">
+        <span class="n"><svg class="icon icon--16"><use href="#ic-fluent-document-24-regular"/></svg> README</span>
+        <span class="f">README.md</span>
+        <span class="d">Quick start, the rules in brief, what's here, and the versioning + deployment process.</span>
+      </a>
+      <a class="tile" href="CLAUDE.md">
+        <span class="n"><svg class="icon icon--16"><use href="#ic-fluent-document-24-regular"/></svg> Agent guide</span>
+        <span class="f">CLAUDE.md</span>
+        <span class="d">Rules and file map for AI coding agents. <code class="t">AGENTS.md</code> and <code class="t">.github/copilot-instructions.md</code> cover the same ground for other tools.</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- ------------------------------------------------------------------ -->
+  <section>
+    <h2>What each shipped file does</h2>
+    <p class="lede">These are the runtime files — the ones you link, inline, or self-host. Everything
+       else in this repo is documentation or authoring tooling and never goes to production.</p>
+
+    <h3 class="sub">Stylesheets — link in this order</h3>
+    <div class="tablewrap"><table class="ref">
+      <tr><th>File</th><th>What it does</th></tr>
+      <tr>
+        <td><code class="t blue">colors_and_type.css</code></td>
+        <td><strong>Link first.</strong> Every design token (the one and only <code class="t">:root</code>), base element styles, and the small utility set (<code class="t">.imgph .photo .lift .reveal</code>). Also carries <code class="t">--ds-version</code>, which lets a live page report which build it loaded.</td>
+      </tr>
+      <tr>
+        <td><code class="t blue">components.css</code></td>
+        <td><strong>Link second.</strong> Every component as a BEM class, built entirely from those tokens — buttons, cards, fields, chips, tabs, grid, dialog, and the <code class="t">.icon--N</code> size ladder.</td>
+      </tr>
+      <tr>
+        <td><code class="t blue">styles.css</code></td>
+        <td>One-tag convenience bundle — <code class="t">@import</code>s the two above in the correct order. Link this <em>instead of</em> them if you prefer a single tag.</td>
+      </tr>
+      <tr>
+        <td><code class="t blue">editorial.css</code></td>
+        <td><strong>Opt-in third link</strong>, only on editorial pages, always after <code class="t">components.css</code>. Adds <code class="t">--ed-*</code> tokens on a <code class="t">.editorial</code> scope, SharePoint host chrome, hero brand-devices, and the editorial blocks. Never redefines <code class="t">:root</code>. Not in the <code class="t">styles.css</code> bundle.</td>
+      </tr>
+    </table></div>
+
+    <h3 class="sub">Script</h3>
+    <div class="tablewrap"><table class="ref">
+      <tr><th>File</th><th>What it does</th></tr>
+      <tr>
+        <td><code class="t blue">fluent-icon.js</code></td>
+        <td><strong>Optional.</strong> Defines the <code class="t">&lt;fluent-icon name="home-24-regular"&gt;</code> element — authoring sugar over the same sprite the no-JS <code class="t">&lt;use&gt;</code> form reads. Renders into itself (light DOM) on purpose, so <code class="t">&lt;use&gt;</code> can reach the document-level sprite. Skip it entirely and nothing breaks.</td>
+      </tr>
+      <tr>
+        <td><code class="t">alpine.min.js</code></td>
+        <td><strong>Not in this repo — you self-host it.</strong> All interactivity is inline Alpine against the documented state contract. Load it <code class="t">defer</code>, after the markup. There is no behavior layer and no <code class="t">Alpine.data()</code> factory here by design.</td>
+      </tr>
+    </table></div>
+
+    <h3 class="sub">Icon sprite — inline once per page</h3>
+    <div class="tablewrap"><table class="ref">
+      <tr><th>File</th><th>What it does</th></tr>
+      <tr>
+        <td><code class="t blue">fluent-basic-icons.svg</code></td>
+        <td>The functional Fluent sprite — 48 <code class="t">&lt;symbol&gt;</code>s, ids <code class="t">ic-fluent-{name}-24-regular</code>. App UX affordances: buttons, controls, chrome. Tints via <code class="t">currentColor</code>; size with <code class="t">.icon--N</code>.</td>
+      </tr>
+    </table></div>
+    <div class="note">
+      <strong>The sprite must be inlined into the page body</strong> — both icon forms emit
+      same-document <code class="t">#id</code> references, so the symbols have to physically live in the
+      document. A name with no matching symbol renders blank and throws no error.
+    </div>
+  </section>
+
+  <!-- ------------------------------------------------------------------ -->
+  <section>
+    <h2>Assets &amp; libraries</h2>
+    <p class="lede">Three separate families, used three different ways. Two ship contact sheets you can browse.</p>
+
+<pre class="tree"><span class="c">bsp-design-system/</span>
+├── <b>assets/</b>                     <span class="c">brand artwork — referenced by URL</span>
+│   ├── BMO-logo_{black,white,white-red,blue-red}.svg + .png
+│   ├── BMO-roundel.svg           <span class="c">M-bar roundel (suite bar, 26px)</span>
+│   └── bmo-bokeh-{a…e}.svg/.jpg  <span class="c">5 hero-background variants, busiest a → sparsest d</span>
+│
+├── <b>abacus-icons/</b>               <span class="c">712 SVGs · BMO consumer-brand (Abacus) icon set</span>
+│   ├── &lt;icon&gt;-{16,24,28,48}.svg  <span class="c">referenced by URL, NEVER inlined into a sprite</span>
+│   ├── index.html                <span class="c">contact sheet (filterable)</span>
+│   └── catalog.json
+│
+├── <b>spot-illustrations/</b>         <span class="c">481 SVGs · BMO line-drawing illustration library</span>
+│   ├── &lt;name&gt;-{xs,s,m,l,xl}.svg  <span class="c">tier-3 art: hero substitute, ~1 per page</span>
+│   ├── index.html                <span class="c">contact sheet</span>
+│   └── catalog.json
+│
+└── <b>fluent-basic-icons.svg</b>              <span class="c">the one sprite — inlined, not linked</span>
+</pre>
+
+    <div class="cards" style="margin-top:16px">
+      <a class="tile" href="abacus-icons/index.html">
+        <span class="n"><svg class="icon icon--16"><use href="#ic-fluent-folder-24-regular"/></svg> Abacus icon contact sheet</span>
+        <span class="f">abacus-icons/index.html</span>
+        <span class="d">All 712, grouped by size with a name filter. Use as <code class="t">&lt;img class="icon icon--24" src="…"&gt;</code> — baked hex, so they can't be tinted.</span>
+      </a>
+      <a class="tile" href="spot-illustrations/index.html">
+        <span class="n"><svg class="icon icon--16"><use href="#ic-fluent-folder-24-regular"/></svg> Spot illustration contact sheet</span>
+        <span class="f">spot-illustrations/index.html</span>
+        <span class="d">All 481. Reference as <code class="t">&lt;img&gt;</code>, decorative by default (<code class="t">alt=""</code>).</span>
+      </a>
+    </div>
+    <div class="note">
+      Each library's <code class="t">index.html</code>, <code class="t">catalog.json</code> and
+      <code class="t">README.md</code> are <strong>authoring aids and do not deploy</strong> — only the
+      SVGs go to production.
+    </div>
+
+    <h3 class="sub">Fluent icon library — the full set (separate repo, sibling live folder)</h3>
+    <p class="lede" style="margin-bottom:16px">The curated <code class="t">fluent-basic-icons.svg</code> sprite carries 48 symbols and is
+       deliberately <em>not</em> meant to grow into the whole Fluent set. When you need more, the
+       complete library — every per-icon SVG, the font builds, and the master index — lives in the
+       separate <code class="t">fluentui-system-icons</code> repo. It is <strong>not part of this
+       repo</strong> and nothing here resolves a path to it: there is no config key and no build step.
+       In production it is deployed as its own top-level folder, a sibling of <code class="t">bsp-design</code>.</p>
+
+<pre class="tree"><span class="c">SiteAssets/                       ← the live container</span>
+├── <b>bsp-design/</b>                   <span class="c">this design system (see Deploy-BspDesign.ps1)</span>
+└── <b>fluent-icons/</b>                 <span class="c">the full Fluent library, deployed separately</span>
+    ├── svg/ic_fluent_&lt;name&gt;_&lt;size&gt;_&lt;style&gt;.svg
+    ├── FluentSystemIcons-Regular.{woff2,css}
+    ├── FluentSystemIcons-Filled.{woff2,css}
+    └── fluent-font-library.{json,html}   <span class="c">master index of names + codepoints</span>
+</pre>
+
+    <div class="tablewrap" style="margin-top:16px">
+    <table class="ref">
+      <tr><th>Need</th><th>Do this</th></tr>
+      <tr>
+        <td><strong>A few icons</strong> the sprite lacks</td>
+        <td>Copy the matching real SVG out of the library into <code class="t">fluent-basic-icons.svg</code> as a <code class="t">&lt;symbol id="ic-fluent-{name}-24-regular"&gt;</code>, normalized to the 24 viewBox with <code class="t">fill:none</code> + <code class="t">currentColor</code>. Stays on the no-JS <code class="t">&lt;use&gt;</code> path and keeps tinting.</td>
+      </tr>
+      <tr>
+        <td><strong>Many icons</strong> — breadth, least setup</td>
+        <td>Self-host the icon font instead of growing the sprite: link <code class="t">FluentSystemIcons-Regular.css</code> from the live <code class="t">fluent-icons/</code> folder and render <code class="t">&lt;i class="icon-ic_fluent_home_24_regular" aria-hidden="true"&gt;</code>. No sprite, no JS. Size with <code class="t">font-size</code> — <code class="t">.icon--N</code> does not apply to an <code class="t">&lt;i&gt;</code>. Always <code class="t">aria-hidden</code> the <code class="t">&lt;i&gt;</code> and label the interactive parent; PUA glyphs announce as nothing or garbage otherwise.</td>
+      </tr>
+      <tr>
+        <td><strong>One-off</strong>, no sprite edit</td>
+        <td>Reference the per-icon SVG by URL exactly like an Abacus icon: <code class="t">&lt;img class="icon icon--24" src="/…/fluent-icons/svg/ic_fluent_home_24_regular.svg" alt=""&gt;</code>. Simplest path, but an <code class="t">&lt;img&gt;</code> can't inherit <code class="t">currentColor</code> — you get the file's own color.</td>
+      </tr>
+      <tr>
+        <td><strong>Name mapping</strong></td>
+        <td>The system's name token <code class="t">home-24-regular</code> maps to SVG filename <code class="t">ic_fluent_home_24_regular.svg</code> and font class <code class="t">icon-ic_fluent_home_24_regular</code> — the same <code class="t">-</code>→<code class="t">_</code> transform each time. Full names and codepoints: <code class="t">fluent-font-library.json</code>.</td>
+      </tr>
+    </table>
+    </div>
+    <div class="note">
+      <strong>Still first-party Fluent, not a third-party icon kit</strong> — so it doesn't breach the
+      "no third-party UI/icon libraries" rule. Don't <em>subset</em> the font to shrink it: that needs a
+      build step, which does breach the buildless rule. Ship the full <code class="t">woff2</code>, or
+      stay on the ~17 KB curated sprite. Detail: <a href="docs/TECHNICAL-REFERENCE.md">TECHNICAL-REFERENCE.md</a> §6.
+    </div>
+  </section>
+
+  <!-- ------------------------------------------------------------------ -->
+  <section>
+    <h2>Versioning &amp; deployment</h2>
+    <p class="lede">The repo root <code class="t">VERSION</code> file is the source of truth.</p>
+    <div class="tablewrap"><table class="ref">
+      <tr><th>Task</th><th>How</th></tr>
+      <tr>
+        <td>Check a live page's version</td>
+        <td>From devtools: <code class="t">getComputedStyle(document.documentElement).getPropertyValue('--ds-version')</code>. Every shipped CSS/JS file also carries a <code class="t">/*! … v1.0.0 … */</code> banner on line 1.</td>
+      </tr>
+      <tr>
+        <td>Bump the version</td>
+        <td><code class="t">pwsh ./tools/Set-Version.ps1 1.1.0</code> — stamps the banners and <code class="t">--ds-version</code>. Review the diff, commit, tag.</td>
+      </tr>
+      <tr>
+        <td>Deploy</td>
+        <td><code class="t">pwsh ./tools/Deploy-BspDesign.ps1 -Destination &lt;SiteAssets path&gt;</code> — a pure copy of the runtime files into a <code class="t">bsp-design/</code> folder. Add <code class="t">-WhatIf</code> to preview. Full detail in <a href="README.md">README.md</a>.</td>
+      </tr>
+    </table></div>
+  </section>
+
+  <footer>
+    BMO SharePoint Design System · v1.0.0 · this index is a repo-only page and is not deployed.
+  </footer>
+
+</div>
+</body>
+</html>

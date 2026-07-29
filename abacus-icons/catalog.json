@@ -1,0 +1,8676 @@
+{
+  "library": "Abacus Icons",
+  "brand_source": "https://zeroheight.com/38e93a7ae/p/33222c-icons",
+  "note": "Canonical BMO consumer-brand (Abacus) icon set. Filenames are <icon>-<size>.svg; `declared_size` comes from the filename, `width`/`height` from the SVG itself \u2014 see `flags` where they disagree. Colors are baked hex, not currentColor: these do not inherit CSS `color`.",
+  "generated_at": "2026-07-28T16:30:55",
+  "count": 712,
+  "unique_icons": 518,
+  "sizes": {
+    "16": 141,
+    "24": 208,
+    "28": 5,
+    "48": 358
+  },
+  "flagged": 35,
+  "assets": [
+    {
+      "name": "accelerate-48.svg",
+      "icon": "accelerate",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 4622,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "accessibility-24.svg",
+      "icon": "accessibility",
+      "declared_size": 24,
+      "width": 24,
+      "height": 24,
+      "bytes": 7437,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "account-48.svg",
+      "icon": "account",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 2797,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "achievement-48.svg",
+      "icon": "achievement",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 1327,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "achieving-targets-24.svg",
+      "icon": "achieving-targets",
+      "declared_size": 24,
+      "width": 24,
+      "height": 24,
+      "bytes": 1701,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "achieving-targets-48.svg",
+      "icon": "achieving-targets",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 3016,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "active-ownership-48.svg",
+      "icon": "active-ownership",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 5297,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "add-16.svg",
+      "icon": "add",
+      "declared_size": 16,
+      "width": 16,
+      "height": 16,
+      "bytes": 259,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "add-24.svg",
+      "icon": "add",
+      "declared_size": 24,
+      "width": 24,
+      "height": 24,
+      "bytes": 515,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "add-more-16.svg",
+      "icon": "add-more",
+      "declared_size": 16,
+      "width": 16,
+      "height": 16,
+      "bytes": 1533,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "adjustable-rate-percentage-48.svg",
+      "icon": "adjustable-rate-percentage",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 1485,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "agri-line-of-credit-48.svg",
+      "icon": "agri-line-of-credit",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 7774,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "agricultural-banking-48.svg",
+      "icon": "agricultural-banking",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 6166,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "agriculture-48.svg",
+      "icon": "agriculture",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 608,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "agriculture-invest-48.svg",
+      "icon": "agriculture-invest",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 3783,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "airplane-24.svg",
+      "icon": "airplane",
+      "declared_size": 24,
+      "width": 24,
+      "height": 24,
+      "bytes": 3809,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "airplane-48.svg",
+      "icon": "airplane",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 3557,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "alert-16.svg",
+      "icon": "alert",
+      "declared_size": 16,
+      "width": 16,
+      "height": 16,
+      "bytes": 1926,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "alert-24.svg",
+      "icon": "alert",
+      "declared_size": 24,
+      "width": 24,
+      "height": 24,
+      "bytes": 2151,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "alert-48.svg",
+      "icon": "alert",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 4671,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "all-layers-48.svg",
+      "icon": "all-layers",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 1796,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "appointment-48.svg",
+      "icon": "appointment",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 1903,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "arrow-back-16.svg",
+      "icon": "arrow-back",
+      "declared_size": 16,
+      "width": 16,
+      "height": 16,
+      "bytes": 417,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "arrow-back-24.svg",
+      "icon": "arrow-back",
+      "declared_size": 24,
+      "width": 24,
+      "height": 24,
+      "bytes": 1479,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "arrow-down-16.svg",
+      "icon": "arrow-down",
+      "declared_size": 16,
+      "width": 16,
+      "height": 16,
+      "bytes": 419,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "arrow-down-24.svg",
+      "icon": "arrow-down",
+      "declared_size": 24,
+      "width": 24,
+      "height": 24,
+      "bytes": 496,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "arrow-down-percent-48.svg",
+      "icon": "arrow-down-percent",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 1184,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "arrow-down-small-16.svg",
+      "icon": "arrow-down-small",
+      "declared_size": 16,
+      "width": 16,
+      "height": 16,
+      "bytes": 427,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "arrow-down-small-24.svg",
+      "icon": "arrow-down-small",
+      "declared_size": 24,
+      "width": 24,
+      "height": 24,
+      "bytes": 490,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "arrow-left-16.svg",
+      "icon": "arrow-left",
+      "declared_size": 16,
+      "width": 16,
+      "height": 16,
+      "bytes": 409,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "arrow-left-24.svg",
+      "icon": "arrow-left",
+      "declared_size": 24,
+      "width": 24,
+      "height": 24,
+      "bytes": 1409,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "arrow-up-16.svg",
+      "icon": "arrow-up",
+      "declared_size": 16,
+      "width": 16,
+      "height": 16,
+      "bytes": 417,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "arrow-up-24.svg",
+      "icon": "arrow-up",
+      "declared_size": 24,
+      "width": 24,
+      "height": 24,
+      "bytes": 1043,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "arrow-up-small-16.svg",
+      "icon": "arrow-up-small",
+      "declared_size": 16,
+      "width": 16,
+      "height": 16,
+      "bytes": 417,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "arrow-up-small-24.svg",
+      "icon": "arrow-up-small",
+      "declared_size": 24,
+      "width": 24,
+      "height": 24,
+      "bytes": 1047,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "artificial-intelligence-48.svg",
+      "icon": "artificial-intelligence",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 6795,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "aspect-ratio-24.svg",
+      "icon": "aspect-ratio",
+      "declared_size": 24,
+      "width": 24,
+      "height": 24,
+      "bytes": 672,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "assets-under-management-dollar-48.svg",
+      "icon": "assets-under-management-dollar",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 7739,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "assets-under-management-euro-48.svg",
+      "icon": "assets-under-management-euro",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 7793,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "assets-under-management-pound-48.svg",
+      "icon": "assets-under-management-pound",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 8101,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "assets-under-management-yen-48.svg",
+      "icon": "assets-under-management-yen",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 6903,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "assist-chatbot-feedback-24.svg",
+      "icon": "assist-chatbot-feedback",
+      "declared_size": 24,
+      "width": 24,
+      "height": 24,
+      "bytes": 2515,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "athlete-48.svg",
+      "icon": "athlete",
+      "declared_size": 48,
+      "width": 49,
+      "height": 49,
+      "bytes": 7034,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": [
+        "dimension-mismatch"
+      ]
+    },
+    {
+      "name": "atm-48.svg",
+      "icon": "atm",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 3357,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "avoid-48.svg",
+      "icon": "avoid",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 5093,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "baby-48.svg",
+      "icon": "baby",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 9105,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "baby-bullet-24.svg",
+      "icon": "baby-bullet",
+      "declared_size": 24,
+      "width": 56,
+      "height": 96,
+      "bytes": 298,
+      "colors": [
+        "#005587",
+        "#0075BE",
+        "#9747FF"
+      ],
+      "flags": [
+        "figma-frame",
+        "non-square",
+        "dimension-mismatch"
+      ]
+    },
+    {
+      "name": "baby-calendar-16.svg",
+      "icon": "baby-calendar",
+      "declared_size": 16,
+      "width": 16,
+      "height": 16,
+      "bytes": 651,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "baby-chevron-down-16.svg",
+      "icon": "baby-chevron-down",
+      "declared_size": 16,
+      "width": 16,
+      "height": 16,
+      "bytes": 488,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "baby-chevron-left-16.svg",
+      "icon": "baby-chevron-left",
+      "declared_size": 16,
+      "width": 16,
+      "height": 16,
+      "bytes": 979,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "baby-chevron-right-16.svg",
+      "icon": "baby-chevron-right",
+      "declared_size": 16,
+      "width": 16,
+      "height": 16,
+      "bytes": 492,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "baby-chevron-up-16.svg",
+      "icon": "baby-chevron-up",
+      "declared_size": 16,
+      "width": 16,
+      "height": 16,
+      "bytes": 487,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "baby-chevy-down-16.svg",
+      "icon": "baby-chevy-down",
+      "declared_size": 16,
+      "width": 16,
+      "height": 16,
+      "bytes": 498,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "baby-chevy-left-16.svg",
+      "icon": "baby-chevy-left",
+      "declared_size": 16,
+      "width": 16,
+      "height": 16,
+      "bytes": 272,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "baby-chevy-right-16.svg",
+      "icon": "baby-chevy-right",
+      "declared_size": 16,
+      "width": 16,
+      "height": 16,
+      "bytes": 270,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "baby-chevy-up-16.svg",
+      "icon": "baby-chevy-up",
+      "declared_size": 16,
+      "width": 16,
+      "height": 16,
+      "bytes": 272,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "baby-inline-error-16.svg",
+      "icon": "baby-inline-error",
+      "declared_size": 16,
+      "width": 16,
+      "height": 16,
+      "bytes": 837,
+      "colors": [
+        "#C81414"
+      ],
+      "flags": []
+    },
+    {
+      "name": "bank-48.svg",
+      "icon": "bank",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 1500,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "bank-at-work-48.svg",
+      "icon": "bank-at-work",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 4577,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "bar-16.svg",
+      "icon": "bar",
+      "declared_size": 16,
+      "width": 71,
+      "height": 16,
+      "bytes": 267,
+      "colors": [
+        "#0075BE",
+        "#D9DCE1"
+      ],
+      "flags": [
+        "non-square",
+        "dimension-mismatch"
+      ]
+    },
+    {
+      "name": "bar-chart-growth-48.svg",
+      "icon": "bar-chart-growth",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 1984,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "bar-graph-16.svg",
+      "icon": "bar-graph",
+      "declared_size": 16,
+      "width": 16,
+      "height": 16,
+      "bytes": 733,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "bar-graph-24.svg",
+      "icon": "bar-graph",
+      "declared_size": 24,
+      "width": 24,
+      "height": 24,
+      "bytes": 1475,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "bar-handle-16.svg",
+      "icon": "bar-handle",
+      "declared_size": 16,
+      "width": 16,
+      "height": 16,
+      "bytes": 150,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "basketball-48.svg",
+      "icon": "basketball",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 774,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "bill-16.svg",
+      "icon": "bill",
+      "declared_size": 16,
+      "width": 16,
+      "height": 16,
+      "bytes": 1111,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "bill-24.svg",
+      "icon": "bill",
+      "declared_size": 24,
+      "width": 24,
+      "height": 24,
+      "bytes": 2859,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "bill-48.svg",
+      "icon": "bill",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 4319,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "biometrics-16.svg",
+      "icon": "biometrics",
+      "declared_size": 16,
+      "width": 16,
+      "height": 16,
+      "bytes": 1315,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "biometrics-24.svg",
+      "icon": "biometrics",
+      "declared_size": 24,
+      "width": 24,
+      "height": 24,
+      "bytes": 1238,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "blue-rewards-48.svg",
+      "icon": "blue-rewards",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 1315,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "bmo-branch-48.svg",
+      "icon": "bmo-branch",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 2807,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "bmo-rewards-48.svg",
+      "icon": "bmo-rewards",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 3195,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "bmoassist-chatbot-24.svg",
+      "icon": "bmoassist-chatbot",
+      "declared_size": 24,
+      "width": 24,
+      "height": 24,
+      "bytes": 2282,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "bmoassist-chatbot-48.svg",
+      "icon": "bmoassist-chatbot",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 2185,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "boat-48.svg",
+      "icon": "boat",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 2321,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "bonds-cross-48.svg",
+      "icon": "bonds-cross",
+      "declared_size": 48,
+      "width": 49,
+      "height": 47,
+      "bytes": 3129,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": [
+        "non-square",
+        "dimension-mismatch"
+      ]
+    },
+    {
+      "name": "book-24.svg",
+      "icon": "book",
+      "declared_size": 24,
+      "width": 24,
+      "height": 24,
+      "bytes": 5377,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "braille-48.svg",
+      "icon": "braille",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 2833,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "branch-achievement-48.svg",
+      "icon": "branch-achievement",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 3077,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "branch-operations-48.svg",
+      "icon": "branch-operations",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 7791,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "branch-ribbon-48.svg",
+      "icon": "branch-ribbon",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 2922,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "branch-target-48.svg",
+      "icon": "branch-target",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 5619,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "branch-target-met-48.svg",
+      "icon": "branch-target-met",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 5249,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "briefcase-trend-48.svg",
+      "icon": "briefcase-trend",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 1460,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "budget-48.svg",
+      "icon": "budget",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 3321,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "bullet-24.svg",
+      "icon": "bullet",
+      "declared_size": 24,
+      "width": 56,
+      "height": 96,
+      "bytes": 294,
+      "colors": [
+        "#005587",
+        "#0075BE",
+        "#9747FF"
+      ],
+      "flags": [
+        "figma-frame",
+        "non-square",
+        "dimension-mismatch"
+      ]
+    },
+    {
+      "name": "bullseye-dollar-48.svg",
+      "icon": "bullseye-dollar",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 4042,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "business-16.svg",
+      "icon": "business",
+      "declared_size": 16,
+      "width": 16,
+      "height": 16,
+      "bytes": 1313,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "business-24.svg",
+      "icon": "business",
+      "declared_size": 24,
+      "width": 24,
+      "height": 24,
+      "bytes": 3215,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "business-48.svg",
+      "icon": "business",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 1029,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "business-builder-1-48.svg",
+      "icon": "business-builder-1",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 1738,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "business-builder-2-48.svg",
+      "icon": "business-builder-2",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 1896,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "business-builder-3-48.svg",
+      "icon": "business-builder-3",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 1934,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "business-builder-4-48.svg",
+      "icon": "business-builder-4",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 1781,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "calculator-24.svg",
+      "icon": "calculator",
+      "declared_size": 24,
+      "width": 24,
+      "height": 24,
+      "bytes": 5677,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "calculator-48.svg",
+      "icon": "calculator",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 3224,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "calendar-16.svg",
+      "icon": "calendar",
+      "declared_size": 16,
+      "width": 16,
+      "height": 16,
+      "bytes": 861,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "calendar-24.svg",
+      "icon": "calendar",
+      "declared_size": 24,
+      "width": 24,
+      "height": 24,
+      "bytes": 1197,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "calendar-48.svg",
+      "icon": "calendar",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 6537,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "calendar-money-48.svg",
+      "icon": "calendar-money",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 4180,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "call-center-48.svg",
+      "icon": "call-center",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 2567,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "call-us-16.svg",
+      "icon": "call-us",
+      "declared_size": 16,
+      "width": 16,
+      "height": 16,
+      "bytes": 3640,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "call-us-24.svg",
+      "icon": "call-us",
+      "declared_size": 24,
+      "width": 24,
+      "height": 24,
+      "bytes": 3671,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "camera-16.svg",
+      "icon": "camera",
+      "declared_size": 16,
+      "width": 16,
+      "height": 16,
+      "bytes": 891,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "camera-24.svg",
+      "icon": "camera",
+      "declared_size": 24,
+      "width": 24,
+      "height": 24,
+      "bytes": 1583,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "camera-48.svg",
+      "icon": "camera",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 1743,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "canadian-defense-48.svg",
+      "icon": "canadian-defense",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 9349,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "capital-value-dollar-48.svg",
+      "icon": "capital-value-dollar",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 7659,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "capital-value-euro-48.svg",
+      "icon": "capital-value-euro",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 8175,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "capital-value-pound-48.svg",
+      "icon": "capital-value-pound",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 9933,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "capital-value-yen-48.svg",
+      "icon": "capital-value-yen",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 7019,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "car-16.svg",
+      "icon": "car",
+      "declared_size": 16,
+      "width": 17,
+      "height": 16,
+      "bytes": 1193,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": [
+        "non-square",
+        "dimension-mismatch"
+      ]
+    },
+    {
+      "name": "car-24.svg",
+      "icon": "car",
+      "declared_size": 24,
+      "width": 24,
+      "height": 24,
+      "bytes": 3059,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "car-48.svg",
+      "icon": "car",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 4905,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "car-loans-48.svg",
+      "icon": "car-loans",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 7963,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "card-16.svg",
+      "icon": "card",
+      "declared_size": 16,
+      "width": 16,
+      "height": 16,
+      "bytes": 418,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "card-24.svg",
+      "icon": "card",
+      "declared_size": 24,
+      "width": 24,
+      "height": 24,
+      "bytes": 715,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "card-48.svg",
+      "icon": "card",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 2740,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "card-details-hide-48.svg",
+      "icon": "card-details-hide",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 1920,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "card-details-show-48.svg",
+      "icon": "card-details-show",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 1219,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "card-hand-48.svg",
+      "icon": "card-hand",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 2370,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "card-heart-48.svg",
+      "icon": "card-heart",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 1422,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "card-no-fee-48.svg",
+      "icon": "card-no-fee",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 1874,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "cart-16.svg",
+      "icon": "cart",
+      "declared_size": 16,
+      "width": 16,
+      "height": 16,
+      "bytes": 1196,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "cart-24.svg",
+      "icon": "cart",
+      "declared_size": 24,
+      "width": 24,
+      "height": 24,
+      "bytes": 3181,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "cash-48.svg",
+      "icon": "cash",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 2880,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "cashback-48.svg",
+      "icon": "cashback",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 1015,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "cdcb-card-48.svg",
+      "icon": "cdcb-card",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 4934,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "cdcb-community-48.svg",
+      "icon": "cdcb-community",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 4142,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "cdcb-scholarship-48.svg",
+      "icon": "cdcb-scholarship",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 2199,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "celebrate-48.svg",
+      "icon": "celebrate",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 3769,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "celebration-16.svg",
+      "icon": "celebration",
+      "declared_size": 16,
+      "width": 16,
+      "height": 16,
+      "bytes": 1046,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "celebration-24.svg",
+      "icon": "celebration",
+      "declared_size": 24,
+      "width": 24,
+      "height": 24,
+      "bytes": 2023,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "celebration-48.svg",
+      "icon": "celebration",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 3774,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "certification-48.svg",
+      "icon": "certification",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 5273,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "charity-48.svg",
+      "icon": "charity",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 5593,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "chat-48.svg",
+      "icon": "chat",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 2377,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "chat-money-48.svg",
+      "icon": "chat-money",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 2363,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "chatbot-16.svg",
+      "icon": "chatbot",
+      "declared_size": 16,
+      "width": 16,
+      "height": 16,
+      "bytes": 6610,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "chatbot-24.svg",
+      "icon": "chatbot",
+      "declared_size": 24,
+      "width": 24,
+      "height": 24,
+      "bytes": 2197,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "checkmark-16.svg",
+      "icon": "checkmark",
+      "declared_size": 16,
+      "width": 16,
+      "height": 16,
+      "bytes": 250,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "checkmark-24.svg",
+      "icon": "checkmark",
+      "declared_size": 24,
+      "width": 24,
+      "height": 24,
+      "bytes": 1009,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "cheque-24.svg",
+      "icon": "cheque",
+      "declared_size": 24,
+      "width": 26,
+      "height": 21,
+      "bytes": 1063,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": [
+        "non-square",
+        "dimension-mismatch"
+      ]
+    },
+    {
+      "name": "cheque-48.svg",
+      "icon": "cheque",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 3060,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "chequing-account-48.svg",
+      "icon": "chequing-account",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 5307,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "chevron-down-16.svg",
+      "icon": "chevron-down",
+      "declared_size": 16,
+      "width": 16,
+      "height": 16,
+      "bytes": 276,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "chevron-down-24.svg",
+      "icon": "chevron-down",
+      "declared_size": 24,
+      "width": 24,
+      "height": 24,
+      "bytes": 1137,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "chevron-down-48.svg",
+      "icon": "chevron-down",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 1111,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "chevron-left-16.svg",
+      "icon": "chevron-left",
+      "declared_size": 16,
+      "width": 16,
+      "height": 16,
+      "bytes": 254,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "chevron-left-24.svg",
+      "icon": "chevron-left",
+      "declared_size": 24,
+      "width": 24,
+      "height": 24,
+      "bytes": 1139,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "chevron-left-48.svg",
+      "icon": "chevron-left",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 1139,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "chevron-right-16.svg",
+      "icon": "chevron-right",
+      "declared_size": 16,
+      "width": 16,
+      "height": 16,
+      "bytes": 252,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "chevron-right-24.svg",
+      "icon": "chevron-right",
+      "declared_size": 24,
+      "width": 24,
+      "height": 24,
+      "bytes": 1139,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "chevron-right-48.svg",
+      "icon": "chevron-right",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 1087,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "chevron-up-16.svg",
+      "icon": "chevron-up",
+      "declared_size": 16,
+      "width": 16,
+      "height": 16,
+      "bytes": 254,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "chevron-up-24.svg",
+      "icon": "chevron-up",
+      "declared_size": 24,
+      "width": 24,
+      "height": 24,
+      "bytes": 1133,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "chevron-up-48.svg",
+      "icon": "chevron-up",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 1129,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "childcare-24.svg",
+      "icon": "childcare",
+      "declared_size": 24,
+      "width": 24,
+      "height": 24,
+      "bytes": 1877,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "classroom-48.svg",
+      "icon": "classroom",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 4707,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "click-to-pay-48.svg",
+      "icon": "click-to-pay",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 1949,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "client-48.svg",
+      "icon": "client",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 7483,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "climate-change-48.svg",
+      "icon": "climate-change",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 6265,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "close-16.svg",
+      "icon": "close",
+      "declared_size": 16,
+      "width": 16,
+      "height": 16,
+      "bytes": 279,
+      "colors": [
+        "#646C76"
+      ],
+      "flags": []
+    },
+    {
+      "name": "close-24.svg",
+      "icon": "close",
+      "declared_size": 24,
+      "width": 24,
+      "height": 24,
+      "bytes": 1749,
+      "colors": [
+        "#646C76"
+      ],
+      "flags": []
+    },
+    {
+      "name": "close-48.svg",
+      "icon": "close",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 1759,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "close-account-24.svg",
+      "icon": "close-account",
+      "declared_size": 24,
+      "width": 24,
+      "height": 24,
+      "bytes": 1391,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "close-account-48.svg",
+      "icon": "close-account",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 1286,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "coaching-48.svg",
+      "icon": "coaching",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 1853,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "collapse-16.svg",
+      "icon": "collapse",
+      "declared_size": 16,
+      "width": 16,
+      "height": 16,
+      "bytes": 447,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "collapse-24.svg",
+      "icon": "collapse",
+      "declared_size": 24,
+      "width": 24,
+      "height": 24,
+      "bytes": 1287,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "combined-statement-48.svg",
+      "icon": "combined-statement",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 3953,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "commercial-property-48.svg",
+      "icon": "commercial-property",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 5017,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "community-invest-48.svg",
+      "icon": "community-invest",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 3196,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "compare-24.svg",
+      "icon": "compare",
+      "declared_size": 24,
+      "width": 24,
+      "height": 24,
+      "bytes": 778,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "compare-48.svg",
+      "icon": "compare",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 3859,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "compass-24.svg",
+      "icon": "compass",
+      "declared_size": 24,
+      "width": 24,
+      "height": 24,
+      "bytes": 2209,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "contact-16.svg",
+      "icon": "contact",
+      "declared_size": 16,
+      "width": 16,
+      "height": 16,
+      "bytes": 511,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "contact-24.svg",
+      "icon": "contact",
+      "declared_size": 24,
+      "width": 24,
+      "height": 24,
+      "bytes": 1265,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "contact-alt-24.svg",
+      "icon": "contact-alt",
+      "declared_size": 24,
+      "width": 24,
+      "height": 24,
+      "bytes": 540,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "contributing-48.svg",
+      "icon": "contributing",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 3245,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "controls-16.svg",
+      "icon": "controls",
+      "declared_size": 16,
+      "width": 16,
+      "height": 16,
+      "bytes": 844,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "controls-24.svg",
+      "icon": "controls",
+      "declared_size": 24,
+      "width": 24,
+      "height": 24,
+      "bytes": 3349,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "controls-48.svg",
+      "icon": "controls",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 3789,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "copy-16.svg",
+      "icon": "copy",
+      "declared_size": 16,
+      "width": 16,
+      "height": 16,
+      "bytes": 451,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "copy-24.svg",
+      "icon": "copy",
+      "declared_size": 24,
+      "width": 24,
+      "height": 24,
+      "bytes": 2893,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "couple-48.svg",
+      "icon": "couple",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 7465,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "credit-card-24.svg",
+      "icon": "credit-card",
+      "declared_size": 24,
+      "width": 24,
+      "height": 24,
+      "bytes": 1145,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "credit-card-48.svg",
+      "icon": "credit-card",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 3042,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "credit-cards-48.svg",
+      "icon": "credit-cards",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 3672,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "credit-coach-24.svg",
+      "icon": "credit-coach",
+      "declared_size": 24,
+      "width": 24,
+      "height": 24,
+      "bytes": 831,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "credit-score-48.svg",
+      "icon": "credit-score",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 7968,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "csv-24.svg",
+      "icon": "csv",
+      "declared_size": 24,
+      "width": 24,
+      "height": 24,
+      "bytes": 1630,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "cup-48.svg",
+      "icon": "cup",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 1296,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "currency-euro-48.svg",
+      "icon": "currency-euro",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 5935,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "currency-exchange-48.svg",
+      "icon": "currency-exchange",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 6119,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "currency-pound-48.svg",
+      "icon": "currency-pound",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 6813,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "currency-yen-48.svg",
+      "icon": "currency-yen",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 4605,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "customer-conversations-48.svg",
+      "icon": "customer-conversations",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 6821,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "customer-experience-48.svg",
+      "icon": "customer-experience",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 10707,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "customer-in-branch-48.svg",
+      "icon": "customer-in-branch",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 5110,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "customer-loyalty-48.svg",
+      "icon": "customer-loyalty",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 2922,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "customer-pulse-48.svg",
+      "icon": "customer-pulse",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 1976,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "customer-support-24.svg",
+      "icon": "customer-support",
+      "declared_size": 24,
+      "width": 24,
+      "height": 24,
+      "bytes": 3010,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "cycle-dollar-48.svg",
+      "icon": "cycle-dollar",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 1480,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "dash-16.svg",
+      "icon": "dash",
+      "declared_size": 16,
+      "width": 16,
+      "height": 16,
+      "bytes": 180,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "daycare-48.svg",
+      "icon": "daycare",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 5557,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "debit-card-48.svg",
+      "icon": "debit-card",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 5094,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "defence-community-seniors-48.svg",
+      "icon": "defence-community-seniors",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 7749,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "deposits-48.svg",
+      "icon": "deposits",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 5668,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "derogatory-marks-48.svg",
+      "icon": "derogatory-marks",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 1321,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "desktop-24.svg",
+      "icon": "desktop",
+      "declared_size": 24,
+      "width": 24,
+      "height": 24,
+      "bytes": 454,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "desktop-48.svg",
+      "icon": "desktop",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 1321,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "device-card-48.svg",
+      "icon": "device-card",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 1458,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "diamond-48.svg",
+      "icon": "diamond",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 1333,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "diamond-dollar-48.svg",
+      "icon": "diamond-dollar",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 2068,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "digital-channels-24.svg",
+      "icon": "digital-channels",
+      "declared_size": 24,
+      "width": 24,
+      "height": 24,
+      "bytes": 3152,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "digital-channels-48.svg",
+      "icon": "digital-channels",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 7753,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "digital-form-48.svg",
+      "icon": "digital-form",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 1233,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "digital-signature-24.svg",
+      "icon": "digital-signature",
+      "declared_size": 24,
+      "width": 24,
+      "height": 24,
+      "bytes": 1649,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "dining-24.svg",
+      "icon": "dining",
+      "declared_size": 24,
+      "width": 24,
+      "height": 24,
+      "bytes": 1065,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "dining-48.svg",
+      "icon": "dining",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 5113,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "disability-48.svg",
+      "icon": "disability",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 2065,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "document-16.svg",
+      "icon": "document",
+      "declared_size": 16,
+      "width": 16,
+      "height": 16,
+      "bytes": 944,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "document-24.svg",
+      "icon": "document",
+      "declared_size": 24,
+      "width": 24,
+      "height": 24,
+      "bytes": 825,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "document-download-16.svg",
+      "icon": "document-download",
+      "declared_size": 16,
+      "width": 16,
+      "height": 16,
+      "bytes": 792,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "document-download-24.svg",
+      "icon": "document-download",
+      "declared_size": 24,
+      "width": 24,
+      "height": 24,
+      "bytes": 1775,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "document-percent-48.svg",
+      "icon": "document-percent",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 1799,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "document-shield-48.svg",
+      "icon": "document-shield",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 860,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "dollar-climb-48.svg",
+      "icon": "dollar-climb",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 4471,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "download-16.svg",
+      "icon": "download",
+      "declared_size": 16,
+      "width": 16,
+      "height": 16,
+      "bytes": 429,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "download-24.svg",
+      "icon": "download",
+      "declared_size": 24,
+      "width": 24,
+      "height": 24,
+      "bytes": 1543,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "download-48.svg",
+      "icon": "download",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 1763,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "drag-drop-24.svg",
+      "icon": "drag-drop",
+      "declared_size": 24,
+      "width": 24,
+      "height": 24,
+      "bytes": 2069,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "e-learning-48.svg",
+      "icon": "e-learning",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 2552,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "eco-friendly-home-48.svg",
+      "icon": "eco-friendly-home",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 1829,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "edit-16.svg",
+      "icon": "edit",
+      "declared_size": 16,
+      "width": 16,
+      "height": 16,
+      "bytes": 503,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "edit-24.svg",
+      "icon": "edit",
+      "declared_size": 24,
+      "width": 24,
+      "height": 24,
+      "bytes": 1273,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "edit-48.svg",
+      "icon": "edit",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 2501,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "edit-document-16.svg",
+      "icon": "edit-document",
+      "declared_size": 16,
+      "width": 16,
+      "height": 16,
+      "bytes": 726,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "edit-document-24.svg",
+      "icon": "edit-document",
+      "declared_size": 24,
+      "width": 24,
+      "height": 24,
+      "bytes": 1182,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "education-16.svg",
+      "icon": "education",
+      "declared_size": 16,
+      "width": 16,
+      "height": 16,
+      "bytes": 895,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "education-24.svg",
+      "icon": "education",
+      "declared_size": 24,
+      "width": 24,
+      "height": 24,
+      "bytes": 2029,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "education-48.svg",
+      "icon": "education",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 3647,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "em-ai-assistant-16.svg",
+      "icon": "em-ai-assistant",
+      "declared_size": 16,
+      "width": 16,
+      "height": 16,
+      "bytes": 1849,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "em-ai-assistant-24.svg",
+      "icon": "em-ai-assistant",
+      "declared_size": 24,
+      "width": 24,
+      "height": 24,
+      "bytes": 1880,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "employee-48.svg",
+      "icon": "employee",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 7153,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "enclosed-add-16.svg",
+      "icon": "enclosed-add",
+      "declared_size": 16,
+      "width": 16,
+      "height": 16,
+      "bytes": 369,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "enclosed-add-24.svg",
+      "icon": "enclosed-add",
+      "declared_size": 24,
+      "width": 24,
+      "height": 24,
+      "bytes": 2357,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "enclosed-add-48.svg",
+      "icon": "enclosed-add",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 1533,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "enclosed-checkmark-16.svg",
+      "icon": "enclosed-checkmark",
+      "declared_size": 16,
+      "width": 16,
+      "height": 16,
+      "bytes": 316,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "enclosed-checkmark-24.svg",
+      "icon": "enclosed-checkmark",
+      "declared_size": 24,
+      "width": 24,
+      "height": 24,
+      "bytes": 1495,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "enclosed-checkmark-48.svg",
+      "icon": "enclosed-checkmark",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 1607,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "enclosed-close-16.svg",
+      "icon": "enclosed-close",
+      "declared_size": 16,
+      "width": 16,
+      "height": 16,
+      "bytes": 1235,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "enclosed-close-24.svg",
+      "icon": "enclosed-close",
+      "declared_size": 24,
+      "width": 24,
+      "height": 24,
+      "bytes": 1925,
+      "colors": [
+        "#646C76"
+      ],
+      "flags": []
+    },
+    {
+      "name": "enclosed-down-arrow-16.svg",
+      "icon": "enclosed-down-arrow",
+      "declared_size": 16,
+      "width": 16,
+      "height": 16,
+      "bytes": 419,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "enclosed-down-arrow-24.svg",
+      "icon": "enclosed-down-arrow",
+      "declared_size": 24,
+      "width": 24,
+      "height": 24,
+      "bytes": 2393,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "enclosed-help-16.svg",
+      "icon": "enclosed-help",
+      "declared_size": 16,
+      "width": 16,
+      "height": 16,
+      "bytes": 1347,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "enclosed-help-24.svg",
+      "icon": "enclosed-help",
+      "declared_size": 24,
+      "width": 24,
+      "height": 24,
+      "bytes": 3697,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "enclosed-minus-16.svg",
+      "icon": "enclosed-minus",
+      "declared_size": 16,
+      "width": 16,
+      "height": 16,
+      "bytes": 246,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "enclosed-minus-24.svg",
+      "icon": "enclosed-minus",
+      "declared_size": 24,
+      "width": 24,
+      "height": 24,
+      "bytes": 1779,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "enclosed-more-16.svg",
+      "icon": "enclosed-more",
+      "declared_size": 16,
+      "width": 16,
+      "height": 16,
+      "bytes": 303,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "enclosed-more-24.svg",
+      "icon": "enclosed-more",
+      "declared_size": 24,
+      "width": 24,
+      "height": 24,
+      "bytes": 2162,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "enclosed-more-vertical-24.svg",
+      "icon": "enclosed-more-vertical",
+      "declared_size": 24,
+      "width": 24,
+      "height": 24,
+      "bytes": 2172,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "enrollment-48.svg",
+      "icon": "enrollment",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 5167,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "entertainment-24.svg",
+      "icon": "entertainment",
+      "declared_size": 24,
+      "width": 24,
+      "height": 24,
+      "bytes": 1735,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "entertainment-48.svg",
+      "icon": "entertainment",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 6853,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "environment-48.svg",
+      "icon": "environment",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 4521,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "error-16.svg",
+      "icon": "error",
+      "declared_size": 16,
+      "width": 16,
+      "height": 16,
+      "bytes": 702,
+      "colors": [
+        "#646C76"
+      ],
+      "flags": []
+    },
+    {
+      "name": "estate-48.svg",
+      "icon": "estate",
+      "declared_size": 48,
+      "width": 48,
+      "height": 49,
+      "bytes": 2316,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": [
+        "non-square",
+        "dimension-mismatch"
+      ]
+    },
+    {
+      "name": "euro-climb-48.svg",
+      "icon": "euro-climb",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 5161,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "excel-24.svg",
+      "icon": "excel",
+      "declared_size": 24,
+      "width": 24,
+      "height": 24,
+      "bytes": 855,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "exit-16.svg",
+      "icon": "exit",
+      "declared_size": 16,
+      "width": 16,
+      "height": 16,
+      "bytes": 591,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "exit-24.svg",
+      "icon": "exit",
+      "declared_size": 24,
+      "width": 24,
+      "height": 24,
+      "bytes": 1829,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "expand-16.svg",
+      "icon": "expand",
+      "declared_size": 16,
+      "width": 16,
+      "height": 16,
+      "bytes": 431,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "expand-24.svg",
+      "icon": "expand",
+      "declared_size": 24,
+      "width": 24,
+      "height": 24,
+      "bytes": 1293,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "external-link-16.svg",
+      "icon": "external-link",
+      "declared_size": 16,
+      "width": 16,
+      "height": 16,
+      "bytes": 575,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "external-link-24.svg",
+      "icon": "external-link",
+      "declared_size": 24,
+      "width": 24,
+      "height": 24,
+      "bytes": 690,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "external-link-48.svg",
+      "icon": "external-link",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 1593,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "factory-48.svg",
+      "icon": "factory",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 3589,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "family-48.svg",
+      "icon": "family",
+      "declared_size": 48,
+      "width": 48,
+      "height": 49,
+      "bytes": 10615,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": [
+        "non-square",
+        "dimension-mismatch"
+      ]
+    },
+    {
+      "name": "family-home-48.svg",
+      "icon": "family-home",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 2985,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "farm-equipment-48.svg",
+      "icon": "farm-equipment",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 4933,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "farm-mortgage-dollar-48.svg",
+      "icon": "farm-mortgage-dollar",
+      "declared_size": 48,
+      "width": 48,
+      "height": 49,
+      "bytes": 5919,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": [
+        "non-square",
+        "dimension-mismatch"
+      ]
+    },
+    {
+      "name": "farm-mortgage-euro-48.svg",
+      "icon": "farm-mortgage-euro",
+      "declared_size": 48,
+      "width": 48,
+      "height": 49,
+      "bytes": 6525,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": [
+        "non-square",
+        "dimension-mismatch"
+      ]
+    },
+    {
+      "name": "farm-mortgage-pound-48.svg",
+      "icon": "farm-mortgage-pound",
+      "declared_size": 48,
+      "width": 48,
+      "height": 49,
+      "bytes": 7349,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": [
+        "non-square",
+        "dimension-mismatch"
+      ]
+    },
+    {
+      "name": "farm-mortgage-yen-48.svg",
+      "icon": "farm-mortgage-yen",
+      "declared_size": 48,
+      "width": 48,
+      "height": 49,
+      "bytes": 5664,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": [
+        "non-square",
+        "dimension-mismatch"
+      ]
+    },
+    {
+      "name": "fee-24.svg",
+      "icon": "fee",
+      "declared_size": 24,
+      "width": 24,
+      "height": 24,
+      "bytes": 1720,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "feedback-16.svg",
+      "icon": "feedback",
+      "declared_size": 16,
+      "width": 16,
+      "height": 16,
+      "bytes": 920,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "feedback-announcement-16.svg",
+      "icon": "feedback-announcement",
+      "declared_size": 16,
+      "width": 16,
+      "height": 16,
+      "bytes": 547,
+      "colors": [
+        "#D07704"
+      ],
+      "flags": []
+    },
+    {
+      "name": "feedback-announcement-24.svg",
+      "icon": "feedback-announcement",
+      "declared_size": 24,
+      "width": 24,
+      "height": 24,
+      "bytes": 1167,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "feedback-error-16.svg",
+      "icon": "feedback-error",
+      "declared_size": 16,
+      "width": 16,
+      "height": 16,
+      "bytes": 712,
+      "colors": [
+        "#C81414"
+      ],
+      "flags": []
+    },
+    {
+      "name": "feedback-error-24.svg",
+      "icon": "feedback-error",
+      "declared_size": 24,
+      "width": 24,
+      "height": 24,
+      "bytes": 865,
+      "colors": [
+        "#C81414"
+      ],
+      "flags": []
+    },
+    {
+      "name": "feedback-success-16.svg",
+      "icon": "feedback-success",
+      "declared_size": 16,
+      "width": 16,
+      "height": 16,
+      "bytes": 630,
+      "colors": [
+        "#0B8224"
+      ],
+      "flags": []
+    },
+    {
+      "name": "feedback-success-24.svg",
+      "icon": "feedback-success",
+      "declared_size": 24,
+      "width": 24,
+      "height": 24,
+      "bytes": 1457,
+      "colors": [
+        "#0B8224"
+      ],
+      "flags": []
+    },
+    {
+      "name": "feedback-warning-16.svg",
+      "icon": "feedback-warning",
+      "declared_size": 16,
+      "width": 16,
+      "height": 16,
+      "bytes": 910,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "feedback-warning-24.svg",
+      "icon": "feedback-warning",
+      "declared_size": 24,
+      "width": 24,
+      "height": 24,
+      "bytes": 807,
+      "colors": [
+        "#D07704"
+      ],
+      "flags": []
+    },
+    {
+      "name": "filter-chip-16.svg",
+      "icon": "filter-chip",
+      "declared_size": 16,
+      "width": 16,
+      "height": 16,
+      "bytes": 987,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "filter-chip-24.svg",
+      "icon": "filter-chip",
+      "declared_size": 24,
+      "width": 24,
+      "height": 24,
+      "bytes": 653,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "filter-table-16.svg",
+      "icon": "filter-table",
+      "declared_size": 16,
+      "width": 16,
+      "height": 16,
+      "bytes": 845,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "filter-table-24.svg",
+      "icon": "filter-table",
+      "declared_size": 24,
+      "width": 24,
+      "height": 24,
+      "bytes": 1678,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "financing-dollar-48.svg",
+      "icon": "financing-dollar",
+      "declared_size": 48,
+      "width": 48,
+      "height": 49,
+      "bytes": 7954,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": [
+        "non-square",
+        "dimension-mismatch"
+      ]
+    },
+    {
+      "name": "financing-euro-48.svg",
+      "icon": "financing-euro",
+      "declared_size": 48,
+      "width": 48,
+      "height": 49,
+      "bytes": 8506,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": [
+        "non-square",
+        "dimension-mismatch"
+      ]
+    },
+    {
+      "name": "financing-pound-48.svg",
+      "icon": "financing-pound",
+      "declared_size": 48,
+      "width": 48,
+      "height": 49,
+      "bytes": 9614,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": [
+        "non-square",
+        "dimension-mismatch"
+      ]
+    },
+    {
+      "name": "financing-yen-48.svg",
+      "icon": "financing-yen",
+      "declared_size": 48,
+      "width": 48,
+      "height": 49,
+      "bytes": 7416,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": [
+        "non-square",
+        "dimension-mismatch"
+      ]
+    },
+    {
+      "name": "fingerprint-16.svg",
+      "icon": "fingerprint",
+      "declared_size": 16,
+      "width": 16,
+      "height": 16,
+      "bytes": 1089,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "fingerprint-24.svg",
+      "icon": "fingerprint",
+      "declared_size": 24,
+      "width": 24,
+      "height": 24,
+      "bytes": 737,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "fingerprint-48.svg",
+      "icon": "fingerprint",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 9221,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "five-star-24.svg",
+      "icon": "five-star",
+      "declared_size": 24,
+      "width": 24,
+      "height": 24,
+      "bytes": 506,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "footer-f-24.svg",
+      "icon": "footer-f",
+      "declared_size": 24,
+      "width": 24,
+      "height": 24,
+      "bytes": 895,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "footer-fd-24.svg",
+      "icon": "footer-fd",
+      "declared_size": 24,
+      "width": 24,
+      "height": 24,
+      "bytes": 1603,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "forward-16.svg",
+      "icon": "forward",
+      "declared_size": 16,
+      "width": 16,
+      "height": 16,
+      "bytes": 228,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "full-screen-collapse-24.svg",
+      "icon": "full-screen-collapse",
+      "declared_size": 24,
+      "width": 24,
+      "height": 24,
+      "bytes": 688,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "full-screen-expand-24.svg",
+      "icon": "full-screen-expand",
+      "declared_size": 24,
+      "width": 24,
+      "height": 24,
+      "bytes": 677,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "funds-dollar-48.svg",
+      "icon": "funds-dollar",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 3740,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "funds-euro-48.svg",
+      "icon": "funds-euro",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 4658,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "funds-pound-48.svg",
+      "icon": "funds-pound",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 5080,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "funds-yen-48.svg",
+      "icon": "funds-yen",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 3546,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "gas-pump-48.svg",
+      "icon": "gas-pump",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 2119,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "gauge-24.svg",
+      "icon": "gauge",
+      "declared_size": 24,
+      "width": 24,
+      "height": 24,
+      "bytes": 1289,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "gear-48.svg",
+      "icon": "gear",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 5477,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "gift-48.svg",
+      "icon": "gift",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 3445,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "global-pay-48.svg",
+      "icon": "global-pay",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 1407,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "globe-24.svg",
+      "icon": "globe",
+      "declared_size": 24,
+      "width": 24,
+      "height": 24,
+      "bytes": 1857,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "globe-48.svg",
+      "icon": "globe",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 2743,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "goals-48.svg",
+      "icon": "goals",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 4883,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "groceries-48.svg",
+      "icon": "groceries",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 1325,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "growth-48.svg",
+      "icon": "growth",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 3668,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "hamburger-menu-16.svg",
+      "icon": "hamburger-menu",
+      "declared_size": 16,
+      "width": 16,
+      "height": 16,
+      "bytes": 335,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "hamburger-menu-24.svg",
+      "icon": "hamburger-menu",
+      "declared_size": 24,
+      "width": 24,
+      "height": 24,
+      "bytes": 1103,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "hand-gear-48.svg",
+      "icon": "hand-gear",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 2704,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "hand-percent-48.svg",
+      "icon": "hand-percent",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 4061,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "health-24.svg",
+      "icon": "health",
+      "declared_size": 24,
+      "width": 24,
+      "height": 24,
+      "bytes": 756,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "health-and-wellbeing-48.svg",
+      "icon": "health-and-wellbeing",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 3555,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "help-24.svg",
+      "icon": "help",
+      "declared_size": 24,
+      "width": 24,
+      "height": 24,
+      "bytes": 1643,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "help-48.svg",
+      "icon": "help",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 1418,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "hide-16.svg",
+      "icon": "hide",
+      "declared_size": 16,
+      "width": 16,
+      "height": 16,
+      "bytes": 11576,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "hide-24.svg",
+      "icon": "hide",
+      "declared_size": 24,
+      "width": 24,
+      "height": 24,
+      "bytes": 5218,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "hockey-48.svg",
+      "icon": "hockey",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 2296,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "home-16.svg",
+      "icon": "home",
+      "declared_size": 16,
+      "width": 16,
+      "height": 16,
+      "bytes": 435,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "home-24.svg",
+      "icon": "home",
+      "declared_size": 24,
+      "width": 24,
+      "height": 24,
+      "bytes": 1233,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "home-48.svg",
+      "icon": "home",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 2043,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "house-arrow-down-48.svg",
+      "icon": "house-arrow-down",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 1005,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "house-check-48.svg",
+      "icon": "house-check",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 902,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "house-circulate-48.svg",
+      "icon": "house-circulate",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 1903,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "house-cycle-48.svg",
+      "icon": "house-cycle",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 1196,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "house-dollar-arrow-up-48.svg",
+      "icon": "house-dollar-arrow-up",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 1760,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "house-dollar-plus-48.svg",
+      "icon": "house-dollar-plus",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 1686,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "house-key-48.svg",
+      "icon": "house-key",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 1145,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "house-left-right-arrows-48.svg",
+      "icon": "house-left-right-arrows",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 1220,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "house-money-bag-48.svg",
+      "icon": "house-money-bag",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 1906,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "house-money-bag-plus-48.svg",
+      "icon": "house-money-bag-plus",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 2027,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "house-percent-dollar-48.svg",
+      "icon": "house-percent-dollar",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 2200,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "house-percentage-plus-48.svg",
+      "icon": "house-percentage-plus",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 1336,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "house-plus-48.svg",
+      "icon": "house-plus",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 948,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "house-safety-lock-48.svg",
+      "icon": "house-safety-lock",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 1087,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "house-shield-48.svg",
+      "icon": "house-shield",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 1193,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "house-speedometer-plus-48.svg",
+      "icon": "house-speedometer-plus",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 1327,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "house-split-48.svg",
+      "icon": "house-split",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 564,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "house-stopwatch-48.svg",
+      "icon": "house-stopwatch",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 1602,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "household-24.svg",
+      "icon": "household",
+      "declared_size": 24,
+      "width": 24,
+      "height": 24,
+      "bytes": 4284,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "household-48.svg",
+      "icon": "household",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 6056,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "improve-48.svg",
+      "icon": "improve",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 3549,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "in-progress-24.svg",
+      "icon": "in-progress",
+      "declared_size": 24,
+      "width": 56,
+      "height": 96,
+      "bytes": 2457,
+      "colors": [
+        "#005587",
+        "#0075BE",
+        "#9747FF"
+      ],
+      "flags": [
+        "figma-frame",
+        "non-square",
+        "dimension-mismatch"
+      ]
+    },
+    {
+      "name": "information-16.svg",
+      "icon": "information",
+      "declared_size": 16,
+      "width": 16,
+      "height": 16,
+      "bytes": 291,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "information-24.svg",
+      "icon": "information",
+      "declared_size": 24,
+      "width": 24,
+      "height": 24,
+      "bytes": 1912,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "inline-error-16.svg",
+      "icon": "inline-error",
+      "declared_size": 16,
+      "width": 16,
+      "height": 16,
+      "bytes": 1405,
+      "colors": [
+        "#C81414"
+      ],
+      "flags": []
+    },
+    {
+      "name": "insurance-16.svg",
+      "icon": "insurance",
+      "declared_size": 16,
+      "width": 16,
+      "height": 16,
+      "bytes": 703,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "insurance-24.svg",
+      "icon": "insurance",
+      "declared_size": 24,
+      "width": 24,
+      "height": 24,
+      "bytes": 1941,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "insurance-48.svg",
+      "icon": "insurance",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 1847,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "invest-48.svg",
+      "icon": "invest",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 3477,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "investment-management-48.svg",
+      "icon": "investment-management",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 5487,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "invitation-48.svg",
+      "icon": "invitation",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 3289,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "labour-48.svg",
+      "icon": "labour",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 3496,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "laptop-48.svg",
+      "icon": "laptop",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 776,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "leads-48.svg",
+      "icon": "leads",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 8463,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "legal-document-48.svg",
+      "icon": "legal-document",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 2833,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "light-bulb-16.svg",
+      "icon": "light-bulb",
+      "declared_size": 16,
+      "width": 16,
+      "height": 16,
+      "bytes": 570,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "light-bulb-24.svg",
+      "icon": "light-bulb",
+      "declared_size": 24,
+      "width": 24,
+      "height": 24,
+      "bytes": 1797,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "light-bulb-48.svg",
+      "icon": "light-bulb",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 6977,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "like-24.svg",
+      "icon": "like",
+      "declared_size": 24,
+      "width": 24,
+      "height": 24,
+      "bytes": 669,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "liked-24.svg",
+      "icon": "liked",
+      "declared_size": 24,
+      "width": 24,
+      "height": 24,
+      "bytes": 684,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "link-chain-24.svg",
+      "icon": "link-chain",
+      "declared_size": 24,
+      "width": 24,
+      "height": 24,
+      "bytes": 1378,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "liquidity-dollar-48.svg",
+      "icon": "liquidity-dollar",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 4469,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "liquidity-euro-48.svg",
+      "icon": "liquidity-euro",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 5317,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "liquidity-pound-48.svg",
+      "icon": "liquidity-pound",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 5979,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "liquidity-yen-48.svg",
+      "icon": "liquidity-yen",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 4139,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "loading-16.svg",
+      "icon": "loading",
+      "declared_size": 16,
+      "width": 16,
+      "height": 16,
+      "bytes": 1122,
+      "colors": [
+        "#0075BE",
+        "#E6F9FE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "loading-24.svg",
+      "icon": "loading",
+      "declared_size": 24,
+      "width": 24,
+      "height": 24,
+      "bytes": 3843,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "loan-48.svg",
+      "icon": "loan",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 7725,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "location-16.svg",
+      "icon": "location",
+      "declared_size": 16,
+      "width": 16,
+      "height": 16,
+      "bytes": 1386,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "location-24.svg",
+      "icon": "location",
+      "declared_size": 24,
+      "width": 24,
+      "height": 24,
+      "bytes": 1985,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "location-48.svg",
+      "icon": "location",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 2131,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "lock-16.svg",
+      "icon": "lock",
+      "declared_size": 16,
+      "width": 16,
+      "height": 16,
+      "bytes": 424,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "lock-24.svg",
+      "icon": "lock",
+      "declared_size": 24,
+      "width": 24,
+      "height": 24,
+      "bytes": 827,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "lock-48.svg",
+      "icon": "lock",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 865,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "lock-dollar-48.svg",
+      "icon": "lock-dollar",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 1592,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "lock-percent-48.svg",
+      "icon": "lock-percent",
+      "declared_size": 48,
+      "width": 48,
+      "height": 47,
+      "bytes": 1230,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": [
+        "non-square",
+        "dimension-mismatch"
+      ]
+    },
+    {
+      "name": "low-interest-48.svg",
+      "icon": "low-interest",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 4833,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "mail-16.svg",
+      "icon": "mail",
+      "declared_size": 16,
+      "width": 16,
+      "height": 16,
+      "bytes": 377,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "mail-24.svg",
+      "icon": "mail",
+      "declared_size": 24,
+      "width": 24,
+      "height": 24,
+      "bytes": 853,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "mail-48.svg",
+      "icon": "mail",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 854,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "maintenance-24.svg",
+      "icon": "maintenance",
+      "declared_size": 24,
+      "width": 24,
+      "height": 24,
+      "bytes": 1119,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "maintenance-48.svg",
+      "icon": "maintenance",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 1211,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "maple-leaf-ribbon-48.svg",
+      "icon": "maple-leaf-ribbon",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 1336,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "market-fact-48.svg",
+      "icon": "market-fact",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 2325,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "market-factors-48.svg",
+      "icon": "market-factors",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 2151,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "market-opportunity-48.svg",
+      "icon": "market-opportunity",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 4373,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "markets-48.svg",
+      "icon": "markets",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 1778,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "medical-16.svg",
+      "icon": "medical",
+      "declared_size": 16,
+      "width": 16,
+      "height": 16,
+      "bytes": 292,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "medical-24.svg",
+      "icon": "medical",
+      "declared_size": 24,
+      "width": 24,
+      "height": 24,
+      "bytes": 1925,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "medical-48.svg",
+      "icon": "medical",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 2641,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "medical-briefcase-cycle-48.svg",
+      "icon": "medical-briefcase-cycle",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 3675,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "meetings-48.svg",
+      "icon": "meetings",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 16423,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "microphone-16.svg",
+      "icon": "microphone",
+      "declared_size": 16,
+      "width": 16,
+      "height": 16,
+      "bytes": 499,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "microphone-24.svg",
+      "icon": "microphone",
+      "declared_size": 24,
+      "width": 24,
+      "height": 24,
+      "bytes": 1677,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "minus-48.svg",
+      "icon": "minus",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 1273,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "mobile-48.svg",
+      "icon": "mobile",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 2034,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "mobile-phone-24.svg",
+      "icon": "mobile-phone",
+      "declared_size": 24,
+      "width": 24,
+      "height": 24,
+      "bytes": 887,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "money-16.svg",
+      "icon": "money",
+      "declared_size": 16,
+      "width": 16,
+      "height": 16,
+      "bytes": 1533,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "money-24.svg",
+      "icon": "money",
+      "declared_size": 24,
+      "width": 24,
+      "height": 24,
+      "bytes": 1649,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "money-bag-16.svg",
+      "icon": "money-bag",
+      "declared_size": 16,
+      "width": 16,
+      "height": 16,
+      "bytes": 4061,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "money-bag-24.svg",
+      "icon": "money-bag",
+      "declared_size": 24,
+      "width": 24,
+      "height": 24,
+      "bytes": 3861,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "money-ribbon-48.svg",
+      "icon": "money-ribbon",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 4124,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "money-spread-48.svg",
+      "icon": "money-spread",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 6436,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "more-16.svg",
+      "icon": "more",
+      "declared_size": 16,
+      "width": 16,
+      "height": 16,
+      "bytes": 499,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "more-24.svg",
+      "icon": "more",
+      "declared_size": 24,
+      "width": 24,
+      "height": 24,
+      "bytes": 1100,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "more-vertical-16.svg",
+      "icon": "more-vertical",
+      "declared_size": 16,
+      "width": 16,
+      "height": 16,
+      "bytes": 499,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "more-vertical-24.svg",
+      "icon": "more-vertical",
+      "declared_size": 24,
+      "width": 24,
+      "height": 24,
+      "bytes": 1100,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "mortality-48.svg",
+      "icon": "mortality",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 4693,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "mortgage-24.svg",
+      "icon": "mortgage",
+      "declared_size": 24,
+      "width": 24,
+      "height": 24,
+      "bytes": 625,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "mortgage-48.svg",
+      "icon": "mortgage",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 3581,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "mortgage-renewal-calculator-48.svg",
+      "icon": "mortgage-renewal-calculator",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 1597,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "move-money-16.svg",
+      "icon": "move-money",
+      "declared_size": 16,
+      "width": 16,
+      "height": 16,
+      "bytes": 1912,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "move-money-24.svg",
+      "icon": "move-money",
+      "declared_size": 24,
+      "width": 24,
+      "height": 24,
+      "bytes": 1000,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "multi-device-48.svg",
+      "icon": "multi-device",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 1966,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "multiple-accounts-48.svg",
+      "icon": "multiple-accounts",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 1202,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "mute-16.svg",
+      "icon": "mute",
+      "declared_size": 16,
+      "width": 16,
+      "height": 16,
+      "bytes": 587,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "my_advice-24.svg",
+      "icon": "my_advice",
+      "declared_size": 24,
+      "width": 24,
+      "height": 24,
+      "bytes": 1912,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "nav-cheque-48.svg",
+      "icon": "nav-cheque",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 4554,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "navigation-account-28.svg",
+      "icon": "navigation-account",
+      "declared_size": 28,
+      "width": 28,
+      "height": 28,
+      "bytes": 2047,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "navigation-bank-service-28.svg",
+      "icon": "navigation-bank-service",
+      "declared_size": 28,
+      "width": 28,
+      "height": 28,
+      "bytes": 890,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "navigation-move-money-28.svg",
+      "icon": "navigation-move-money",
+      "declared_size": 28,
+      "width": 28,
+      "height": 28,
+      "bytes": 1951,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "navigation-offer-28.svg",
+      "icon": "navigation-offer",
+      "declared_size": 28,
+      "width": 28,
+      "height": 28,
+      "bytes": 1133,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "navigation-submit-review-28.svg",
+      "icon": "navigation-submit-review",
+      "declared_size": 28,
+      "width": 28,
+      "height": 28,
+      "bytes": 1130,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "nest-egg-48.svg",
+      "icon": "nest-egg",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 3294,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "net-performance-score-48.svg",
+      "icon": "net-performance-score",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 3889,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "new-message-48.svg",
+      "icon": "new-message",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 2723,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "newcomers-to-canada-48.svg",
+      "icon": "newcomers-to-canada",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 5473,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "number-1-24.svg",
+      "icon": "number-1",
+      "declared_size": 24,
+      "width": 12,
+      "height": 12,
+      "bytes": 832,
+      "colors": [
+        "#000000"
+      ],
+      "flags": [
+        "dimension-mismatch"
+      ]
+    },
+    {
+      "name": "number-10-24.svg",
+      "icon": "number-10",
+      "declared_size": 24,
+      "width": 24,
+      "height": 24,
+      "bytes": 1866,
+      "colors": [
+        "#000000"
+      ],
+      "flags": []
+    },
+    {
+      "name": "number-11-24.svg",
+      "icon": "number-11",
+      "declared_size": 24,
+      "width": 24,
+      "height": 24,
+      "bytes": 942,
+      "colors": [
+        "#000000"
+      ],
+      "flags": []
+    },
+    {
+      "name": "number-12-24.svg",
+      "icon": "number-12",
+      "declared_size": 24,
+      "width": 24,
+      "height": 24,
+      "bytes": 1686,
+      "colors": [
+        "#000000"
+      ],
+      "flags": []
+    },
+    {
+      "name": "number-2-24.svg",
+      "icon": "number-2",
+      "declared_size": 24,
+      "width": 24,
+      "height": 24,
+      "bytes": 1572,
+      "colors": [
+        "#000000"
+      ],
+      "flags": []
+    },
+    {
+      "name": "number-3-24.svg",
+      "icon": "number-3",
+      "declared_size": 24,
+      "width": 24,
+      "height": 24,
+      "bytes": 2196,
+      "colors": [
+        "#000000"
+      ],
+      "flags": []
+    },
+    {
+      "name": "number-4-24.svg",
+      "icon": "number-4",
+      "declared_size": 24,
+      "width": 24,
+      "height": 24,
+      "bytes": 918,
+      "colors": [
+        "#000000"
+      ],
+      "flags": []
+    },
+    {
+      "name": "number-5-24.svg",
+      "icon": "number-5",
+      "declared_size": 24,
+      "width": 24,
+      "height": 24,
+      "bytes": 1720,
+      "colors": [
+        "#000000"
+      ],
+      "flags": []
+    },
+    {
+      "name": "number-6-24.svg",
+      "icon": "number-6",
+      "declared_size": 24,
+      "width": 24,
+      "height": 24,
+      "bytes": 2035,
+      "colors": [
+        "#000000"
+      ],
+      "flags": []
+    },
+    {
+      "name": "number-7-24.svg",
+      "icon": "number-7",
+      "declared_size": 24,
+      "width": 24,
+      "height": 24,
+      "bytes": 826,
+      "colors": [
+        "#000000"
+      ],
+      "flags": []
+    },
+    {
+      "name": "number-8-24.svg",
+      "icon": "number-8",
+      "declared_size": 24,
+      "width": 24,
+      "height": 24,
+      "bytes": 2467,
+      "colors": [
+        "#000000"
+      ],
+      "flags": []
+    },
+    {
+      "name": "number-9-24.svg",
+      "icon": "number-9",
+      "declared_size": 24,
+      "width": 24,
+      "height": 24,
+      "bytes": 1962,
+      "colors": [
+        "#000000"
+      ],
+      "flags": []
+    },
+    {
+      "name": "office-48.svg",
+      "icon": "office",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 5715,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "offices-around-the-world-48.svg",
+      "icon": "offices-around-the-world",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 9119,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "offline-48.svg",
+      "icon": "offline",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 3125,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "oldest-account-48.svg",
+      "icon": "oldest-account",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 1002,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "one-on-one-48.svg",
+      "icon": "one-on-one",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 12593,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "online-48.svg",
+      "icon": "online",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 5359,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "pagination-left-16.svg",
+      "icon": "pagination-left",
+      "declared_size": 16,
+      "width": 16,
+      "height": 16,
+      "bytes": 212,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "pagination-left-24.svg",
+      "icon": "pagination-left",
+      "declared_size": 24,
+      "width": 24,
+      "height": 24,
+      "bytes": 508,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "pagination-right-16.svg",
+      "icon": "pagination-right",
+      "declared_size": 16,
+      "width": 16,
+      "height": 16,
+      "bytes": 211,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "pagination-right-24.svg",
+      "icon": "pagination-right",
+      "declared_size": 24,
+      "width": 24,
+      "height": 24,
+      "bytes": 1056,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "part-time-16.svg",
+      "icon": "part-time",
+      "declared_size": 16,
+      "width": 16,
+      "height": 16,
+      "bytes": 1200,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "part-time-24.svg",
+      "icon": "part-time",
+      "declared_size": 24,
+      "width": 24,
+      "height": 24,
+      "bytes": 1893,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "part-time-48.svg",
+      "icon": "part-time",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 1817,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "partnership-48.svg",
+      "icon": "partnership",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 7434,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "passkey-16.svg",
+      "icon": "passkey",
+      "declared_size": 16,
+      "width": 16,
+      "height": 16,
+      "bytes": 490,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "passkey-24.svg",
+      "icon": "passkey",
+      "declared_size": 24,
+      "width": 24,
+      "height": 24,
+      "bytes": 1579,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "passkey-48.svg",
+      "icon": "passkey",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 1894,
+      "colors": [
+        "#0B79BF"
+      ],
+      "flags": []
+    },
+    {
+      "name": "pause-16.svg",
+      "icon": "pause",
+      "declared_size": 16,
+      "width": 16,
+      "height": 16,
+      "bytes": 201,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "pause-48.svg",
+      "icon": "pause",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 510,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "payment-history-48.svg",
+      "icon": "payment-history",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 1416,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "payments-receiving-48.svg",
+      "icon": "payments-receiving",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 2361,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "payments-sending-48.svg",
+      "icon": "payments-sending",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 2497,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "paysmart-48.svg",
+      "icon": "paysmart",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 1013,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "pdf-24.svg",
+      "icon": "pdf",
+      "declared_size": 24,
+      "width": 24,
+      "height": 24,
+      "bytes": 1161,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "pdf-48.svg",
+      "icon": "pdf",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 1118,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "pdf-wide-24.svg",
+      "icon": "pdf-wide",
+      "declared_size": 24,
+      "width": 24,
+      "height": 24,
+      "bytes": 1405,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "people-fact-pack-48.svg",
+      "icon": "people-fact-pack",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 2597,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "percent-pie-48.svg",
+      "icon": "percent-pie",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 1828,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "percentage-16.svg",
+      "icon": "percentage",
+      "declared_size": 16,
+      "width": 16,
+      "height": 16,
+      "bytes": 885,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "percentage-24.svg",
+      "icon": "percentage",
+      "declared_size": 24,
+      "width": 24,
+      "height": 24,
+      "bytes": 2237,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "percentage-48.svg",
+      "icon": "percentage",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 2933,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "perfomance-24.svg",
+      "icon": "perfomance",
+      "declared_size": 24,
+      "width": 24,
+      "height": 24,
+      "bytes": 805,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "performance-48.svg",
+      "icon": "performance",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 2872,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "personal-insurance-48.svg",
+      "icon": "personal-insurance",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 1130,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "phone-48.svg",
+      "icon": "phone",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 3457,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "phone-dollar-48.svg",
+      "icon": "phone-dollar",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 1727,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "pie-chart-16.svg",
+      "icon": "pie-chart",
+      "declared_size": 16,
+      "width": 16,
+      "height": 16,
+      "bytes": 407,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "pie-chart-24.svg",
+      "icon": "pie-chart",
+      "declared_size": 24,
+      "width": 24,
+      "height": 24,
+      "bytes": 2131,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "pie-chart-48.svg",
+      "icon": "pie-chart",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 2263,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "pie-chart-section-48.svg",
+      "icon": "pie-chart-section",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 825,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "pin-16.svg",
+      "icon": "pin",
+      "declared_size": 16,
+      "width": 16,
+      "height": 16,
+      "bytes": 1392,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "pin-24.svg",
+      "icon": "pin",
+      "declared_size": 24,
+      "width": 24,
+      "height": 24,
+      "bytes": 2519,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "pinned-24.svg",
+      "icon": "pinned",
+      "declared_size": 24,
+      "width": 24,
+      "height": 24,
+      "bytes": 1847,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "play-16.svg",
+      "icon": "play",
+      "declared_size": 16,
+      "width": 16,
+      "height": 16,
+      "bytes": 157,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "play-24.svg",
+      "icon": "play",
+      "declared_size": 24,
+      "width": 24,
+      "height": 24,
+      "bytes": 624,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "play-48.svg",
+      "icon": "play",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 553,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "play-jump-forward-48.svg",
+      "icon": "play-jump-forward",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 1168,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "play-jump-rewind-48.svg",
+      "icon": "play-jump-rewind",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 1124,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "playbook-48.svg",
+      "icon": "playbook",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 1575,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "popup-24.svg",
+      "icon": "popup",
+      "declared_size": 24,
+      "width": 24,
+      "height": 24,
+      "bytes": 775,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "portfolio-24.svg",
+      "icon": "portfolio",
+      "declared_size": 24,
+      "width": 24,
+      "height": 24,
+      "bytes": 554,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "portfolio-48.svg",
+      "icon": "portfolio",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 3387,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "positive-alignment-48.svg",
+      "icon": "positive-alignment",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 8801,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "power-button-48.svg",
+      "icon": "power-button",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 759,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "powerpoint-24.svg",
+      "icon": "powerpoint",
+      "declared_size": 24,
+      "width": 24,
+      "height": 24,
+      "bytes": 947,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "premium-16.svg",
+      "icon": "premium",
+      "declared_size": 16,
+      "width": 16,
+      "height": 16,
+      "bytes": 919,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "premium-24.svg",
+      "icon": "premium",
+      "declared_size": 24,
+      "width": 24,
+      "height": 24,
+      "bytes": 1857,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "premium-48.svg",
+      "icon": "premium",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 2119,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "primary-customer-48.svg",
+      "icon": "primary-customer",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 4883,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "print-48.svg",
+      "icon": "print",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 3207,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "printer-24.svg",
+      "icon": "printer",
+      "declared_size": 24,
+      "width": 24,
+      "height": 24,
+      "bytes": 3573,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "privacy-48.svg",
+      "icon": "privacy",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 8197,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "process-48.svg",
+      "icon": "process",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 11807,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "product-48.svg",
+      "icon": "product",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 1953,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "products-48.svg",
+      "icon": "products",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 1508,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "profile-16.svg",
+      "icon": "profile",
+      "declared_size": 16,
+      "width": 16,
+      "height": 16,
+      "bytes": 1059,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "profile-24.svg",
+      "icon": "profile",
+      "declared_size": 24,
+      "width": 24,
+      "height": 24,
+      "bytes": 1531,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "profile-48.svg",
+      "icon": "profile",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 6211,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "qualification-48.svg",
+      "icon": "qualification",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 3252,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "readiline-calculator-48.svg",
+      "icon": "readiline-calculator",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 1733,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "receipts-16.svg",
+      "icon": "receipts",
+      "declared_size": 16,
+      "width": 16,
+      "height": 16,
+      "bytes": 1111,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "receipts-24.svg",
+      "icon": "receipts",
+      "declared_size": 24,
+      "width": 24,
+      "height": 24,
+      "bytes": 1949,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "recent-inquires-48.svg",
+      "icon": "recent-inquires",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 1798,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "recurring-16.svg",
+      "icon": "recurring",
+      "declared_size": 16,
+      "width": 16,
+      "height": 16,
+      "bytes": 3107,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "recurring-48.svg",
+      "icon": "recurring",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 2251,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "recurring-bill-48.svg",
+      "icon": "recurring-bill",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 6201,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "redoc-24.svg",
+      "icon": "redoc",
+      "declared_size": 24,
+      "width": 24,
+      "height": 24,
+      "bytes": 1075,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "reduced-income-risk-dollar-48.svg",
+      "icon": "reduced-income-risk-dollar",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 2912,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "reduced-income-risk-euro-48.svg",
+      "icon": "reduced-income-risk-euro",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 6873,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "reduced-income-risk-pound-48.svg",
+      "icon": "reduced-income-risk-pound",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 7609,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "reduced-income-risk-yen-48.svg",
+      "icon": "reduced-income-risk-yen",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 5943,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "referrals-48.svg",
+      "icon": "referrals",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 13209,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "reload-16.svg",
+      "icon": "reload",
+      "declared_size": 16,
+      "width": 16,
+      "height": 16,
+      "bytes": 1232,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "reload-24.svg",
+      "icon": "reload",
+      "declared_size": 24,
+      "width": 24,
+      "height": 24,
+      "bytes": 2207,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "rent-24.svg",
+      "icon": "rent",
+      "declared_size": 24,
+      "width": 24,
+      "height": 24,
+      "bytes": 1299,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "research-24.svg",
+      "icon": "research",
+      "declared_size": 24,
+      "width": 24,
+      "height": 24,
+      "bytes": 930,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "resp-48.svg",
+      "icon": "resp",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 2640,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "retirement-48.svg",
+      "icon": "retirement",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 4040,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "return-to-content-16.svg",
+      "icon": "return-to-content",
+      "declared_size": 16,
+      "width": 16,
+      "height": 16,
+      "bytes": 440,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "return-to-content-24.svg",
+      "icon": "return-to-content",
+      "declared_size": 24,
+      "width": 24,
+      "height": 24,
+      "bytes": 437,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "review-4halfof5-16.svg",
+      "icon": "review-4halfof5",
+      "declared_size": 16,
+      "width": 96,
+      "height": 16,
+      "bytes": 2790,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": [
+        "non-square",
+        "dimension-mismatch"
+      ]
+    },
+    {
+      "name": "review-4halfof5-24.svg",
+      "icon": "review-4halfof5",
+      "declared_size": 24,
+      "width": 96,
+      "height": 16,
+      "bytes": 2790,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": [
+        "non-square",
+        "dimension-mismatch"
+      ]
+    },
+    {
+      "name": "review-4of5-16.svg",
+      "icon": "review-4of5",
+      "declared_size": 16,
+      "width": 96,
+      "height": 16,
+      "bytes": 1940,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": [
+        "non-square",
+        "dimension-mismatch"
+      ]
+    },
+    {
+      "name": "review-4of5-24.svg",
+      "icon": "review-4of5",
+      "declared_size": 24,
+      "width": 96,
+      "height": 16,
+      "bytes": 1940,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": [
+        "non-square",
+        "dimension-mismatch"
+      ]
+    },
+    {
+      "name": "review-5of5-16.svg",
+      "icon": "review-5of5",
+      "declared_size": 16,
+      "width": 96,
+      "height": 16,
+      "bytes": 1955,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": [
+        "non-square",
+        "dimension-mismatch"
+      ]
+    },
+    {
+      "name": "review-5of5-24.svg",
+      "icon": "review-5of5",
+      "declared_size": 24,
+      "width": 96,
+      "height": 16,
+      "bytes": 1955,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": [
+        "non-square",
+        "dimension-mismatch"
+      ]
+    },
+    {
+      "name": "rewards-16.svg",
+      "icon": "rewards",
+      "declared_size": 16,
+      "width": 16,
+      "height": 16,
+      "bytes": 618,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "rewards-24.svg",
+      "icon": "rewards",
+      "declared_size": 24,
+      "width": 24,
+      "height": 24,
+      "bytes": 3273,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "rewards-48.svg",
+      "icon": "rewards",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 3599,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "rewind-16.svg",
+      "icon": "rewind",
+      "declared_size": 16,
+      "width": 16,
+      "height": 16,
+      "bytes": 226,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "risk-high-16.svg",
+      "icon": "risk-high",
+      "declared_size": 16,
+      "width": 17,
+      "height": 16,
+      "bytes": 1107,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": [
+        "non-square",
+        "dimension-mismatch"
+      ]
+    },
+    {
+      "name": "risk-high-24.svg",
+      "icon": "risk-high",
+      "declared_size": 24,
+      "width": 24,
+      "height": 24,
+      "bytes": 993,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "risk-low-16.svg",
+      "icon": "risk-low",
+      "declared_size": 16,
+      "width": 17,
+      "height": 16,
+      "bytes": 1103,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": [
+        "non-square",
+        "dimension-mismatch"
+      ]
+    },
+    {
+      "name": "risk-low-24.svg",
+      "icon": "risk-low",
+      "declared_size": 24,
+      "width": 24,
+      "height": 24,
+      "bytes": 1032,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "risk-medium-16.svg",
+      "icon": "risk-medium",
+      "declared_size": 16,
+      "width": 17,
+      "height": 16,
+      "bytes": 1099,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": [
+        "non-square",
+        "dimension-mismatch"
+      ]
+    },
+    {
+      "name": "risk-medium-24.svg",
+      "icon": "risk-medium",
+      "declared_size": 24,
+      "width": 24,
+      "height": 24,
+      "bytes": 977,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "risk-profile-48.svg",
+      "icon": "risk-profile",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 5013,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "rmb-climb-48.svg",
+      "icon": "rmb-climb",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 4723,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "sale-48.svg",
+      "icon": "sale",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 2509,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "sales-play-48.svg",
+      "icon": "sales-play",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 4691,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "savings-48.svg",
+      "icon": "savings",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 6657,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "scorecard-48.svg",
+      "icon": "scorecard",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 9227,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "search-16.svg",
+      "icon": "search",
+      "declared_size": 16,
+      "width": 16,
+      "height": 16,
+      "bytes": 1594,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "search-24.svg",
+      "icon": "search",
+      "declared_size": 24,
+      "width": 24,
+      "height": 24,
+      "bytes": 1541,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "search-48.svg",
+      "icon": "search",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 1695,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "security-24.svg",
+      "icon": "security",
+      "declared_size": 24,
+      "width": 24,
+      "height": 24,
+      "bytes": 336,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "security-48.svg",
+      "icon": "security",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 1572,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "security-key-48.svg",
+      "icon": "security-key",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 1759,
+      "colors": [
+        "#0075BE",
+        "#117ABF"
+      ],
+      "flags": []
+    },
+    {
+      "name": "select-input-down-16.svg",
+      "icon": "select-input-down",
+      "declared_size": 16,
+      "width": 16,
+      "height": 16,
+      "bytes": 215,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "select-input-down-24.svg",
+      "icon": "select-input-down",
+      "declared_size": 24,
+      "width": 24,
+      "height": 24,
+      "bytes": 507,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "select-input-up-16.svg",
+      "icon": "select-input-up",
+      "declared_size": 16,
+      "width": 16,
+      "height": 16,
+      "bytes": 216,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "select-input-up-24.svg",
+      "icon": "select-input-up",
+      "declared_size": 24,
+      "width": 24,
+      "height": 24,
+      "bytes": 506,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "self-study-48.svg",
+      "icon": "self-study",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 7287,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "send-plane-16.svg",
+      "icon": "send-plane",
+      "declared_size": 16,
+      "width": 16,
+      "height": 16,
+      "bytes": 297,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "send-plane-24.svg",
+      "icon": "send-plane",
+      "declared_size": 24,
+      "width": 24,
+      "height": 24,
+      "bytes": 2037,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "send-plane-48.svg",
+      "icon": "send-plane",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 1812,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "seniors-48.svg",
+      "icon": "seniors",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 8235,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "service-animal-24.svg",
+      "icon": "service-animal",
+      "declared_size": 24,
+      "width": 24,
+      "height": 24,
+      "bytes": 1488,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "service-animal-48.svg",
+      "icon": "service-animal",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 1491,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "settings-24.svg",
+      "icon": "settings",
+      "declared_size": 24,
+      "width": 24,
+      "height": 24,
+      "bytes": 5435,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "share-16.svg",
+      "icon": "share",
+      "declared_size": 16,
+      "width": 16,
+      "height": 16,
+      "bytes": 1005,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "share-24.svg",
+      "icon": "share",
+      "declared_size": 24,
+      "width": 24,
+      "height": 24,
+      "bytes": 1967,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "shield-airplane-card-48.svg",
+      "icon": "shield-airplane-card",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 4514,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "shield-money-48.svg",
+      "icon": "shield-money",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 4621,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "shop-48.svg",
+      "icon": "shop",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 5647,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "shop-rewards-48.svg",
+      "icon": "shop-rewards",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 1463,
+      "colors": [
+        "#0B79BF"
+      ],
+      "flags": []
+    },
+    {
+      "name": "shopping-24.svg",
+      "icon": "shopping",
+      "declared_size": 24,
+      "width": 24,
+      "height": 24,
+      "bytes": 465,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "shopping-48.svg",
+      "icon": "shopping",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 2153,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "show-16.svg",
+      "icon": "show",
+      "declared_size": 16,
+      "width": 16,
+      "height": 16,
+      "bytes": 783,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "show-24.svg",
+      "icon": "show",
+      "declared_size": 24,
+      "width": 24,
+      "height": 24,
+      "bytes": 2976,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "side-by-side-48.svg",
+      "icon": "side-by-side",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 6939,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "social-facebook-24.svg",
+      "icon": "social-facebook",
+      "declared_size": 24,
+      "width": 24,
+      "height": 24,
+      "bytes": 1159,
+      "colors": [
+        "#001928"
+      ],
+      "flags": []
+    },
+    {
+      "name": "social-facebook-48.svg",
+      "icon": "social-facebook",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 1043,
+      "colors": [
+        "#001928"
+      ],
+      "flags": []
+    },
+    {
+      "name": "social-instagram-24.svg",
+      "icon": "social-instagram",
+      "declared_size": 24,
+      "width": 56,
+      "height": 96,
+      "bytes": 11603,
+      "colors": [
+        "#001928",
+        "#646C76",
+        "#9747FF"
+      ],
+      "flags": [
+        "figma-frame",
+        "non-square",
+        "dimension-mismatch"
+      ]
+    },
+    {
+      "name": "social-instagram-48.svg",
+      "icon": "social-instagram",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 5815,
+      "colors": [
+        "#001928"
+      ],
+      "flags": []
+    },
+    {
+      "name": "social-linkedin-24.svg",
+      "icon": "social-linkedin",
+      "declared_size": 24,
+      "width": 24,
+      "height": 24,
+      "bytes": 991,
+      "colors": [
+        "#001928"
+      ],
+      "flags": []
+    },
+    {
+      "name": "social-linkedin-48.svg",
+      "icon": "social-linkedin",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 644,
+      "colors": [
+        "#001928"
+      ],
+      "flags": []
+    },
+    {
+      "name": "social-messenger-24.svg",
+      "icon": "social-messenger",
+      "declared_size": 24,
+      "width": 24,
+      "height": 24,
+      "bytes": 1919,
+      "colors": [
+        "#001928"
+      ],
+      "flags": []
+    },
+    {
+      "name": "social-messenger-48.svg",
+      "icon": "social-messenger",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 1785,
+      "colors": [
+        "#001928"
+      ],
+      "flags": []
+    },
+    {
+      "name": "social-outlook-48.svg",
+      "icon": "social-outlook",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 2279,
+      "colors": [
+        "#001928"
+      ],
+      "flags": []
+    },
+    {
+      "name": "social-rss-feed-48.svg",
+      "icon": "social-rss-feed",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 1299,
+      "colors": [
+        "#001928"
+      ],
+      "flags": []
+    },
+    {
+      "name": "social-twitter-24.svg",
+      "icon": "social-twitter",
+      "declared_size": 24,
+      "width": 24,
+      "height": 24,
+      "bytes": 2419,
+      "colors": [
+        "#001928"
+      ],
+      "flags": []
+    },
+    {
+      "name": "social-twitter-48.svg",
+      "icon": "social-twitter",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 2287,
+      "colors": [
+        "#001928"
+      ],
+      "flags": []
+    },
+    {
+      "name": "social-x-24.svg",
+      "icon": "social-x",
+      "declared_size": 24,
+      "width": 24,
+      "height": 24,
+      "bytes": 398,
+      "colors": [
+        "#001928"
+      ],
+      "flags": []
+    },
+    {
+      "name": "social-x-48.svg",
+      "icon": "social-x",
+      "declared_size": 48,
+      "width": 48,
+      "height": 49,
+      "bytes": 465,
+      "colors": [
+        "#001928"
+      ],
+      "flags": [
+        "non-square",
+        "dimension-mismatch"
+      ]
+    },
+    {
+      "name": "social-x-circle-24.svg",
+      "icon": "social-x-circle",
+      "declared_size": 24,
+      "width": 24,
+      "height": 24,
+      "bytes": 732,
+      "colors": [
+        "#001928"
+      ],
+      "flags": []
+    },
+    {
+      "name": "social-youtube-24.svg",
+      "icon": "social-youtube",
+      "declared_size": 24,
+      "width": 24,
+      "height": 24,
+      "bytes": 2471,
+      "colors": [
+        "#001928"
+      ],
+      "flags": []
+    },
+    {
+      "name": "social-youtube-48.svg",
+      "icon": "social-youtube",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 2294,
+      "colors": [
+        "#001928"
+      ],
+      "flags": []
+    },
+    {
+      "name": "spinner-16.svg",
+      "icon": "spinner",
+      "declared_size": 16,
+      "width": 16,
+      "height": 16,
+      "bytes": 2117,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "spinner-24.svg",
+      "icon": "spinner",
+      "declared_size": 24,
+      "width": 24,
+      "height": 24,
+      "bytes": 583,
+      "colors": [
+        "#0075BE",
+        "#E6F9FE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "splitshare-24.svg",
+      "icon": "splitshare",
+      "declared_size": 24,
+      "width": 24,
+      "height": 24,
+      "bytes": 1381,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "spouse-16.svg",
+      "icon": "spouse",
+      "declared_size": 16,
+      "width": 16,
+      "height": 16,
+      "bytes": 2059,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "spouse-24.svg",
+      "icon": "spouse",
+      "declared_size": 24,
+      "width": 24,
+      "height": 24,
+      "bytes": 2257,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "spouse-48.svg",
+      "icon": "spouse",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 2681,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "star-16.svg",
+      "icon": "star",
+      "declared_size": 16,
+      "width": 16,
+      "height": 16,
+      "bytes": 1509,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "star-empty-16.svg",
+      "icon": "star-empty",
+      "declared_size": 16,
+      "width": 16,
+      "height": 16,
+      "bytes": 460,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "star-empty-24.svg",
+      "icon": "star-empty",
+      "declared_size": 24,
+      "width": 16,
+      "height": 16,
+      "bytes": 460,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": [
+        "dimension-mismatch"
+      ]
+    },
+    {
+      "name": "star-full-16.svg",
+      "icon": "star-full",
+      "declared_size": 16,
+      "width": 16,
+      "height": 16,
+      "bytes": 475,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "star-full-24.svg",
+      "icon": "star-full",
+      "declared_size": 24,
+      "width": 16,
+      "height": 16,
+      "bytes": 475,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": [
+        "dimension-mismatch"
+      ]
+    },
+    {
+      "name": "star-half-16.svg",
+      "icon": "star-half",
+      "declared_size": 16,
+      "width": 16,
+      "height": 16,
+      "bytes": 1305,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "star-half-24.svg",
+      "icon": "star-half",
+      "declared_size": 24,
+      "width": 16,
+      "height": 16,
+      "bytes": 1305,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": [
+        "dimension-mismatch"
+      ]
+    },
+    {
+      "name": "star-ribbon-48.svg",
+      "icon": "star-ribbon",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 2762,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "start-date-16.svg",
+      "icon": "start-date",
+      "declared_size": 16,
+      "width": 16,
+      "height": 16,
+      "bytes": 1290,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "start-date-24.svg",
+      "icon": "start-date",
+      "declared_size": 24,
+      "width": 24,
+      "height": 24,
+      "bytes": 2363,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "start-date-48.svg",
+      "icon": "start-date",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 2113,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "steps-dollar-48.svg",
+      "icon": "steps-dollar",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 2609,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "student-talent-48.svg",
+      "icon": "student-talent",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 2677,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "submit-review-16.svg",
+      "icon": "submit-review",
+      "declared_size": 16,
+      "width": 16,
+      "height": 16,
+      "bytes": 964,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "submit-review-24.svg",
+      "icon": "submit-review",
+      "declared_size": 24,
+      "width": 24,
+      "height": 24,
+      "bytes": 763,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "success-48.svg",
+      "icon": "success",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 2836,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "suitcase-16.svg",
+      "icon": "suitcase",
+      "declared_size": 16,
+      "width": 16,
+      "height": 16,
+      "bytes": 510,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "suitcase-24.svg",
+      "icon": "suitcase",
+      "declared_size": 24,
+      "width": 24,
+      "height": 24,
+      "bytes": 1161,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "swap-view-48.svg",
+      "icon": "swap-view",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 3667,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "table-sort-16.svg",
+      "icon": "table-sort",
+      "declared_size": 16,
+      "width": 16,
+      "height": 16,
+      "bytes": 619,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "table-sort-24.svg",
+      "icon": "table-sort",
+      "declared_size": 24,
+      "width": 24,
+      "height": 24,
+      "bytes": 2041,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "tablet-24.svg",
+      "icon": "tablet",
+      "declared_size": 24,
+      "width": 24,
+      "height": 24,
+      "bytes": 744,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "tablet-48.svg",
+      "icon": "tablet",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 3206,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "take-action-48.svg",
+      "icon": "take-action",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 8781,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "tap-48.svg",
+      "icon": "tap",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 1301,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "target-48.svg",
+      "icon": "target",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 2695,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "tax-planning-48.svg",
+      "icon": "tax-planning",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 3653,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "team-48.svg",
+      "icon": "team",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 9525,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "technological-innovation-48.svg",
+      "icon": "technological-innovation",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 7453,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "teens-48.svg",
+      "icon": "teens",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 4863,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "thumbs-down-16.svg",
+      "icon": "thumbs-down",
+      "declared_size": 16,
+      "width": 16,
+      "height": 16,
+      "bytes": 811,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "thumbs-down-24.svg",
+      "icon": "thumbs-down",
+      "declared_size": 24,
+      "width": 24,
+      "height": 24,
+      "bytes": 1205,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "thumbs-up-16.svg",
+      "icon": "thumbs-up",
+      "declared_size": 16,
+      "width": 16,
+      "height": 16,
+      "bytes": 837,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "thumbs-up-24.svg",
+      "icon": "thumbs-up",
+      "declared_size": 24,
+      "width": 24,
+      "height": 24,
+      "bytes": 1398,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "thumbs-up-48.svg",
+      "icon": "thumbs-up",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 3272,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "time-16.svg",
+      "icon": "time",
+      "declared_size": 16,
+      "width": 16,
+      "height": 16,
+      "bytes": 565,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "time-24.svg",
+      "icon": "time",
+      "declared_size": 24,
+      "width": 24,
+      "height": 24,
+      "bytes": 1163,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "tools-24.svg",
+      "icon": "tools",
+      "declared_size": 24,
+      "width": 24,
+      "height": 24,
+      "bytes": 11841,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "tools-48.svg",
+      "icon": "tools",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 13718,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "tools-to-reach-target-48.svg",
+      "icon": "tools-to-reach-target",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 12359,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "tooth-48.svg",
+      "icon": "tooth",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 1214,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "top-performer-48.svg",
+      "icon": "top-performer",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 9781,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "transfer-48.svg",
+      "icon": "transfer",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 2211,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "transfer-arrow-16.svg",
+      "icon": "transfer-arrow",
+      "declared_size": 16,
+      "width": 16,
+      "height": 16,
+      "bytes": 929,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "transfer-arrow-24.svg",
+      "icon": "transfer-arrow",
+      "declared_size": 24,
+      "width": 24,
+      "height": 24,
+      "bytes": 2614,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "transportation-24.svg",
+      "icon": "transportation",
+      "declared_size": 24,
+      "width": 24,
+      "height": 24,
+      "bytes": 1748,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "trash-16.svg",
+      "icon": "trash",
+      "declared_size": 16,
+      "width": 16,
+      "height": 16,
+      "bytes": 988,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "trash-24.svg",
+      "icon": "trash",
+      "declared_size": 24,
+      "width": 24,
+      "height": 24,
+      "bytes": 1209,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "trash-48.svg",
+      "icon": "trash",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 1755,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "travel-16.svg",
+      "icon": "travel",
+      "declared_size": 16,
+      "width": 16,
+      "height": 16,
+      "bytes": 1803,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "travel-24.svg",
+      "icon": "travel",
+      "declared_size": 24,
+      "width": 24,
+      "height": 24,
+      "bytes": 3761,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "travelling-insurance-48.svg",
+      "icon": "travelling-insurance",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 5363,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "trophy-48.svg",
+      "icon": "trophy",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 3273,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "truck-48.svg",
+      "icon": "truck",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 3438,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "tv-48.svg",
+      "icon": "tv",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 1489,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "unlock-16.svg",
+      "icon": "unlock",
+      "declared_size": 16,
+      "width": 16,
+      "height": 16,
+      "bytes": 1058,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "unlock-24.svg",
+      "icon": "unlock",
+      "declared_size": 24,
+      "width": 24,
+      "height": 24,
+      "bytes": 1419,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "unlock-48.svg",
+      "icon": "unlock",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 1032,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "unmute-16.svg",
+      "icon": "unmute",
+      "declared_size": 16,
+      "width": 16,
+      "height": 16,
+      "bytes": 967,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "unpin-16.svg",
+      "icon": "unpin",
+      "declared_size": 16,
+      "width": 16,
+      "height": 16,
+      "bytes": 1140,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "upload-16.svg",
+      "icon": "upload",
+      "declared_size": 16,
+      "width": 16,
+      "height": 16,
+      "bytes": 433,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "upload-24.svg",
+      "icon": "upload",
+      "declared_size": 24,
+      "width": 24,
+      "height": 24,
+      "bytes": 1593,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "us-defense-48.svg",
+      "icon": "us-defense",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 2593,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "usd-48.svg",
+      "icon": "usd",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 2083,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "vacation-48.svg",
+      "icon": "vacation",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 7401,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "vacation-checkmark-48.svg",
+      "icon": "vacation-checkmark",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 1288,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "vacation-cycle-48.svg",
+      "icon": "vacation-cycle",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 2040,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "video-24.svg",
+      "icon": "video",
+      "declared_size": 24,
+      "width": 24,
+      "height": 24,
+      "bytes": 531,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "video-play-24.svg",
+      "icon": "video-play",
+      "declared_size": 24,
+      "width": 24,
+      "height": 24,
+      "bytes": 465,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "video-play-outlined-24.svg",
+      "icon": "video-play-outlined",
+      "declared_size": 24,
+      "width": 24,
+      "height": 24,
+      "bytes": 548,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "virtual-classroom-48.svg",
+      "icon": "virtual-classroom",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 1424,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "volume-off-24.svg",
+      "icon": "volume-off",
+      "declared_size": 24,
+      "width": 24,
+      "height": 24,
+      "bytes": 487,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "volume-on-24.svg",
+      "icon": "volume-on",
+      "declared_size": 24,
+      "width": 24,
+      "height": 24,
+      "bytes": 614,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "walkabout-observation-48.svg",
+      "icon": "walkabout-observation",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 7017,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "wallet-16.svg",
+      "icon": "wallet",
+      "declared_size": 16,
+      "width": 16,
+      "height": 16,
+      "bytes": 673,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "wallet-24.svg",
+      "icon": "wallet",
+      "declared_size": 24,
+      "width": 24,
+      "height": 24,
+      "bytes": 1353,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "wallet-48.svg",
+      "icon": "wallet",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 1708,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "warehouse-48.svg",
+      "icon": "warehouse",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 3675,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "warning-16.svg",
+      "icon": "warning",
+      "declared_size": 16,
+      "width": 16,
+      "height": 16,
+      "bytes": 910,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "warning-24.svg",
+      "icon": "warning",
+      "declared_size": 24,
+      "width": 24,
+      "height": 24,
+      "bytes": 1853,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "warning-48.svg",
+      "icon": "warning",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 2307,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "watchlist-24.svg",
+      "icon": "watchlist",
+      "declared_size": 24,
+      "width": 24,
+      "height": 24,
+      "bytes": 670,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "water-48.svg",
+      "icon": "water",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 2976,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "webinar-podcasts-48.svg",
+      "icon": "webinar-podcasts",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 3347,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "wellness-48.svg",
+      "icon": "wellness",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 6721,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    },
+    {
+      "name": "woman-48.svg",
+      "icon": "woman",
+      "declared_size": 48,
+      "width": 50,
+      "height": 50,
+      "bytes": 1577,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": [
+        "dimension-mismatch"
+      ]
+    },
+    {
+      "name": "world-48.svg",
+      "icon": "world",
+      "declared_size": 48,
+      "width": 48,
+      "height": 48,
+      "bytes": 2797,
+      "colors": [
+        "#0075BE"
+      ],
+      "flags": []
+    }
+  ]
+}

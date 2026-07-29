@@ -49,7 +49,7 @@ Editorial ships inside SharePoint Online exactly like app mode, so every hard ru
 - **Interactivity = inline Alpine** against the documented state contract — the example
   pages wire the filter chips and carousel exactly this way (see §7).
 - **Icon contract** unchanged for functional icons: `ic-fluent-{name}-24-regular` over the
-  inlined `bmo-icons.svg` sprite, sized with `.icon--N`.
+  inlined `fluent-basic-icons.svg` sprite, sized with `.icon--N`.
 
 ---
 
@@ -61,9 +61,9 @@ from becoming clip-art soup.
 | Tier | Asset | Source | Allowed use | Never |
 |---|---|---|---|---|
 | **0 · Photography** | Real photos (`.photo` wrapper) | Licensed BMO library | **Leads.** Hero and feature moments on home / article / intro pages where a warm, authentic human moment fits. | Dark/dramatic/high-contrast; trendy filters; glossy stock |
-| **1 · Functional icons** | Fluent `ic-fluent-*` | `bmo-icons.svg` | App UX affordances — buttons, controls, inline meaning, chrome. Unchanged from app mode. | Content decoration |
-| **2 · Corporate line-icons** | `bmo-ic-*` (`.c-icon`) | `bmo-content-icons.svg` | **Content labeling** — categories, section markers, scorecard-tile glyphs. | Real app UX (edit/save/nav) |
-| **3 · Spot illustrations** | 154-SVG BMO line-drawing family | `illustrations/` | **Hero-substitute / feature moment**, ~1 per page, staged on white/albicant, for dry subjects or app welcome screens; or a section-divider accent. | Competing beside a photo hero; wallpaper repetition; crowding |
+| **1 · Functional icons** | Fluent `ic-fluent-*` | `fluent-basic-icons.svg` | App UX affordances — buttons, controls, inline meaning, chrome. Unchanged from app mode. | Content decoration |
+| **2 · Content-labeling icons** | Abacus SVGs via `<img class="icon icon--N">` | `abacus-icons/` ([contact sheet](../abacus-icons/index.html)) | **Content labeling** — categories, section markers, scorecard-tile glyphs. On a blue tile add `.icon--on-blue`. | Real app UX (edit/save/nav) — that's tier 1 |
+| **3 · Spot illustrations** | 481-SVG BMO line-drawing family | `spot-illustrations/` ([contact sheet](../spot-illustrations/index.html)) | **Hero-substitute / feature moment**, ~1 per page, staged on white/albicant, for dry subjects or app welcome screens; or a section-divider accent. | Competing beside a photo hero; wallpaper repetition; crowding |
 
 **The prominence rule.** Photography leads. When a page has a photo hero, do **not** place
 a spot illustration or corporate line-icon at competing prominence. A spot illustration as
@@ -79,15 +79,23 @@ co-star beside a photo.
   (e.g. a standards library); to warm an **app welcome/landing** screen; or as a **section
   divider** accent down a long page.
 
-**Spot-illustration delivery:** reference as `<img>` from the self-hosted `illustrations/`
+**Spot-illustration delivery:** reference as `<img>` from the self-hosted `spot-illustrations/`
 folder (the SVGs carry baked-in brand hex, so inlining buys nothing). Decorative by
 default — `alt="" aria-hidden="true"`; use a meaningful `alt` only when the illustration is
 the sole carrier of meaning. Copy only the illustrations a page uses.
 
-> **Corporate line-icons are placeholders.** `bmo-content-icons.svg` holds on-brand
-> line-icons drawn to BMO's rules, standing in for the licensed "BMO Design Icons" library
-> until it's dropped in — same sprite pattern, same ids, no reflow. Same posture as the
-> placeholder logo.
+> **There is no content-icon sprite.** The old placeholder sprite (`bmo-ic-*` via `.c-icon`)
+> has been **removed**. Tier 2 is now served directly by the canonical Abacus set —
+> `abacus-icons/` (712 SVGs, [contact sheet](../abacus-icons/index.html)) — referenced by
+> URL and **never inlined into a sprite**:
+>
+> ```html
+> <img class="icon icon--32" src="abacus-icons/goals-48.svg" alt="">
+> ```
+>
+> Size with the base `.icon--N` ladder (TECHNICAL-REFERENCE §6, Form 4). These SVGs carry
+> baked hex and an `<img>` can't inherit `color`, so **on a blue ground a blue glyph
+> disappears** — add `.icon--on-blue`, which forces the mark white with a filter.
 
 ---
 
@@ -105,8 +113,38 @@ one element. The digital-valid subset, all token-driven:
 | **Arc / ring** | `.hero--arc` | Circular photo crop encircled by a single-tone thin ring (BMO blue, or `.hero--arc--white` over darker grounds). The roundel-derived "Major Resource Hub" treatment. |
 | **Arc on blue** | `.hero--arc-blue` | The photo circle atop a solid BMO-blue block — white ring, white copy (sanctioned blue fill; text + at most one inverted CTA, never controls). |
 | **Masonry** | `.hero-masonry` | The SP tiled hero web part — count-aware: 2 tiles side by side, 3 = lead spanning two equal rows + two stacked, 4 = lead + wide top-right + two below. Functional scrim + white titles. Always flat/flush; never takes the showcase frame. |
-| **Bokeh** | `.hero--bokeh` | Self-hosted `bokeh.svg` (blue gradient corner-to-corner + round translucent circles) — the sanctioned alternative to photography for dry content. |
+| **Bokeh** | `.hero--bokeh` (+ `--bokeh-a`…`-e`) | The official BMO bokeh artwork, self-hosted in `assets/` (blue gradient corner-to-corner + round translucent circles) — the sanctioned alternative to photography for dry content. Five variants; see the chooser below. |
 | **Flood of blue** | `.band--flood` | A solid BMO-blue section band, white content, inverted white buttons. Use for one CTA / statement band. |
+
+### Choosing a bokeh variant
+
+Five bokeh files ship as `assets/bmo-bokeh-{a…e}.svg`. They are one design — a corner-to-
+corner blue gradient, light at the bottom-left, deep BMO blue at the top-right, with
+translucent white circles clustered toward the light corner. What differs is **how much of
+the frame the circles occupy**, and therefore how much clear gradient is left for a
+headline, a photo, or a spot illustration to sit on.
+
+| Variant | Character | Reach for it when |
+|---|---|---|
+| **a** (default) | Busiest — circles across nearly the whole frame; only the top-right corner stays clear | The artwork *is* the content; little or no overlay |
+| **c** | Dense, opening up toward the right edge | Short headline held to the right |
+| **b** | Balanced — clear upper band, texture below | The general-purpose choice; headline top, texture under it |
+| **e** | Clear top half; circles in the lower ~40% | A full headline + lede across the top |
+| **d** | Sparsest — clear across the top-right two-thirds, circles as a bottom-left corner accent | Text-heavy heroes, or a photo/illustration composited over it |
+
+```html
+<div class="hero hero--banner hero--bokeh hero--bokeh-d"> … </div>
+```
+
+`.hero--bokeh` on its own gives you **a**. Add a variant modifier alongside it — the
+variant class only swaps the image, so both classes are required.
+
+> **The source art is square (1:1 — declared `48in`, i.e. 4608px intrinsic).** Under `background-size: cover` a wide banner
+> shows a horizontal slice through the middle, so the top-right clear corner and the
+> bottom-left cluster are both partly cropped — the taller the hero, the more of the
+> composition survives. Bias it with `background-position` when a specific region has to
+> stay visible, and check the variant at the hero's real aspect ratio rather than trusting
+> the square preview.
 
 The full-bleed photo heroes (`--scrim` / `--blue` / `--band` / `--bokeh`) build on
 `.hero.hero--banner` (a layered banner); a page picks **one** of these banner treatments.
@@ -175,7 +213,7 @@ bar** with the BMO wordmark + red roundel, a **blue hub-nav strip**, a white **s
 ```html
 <header class="sp-suite">
   <button class="sp-suite__btn" aria-label="App launcher">…grid icon…</button>
-  <span class="sp-suite__brand"><img src="assets/bmo-logo-placeholder.svg" alt="BMO" width="26" height="26"><span class="sp-suite__word">BMO</span></span>
+  <span class="sp-suite__brand"><img src="assets/BMO-roundel.svg" alt="BMO" width="26" height="26"><span class="sp-suite__word">BMO</span></span>
   <span class="sp-suite__search">…search…</span>
   <div class="sp-suite__actions">…alert / settings / avatar…</div>
 </header>
@@ -239,7 +277,7 @@ bar** with the BMO wordmark + red roundel, a **blue hub-nav strip**, a white **s
 ```html
 <div class="scorecard scorecard--4">
   <div class="scorecard__tile">
-    <span class="scorecard__icon"><svg class="c-icon c-icon--32 c-icon--on-blue"><use href="#bmo-ic-goals"/></svg></span>
+    <span class="scorecard__icon"><img class="icon icon--32 icon--on-blue" src="abacus-icons/goals-48.svg" alt=""></span>
     <div class="scorecard__value">94%</div>
     <div class="scorecard__label">Controls tested on time</div>
     <div class="scorecard__caption">Target 90% · trailing 12 months</div>
@@ -289,7 +327,7 @@ bar** with the BMO wordmark + red roundel, a **blue hub-nav strip**, a white **s
 
 ### Spot illustration
 ```html
-<div class="spot spot--lg"><img src="illustrations/education-l.svg" alt="" aria-hidden="true"></div>
+<div class="spot spot--lg"><img src="spot-illustrations/education-l.svg" alt="" aria-hidden="true"></div>
 ```
 
 ### Video player (full inline look)
@@ -338,7 +376,7 @@ Quote slides use `__quote`/`__cite`; generic slides use `__eyebrow`/`__title`/`_
 
 <!-- Quick links -->
 <div class="quicklink-grid">
-  <a class="quicklink" href="#"><svg class="c-icon"><use href="#bmo-ic-idea"/></svg>
+  <a class="quicklink" href="#"><img class="icon icon--24" src="abacus-icons/light-bulb-48.svg" alt="">
     <span class="quicklink__label">Knowledge sharing library</span></a>
 </div>
 
@@ -450,10 +488,10 @@ mechanism and still needs the observer.
 | File | Role |
 |---|---|
 | `editorial.css` | The additive layer — `--ed-*` tokens, `.editorial` scope, SP chrome, hero devices, editorial blocks. Link after `components.css` (opt-in; not in the `styles.css` bundle). |
-| `bmo-content-icons.svg` | Corporate content line-icon sprite (`bmo-ic-*`). Placeholder for the licensed set. |
-| `bokeh.svg` | Spec-compliant bokeh background artwork. |
-| `illustrations/` | Spot illustrations used by the example pages (subset of the 154-SVG library). |
-| `assets/bmo-logo-placeholder.svg` | M-bar roundel used in the suite bar. |
+| `abacus-icons/` | The canonical BMO consumer-brand (Abacus) icon set — 712 SVGs at 16/24/28/48. [Contact sheet](../abacus-icons/index.html) · `catalog.json`. Referenced **by URL** as `<img class="icon icon--N">`, never via a sprite; baked hex, so no tinting. |
+| `assets/bmo-bokeh-{a…e}.svg` | Official BMO bokeh artwork, five variants (`.jpg` twins ship alongside as a raster fallback). |
+| `spot-illustrations/` | The canonical BMO line-drawing spot-illustration library — 481 SVGs. [Contact sheet](../spot-illustrations/index.html) · `catalog.json` · `README.md`. |
+| `assets/BMO-roundel.svg` | M-bar roundel used in the suite bar. |
 | `examples/editorial-learning-catalog.html` | Flagship example — band+circle hero, course grid, materials, facilitators, spot marker, flood CTA. |
 | `examples/editorial-resource-hub.html` | Second example — arc hero, essential-resources tinted grid, scorecard, video cards, key-messages carousel. |
 | `examples/editorial-components.html` | The editorial component library — every block live with copy-paste markup. |

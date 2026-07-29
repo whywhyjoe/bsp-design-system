@@ -1,3 +1,4 @@
+/*! BMO SharePoint Design System · v1.0.0 · editorial.css */
 /* =====================================================================
    BMO SharePoint Design System — EDITORIAL MODE (additive layer)
    ---------------------------------------------------------------------
@@ -274,12 +275,34 @@
       transparent 55%);
 }
 
-/* --bokeh: the approved alt to photography for "dry" content — a spec-compliant
+/* --bokeh: the approved alt to photography for "dry" content — the official BMO
    bokeh artwork (blue gradient corner-to-corner + round translucent circles),
-   self-hosted as bokeh.svg. Pair with a spot illustration or copy over it. */
+   self-hosted in assets/. Pair with a spot illustration or copy over it.
+
+   FIVE variants ship, a–e. Same design language; they differ in how much of the
+   frame the circles occupy, i.e. how much clear gradient is left for text or a
+   photo. Densest to sparsest: a · c · b · e · d.
+       a  busiest — circles fill the frame; texture-first, minimal overlay
+       c  dense, clearer toward the right edge
+       b  balanced — clear upper band, texture below
+       e  clear top half; circles in the lower ~40%
+       d  sparsest — clear across the top-right two-thirds; a corner accent
+   .hero--bokeh alone gives you (a); add a variant modifier to choose:
+       <div class="hero hero--banner hero--bokeh hero--bokeh-d">
+
+   The source art is SQUARE (1:1 — 48in / 4608px, viewBox 3456). Under background-size:cover a wide
+   banner shows a horizontal slice through the middle, so the extremes of the
+   composition are cropped — bias it with background-position if a specific
+   region needs to survive. */
 .hero--bokeh { background: var(--accent-rest); }
-.hero--bokeh .hero__bg { background-image: url("bokeh.svg"); background-size: cover; background-position: center; }
+.hero--bokeh .hero__bg { background-image: url("assets/bmo-bokeh-a.svg"); background-size: cover; background-position: center; }
 .hero--bokeh::after { content: ""; position: absolute; inset: 0; z-index: 1; background: var(--ed-scrim-soft); }
+
+.hero--bokeh-a .hero__bg { background-image: url("assets/bmo-bokeh-a.svg"); }
+.hero--bokeh-b .hero__bg { background-image: url("assets/bmo-bokeh-b.svg"); }
+.hero--bokeh-c .hero__bg { background-image: url("assets/bmo-bokeh-c.svg"); }
+.hero--bokeh-d .hero__bg { background-image: url("assets/bmo-bokeh-d.svg"); }
+.hero--bokeh-e .hero__bg { background-image: url("assets/bmo-bokeh-e.svg"); }
 
 /* --arc: the BMO arc/ring device — a single-tone thin ring encircling the hero
    media (the roundel-derived circle). BMO's circle device is single-tone (white
@@ -527,18 +550,19 @@
 
 
 /* ---------------------------------------------------------------------
-   14 · Corporate content line-icons — the content-labeling tier (distinct
-   from the functional Fluent ic-fluent-* app icons). Rendered from the
-   separate bmo-content-icons.svg sprite; sized here. PLACEHOLDER art until
-   the licensed "BMO Design Icons" set is dropped in.
-       <svg class="c-icon c-icon--48"><use href="#bmo-ic-learning"/></svg>
+   14 · Content-labeling icons — REMOVED (.c-icon and the bmo-ic-* sprite).
+   That tier was placeholder art. It is now served by the real Abacus icons
+   in abacus-icons/, referenced by URL and sized with the base .icon ladder:
+       <img class="icon icon--32" src="abacus-icons/goals-48.svg" alt="">
+
+   ON A BLUE GROUND — Abacus SVGs carry baked BMO blue, and an <img> cannot
+   inherit `color`, so a blue glyph on a blue tile disappears. This is the
+   one thing the retired .c-icon--on-blue did that the files cannot. Force
+   the glyph white instead; it is a paint operation on an opaque mark, not a
+   colour value, so no token applies:
+       <img class="icon icon--32 icon--on-blue" src="…/goals-48.svg" alt="">
    --------------------------------------------------------------------- */
-.c-icon { width: 48px; height: 48px; flex: none; color: var(--accent-rest); }
-.c-icon--24 { width: 24px; height: 24px; }
-.c-icon--32 { width: 32px; height: 32px; }
-.c-icon--48 { width: 48px; height: 48px; }
-.c-icon--64 { width: 64px; height: 64px; }
-.c-icon--on-blue { color: var(--bmo-white); }
+.icon--on-blue { filter: brightness(0) invert(1); }
 
 
 /* ---------------------------------------------------------------------
@@ -600,7 +624,7 @@
 }
 .quicklink:hover { border-color: var(--accent-rest); background: var(--surface-tint-blue); text-decoration: none; }
 .quicklink:focus-visible { outline: var(--stroke-thick) solid var(--stroke-focus); outline-offset: 1px; }
-.quicklink .icon, .quicklink .c-icon { width: 24px; height: 24px; flex: none; color: var(--accent-rest); }
+.quicklink .icon { width: 24px; height: 24px; flex: none; color: var(--accent-rest); }
 .quicklink__label { font: var(--type-body2-strong); color: var(--accent-rest); }
 @media (max-width: 980px) { .quicklink-grid { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 600px) { .quicklink-grid { grid-template-columns: 1fr; } }

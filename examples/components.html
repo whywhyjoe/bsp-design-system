@@ -58,7 +58,7 @@
 <body>
 
 <!-- ════════ Canonical icon sprite — inline once per page ════════
-     This is bmo-icons.svg, dropped into the body so same-document #id refs
+     This is fluent-basic-icons.svg, dropped into the body so same-document #id refs
      resolve for BOTH the no-JS <use> form and the <fluent-icon> element.
      Symbol ids: ic-fluent-{name}-24-regular. Do not rename. -->
 <svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true"><defs>
@@ -141,7 +141,7 @@
       <div class="meta">
         <span>Stack: HTML + CSS + inline Alpine</span>
         <span>Link: colors_and_type.css → components.css</span>
-        <span>Icons: bmo-icons.svg (ic-fluent-*)</span>
+        <span>Icons: fluent-basic-icons.svg (ic-fluent-*)</span>
       </div>
     </header>
 
@@ -192,7 +192,7 @@
       <!-- ICONS -->
       <section class="group" id="icons">
         <h2>Icons</h2>
-        <p class="lede">Self-hosted Fluent sprite (<code style="font-family:var(--font-family-mono)">bmo-icons.svg</code>, ids <code style="font-family:var(--font-family-mono)">ic-fluent-{name}-24-regular</code>). <code style="font-family:var(--font-family-mono)">.icon</code> inherits <code style="font-family:var(--font-family-mono)">currentColor</code>; use the size helpers (12 / 16 / 20 / 24 only). Inline the sprite once per page so same-document <code style="font-family:var(--font-family-mono)">#id</code> refs resolve.</p>
+        <p class="lede">Self-hosted Fluent sprite (<code style="font-family:var(--font-family-mono)">fluent-basic-icons.svg</code>, ids <code style="font-family:var(--font-family-mono)">ic-fluent-{name}-24-regular</code>). <code style="font-family:var(--font-family-mono)">.icon</code> inherits <code style="font-family:var(--font-family-mono)">currentColor</code>; use the size helpers (12 / 16 / 20 / 24 only). Inline the sprite once per page so same-document <code style="font-family:var(--font-family-mono)">#id</code> refs resolve.</p>
         <div class="note"><strong>Two SVG forms, one name token.</strong> The <strong>no-JS</strong> form needs only the two CSS files + the inlined sprite — a dev not ready for our scripting is never blocked. The optional <strong>sugar</strong> form <code>&lt;fluent-icon&gt;</code> needs one script tag (<code>fluent-icon.js</code>). Both resolve to the same <code>ic-fluent-*</code> symbol, so you can mix them and migrate between them mechanically. A <strong>third</strong> delivery — the first-party Fluent <strong>icon font</strong> (<code>&lt;i class="icon-ic_fluent_home_24_regular" aria-hidden&gt;</code>) — gives the full Fluent set with no sprite and no JS; <code>aria-hidden</code> the <code>&lt;i&gt;</code> and size via <code>font-size</code>. See the technical reference §6.</div>
         <div class="spec">
           <div class="spec__name">No-JS form (default)</div>
