@@ -9,6 +9,12 @@ complete working page (correct CSS link order, inlined icon sprite, an `x-data`
 root, sample components, deferred Alpine). Copy it and build outward; don't
 hand-roll a scaffold.
 
+**Different audience?** This system is for **employee-facing** pages and apps. If
+you are building an internal *developer tool* in the DCS Workbench family
+(DCSPad, SP Workbench, Halo, the File Broker), you want the DCS Workbench design
+system and the method docs in `whywhyjoe/dcs-workbench-tools` (`docs/README.md`)
+instead — different register, different shell, different hosting rules.
+
 **Fuller rule set:** [`.github/copilot-instructions.md`](.github/copilot-instructions.md)
 (agent rules, ✅/❌ examples) and [`docs/TECHNICAL-REFERENCE.md`](docs/TECHNICAL-REFERENCE.md)
 (per-component snippets, token/class reference, state-contract table, icon system).
