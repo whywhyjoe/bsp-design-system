@@ -133,6 +133,16 @@
   .sechub-actions__detail a { color: var(--accent-rest); }
   .sechub-actions__detail a:hover { color: var(--accent-hover); }
 
+  /* Ask-your-BSO note — the quiet connector between the two framed rail
+     boxes. Tinted and borderless on purpose: framed / tinted / framed keeps
+     the rail from reading as three identical boxes, and the smaller heading
+     keeps it from competing with them. */
+  .sechub-ask { background: var(--surface-tint-blue); border-radius: var(--radius-medium); padding: var(--space-200); }
+  .sechub-ask__title { font: var(--type-body2-strong); color: var(--fg-primary); margin: 0 0 var(--space-80); }
+  .sechub-ask__body { margin: 0; font: var(--type-body1); color: var(--fg-secondary); }
+  .sechub-ask__body a { color: var(--accent-rest); }
+  .sechub-ask__body a:hover { color: var(--accent-hover); }
+
   .sechub-signoff { display: flex; flex-direction: column; align-items: center; gap: var(--space-160); padding: var(--space-320) var(--space-80) 0; text-align: center; }
   .sechub-signoff img { width: 100%; max-width: 250px; }
   .sechub-signoff p { margin: 0; font: var(--type-body2); color: var(--fg-secondary); max-width: 26ch; }
@@ -317,6 +327,13 @@
       </li>
     </ul>
   </section>
+
+  <!-- Ask-your-BSO note — sits between the two framed boxes: report it,
+       ask about it, then browse. -->
+  <aside class="sechub-ask">
+    <h2 class="sechub-ask__title">Questions?</h2>
+    <p class="sechub-ask__body">Reach out to your <a href="#">Business Security Officer (BSO)</a> with any questions about cyber security at BMO.</p>
+  </aside>
 
   <section class="webpart webpart--framed">
     <h2 class="webpart__title">Related resources</h2>
