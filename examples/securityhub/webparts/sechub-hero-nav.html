@@ -106,6 +106,30 @@
   .sechub-topic .card__icon-tile .icon { width: 42px; height: 42px; }
   .sechub-topic__title { display: block; font: var(--type-body2-strong); color: var(--fg-primary); }
   .sechub-topic__desc { display: block; margin-top: var(--space-40); font: var(--type-body1); color: var(--fg-secondary); }
+  /* Rail density — the framed web parts read tighter in the 1/3 column than
+     the design-system defaults, which are tuned for the main column. Scoped
+     to .sechub-zone-side so main-column .webpart__title keeps its full size. */
+  .sechub-zone-side .webpart--framed { padding: var(--space-200); }
+  .sechub-zone-side .webpart__title { font: var(--type-subtitle1); margin-bottom: var(--space-160); }
+  .sechub-zone-side .related--divided .related__link { padding: var(--space-100) 0; }
+
+  /* Action list — the "what to do if…" rows. Deliberately NOT the .related
+     treatment: a two-tier row (imperative action + how) marked by one uniform
+     accent tick, so the set reads as things to DO, not places to go. The tick
+     is .sp-nav__link's 2px accent rule stood upright — same vocabulary, no
+     per-item icons, no bullets. */
+  .sechub-actions { list-style: none; margin: 0; padding: 0; }
+  .sechub-actions__item { padding: var(--space-120) 0; border-bottom: var(--stroke-thin) solid var(--stroke-divider); }
+  .sechub-actions__item:first-child { padding-top: 0; }
+  .sechub-actions__item:last-child { padding-bottom: 0; border-bottom: 0; }
+  .sechub-actions__title { position: relative; display: block; padding-left: var(--space-160); font: var(--type-body2-strong); color: var(--fg-primary); text-decoration: none; }
+  .sechub-actions__title::before { content: ""; position: absolute; left: 0; top: 3px; width: 2px; height: 16px; background: var(--accent-rest); }
+  a.sechub-actions__title { color: var(--accent-rest); }
+  a.sechub-actions__title:hover { color: var(--accent-hover); text-decoration: underline; }
+  .sechub-actions__detail { margin: var(--space-40) 0 0; padding-left: var(--space-160); font: var(--type-body1); color: var(--fg-secondary); }
+  .sechub-actions__detail a { color: var(--accent-rest); }
+  .sechub-actions__detail a:hover { color: var(--accent-hover); }
+
   .sechub-signoff { display: flex; flex-direction: column; align-items: center; gap: var(--space-160); padding: var(--space-320) var(--space-80) 0; text-align: center; }
   .sechub-signoff img { width: 100%; max-width: 250px; }
   .sechub-signoff p { margin: 0; font: var(--type-body2); color: var(--fg-secondary); max-width: 26ch; }
