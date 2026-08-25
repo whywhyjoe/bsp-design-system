@@ -79,14 +79,20 @@ so the blue rule and the grey rule read as one line.
   "allowed to pop" exception; everything else composes existing blocks
   (`.sp-nav` + `.is-active`, `.card` + `.card__icon-tile`, `.webpart--framed`,
   `.related--divided`, `.lift`) on tokens. Pure blue ramp — **no green, no teal**.
-- Nine of the eleven nav icons are **stand-ins drawn to the 1.6-stroke Fluent
-  grammar** (`wifi`, `phone-laptop`, `people-team`, `print`, `iot`,
-  `lock-closed`, `weather-thunderstorm`, `airplane`); only `home` and `mail`
-  come from `fluent-basic-icons.svg`. Each of those names a real Fluent icon, so
-  swap in the authentic SVGs from the `fluentui-system-icons` library when it's
-  to hand. The eleventh, `desk-chair` (Workplace), was drawn from scratch and
-  may have no Fluent equivalent — check the library before assuming a swap. The topic-card icons on the live page are the custom migrated
-  set and are not touched here.
+- **Nav icons are authentic Fluent**, inlined. Ten of the eleven are copied
+  verbatim from [`bsp-fluent-icon-library`](https://github.com/whywhyjoe/bsp-fluent-icon-library)
+  with only `fill="#212121"` swapped for `fill="currentColor"` so they tint;
+  each symbol id maps 1:1 to `ic_fluent_<id>_24_regular.svg` there. Note those
+  SVGs are **filled paths, not strokes** — unlike this repo's hand-drawn
+  `fluent-basic-icons.svg` — but at regular weight the two read alike.
+  The eleventh, `desk-chair` (Workplace), is hand-drawn: Fluent has no chair
+  icon of any kind (only `wheelchair-access`), so it can't be swapped.
+  Because the sprite is inlined, the page has **no runtime dependency** on the
+  icon library — nothing to redeploy or repoint. The sprite is ~16 KB of the
+  web part's ~36 KB.
+- The topic-card icons on the live page are the custom migrated set and are
+  not touched here.
+
 - The sub-page hero deliberately oversizes the "Employee Security Hub" eyebrow
   (21 px semibold, pale sky blue): a page titled just "Wifi" is meaningless
   without the section name.
