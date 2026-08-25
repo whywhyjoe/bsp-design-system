@@ -45,18 +45,27 @@ filename (including whatever the hub home ends up being called) falls back to
 the hub-home state.
 
 **Adding a topic page** = create `<slug>.aspx` and paste the same three-web-part
-recipe. All eight topics (`wifi email passwords cloud mobile remote-work
-phishing reporting`) are already wired into the nav and the hero copy blocks;
-only that topic's `…-main.html` / `…-aside.html` need writing.
+recipe. All ten topics (`wifi devices collaboration documents iot email
+passwords workplace emergencies travel`) are already wired into the nav and the
+hero copy blocks; only that topic's `…-main.html` / `…-aside.html` need writing.
+
+**Nav layout:** with eleven items (Hub + ten topics) the icon sits *above* the
+label, so each item is only as wide as its own word. The strip measures 1180px
+against a 1116px content box at desktop and does not scroll; it keeps
+`overflow-x: auto` as a narrow-viewport fallback. The active underline is an
+`::after` inset to the item's content box — so it starts and ends exactly on the
+label, not on the padding — and is pulled down onto the divider (`bottom: -1px`)
+so the blue rule and the grey rule read as one line.
 
 ## Things to fix before production
 
 - **Hero photo license** — the checked-in PNG is a free-tier comp; buy the Adobe
   Stock license (or swap the asset), then upload to
   `/sites/TandO-FCU/SiteAssets/SecurityHub/hero-photo-circle.png`.
-- **Hub home URL** — the Hub nav link assumes `home.aspx`; fix the one `href` in
-  `sechub-hero-nav.html` if the page is named differently (the current-state
-  script needs no change).
+- **Hub home URL** — the Hub nav link points at `FCU-Page.aspx`, taken from the
+  live URL. Fix the one `href` in `sechub-hero-nav.html` if it moves; the
+  current-state script needs no change either way, since any unrecognised
+  filename falls back to the hub-home state.
 - **Asset host** — fragments load the design system from
   `/sites/FCUPortal/Code/bsp-design/` per the deploy layout; repoint if the
   system gets deployed under TandO-FCU instead.
@@ -70,9 +79,13 @@ only that topic's `…-main.html` / `…-aside.html` need writing.
   "allowed to pop" exception; everything else composes existing blocks
   (`.sp-nav` + `.is-active`, `.card` + `.card__icon-tile`, `.webpart--framed`,
   `.related--divided`, `.lift`) on tokens. Pure blue ramp — **no green, no teal**.
-- Four icons the curated sprite lacks (`wifi`, `cloud`, `lock-closed`, `laptop`)
-  are inlined in the hub sprite subset, drawn to the same 1.6-stroke grammar —
-  candidates to promote into `fluent-basic-icons.svg`.
+- Nine of the eleven nav icons are **stand-ins drawn to the 1.6-stroke Fluent
+  grammar** (`wifi`, `phone-laptop`, `people-team`, `print`, `iot`,
+  `lock-closed`, `eye`, `weather-thunderstorm`, `airplane`); only `home` and
+  `mail` come from `fluent-basic-icons.svg`. Every one names a real Fluent icon,
+  so swap in the authentic SVGs from the `fluentui-system-icons` library when
+  it's to hand. The topic-card icons on the live page are the custom migrated
+  set and are not touched here.
 - The sub-page hero deliberately oversizes the "Employee Security Hub" eyebrow
   (21 px semibold, pale sky blue): a page titled just "Wifi" is meaningless
   without the section name.

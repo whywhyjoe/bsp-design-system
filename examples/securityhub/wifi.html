@@ -39,19 +39,23 @@
 <link rel="stylesheet" href="../../editorial.css">
 
 <!-- Fluent icon sprite — the subset this hub uses, inlined once per page.
-     home/mail/phone/warning/alert are from fluent-basic-icons.svg;
-     wifi/cloud/lock-closed/laptop are hub extras drawn to the same
-     1.6-stroke grammar (candidates to promote into the canonical sprite). -->
+     home/mail are from fluent-basic-icons.svg; the rest are hub extras drawn
+     to the same 1.6-stroke grammar as stand-ins for their real Fluent
+     counterparts (phone-laptop, people-team, print, iot, eye,
+     weather-thunderstorm, airplane, wifi, lock-closed). Swap in the authentic
+     SVGs from the fluentui-system-icons library when it's to hand. -->
 <svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true"><defs>
   <symbol id="ic-fluent-home-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11.5L12 5l8 6.5V19a1 1 0 0 1-1 1h-4v-6H9v6H5a1 1 0 0 1-1-1v-7.5z"/></g></symbol>
   <symbol id="ic-fluent-wifi-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4.2 10.8a11.5 11.5 0 0 1 15.6 0M7 13.6a7.4 7.4 0 0 1 10 0M9.8 16.4a3.4 3.4 0 0 1 4.4 0M12 19.1h.01"/></g></symbol>
+  <symbol id="ic-fluent-phone-laptop-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 7a1 1 0 0 1 1-1h9a1 1 0 0 1 1 1v6.5h-11V7z"/><path d="M2 16.5h12.5"/><rect x="16" y="8" width="5.5" height="11" rx="1"/><path d="M18.2 16.9h1.1"/></g></symbol>
+  <symbol id="ic-fluent-people-team-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="9.5" cy="8.5" r="3"/><path d="M4 18.6a5.5 5.5 0 0 1 11 0"/><path d="M15.8 6.9a2.8 2.8 0 0 1 0 5.3M16.6 14.4a4.6 4.6 0 0 1 3.4 4.2"/></g></symbol>
+  <symbol id="ic-fluent-print-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M7 9V5.4a.4.4 0 0 1 .4-.4h9.2a.4.4 0 0 1 .4.4V9"/><path d="M7 16H5a1 1 0 0 1-1-1v-5a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v5a1 1 0 0 1-1 1h-2"/><rect x="7" y="13.5" width="10" height="5.5" rx=".5"/><path d="M16.8 11.4h.01"/></g></symbol>
+  <symbol id="ic-fluent-iot-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="8" height="8" rx="1"/><path d="M10.5 5v3M13.5 5v3M10.5 16v3M13.5 16v3M5 10.5h3M5 13.5h3M16 10.5h3M16 13.5h3"/></g></symbol>
   <symbol id="ic-fluent-mail-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 7h14a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1zM4.5 8l7.5 5 7.5-5"/></g></symbol>
   <symbol id="ic-fluent-lock-closed-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="6.5" y="10" width="11" height="9" rx="1.5"/><path d="M9 10V7.8a3 3 0 0 1 6 0V10M12 13.5v2"/></g></symbol>
-  <symbol id="ic-fluent-cloud-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17.5h9.6a3.3 3.3 0 0 0 .5-6.5 5.2 5.2 0 0 0-10.2 1A3 3 0 0 0 7 17.5z"/></g></symbol>
-  <symbol id="ic-fluent-phone-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="4" width="10" height="16" rx="1.5"/><path d="M10.5 17h3"/></g></symbol>
-  <symbol id="ic-fluent-laptop-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="5.5" y="6.5" width="13" height="8.5" rx="1"/><path d="M4 18h16"/></g></symbol>
-  <symbol id="ic-fluent-warning-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5l8.5 14.5H3.5L12 5z"/><path d="M12 10.5v4M12 17h.01"/></g></symbol>
-  <symbol id="ic-fluent-alert-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4a5 5 0 0 1 5 5c0 5 2 6 2 6H5s2-1 2-6a5 5 0 0 1 5-5zM10.3 19a1.8 1.8 0 0 0 3.4 0"/></g></symbol>
+  <symbol id="ic-fluent-eye-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 12S6.8 6.5 12 6.5 20.5 12 20.5 12 17.2 17.5 12 17.5 3.5 12 3.5 12z"/><circle cx="12" cy="12" r="2.5"/></g></symbol>
+  <symbol id="ic-fluent-weather-thunderstorm-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M7 14h9.4a3.2 3.2 0 0 0 .5-6.4 5.1 5.1 0 0 0-10-1A2.9 2.9 0 0 0 7 14z"/><path d="M12.9 15.4l-2.4 3.3h2.9l-2.2 3"/></g></symbol>
+  <symbol id="ic-fluent-airplane-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M10.6 4.8a1.4 1.4 0 0 1 2.8 0v4.5l6.6 3.9v1.9l-6.6-2.1v3.9l2.2 1.7v1.4L12 19.3l-3.6.7v-1.4l2.2-1.7v-3.9L4 15.1v-1.9l6.6-3.9V4.8z"/></g></symbol>
 </defs></svg>
 
 <style>
@@ -82,13 +86,27 @@
     .sechub-hero__title { font: var(--weight-regular) 34px/1.15 var(--font-family); }
   }
 
-  /* Sub-navigation — .sp-nav resized for the hub: 30px icons, body2 type. */
+  /* Sub-navigation — 11 topics, so the icon sits ABOVE the label: stacked,
+     each item is only as wide as its word, and the whole strip fits the
+     1116px content box without scrolling. The active underline is an ::after
+     inset to the item's content box and pulled onto the divider (bottom:-1px)
+     so the blue rule and the grey rule are one line, not two. */
   .sechub-navbar { background: var(--surface-canvas); border-bottom: var(--stroke-thin) solid var(--stroke-divider); }
   .sechub-navbar .sp-nav { background: transparent; border-bottom: 0; overflow-x: auto; }
-  #sechub-nav .sp-nav__link { display: inline-flex; align-items: center; gap: var(--space-80); padding: var(--space-120) var(--space-160) var(--space-100); font: var(--type-body2); color: var(--fg-secondary); white-space: nowrap; }
+  #sechub-nav .sp-nav__link {
+    position: relative; display: inline-flex; flex-direction: column; align-items: center;
+    gap: var(--space-60); padding: var(--space-120) var(--space-120) var(--space-100);
+    font: var(--type-body1); color: var(--fg-secondary); white-space: nowrap;
+    border-bottom: 0; margin-bottom: 0;
+  }
+  #sechub-nav .sp-nav__link .icon { width: 24px; height: 24px; }
+  #sechub-nav .sp-nav__link::after {
+    content: ""; position: absolute; left: var(--space-120); right: var(--space-120);
+    bottom: -1px; height: var(--stroke-thick); background: transparent;
+  }
   #sechub-nav .sp-nav__link:hover { color: var(--accent-hover); }
-  #sechub-nav .sp-nav__link .icon { width: 30px; height: 30px; }
-  #sechub-nav .sp-nav__link.is-active { color: var(--accent-rest); border-bottom-color: var(--accent-rest); font-weight: var(--weight-semibold); }
+  #sechub-nav .sp-nav__link.is-active { color: var(--accent-rest); font-weight: var(--weight-semibold); }
+  #sechub-nav .sp-nav__link.is-active::after { background: var(--accent-rest); }
 
   /* Canvas-zone stand-ins — used by the disk previews; on a real page the
      SharePoint 2/3 + 1/3 section columns are the containers, and the body
@@ -180,43 +198,53 @@
     </div>
     <div class="sechub-hero__copy" data-topic="wifi">
       <p class="sechub-hero__eyebrow">Employee Security Hub</p>
-      <h1 class="sechub-hero__title">Wifi</h1>
+      <h1 class="sechub-hero__title">Wi-Fi &amp; home network</h1>
       <p class="sechub-hero__lede">Connecting safely at the office, at home, and on public networks.</p>
+    </div>
+    <div class="sechub-hero__copy" data-topic="devices">
+      <p class="sechub-hero__eyebrow">Employee Security Hub</p>
+      <h1 class="sechub-hero__title">BMO devices</h1>
+      <p class="sechub-hero__lede">Using and protecting the equipment the bank puts in your hands.</p>
+    </div>
+    <div class="sechub-hero__copy" data-topic="collaboration">
+      <p class="sechub-hero__eyebrow">Employee Security Hub</p>
+      <h1 class="sechub-hero__title">Collaboration tools</h1>
+      <p class="sechub-hero__lede">Working together in approved tools, with the right people.</p>
+    </div>
+    <div class="sechub-hero__copy" data-topic="documents">
+      <p class="sechub-hero__eyebrow">Employee Security Hub</p>
+      <h1 class="sechub-hero__title">Documents &amp; printing</h1>
+      <p class="sechub-hero__lede">Handling, storing, and printing bank information safely.</p>
+    </div>
+    <div class="sechub-hero__copy" data-topic="iot">
+      <p class="sechub-hero__eyebrow">Employee Security Hub</p>
+      <h1 class="sechub-hero__title">IoT devices</h1>
+      <p class="sechub-hero__lede">Connecting smart devices without opening a door to the bank.</p>
     </div>
     <div class="sechub-hero__copy" data-topic="email">
       <p class="sechub-hero__eyebrow">Employee Security Hub</p>
-      <h1 class="sechub-hero__title">Email</h1>
-      <p class="sechub-hero__lede">Sending and sharing safely — and knowing what should never leave the bank by email.</p>
+      <h1 class="sechub-hero__title">Emailing securely</h1>
+      <p class="sechub-hero__lede">Sending and sharing information with care.</p>
     </div>
     <div class="sechub-hero__copy" data-topic="passwords">
       <p class="sechub-hero__eyebrow">Employee Security Hub</p>
       <h1 class="sechub-hero__title">Passwords</h1>
-      <p class="sechub-hero__lede">Strong sign-ins every time: passwords, passphrases, and multi-factor done right.</p>
+      <p class="sechub-hero__lede">Strong sign-ins every time — passwords, passphrases, and multi-factor.</p>
     </div>
-    <div class="sechub-hero__copy" data-topic="cloud">
+    <div class="sechub-hero__copy" data-topic="workplace">
       <p class="sechub-hero__eyebrow">Employee Security Hub</p>
-      <h1 class="sechub-hero__title">Cloud</h1>
-      <p class="sechub-hero__lede">Keeping bank data in approved services — and only approved services.</p>
+      <h1 class="sechub-hero__title">Workplace surroundings</h1>
+      <p class="sechub-hero__lede">Staying alert to what's around you in any work environment.</p>
     </div>
-    <div class="sechub-hero__copy" data-topic="mobile">
+    <div class="sechub-hero__copy" data-topic="emergencies">
       <p class="sechub-hero__eyebrow">Employee Security Hub</p>
-      <h1 class="sechub-hero__title">Mobile devices</h1>
-      <p class="sechub-hero__lede">Protecting bank data on phones and tablets, wherever the day takes you.</p>
+      <h1 class="sechub-hero__title">Natural disaster preparedness</h1>
+      <p class="sechub-hero__lede">Preparing for emergencies and disruptions before they happen.</p>
     </div>
-    <div class="sechub-hero__copy" data-topic="remote-work">
+    <div class="sechub-hero__copy" data-topic="travel">
       <p class="sechub-hero__eyebrow">Employee Security Hub</p>
-      <h1 class="sechub-hero__title">Remote work</h1>
-      <p class="sechub-hero__lede">A secure workspace at home, on the road, and everywhere in between.</p>
-    </div>
-    <div class="sechub-hero__copy" data-topic="phishing">
-      <p class="sechub-hero__eyebrow">Employee Security Hub</p>
-      <h1 class="sechub-hero__title">Phishing</h1>
-      <p class="sechub-hero__lede">How to spot suspicious messages — and what to do the moment you see one.</p>
-    </div>
-    <div class="sechub-hero__copy" data-topic="reporting">
-      <p class="sechub-hero__eyebrow">Employee Security Hub</p>
-      <h1 class="sechub-hero__title">Reporting incidents</h1>
-      <p class="sechub-hero__lede">See something off? Here's exactly what to do, and who to tell.</p>
+      <h1 class="sechub-hero__title">Travelling safely</h1>
+      <p class="sechub-hero__lede">Protecting yourself and BMO information while you're on the move.</p>
     </div>
   </div>
 </section>
@@ -224,15 +252,17 @@
 <!-- ── Sub-navigation ── -->
 <div class="sechub-navbar">
   <nav class="sp-nav l-wrap" id="sechub-nav" aria-label="Security hub pages">
-    <a class="sp-nav__link" data-topic="home" href="index.html"><svg class="icon" aria-hidden="true"><use href="#ic-fluent-home-24-regular"/></svg>Hub</a>
-    <a class="sp-nav__link" data-topic="wifi" href="wifi.html"><svg class="icon" aria-hidden="true"><use href="#ic-fluent-wifi-24-regular"/></svg>Wifi</a>
+    <a class="sp-nav__link" data-topic="home" href="/sites/TandO-FCU/SitePages/SecurityHub/FCU-Page.aspx"><svg class="icon" aria-hidden="true"><use href="#ic-fluent-home-24-regular"/></svg>Hub</a>
+    <a class="sp-nav__link" data-topic="wifi" href="wifi.html"><svg class="icon" aria-hidden="true"><use href="#ic-fluent-wifi-24-regular"/></svg>Wi-Fi</a>
+    <a class="sp-nav__link" data-topic="devices" href="#"><svg class="icon" aria-hidden="true"><use href="#ic-fluent-phone-laptop-24-regular"/></svg>Devices</a>
+    <a class="sp-nav__link" data-topic="collaboration" href="#"><svg class="icon" aria-hidden="true"><use href="#ic-fluent-people-team-24-regular"/></svg>Collaboration</a>
+    <a class="sp-nav__link" data-topic="documents" href="#"><svg class="icon" aria-hidden="true"><use href="#ic-fluent-print-24-regular"/></svg>Documents</a>
+    <a class="sp-nav__link" data-topic="iot" href="#"><svg class="icon" aria-hidden="true"><use href="#ic-fluent-iot-24-regular"/></svg>IoT</a>
     <a class="sp-nav__link" data-topic="email" href="#"><svg class="icon" aria-hidden="true"><use href="#ic-fluent-mail-24-regular"/></svg>Email</a>
     <a class="sp-nav__link" data-topic="passwords" href="#"><svg class="icon" aria-hidden="true"><use href="#ic-fluent-lock-closed-24-regular"/></svg>Passwords</a>
-    <a class="sp-nav__link" data-topic="cloud" href="#"><svg class="icon" aria-hidden="true"><use href="#ic-fluent-cloud-24-regular"/></svg>Cloud</a>
-    <a class="sp-nav__link" data-topic="mobile" href="#"><svg class="icon" aria-hidden="true"><use href="#ic-fluent-phone-24-regular"/></svg>Mobile</a>
-    <a class="sp-nav__link" data-topic="remote-work" href="#"><svg class="icon" aria-hidden="true"><use href="#ic-fluent-laptop-24-regular"/></svg>Remote work</a>
-    <a class="sp-nav__link" data-topic="phishing" href="#"><svg class="icon" aria-hidden="true"><use href="#ic-fluent-warning-24-regular"/></svg>Phishing</a>
-    <a class="sp-nav__link" data-topic="reporting" href="#"><svg class="icon" aria-hidden="true"><use href="#ic-fluent-alert-24-regular"/></svg>Reporting</a>
+    <a class="sp-nav__link" data-topic="workplace" href="#"><svg class="icon" aria-hidden="true"><use href="#ic-fluent-eye-24-regular"/></svg>Workplace</a>
+    <a class="sp-nav__link" data-topic="emergencies" href="#"><svg class="icon" aria-hidden="true"><use href="#ic-fluent-weather-thunderstorm-24-regular"/></svg>Emergencies</a>
+    <a class="sp-nav__link" data-topic="travel" href="#"><svg class="icon" aria-hidden="true"><use href="#ic-fluent-airplane-24-regular"/></svg>Travel</a>
   </nav>
 </div>
 
@@ -241,10 +271,12 @@
      and .is-active for assistive tech once the nav element exists. -->
 <script>
 (function () {
-  var topics = ['wifi', 'email', 'passwords', 'cloud', 'mobile', 'remote-work', 'phishing', 'reporting'];
+  var topics = ['wifi', 'devices', 'collaboration', 'documents', 'iot', 'email', 'passwords', 'workplace', 'emergencies', 'travel'];
   var stem = location.pathname.split('/').pop().toLowerCase().replace(/\.(aspx|html?)$/, '');
   var topic = topics.indexOf(stem) !== -1 ? stem : 'home';
-  var css = '#sechub-nav .sp-nav__link[data-topic="' + topic + '"]{color:var(--accent-rest);border-bottom-color:var(--accent-rest);font-weight:var(--weight-semibold);}';
+  var sel = '#sechub-nav .sp-nav__link[data-topic="' + topic + '"]';
+  var css = sel + '{color:var(--accent-rest);font-weight:var(--weight-semibold);}'
+          + sel + '::after{background:var(--accent-rest);}';
   if (topic !== 'home') {
     css += '#sechub-hero .sechub-hero__copy[data-topic="home"]{display:none;}' +
            '#sechub-hero .sechub-hero__copy[data-topic="' + topic + '"]{display:block;}';
