@@ -79,14 +79,14 @@ so the blue rule and the grey rule read as one line.
   "allowed to pop" exception; everything else composes existing blocks
   (`.sp-nav` + `.is-active`, `.card` + `.card__icon-tile`, `.webpart--framed`,
   `.related--divided`, `.lift`) on tokens. Pure blue ramp — **no green, no teal**.
-- **Nav icons are authentic Fluent**, inlined. Ten of the eleven are copied
+- **Nav icons are authentic Fluent**, inlined. All eleven are copied
   verbatim from [`bsp-fluent-icon-library`](https://github.com/whywhyjoe/bsp-fluent-icon-library)
   with only `fill="#212121"` swapped for `fill="currentColor"` so they tint;
   each symbol id maps 1:1 to `ic_fluent_<id>_24_regular.svg` there. Note those
   SVGs are **filled paths, not strokes** — unlike this repo's hand-drawn
   `fluent-basic-icons.svg` — but at regular weight the two read alike.
-  The eleventh, `desk-chair` (Workplace), is hand-drawn: Fluent has no chair
-  icon of any kind (only `wheelchair-access`), so it can't be swapped.
+  Workplace uses `desk`: Fluent has no chair icon of any kind (only
+  `wheelchair-access`), and `desk` reads better than `seat`, which is a bench.
   Because the sprite is inlined, the page has **no runtime dependency** on the
   icon library — nothing to redeploy or repoint. The sprite is ~16 KB of the
   web part's ~36 KB.
