@@ -46,7 +46,7 @@ the hub-home state.
 
 **Adding a topic page** = create `<slug>.aspx` and paste the same three-web-part
 recipe. All ten topics (`wifi devices collaboration documents iot email
-passwords workplace emergencies travel`) are already wired into the nav and the
+passwords workplace preparedness travel`) are already wired into the nav and the
 hero copy blocks; only that topic's `…-main.html` / `…-aside.html` need writing.
 
 **Nav layout:** with eleven items (Hub + ten topics) the icon sits *above* the
@@ -81,10 +81,11 @@ so the blue rule and the grey rule read as one line.
   `.related--divided`, `.lift`) on tokens. Pure blue ramp — **no green, no teal**.
 - Nine of the eleven nav icons are **stand-ins drawn to the 1.6-stroke Fluent
   grammar** (`wifi`, `phone-laptop`, `people-team`, `print`, `iot`,
-  `lock-closed`, `eye`, `weather-thunderstorm`, `airplane`); only `home` and
-  `mail` come from `fluent-basic-icons.svg`. Every one names a real Fluent icon,
-  so swap in the authentic SVGs from the `fluentui-system-icons` library when
-  it's to hand. The topic-card icons on the live page are the custom migrated
+  `lock-closed`, `weather-thunderstorm`, `airplane`); only `home` and `mail`
+  come from `fluent-basic-icons.svg`. Each of those names a real Fluent icon, so
+  swap in the authentic SVGs from the `fluentui-system-icons` library when it's
+  to hand. The eleventh, `desk-chair` (Workplace), was drawn from scratch and
+  may have no Fluent equivalent — check the library before assuming a swap. The topic-card icons on the live page are the custom migrated
   set and are not touched here.
 - The sub-page hero deliberately oversizes the "Employee Security Hub" eyebrow
   (21 px semibold, pale sky blue): a page titled just "Wifi" is meaningless

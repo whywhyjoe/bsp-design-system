@@ -41,8 +41,9 @@
 <!-- Fluent icon sprite — the subset this hub uses, inlined once per page.
      home/mail are from fluent-basic-icons.svg; the rest are hub extras drawn
      to the same 1.6-stroke grammar as stand-ins for their real Fluent
-     counterparts (phone-laptop, people-team, print, iot, eye,
-     weather-thunderstorm, airplane, wifi, lock-closed). Swap in the authentic
+     counterparts (phone-laptop, people-team, print, iot,
+     weather-thunderstorm, airplane, wifi, lock-closed) — plus a desk-chair drawn
+     from scratch, which may have no Fluent equivalent to swap to. Swap in the authentic
      SVGs from the fluentui-system-icons library when it's to hand. -->
 <svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true"><defs>
   <symbol id="ic-fluent-home-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11.5L12 5l8 6.5V19a1 1 0 0 1-1 1h-4v-6H9v6H5a1 1 0 0 1-1-1v-7.5z"/></g></symbol>
@@ -53,8 +54,8 @@
   <symbol id="ic-fluent-iot-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="8" height="8" rx="1"/><path d="M10.5 5v3M13.5 5v3M10.5 16v3M13.5 16v3M5 10.5h3M5 13.5h3M16 10.5h3M16 13.5h3"/></g></symbol>
   <symbol id="ic-fluent-mail-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 7h14a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1zM4.5 8l7.5 5 7.5-5"/></g></symbol>
   <symbol id="ic-fluent-lock-closed-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="6.5" y="10" width="11" height="9" rx="1.5"/><path d="M9 10V7.8a3 3 0 0 1 6 0V10M12 13.5v2"/></g></symbol>
-  <symbol id="ic-fluent-eye-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 12S6.8 6.5 12 6.5 20.5 12 20.5 12 17.2 17.5 12 17.5 3.5 12 3.5 12z"/><circle cx="12" cy="12" r="2.5"/></g></symbol>
-  <symbol id="ic-fluent-weather-thunderstorm-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M7 14h9.4a3.2 3.2 0 0 0 .5-6.4 5.1 5.1 0 0 0-10-1A2.9 2.9 0 0 0 7 14z"/><path d="M12.9 15.4l-2.4 3.3h2.9l-2.2 3"/></g></symbol>
+  <symbol id="ic-fluent-desk-chair-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="3.4" width="8" height="6.8" rx="1.5"/><rect x="5.5" y="10.6" width="13" height="2.6" rx="1"/><path d="M12 13.2v3.3M8.2 20.4l1.9-3.9h3.8l1.9 3.9"/></g></symbol>
+  <symbol id="ic-fluent-weather-thunderstorm-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M7 14h9.4a3.2 3.2 0 0 0 .5-6.4 5.1 5.1 0 0 0-10-1A2.9 2.9 0 0 0 7 14z"/><path d="M13.2 12.2l-2.7 4.6h2.6l-2.2 4.4"/></g></symbol>
   <symbol id="ic-fluent-airplane-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M10.6 4.8a1.4 1.4 0 0 1 2.8 0v4.5l6.6 3.9v1.9l-6.6-2.1v3.9l2.2 1.7v1.4L12 19.3l-3.6.7v-1.4l2.2-1.7v-3.9L4 15.1v-1.9l6.6-3.9V4.8z"/></g></symbol>
 </defs></svg>
 
@@ -236,7 +237,7 @@
       <h1 class="sechub-hero__title">Workplace surroundings</h1>
       <p class="sechub-hero__lede">Staying alert to what's around you in any work environment.</p>
     </div>
-    <div class="sechub-hero__copy" data-topic="emergencies">
+    <div class="sechub-hero__copy" data-topic="preparedness">
       <p class="sechub-hero__eyebrow">Employee Security Hub</p>
       <h1 class="sechub-hero__title">Natural disaster preparedness</h1>
       <p class="sechub-hero__lede">Preparing for emergencies and disruptions before they happen.</p>
@@ -260,8 +261,8 @@
     <a class="sp-nav__link" data-topic="iot" href="#"><svg class="icon" aria-hidden="true"><use href="#ic-fluent-iot-24-regular"/></svg>IoT</a>
     <a class="sp-nav__link" data-topic="email" href="#"><svg class="icon" aria-hidden="true"><use href="#ic-fluent-mail-24-regular"/></svg>Email</a>
     <a class="sp-nav__link" data-topic="passwords" href="#"><svg class="icon" aria-hidden="true"><use href="#ic-fluent-lock-closed-24-regular"/></svg>Passwords</a>
-    <a class="sp-nav__link" data-topic="workplace" href="#"><svg class="icon" aria-hidden="true"><use href="#ic-fluent-eye-24-regular"/></svg>Workplace</a>
-    <a class="sp-nav__link" data-topic="emergencies" href="#"><svg class="icon" aria-hidden="true"><use href="#ic-fluent-weather-thunderstorm-24-regular"/></svg>Emergencies</a>
+    <a class="sp-nav__link" data-topic="workplace" href="#"><svg class="icon" aria-hidden="true"><use href="#ic-fluent-desk-chair-24-regular"/></svg>Workplace</a>
+    <a class="sp-nav__link" data-topic="preparedness" href="#"><svg class="icon" aria-hidden="true"><use href="#ic-fluent-weather-thunderstorm-24-regular"/></svg>Preparedness</a>
     <a class="sp-nav__link" data-topic="travel" href="#"><svg class="icon" aria-hidden="true"><use href="#ic-fluent-airplane-24-regular"/></svg>Travel</a>
   </nav>
 </div>
@@ -271,7 +272,7 @@
      and .is-active for assistive tech once the nav element exists. -->
 <script>
 (function () {
-  var topics = ['wifi', 'devices', 'collaboration', 'documents', 'iot', 'email', 'passwords', 'workplace', 'emergencies', 'travel'];
+  var topics = ['wifi', 'devices', 'collaboration', 'documents', 'iot', 'email', 'passwords', 'workplace', 'preparedness', 'travel'];
   var stem = location.pathname.split('/').pop().toLowerCase().replace(/\.(aspx|html?)$/, '');
   var topic = topics.indexOf(stem) !== -1 ? stem : 'home';
   var sel = '#sechub-nav .sp-nav__link[data-topic="' + topic + '"]';
@@ -335,7 +336,7 @@
         <span><span class="sechub-topic__title">Passwords</span><span class="sechub-topic__desc">Use strong sign-ins every time.</span></span>
       </a>
       <a class="card lift sechub-topic" href="#">
-        <span class="card__icon-tile"><svg class="icon" aria-hidden="true"><use href="#ic-fluent-eye-24-regular"/></svg></span>
+        <span class="card__icon-tile"><svg class="icon" aria-hidden="true"><use href="#ic-fluent-desk-chair-24-regular"/></svg></span>
         <span><span class="sechub-topic__title">Workplace surroundings</span><span class="sechub-topic__desc">Stay alert in your work environment.</span></span>
       </a>
       <a class="card lift sechub-topic" href="#">
