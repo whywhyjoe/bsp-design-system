@@ -430,59 +430,113 @@ size helper classes; `label="…"` exposes it to assistive tech (decorative by d
 
 ### Form 3 — Fluent icon font (optional; the full set, no sprite, no JS)
 Microsoft ships Fluent System Icons **as a font** — the same icons, first-party,
-in `@font-face` form. Self-host the font + its CSS in SiteAssets, link the CSS,
-and render an icon as a class on an `<i>`:
+in `@font-face` form. Use the **Resizable** font: link its stylesheet once per
+page (with a preload), then render each icon as a class on an `<i>`:
 
 ```html
-<link rel="stylesheet" href="FluentSystemIcons-Regular.css">   <!-- ships its own @font-face -->
-<i class="icon-ic_fluent_home_24_regular" aria-hidden="true"></i>
+<!-- once per page, in <head> -->
+<link rel="preload" href="/sites/FCUPortal/Code/fluent-icons/fonts/FluentSystemIcons-Resizable.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/sites/FCUPortal/Code/fluent-icons/fonts/FluentSystemIcons-Resizable.css">
+
+<i class="icon-ic_fluent_home_20_regular" aria-hidden="true"></i>   <!-- outline -->
+<i class="icon-ic_fluent_home_20_filled"  aria-hidden="true"></i>   <!-- solid -->
+
+<button class="icon-btn" aria-label="Share">
+  <i class="icon-ic_fluent_share_20_regular" aria-hidden="true" style="font-size:20px"></i>
+</button>
 ```
 
-The class is the name token with **underscores** and an `icon-ic_fluent_` prefix:
-system token `home-24-regular` → `icon-ic_fluent_home_24_regular` (the same
-`-`→`_` transform that maps a sprite name token to a Fluent SVG filename). Add
-`FluentSystemIcons-Filled.css` for `…_filled` variants.
+A live specimen with copy-paste markup is in `examples/components.html` → Icons.
 
 **Why reach for it:** it's the lowest-friction way to get the **entire** Fluent
 set self-hosted with **no build and no JS** — no per-page sprite to inline, no
-48-symbol curation. It's the answer when a page needs **many** icons beyond the
-curated `fluent-basic-icons.svg` set (for just a **few** extras, copy the matching SVGs
-from the `fluentui-system-icons` repo into the sprite instead — see "Adding an
-icon" below). It is **first-party Fluent, not a third-party icon kit**, so it's
-consistent with the "hand-rolled Fluent 2, no third-party icon kits" rule — that
-rule is about not pulling in an external icon kit, not Microsoft's own Fluent
-font.
+symbols to copy. It's the answer whenever a page needs icons beyond the curated
+`fluent-basic-icons.svg` set. It is **first-party Fluent, not a third-party icon
+kit**, so it's consistent with the "hand-rolled Fluent 2, no third-party icon
+kits" rule — that rule is about not pulling in an external icon kit, not
+Microsoft's own Fluent font.
 
-**Tradeoffs (why it isn't the default):**
+#### The four fonts — use Resizable
+The library's `fonts/` folder ships four fonts, each a `.woff2` (plus `.woff`/`.ttf`
+fallbacks) with a ready-made `.css`, a `.json` codepoint map, and an `.html`
+specimen page:
+
+| Font | What's in it | `.woff2` | `.css` (gzipped) |
+|---|---|---|---|
+| **Resizable** ✅ | Every icon's **20px design**, outline **and** solid — 5,656 glyphs, each with its own codepoint. Scales to any size via `font-size`. | 377 KB | 427 KB (~35 KB) |
+| Regular | Outline only, a separately drawn design per size (10–48; 16/20/24 most complete) | 803 KB | 727 KB (~71 KB) |
+| Filled | Solid only, same size range as Regular | 710 KB | 729 KB (~71 KB) |
+| Light | ~200 thin-line icons, almost all at 32px | 21 KB | 15 KB |
+
+**Resizable is the default** — both styles in one file at roughly half the
+download of Regular alone. Its trade-off is that every size is the scaled 20px
+drawing: between ~16 and 28px it's indistinguishable from the per-size designs;
+at 48px and up the line weight reads heavier and less detailed than the dedicated
+48px drawing. Reach for Regular or Filled only for large display icons that need
+that per-size detail — and then use only one of them on the page (next point).
+
+**Link exactly one icon-font stylesheet per page.** All four fonts number their
+glyphs from the same range (U+E000 up), and every stylesheet applies its own
+`font-family` to *every* `i[class^="icon-"]` with `!important`. Link two and the
+last one wins for all icons — the other font's classes render the wrong glyphs.
+Resizable sidesteps this because outline and solid live in one font. For the same
+reason **never link `FluentSystemIcons-All.css`** (it imports all four, and its
+`@import` paths omit the `.css` extension, so they don't resolve).
+
+#### Names
+The class is the name token with **underscores** and an `icon-ic_fluent_`
+prefix: `home-20-regular` → `icon-ic_fluent_home_20_regular`. In the Resizable
+font **every name is `_20_`** — `icon-ic_fluent_home_24_regular` doesn't exist
+there and renders blank (the size is `font-size`'s job, not the name's).
+
+Find icons in the library's gallery, `index.html` (search by name or metaphor;
+open directly in a browser), or its catalog `fluent-icon-library.json`.
+`fonts/FluentSystemIcons-Resizable.json` lists exactly the names the Resizable
+font contains. The gallery shows a size-specific name in its usage panel — swap
+the size for `20`, and leave off the extra `icon` class it adds: in this system
+`.icon` is SVG geometry (a `1.25em` box), not part of the font contract.
+
+#### Using it
+- **Size with `font-size`**, on the `<i>` or its parent — `.icon--N` sets SVG/img
+  width and height and doesn't apply. 20px is the font's native design size.
+  The stylesheet already sets `line-height:1` on the glyph.
+- **Color** inherits from the text, like the sprite. ✓
 - **Accessibility.** Font glyphs are Private-Use-Area characters; a screen reader
   may announce nothing or a stray codepoint. Always `aria-hidden="true"` the `<i>`
   and put the real label on the interactive parent (`aria-label` on the button/link)
-  or adjacent text. The SVG forms are more inherently accessible (they can carry a
-  `<title>` / `role="img"`), which is why the no-JS `<use>` sprite stays the default.
-- **Sizing is `font-size`, not `.icon--N`.** The `.icon--12/16/20/24/28/48` helpers set
-  SVG width/height and don't apply to `<i>`. Size the font icon with `font-size`
-  (and `line-height:1`); pick the glyph whose baked size matches (`…_24_regular`
-  vs `…_20_regular`).
-- **Color** inherits `currentColor` like text — same as the sprite. ✓
-- **FOUT.** Icons are invisible until the font loads; prefer `woff2` + `font-display`
-  to minimize the flash. The inline sprite has no such flash.
-- **Buildless caveat.** Ship the **full** font as-is (a few hundred KB `woff2`).
-  *Subsetting* it to shrink the download needs a build step — which breaks the
-  buildless rule — so don't subset; accept the full font, or stay on the curated
-  sprite (~14 KB).
-- **Not shipped here — lives in the `fluentui-system-icons` companion repo.** The
-  full Fluent library is maintained as a **separate repo** (`fluentui-system-icons`)
-  holding the font builds (`FluentSystemIcons-{Regular,Filled,Light,Resizable}.{woff2,css}`
-  with per-style HTML/JSON codepoint indexes), the per-icon SVGs, and the
-  `fluent-font-library.{json,html}` master index. Take
-  `FluentSystemIcons-Regular.{woff2,css}` (and `-Filled` if needed) from there and
-  self-host them in SiteAssets — everything in that repo exists and works as
-  described here, under the same criteria. **No part of this system resolves a
-  path to that repo** — there is no config key and no build step that reads one.
-  In **production it deploys as its own top-level folder, `fluent-icons/`**, a
-  sibling of `bsp-design/`, so a page links it as `…/fluent-icons/FluentSystemIcons-Regular.css`.
-  On the dev machine it's a separate clone; ask where it lives rather than assuming. (Upstream source: Microsoft's
+  or in adjacent text. The SVG forms are more inherently accessible (they can carry
+  a `<title>` / `role="img"`), which is why the no-JS `<use>` sprite stays the
+  default for the icons it carries.
+- **Preload the `.woff2`.** The stylesheet declares no `font-display`, so icons are
+  invisible until the font arrives; the preload starts that download with the page.
+  The preload `href` must match the `@font-face` `src` URL exactly (same path, no
+  query string) or the browser fetches the font twice, and `crossorigin` is required
+  on a font preload even from the same site.
+- **Cost:** ~377 KB of font plus the stylesheet (~35 KB if the server compresses it,
+  427 KB if not), paid on the first page that uses it; every other page linking the
+  same `/sites/FCUPortal/Code/fluent-icons/…` URLs reads it from the browser cache.
+- **Buildless caveat.** Ship the font as-is. *Subsetting* it to shrink the download
+  needs a build step — which breaks the buildless rule — so don't subset.
+- **It coexists with the sprite.** A page can use the font and the `<use>` sprite
+  side by side.
+
+#### Where it lives
+- **Not shipped here — it lives in the `fluentui-system-icons` companion repo**, a
+  **separate repo** holding the font builds (`fonts/FluentSystemIcons-{Regular,Filled,Light,Resizable}.*`),
+  every per-icon SVG (`svg/`), the `fluent-icon-library.json` catalog, and the
+  `index.html` gallery. **No part of this system resolves a path to that repo** —
+  there is no config key and no build step that reads one.
+- In **production it deploys as its own top-level folder, `fluent-icons/`**, a
+  sibling of `bsp-design/`, so pages link
+  `/sites/FCUPortal/Code/fluent-icons/fonts/FluentSystemIcons-Resizable.css`.
+  On the dev machine it's a separate clone; ask where it lives rather than assuming.
+  (Upstream source: Microsoft's
   [`fluentui-system-icons`](https://github.com/microsoft/fluentui-system-icons).)
+- **`examples/fonts/`** holds an unmodified copy of the Resizable `.woff2` + `.css`
+  so `examples/components.html` renders the font when opened from disk. It's
+  demo-only — never deployed (the deploy excludes `examples/`) — and real pages link
+  the live `fluent-icons/` folder instead. Refresh it by re-copying those two files
+  from the library when the library updates.
 
 ### Form 4 — direct URL `<img>` (standalone SVG files; how Abacus icons are used)
 The three forms above all key off a Fluent name token. **Abacus icons don't** —
@@ -524,10 +578,11 @@ system isn't involved; this form only matters in embed-authored HTML.
 - **Abacus icons → Form 4 (`<img src>`).** They are not in any sprite and are not
   Fluent-token-addressable; the URL is the contract.
 - **`<fluent-icon>`** when you want the optional sugar element (same sprite).
-- **Icon font** when you need **breadth** (many Fluent icons) or the **least
-  setup** (no per-page sprite, no JS) — and you handle the `aria-hidden` + label.
-- **A few icons the sprite lacks** → copy the real SVGs from the
-  `fluentui-system-icons` repo into `fluent-basic-icons.svg` (see "Adding an icon").
+- **Any icon the sprite lacks → the Resizable icon font (Form 3).** The whole
+  Fluent set, outline and solid, with no per-page sprite and no JS — you handle the
+  `aria-hidden` + label.
+- **Adding to the sprite** (see "Adding an icon") is the alternative when a page
+  must stay on the SVG path for one or two extra icons.
 
 ### Sprite, sizing, and the tradeoff
 - **Inline `fluent-basic-icons.svg` once per page** (drop it in the body). Both forms emit
@@ -537,16 +592,21 @@ system isn't involved; this form only matters in embed-authored HTML.
   sprite is normalized to the **24** viewBox; size is a CSS concern, so
   `name="…-24-regular" class="icon--20"` is correct — you don't need a 20px
   symbol.
-- **Color:** glyphs use `fill:none` + `currentColor`, so they inherit text color.
+- **Color:** glyphs draw with `currentColor` (the curated set as strokes, the
+  filled variants as fills), so they inherit text color.
 - **The two SVG forms are equivalent:** both emit a same-document `<use>` against
   the sprite and share the same name tokens, so mixing or moving between them is
   purely mechanical. Pick `<use>` for zero-JS, `<fluent-icon>` for the sugar.
-- **Adding an icon (the escape hatch for a few extras):** copy the matching real
+- **Adding an icon (the escape hatch for a few extras):** take the matching real
   SVG from the `fluentui-system-icons` repo (its `svg/` folder, e.g.
-  `ic_fluent_{name}_24_regular.svg`) into `fluent-basic-icons.svg` as a `<symbol>`, set
-  `id="ic-fluent-{name}-24-regular"`, and normalize it to `fill:none` +
-  `currentColor` on the 24 viewBox. Filled variants suffix `-24-filled`. For
-  **many** extra icons, self-host the icon font instead of growing the sprite.
+  `ic_fluent_{name}_24_regular.svg`). Fluent SVGs are **filled outline shapes**
+  with the color baked onto each path (`fill="#212121"`). Copy the `<path>`
+  elements into `fluent-basic-icons.svg` as
+  `<symbol id="ic-fluent-{name}-24-regular" viewBox="0 0 24 24">`, and change each
+  path's `fill="#212121"` to `fill="currentColor"` so it inherits text color. Don't
+  set the paths to `fill:none` — they are shapes, not strokes, and would vanish.
+  Filled variants suffix `-24-filled`. For anything beyond one or two extras, use
+  the icon font (Form 3) instead of growing the sprite.
 
 The sprite ships 48 symbols (46 regular + `checkmark-circle-24-filled`,
 `warning-24-filled`). If you reference a name with no symbol, the icon renders

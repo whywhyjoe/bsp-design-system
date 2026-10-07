@@ -30,7 +30,7 @@ interactive behavior.
 - **Tokens are the only source of values** — no raw hex, no off-ramp pixels. Use `var(--token)`.
 - **One BEM vocabulary.** Compose with existing classes + modifiers (`btn btn--primary`); don't invent component classes or restyle inline.
 - **Blue is interactive-only; BMO Red is logo-only** (errors use `--fg-danger`). White surfaces, subtle elevation.
-- **Icons** use the name token `ic-fluent-{name}-24-regular` over `fluent-basic-icons.svg`, as no-JS `<use>` or `<fluent-icon>` (size via `.icon--12/16/20/24/28/48`), or via the first-party Fluent **icon font** for the full set with no sprite/JS (`aria-hidden` the `<i>`) — see `docs/TECHNICAL-REFERENCE.md` §6. When the **complete library** of Fluent icons is useful, use the SVG or Font options from the **`fluentui-system-icons`** companion repo (a **separate repo**, not part of this one — nothing here reads a path to it; it deploys live as the sibling top-level folder `fluent-icons/`). The library SVG filenames use the ic_fluent_{name}_{size}_style.svg pattern. Reference that repo's `fluent-font-library.json` for a full index and description of all icons and font codepoints.   
+- **Icons** use the name token `ic-fluent-{name}-24-regular` over `fluent-basic-icons.svg`, as no-JS `<use>` or `<fluent-icon>` (size via `.icon--12/16/20/24/28/48`), or via the first-party Fluent **Resizable icon font** for the full set with no sprite/JS (`<i class="icon-ic_fluent_home_20_regular" aria-hidden="true">`, sized with `font-size`) — see `docs/TECHNICAL-REFERENCE.md` §6 and the live specimen in `examples/components.html`. The complete Fluent library lives in the **`fluentui-system-icons`** companion repo (a **separate repo**, not part of this one — nothing here reads a path to it; it deploys live as the sibling top-level folder `fluent-icons/`). Its SVG filenames use the `ic_fluent_{name}_{size}_{style}.svg` pattern; browse its `index.html` gallery or search `fluent-icon-library.json` for every icon's names, descriptions, and font codepoints.
 - **Interactivity is inline Alpine** — every binding inside an `x-data` root.
 
 ## What's here
@@ -55,6 +55,7 @@ interactive behavior.
 | `examples/design-system-reference.html` | The visual / brand spec (color, type, spacing, states, do/don't). |
 | `examples/example-advanced-ui.html` | A full composed page assembled from the system. |
 | `examples/preview/` | Small single-purpose gallery cards (one token group or component each). |
+| `examples/fonts/` | Demo-only copy of the Fluent Resizable icon font (`.woff2` + `.css`, unmodified from the library) so `components.html` renders it from disk. Never deployed — real pages link the live `fluent-icons/` folder. |
 
 **Read:**
 | File | What |

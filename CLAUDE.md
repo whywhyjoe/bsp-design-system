@@ -48,10 +48,14 @@ Read those before non-trivial work.
   the optional `<fluent-icon name="home-24-regular">`. Inline the whole sprite once
   per page; size via `.icon--N`, never in the name; a name with no symbol renders
   blank — add the symbol, don't invent a glyph. A **third** delivery exists: the
-  first-party Fluent **icon font** (self-hosted `@font-face`; `<i class="icon-ic_fluent_home_24_regular" aria-hidden>`)
-  — the full set, no sprite, no JS; `aria-hidden` the `<i>` and label the parent,
-  size via `font-size`. The **complete** Fluent library (per-icon SVGs, the font
-  builds, and the `fluent-font-library.{json,html}` index) lives in the separate
+  first-party Fluent **icon font** — use the **Resizable** font
+  (`fluent-icons/fonts/FluentSystemIcons-Resizable.css`, preload its `.woff2`;
+  `<i class="icon-ic_fluent_home_20_regular" aria-hidden>`) — the full set, outline
+  and filled in one file, no sprite, no JS. Names are always `_20_`; size via
+  `font-size`; `aria-hidden` the `<i>` and label the parent; link **one** icon-font
+  stylesheet per page (the fonts share codepoints). The **complete** Fluent library
+  (per-icon SVGs, the font builds, the `fluent-icon-library.json` catalog and
+  `index.html` gallery) lives in the separate
   **`fluentui-system-icons`** repo — not in this one; use it under the same criteria.
   **Nothing in this system reads a path to it** — no config key, no resolver, no
   build step. In **production it is deployed as its own top-level folder,
@@ -76,7 +80,7 @@ Alpine and pnpjs live in `/sites/FCUPortal/Code/lib/`, a sibling of `bsp-design/
 - `styles.css` — one-tag bundle: `@import`s the two above in order.
 - `editorial.css` — **Editorial mode** additive layer (the warm, content-page register): `--ed-*` tokens on a `.editorial` scope, SharePoint host chrome, hero brand-devices, editorial component blocks. Link **after** `components.css`, only on editorial pages (opt-in — not in the `styles.css` bundle). Built entirely on existing tokens; never redefines `:root`. Full guide: `docs/EDITORIAL-MODE.md`.
 
-**Icons:** `fluent-basic-icons.svg` (48-symbol sprite, `ic-fluent-*`, the curated default) · `fluent-icon.js` (optional `<fluent-icon>` element — authoring sugar over the sprite). For icons beyond the 48, the full library (all SVGs, fonts, index) is the separate `fluentui-system-icons` repo (deployed live as the sibling top-level folder `fluent-icons/`; nothing in this repo resolves a path to it): copy a real SVG into the sprite for a few extras, or self-host the icon font for many.
+**Icons:** `fluent-basic-icons.svg` (48-symbol sprite, `ic-fluent-*`, the curated default) · `fluent-icon.js` (optional `<fluent-icon>` element — authoring sugar over the sprite). For icons beyond the 48, the full library (all SVGs, fonts, index) is the separate `fluentui-system-icons` repo (deployed live as the sibling top-level folder `fluent-icons/`; nothing in this repo resolves a path to it): use its Resizable icon font, or copy a real SVG into the sprite for one or two extras. `examples/fonts/` holds a demo-only copy of the Resizable font so `examples/components.html` renders it from disk — never deployed.
 
 **Abacus icons (BMO consumer brand):** `abacus-icons/` — the canonical BMO brand icon set,
 712 flat SVGs named `<icon>-<size>.svg` at 16/24/28/48. Browse `abacus-icons/index.html`;

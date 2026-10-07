@@ -6,6 +6,10 @@
 <title>BMO SharePoint Design System · Components</title>
 <link rel="stylesheet" href="../colors_and_type.css">
 <link rel="stylesheet" href="../components.css">
+<!-- Fluent icon font (Resizable) — a copy kept in examples/fonts/ so this page opens from disk.
+     Real pages link the live folder: /sites/FCUPortal/Code/fluent-icons/fonts/… -->
+<link rel="preload" href="fonts/FluentSystemIcons-Resizable.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="fonts/FluentSystemIcons-Resizable.css">
 <style>
   *,*::before,*::after { box-sizing: border-box; }
   body { margin: 0; background: var(--surface-subtle); color: var(--fg-primary); min-height: 100vh; }
@@ -192,8 +196,8 @@
       <!-- ICONS -->
       <section class="group" id="icons">
         <h2>Icons</h2>
-        <p class="lede">Self-hosted Fluent sprite (<code style="font-family:var(--font-family-mono)">fluent-basic-icons.svg</code>, ids <code style="font-family:var(--font-family-mono)">ic-fluent-{name}-24-regular</code>). <code style="font-family:var(--font-family-mono)">.icon</code> inherits <code style="font-family:var(--font-family-mono)">currentColor</code>; use the size helpers (12 / 16 / 20 / 24 only). Inline the sprite once per page so same-document <code style="font-family:var(--font-family-mono)">#id</code> refs resolve.</p>
-        <div class="note"><strong>Two SVG forms, one name token.</strong> The <strong>no-JS</strong> form needs only the two CSS files + the inlined sprite — a dev not ready for our scripting is never blocked. The optional <strong>sugar</strong> form <code>&lt;fluent-icon&gt;</code> needs one script tag (<code>fluent-icon.js</code>). Both resolve to the same <code>ic-fluent-*</code> symbol, so you can mix them and migrate between them mechanically. A <strong>third</strong> delivery — the first-party Fluent <strong>icon font</strong> (<code>&lt;i class="icon-ic_fluent_home_24_regular" aria-hidden&gt;</code>) — gives the full Fluent set with no sprite and no JS; <code>aria-hidden</code> the <code>&lt;i&gt;</code> and size via <code>font-size</code>. See the technical reference §6.</div>
+        <p class="lede">Self-hosted Fluent sprite (<code style="font-family:var(--font-family-mono)">fluent-basic-icons.svg</code>, ids <code style="font-family:var(--font-family-mono)">ic-fluent-{name}-24-regular</code>). <code style="font-family:var(--font-family-mono)">.icon</code> inherits <code style="font-family:var(--font-family-mono)">currentColor</code>; use the size helpers (12 / 16 / 20 / 24 / 28 / 48). Inline the sprite once per page so same-document <code style="font-family:var(--font-family-mono)">#id</code> refs resolve.</p>
+        <div class="note"><strong>Two SVG forms, one name token.</strong> The <strong>no-JS</strong> form needs only the two CSS files + the inlined sprite — a dev not ready for our scripting is never blocked. The optional <strong>sugar</strong> form <code>&lt;fluent-icon&gt;</code> needs one script tag (<code>fluent-icon.js</code>). Both resolve to the same <code>ic-fluent-*</code> symbol, so you can mix them and migrate between them mechanically. For icons beyond the sprite, use the first-party Fluent <strong>icon font</strong> (Resizable) — the whole Fluent set, outline and filled, with no sprite and no JS. See the last specimen below and the technical reference §6.</div>
         <div class="spec">
           <div class="spec__name">No-JS form (default)</div>
           <div class="spec__preview">
@@ -223,6 +227,40 @@
 &lt;fluent-icon name="home-24-regular"&gt;&lt;/fluent-icon&gt;
 &lt;fluent-icon name="search-24-regular" class="icon--20"&gt;&lt;/fluent-icon&gt;   <span class="c">&lt;!-- size via CSS helper --&gt;</span>
 &lt;fluent-icon name="warning-24-filled" label="Warning"&gt;&lt;/fluent-icon&gt;</pre></div>
+        </div>
+        <div class="spec">
+          <div class="spec__name">Icon font — Resizable (optional; the full Fluent set, no sprite, no JS)</div>
+          <div class="spec__note">One font file holds every Fluent icon in outline (<code>_regular</code>) and solid (<code>_filled</code>). Class names always use the <code>_20_</code> design; size with <code>font-size</code> (20px is its native size). Color follows the text. This page links a copy in <code>examples/fonts/</code>; real pages link the live <code>fluent-icons/</code> folder as in the snippet.</div>
+          <div class="spec__preview">
+            <i class="icon-ic_fluent_home_20_regular" aria-hidden="true" style="font-size:24px;color:var(--fg-primary)"></i>
+            <i class="icon-ic_fluent_home_20_filled" aria-hidden="true" style="font-size:24px;color:var(--fg-primary)"></i>
+            <i class="icon-ic_fluent_search_20_regular" aria-hidden="true" style="font-size:24px;color:var(--fg-accent)"></i>
+            <i class="icon-ic_fluent_calendar_ltr_20_regular" aria-hidden="true" style="font-size:24px;color:var(--fg-secondary)"></i>
+            <i class="icon-ic_fluent_people_team_20_regular" aria-hidden="true" style="font-size:24px;color:var(--fg-secondary)"></i>
+            <i class="icon-ic_fluent_shield_checkmark_20_filled" aria-hidden="true" style="font-size:24px;color:var(--fg-success)"></i>
+            <i class="icon-ic_fluent_lock_closed_20_filled" aria-hidden="true" style="font-size:24px;color:var(--fg-danger)"></i>
+          </div>
+          <div class="spec__preview tint">
+            <i class="icon-ic_fluent_star_20_regular" aria-hidden="true" style="font-size:16px"></i>
+            <i class="icon-ic_fluent_star_20_regular" aria-hidden="true" style="font-size:20px"></i>
+            <i class="icon-ic_fluent_star_20_regular" aria-hidden="true" style="font-size:24px"></i>
+            <i class="icon-ic_fluent_star_20_regular" aria-hidden="true" style="font-size:28px"></i>
+            <i class="icon-ic_fluent_star_20_filled" aria-hidden="true" style="font-size:48px;color:var(--fg-accent)"></i>
+            <button class="btn btn--primary"><i class="icon-ic_fluent_send_20_regular" aria-hidden="true" style="font-size:16px"></i> Send</button>
+            <button class="btn btn--secondary"><i class="icon-ic_fluent_chat_20_regular" aria-hidden="true" style="font-size:16px"></i> Message</button>
+            <button class="icon-btn" aria-label="Share"><i class="icon-ic_fluent_share_20_regular" aria-hidden="true" style="font-size:20px"></i></button>
+          </div>
+          <div class="codewrap"><button class="copy-btn" onclick="copyCode(this)">Copy</button><pre><span class="c">&lt;!-- once per page, in &lt;head&gt; — link ONE icon-font stylesheet only --&gt;</span>
+&lt;link rel="preload" href="/sites/FCUPortal/Code/fluent-icons/fonts/FluentSystemIcons-Resizable.woff2" as="font" type="font/woff2" crossorigin&gt;
+&lt;link rel="stylesheet" href="/sites/FCUPortal/Code/fluent-icons/fonts/FluentSystemIcons-Resizable.css"&gt;
+
+<span class="c">&lt;!-- outline / solid — always the _20_ name; size with font-size --&gt;</span>
+&lt;i class="icon-ic_fluent_home_20_regular" aria-hidden="true" style="font-size:20px"&gt;&lt;/i&gt;
+&lt;i class="icon-ic_fluent_home_20_filled" aria-hidden="true" style="font-size:20px"&gt;&lt;/i&gt;
+
+<span class="c">&lt;!-- in a control: aria-hidden the &lt;i&gt;, label the control --&gt;</span>
+&lt;button class="btn btn--primary"&gt;&lt;i class="icon-ic_fluent_send_20_regular" aria-hidden="true" style="font-size:16px"&gt;&lt;/i&gt; Send&lt;/button&gt;
+&lt;button class="icon-btn" aria-label="Share"&gt;&lt;i class="icon-ic_fluent_share_20_regular" aria-hidden="true" style="font-size:20px"&gt;&lt;/i&gt;&lt;/button&gt;</pre></div>
         </div>
       </section>
 

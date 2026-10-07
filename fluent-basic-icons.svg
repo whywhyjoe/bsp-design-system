@@ -45,9 +45,13 @@
       mail-inbox especially. Confirm against the Fluent reference before the
       real-asset swap; the names are the durable contract, so adjust here.)
 
-     ADD AN ICON: copy a <symbol>, set id to ic-fluent-{name}-24-regular, drop
-     in the path. For a filled variant, suffix the id with 24-filled (see the
-     two filled examples at the bottom).
+     ADD AN ICON: take ic_fluent_{name}_24_regular.svg from the fluentui-system-icons
+     repo, wrap its <path>s in <symbol id="ic-fluent-{name}-24-regular"
+     viewBox="0 0 24 24">, and change each path's baked fill="#212121" to
+     fill="currentColor". Real Fluent glyphs are filled shapes, not strokes —
+     never set them to fill:none. For a filled variant, suffix the id with
+     24-filled. For more than one or two extras, use the Fluent Resizable icon
+     font instead (docs/TECHNICAL-REFERENCE.md §6).
      ===================================================================== -->
 <defs>
 

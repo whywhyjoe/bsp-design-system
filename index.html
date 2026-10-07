@@ -318,27 +318,30 @@
        complete library — every per-icon SVG, the font builds, and the master index — lives in the
        separate <code class="t">fluentui-system-icons</code> repo. It is <strong>not part of this
        repo</strong> and nothing here resolves a path to it: there is no config key and no build step.
-       In production it is deployed as its own top-level folder, a sibling of <code class="t">bsp-design</code>.</p>
+       In production it is deployed as its own top-level folder, a sibling of <code class="t">bsp-design</code>.
+       A demo-only copy of its Resizable font sits in <code class="t">examples/fonts/</code> so
+       <code class="t">components.html</code> can render it from disk; it is never deployed.</p>
 
 <pre class="tree"><span class="c">SiteAssets/                       ← the live container</span>
 ├── <b>bsp-design/</b>                   <span class="c">this design system (see Deploy-BspDesign.ps1)</span>
 └── <b>fluent-icons/</b>                 <span class="c">the full Fluent library, deployed separately</span>
     ├── svg/ic_fluent_&lt;name&gt;_&lt;size&gt;_&lt;style&gt;.svg
-    ├── FluentSystemIcons-Regular.{woff2,css}
-    ├── FluentSystemIcons-Filled.{woff2,css}
-    └── fluent-font-library.{json,html}   <span class="c">master index of names + codepoints</span>
+    ├── fonts/FluentSystemIcons-Resizable.{woff2,css}   <span class="c">the icon font to use — outline + filled, one file</span>
+    ├── fonts/FluentSystemIcons-{Regular,Filled,Light}.*   <span class="c">per-style fonts (one per page, never mixed)</span>
+    ├── fluent-icon-library.json        <span class="c">catalog: names, metaphors, sizes, codepoints</span>
+    └── index.html                      <span class="c">searchable gallery — open in a browser</span>
 </pre>
 
     <div class="tablewrap" style="margin-top:16px">
     <table class="ref">
       <tr><th>Need</th><th>Do this</th></tr>
       <tr>
-        <td><strong>A few icons</strong> the sprite lacks</td>
-        <td>Copy the matching real SVG out of the library into <code class="t">fluent-basic-icons.svg</code> as a <code class="t">&lt;symbol id="ic-fluent-{name}-24-regular"&gt;</code>, normalized to the 24 viewBox with <code class="t">fill:none</code> + <code class="t">currentColor</code>. Stays on the no-JS <code class="t">&lt;use&gt;</code> path and keeps tinting.</td>
+        <td><strong>Icons the sprite lacks</strong> — breadth, least setup</td>
+        <td>Use the <strong>Resizable</strong> icon font: preload <code class="t">fluent-icons/fonts/FluentSystemIcons-Resizable.woff2</code>, link its <code class="t">.css</code>, and render <code class="t">&lt;i class="icon-ic_fluent_home_20_regular" aria-hidden="true"&gt;</code> (or <code class="t">…_20_filled</code>). Names are always <code class="t">_20_</code>; size with <code class="t">font-size</code> — <code class="t">.icon--N</code> does not apply to an <code class="t">&lt;i&gt;</code>. Link only one icon-font stylesheet per page. Always <code class="t">aria-hidden</code> the <code class="t">&lt;i&gt;</code> and label the interactive parent. Live specimen: <a href="examples/components.html#icons">components.html → Icons</a>; details in TECHNICAL-REFERENCE §6.</td>
       </tr>
       <tr>
-        <td><strong>Many icons</strong> — breadth, least setup</td>
-        <td>Self-host the icon font instead of growing the sprite: link <code class="t">FluentSystemIcons-Regular.css</code> from the live <code class="t">fluent-icons/</code> folder and render <code class="t">&lt;i class="icon-ic_fluent_home_24_regular" aria-hidden="true"&gt;</code>. No sprite, no JS. Size with <code class="t">font-size</code> — <code class="t">.icon--N</code> does not apply to an <code class="t">&lt;i&gt;</code>. Always <code class="t">aria-hidden</code> the <code class="t">&lt;i&gt;</code> and label the interactive parent; PUA glyphs announce as nothing or garbage otherwise.</td>
+        <td><strong>One or two extras</strong> that must stay SVG</td>
+        <td>Copy the real SVG's paths into <code class="t">fluent-basic-icons.svg</code> as a <code class="t">&lt;symbol id="ic-fluent-{name}-24-regular" viewBox="0 0 24 24"&gt;</code> and change each path's baked <code class="t">fill="#212121"</code> to <code class="t">fill="currentColor"</code>. Stays on the no-JS <code class="t">&lt;use&gt;</code> path and keeps tinting.</td>
       </tr>
       <tr>
         <td><strong>One-off</strong>, no sprite edit</td>
@@ -346,7 +349,7 @@
       </tr>
       <tr>
         <td><strong>Name mapping</strong></td>
-        <td>The system's name token <code class="t">home-24-regular</code> maps to SVG filename <code class="t">ic_fluent_home_24_regular.svg</code> and font class <code class="t">icon-ic_fluent_home_24_regular</code> — the same <code class="t">-</code>→<code class="t">_</code> transform each time. Full names and codepoints: <code class="t">fluent-font-library.json</code>.</td>
+        <td>The system's name token <code class="t">home-24-regular</code> maps to SVG filename <code class="t">ic_fluent_home_24_regular.svg</code> — the <code class="t">-</code>→<code class="t">_</code> transform. Font classes add an <code class="t">icon-</code> prefix and, in the Resizable font, always use size 20: <code class="t">icon-ic_fluent_home_20_regular</code>. Find icons in the library's <code class="t">index.html</code> gallery or <code class="t">fluent-icon-library.json</code>.</td>
       </tr>
     </table>
     </div>
