@@ -722,16 +722,28 @@
 
 /* App root — put it on the outermost element of a web part / app part
    (usually the same element as x-data). Makes its own width the thing
-   @container rules respond to: @container app (max-width: 480px) { … } */
-.l-app { container: app / inline-size; }
+   @container rules respond to: @container app (max-width: 480px) { … }
+   It must be a full-width block (a <div>/<main> that fills its column):
+   its width can't come from its content, so as an inline-block, a float,
+   an absolutely positioned box or a flex item that doesn't grow, it
+   collapses. Long words and URLs inside it wrap rather than push past
+   the column. */
+.l-app { container: app / inline-size; overflow-wrap: break-word; }
 
-/* Stack — vertical flow with one consistent gap. The stack owns the
-   spacing, so it zeroes its children's own margins. */
+/* Stack — vertical flow with one consistent gap. It clears the default
+   margins of plain, unclassed content elements (headings, paragraphs,
+   lists…) that are its direct children, so the gap is the only space
+   between them. Anything with a class keeps its own margins — a
+   .section-head's bottom margin adds to the gap, a .card__footer still
+   sinks to the bottom, a .section-head__title keeps its spacing. */
 .l-stack { --l-gap: var(--space-160); display: flex; flex-direction: column; gap: var(--l-gap); }
-.l-stack > * { margin-block: 0; }
+.l-stack > :is(h1, h2, h3, h4, h5, h6, p, ul, ol, dl, blockquote, figure, pre, hr):not([class]) { margin-block: 0; }
 
 /* Cluster — a row of items that wraps: button rows, chips, tags, toolbars. */
 .l-cluster { --l-gap: var(--space-80); display: flex; flex-wrap: wrap; align-items: center; gap: var(--l-gap); }
+/* An item can't be wider than the row, so a long unbroken label wraps
+   inside it rather than pushing the cluster past its column. */
+.l-cluster > * { max-inline-size: 100%; }
 .l-cluster--end     { justify-content: flex-end; }
 .l-cluster--between { justify-content: space-between; }
 
@@ -748,7 +760,11 @@
 
 /* Switcher — side-by-side panels that all stack at once when the
    container is narrower than --l-break. Equal widths by default; add
-   .l-switcher__wide to a child to give it twice the share (2:1 = ⅔ + ⅓). */
+   .l-switcher__wide to a child to give it twice the share of the row
+   (roughly ⅔ + ⅓ — padding on the children dilutes the ratio a little).
+   Set --l-break at least as wide as the children's combined minimum
+   widths (padding, buttons, long words) plus gaps; otherwise just above
+   the break they can't all fit and wrap 2 + 1. */
 .l-switcher { --l-gap: var(--space-240); --l-break: 480px; display: flex; flex-wrap: wrap; gap: var(--l-gap); }
 .l-switcher > * { flex-grow: 1; flex-basis: calc((var(--l-break) - 100%) * 999); min-width: 0; }
 .l-switcher > .l-switcher__wide { flex-grow: 2; }
@@ -757,18 +773,28 @@
    .l-grid--auto fits as many columns as there is room for, each at least
    --l-min wide. .l-grid--2/--3/--4 do the same but never exceed that many
    columns. Both drop columns as their container narrows — in a one-third
-   SharePoint column as much as on a phone. */
-.l-grid { --l-gap: var(--space-200); --l-min: 240px; display: grid; gap: var(--l-gap); }
+   SharePoint column as much as on a phone. Column slots stay put when a
+   row has fewer items than fit (one card in a wide grid keeps its column
+   width rather than stretching), so every tile is the same size.
+   Gap defaults read --ed-gap when the grid sits inside .editorial
+   (editorial.css), so .l-gap--N still overrides them there. */
+.l-grid { --l-gap: var(--ed-gap, var(--space-200)); --l-min: 240px; display: grid; gap: var(--l-gap); }
 .l-grid--auto {
   grid-template-columns: repeat(auto-fill, minmax(min(100%, var(--l-min)), 1fr));
 }
 .l-grid--2 { --l-cols: 2; }
 .l-grid--3 { --l-cols: 3; }
-.l-grid--4 { --l-cols: 4; --l-gap: var(--space-160); }
+.l-grid--4 { --l-cols: 4; --l-gap: var(--ed-gap, var(--space-160)); --l-min: 200px; }
 .l-grid--2, .l-grid--3, .l-grid--4 {
   grid-template-columns: repeat(auto-fill, minmax(min(100%, max(var(--l-min),
     (100% - (var(--l-cols) - 1) * var(--l-gap)) / var(--l-cols))), 1fr));
 }
+
+/* Scroll — a box for content that can't shrink to the column: a wide
+   data grid, a <pre>, a long code line. It scrolls sideways inside its
+   own box instead of pushing the whole part past its column.
+     <div class="l-scroll"><table class="grid">…</table></div> */
+.l-scroll { max-inline-size: 100%; overflow-x: auto; overscroll-behavior-x: contain; }
 
 /* Gap — one spacing step for any primitive above, from the 4px ramp.
    Declared after the primitives so a modifier always wins. */

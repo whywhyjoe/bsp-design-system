@@ -199,8 +199,9 @@
    longhands so neither shorthand can cancel the other. */
 .editorial .l-wrap { padding-left: var(--space-320); padding-right: var(--space-320); }
 .editorial .l-section { padding-top: var(--ed-section-y); padding-bottom: var(--ed-section-y); }
-/* Set the gap through --l-gap: the .l-grid--N column math reads it. */
-.editorial .l-grid { --l-gap: var(--ed-gap); }
+/* Grid gaps: .l-grid reads --ed-gap (set on .editorial above) as its
+   default, so editorial grids get the roomier gap and .l-gap--N still
+   overrides it. No rule needed here. */
 
 /* Editorial chips read a touch larger + rounder for the warmer register. */
 .editorial .chip-row { gap: var(--space-100); }

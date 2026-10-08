@@ -242,14 +242,18 @@ They nest freely. Live demo with a width slider: `examples/components.html` → 
 
 | Class | What it does | Default |
 |---|---|---|
-| `.l-app` | Web part root. Makes its own width what `@container app` rules respond to. Put it on the outermost element (usually the `x-data` one). | — |
-| `.l-stack` | Vertical flow with one gap; zeroes its children's own margins. | 16px |
+| `.l-app` | Web part root. Makes its own width what `@container app` rules respond to, and wraps long words/URLs instead of letting them push past the column. Put it on the outermost element (usually the `x-data` one), and keep it a **full-width block** — as an inline-block, float, absolutely positioned box or non-growing flex item it collapses. | — |
+| `.l-stack` | Vertical flow with one gap. Clears the default margins of plain, **unclassed** content children (`h1`–`h6`, `p`, lists, `blockquote`, `figure`, `pre`, `hr`); anything with a class keeps its own margins (a `.section-head`'s bottom margin adds to the gap). | 16px |
 | `.l-cluster` | Row that wraps. `--end` pushes items right, `--between` spreads them. | 8px |
 | `.l-sidebar` › `.l-sidebar__side` + `.l-sidebar__main` | Side panel + main area. Stacks when the main area would drop below half the width. Source order sets the side (`__side` first = left, last = right). | side 280px, gap 24px |
-| `.l-switcher` | Children side by side while the container is ≥ `--l-break`, all stacked below it. `.l-switcher__wide` on a child gives it twice the share of the row (roughly ⅔ + ⅓). | break 480px, gap 24px |
-| `.l-grid.l-grid--auto` | As many columns as fit, each ≥ `--l-min`. | min 240px, gap 20px |
-| `.l-grid.l-grid--2/--3/--4` | Same, but never more than N columns. | min 240px, gap 20px (`--4`: 16px) |
+| `.l-switcher` | Children side by side while the container is ≥ `--l-break`, all stacked below it. `.l-switcher__wide` on a child gives it twice the share of the row (roughly ⅔ + ⅓). Set `--l-break` at least as wide as the children's combined minimum widths plus gaps, or just above it they wrap 2 + 1. | break 480px, gap 24px |
+| `.l-grid.l-grid--auto` | As many columns as fit, each ≥ `--l-min`. Empty column slots stay when there are fewer items, so tiles keep one size. | min 240px, gap 20px |
+| `.l-grid.l-grid--2/--3/--4` | Same, but never more than N columns. | min 240px (`--4`: 200px), gap 20px (`--4`: 16px) |
+| `.l-scroll` | Box for content that can't shrink to the column — a wide `.grid` table, a `<pre>`. Scrolls sideways inside itself instead of pushing the part wider. | — |
 | `.l-gap--N` | Spacing for any primitive above, from the ramp: `0 · 40 · 80 · 120 · 160 · 200 · 240 · 320 · 480`. | — |
+
+In editorial mode, grids default to the roomier `--ed-gap` (24px); `.l-gap--N`
+still overrides it.
 
 ```html
 <div class="l-app l-stack" x-data="{ … }">            <!-- web part root -->
@@ -284,6 +288,8 @@ Rules:
   grid drop a column.
 - **No `.l-wrap` / `.l-section` inside a web part.** SharePoint's column already
   sets the width and padding; those add a second layer of both.
+- **Wrap anything that can't shrink in `.l-scroll`.** A wide table or `<pre>`
+  otherwise paints past the column, whatever layout it sits in.
 
 ### Engagement & page-shell layer
 Opt-in, for richer landing/home surfaces:

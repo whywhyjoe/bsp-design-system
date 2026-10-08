@@ -44,7 +44,7 @@ and explained right after.
        first-page trap.
        .l-app makes this the layout root: the layouts inside respond to the
        width of the SharePoint column the part sits in, not the window. -->
-  <main class="l-app l-stack l-gap--240" x-data="{ filter: 'all', notify: false }">
+  <main class="l-app" x-data="{ filter: 'all', notify: false }">
 
     <header class="section-head">
       <p class="section-head__eyebrow">Finance</p>
@@ -193,6 +193,8 @@ rule in `<head>` above enables it. Components that are merely *styled* by state
 **Layout note:** a script web part's width comes from the SharePoint column it
 sits in, not the window. The root's `.l-app` plus the `.l-stack` / `.l-cluster` /
 `.l-grid` layouts inside respond to that width, so the same part works in a full,
-half, or one-third column. Don't use `.l-wrap` or `.l-section` in a web part —
-they're for full pages and would double SharePoint's own padding. All the layouts:
+half, or one-third column. `.l-app` must stay a full-width block, as `<main>` is
+here. Don't use `.l-wrap` or `.l-section` in a web part — they're for full pages
+and would double SharePoint's own padding. The `.section-head` keeps its own
+bottom margin, which is why the root isn't a stack. All the layouts:
 TECHNICAL-REFERENCE §2 "Layout".

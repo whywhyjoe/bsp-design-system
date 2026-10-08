@@ -76,7 +76,7 @@ Alpine and pnpjs live in `/sites/FCUPortal/Code/lib/`, a sibling of `bsp-design/
 ## File map
 **The library (link these):**
 - `colors_and_type.css` — tokens (`:root`, defined once) + base element styles + utilities (`.imgph .photo .lift .reveal`). Link first.
-- `components.css` — every component as a BEM class, built from tokens. Link second. Includes the **layout primitives** (`.l-app` root, `.l-stack`, `.l-cluster`, `.l-sidebar`, `.l-switcher`, `.l-grid--auto/2/3/4`, `.l-gap--N`): they respond to the width of the SharePoint column a web part sits in, never the viewport — use them (and `@container app` for custom breakpoints) instead of viewport media queries; `.l-wrap`/`.l-section` are for full pages only. TECHNICAL-REFERENCE §2 "Layout".
+- `components.css` — every component as a BEM class, built from tokens. Link second. Includes the **layout primitives** (`.l-app` root, `.l-stack`, `.l-cluster`, `.l-sidebar`, `.l-switcher`, `.l-grid--auto/2/3/4`, `.l-scroll`, `.l-gap--N`): they respond to the width of the SharePoint column a web part sits in, never the viewport — use them (and `@container app` for custom breakpoints) instead of viewport media queries; `.l-wrap`/`.l-section` are for full pages only. TECHNICAL-REFERENCE §2 "Layout".
 - `styles.css` — one-tag bundle: `@import`s the two above in order.
 - `editorial.css` — **Editorial mode** additive layer (the warm, content-page register): `--ed-*` tokens on a `.editorial` scope, SharePoint host chrome, hero brand-devices, editorial component blocks. Link **after** `components.css`, only on editorial pages (opt-in — not in the `styles.css` bundle). Built entirely on existing tokens; never redefines `:root`. Full guide: `docs/EDITORIAL-MODE.md`.
 

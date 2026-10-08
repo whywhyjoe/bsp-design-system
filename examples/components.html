@@ -60,7 +60,8 @@
   .lay-controls { position: sticky; top: 0; z-index: 2; background: var(--surface-subtle); padding: 10px 0 14px; margin-bottom: 8px; display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: center; }
   .lay-controls input[type=range] { width: 220px; accent-color: var(--accent-rest); }
   .lay-controls output { font: var(--type-caption1-strong); font-family: var(--font-family-mono); min-width: 52px; }
-  .lay-frame { width: var(--demo-w, 100%); max-width: 100%; align-self: flex-start; border: 1px dashed var(--stroke-control-strong); border-radius: var(--radius-medium); padding: 12px; background: var(--surface-canvas); }
+  /* content-box: the slider value is the width the layout inside actually gets */
+  .lay-frame { box-sizing: content-box; width: var(--demo-w, 100%); max-width: calc(100% - 26px); align-self: flex-start; border: 1px dashed var(--stroke-control-strong); border-radius: var(--radius-medium); padding: 12px; background: var(--surface-canvas); }
   .lay-box { background: var(--surface-tint-blue); border: 1px solid var(--stroke-divider); border-radius: var(--radius-medium); padding: 10px 12px; min-height: 44px; font: var(--type-caption1-strong); color: var(--fg-secondary); }
 
   @media (max-width: 860px) { .lay-controls { position: static; } .page { grid-template-columns: 1fr; } aside { display: none; } .inner, header.top { padding-left: 24px; padding-right: 24px; } }
@@ -843,14 +844,14 @@
         <p class="lede">A script web part gets its width from the SharePoint column it sits in, not the browser window — full width, half, or a narrow third on the same desktop screen. These layouts respond to the space they actually have, with no screen-size breakpoints. Drag the slider (or pick a column) to watch each one adapt. They nest freely.</p>
 
         <div class="lay-controls">
-          <label for="lay-w" style="font:var(--type-caption1-strong)">Container width</label>
-          <input id="lay-w" type="range" min="280" max="900" step="10" value="900" oninput="setDemoWidth(this.value)">
-          <output id="lay-w-out">900px</output>
+          <label for="lay-w" style="font:var(--type-caption1-strong)">Layout width</label>
+          <input id="lay-w" type="range" min="280" max="880" step="10" value="880" oninput="setDemoWidth(this.value)">
+          <output id="lay-w-out">880px</output>
           <div class="l-cluster">
             <button class="btn btn--secondary btn--sm" onclick="setDemoWidth(320)">Narrow ≈ 320</button>
             <button class="btn btn--secondary btn--sm" onclick="setDemoWidth(380)">⅓ column ≈ 380</button>
             <button class="btn btn--secondary btn--sm" onclick="setDemoWidth(580)">½ column ≈ 580</button>
-            <button class="btn btn--secondary btn--sm" onclick="setDemoWidth(900)">Wide</button>
+            <button class="btn btn--secondary btn--sm" onclick="setDemoWidth(880)">Wide</button>
           </div>
         </div>
 
@@ -912,7 +913,7 @@
 
         <div class="spec">
           <div class="spec__name">Switcher — panels side by side, or all stacked</div>
-          <div class="spec__note">Children sit in one row while the container is at least 480px wide (change with <code>style="--l-break: 600px"</code>), and all stack at once below that — never an awkward 2 + 1. Equal widths by default; <code>.l-switcher__wide</code> gives a child twice the share, which makes ⅔ + ⅓.</div>
+          <div class="spec__note">Children sit in one row while the container is at least 480px wide (change with <code>style="--l-break: 600px"</code>), and all stack at once below that, rather than wrapping 2 + 1. Set the break at least as wide as the panels' combined minimum widths, or just above it they can still wrap 2 + 1. Equal widths by default; <code>.l-switcher__wide</code> gives a child twice the share, which makes ⅔ + ⅓.</div>
           <div class="spec__preview col">
             <div class="lay-frame">
               <div class="l-app l-stack">
@@ -958,6 +959,27 @@
           <div class="codewrap"><button class="copy-btn" onclick="copyCode(this)">Copy</button><pre>&lt;div class="l-grid l-grid--auto"&gt;  …tiles…  &lt;/div&gt;                 <span class="c">&lt;!-- as many as fit, min 240px --&gt;</span>
 &lt;div class="l-grid l-grid--auto" style="--l-min: 180px"&gt; … &lt;/div&gt;    <span class="c">&lt;!-- smaller tiles --&gt;</span>
 &lt;div class="l-grid l-grid--3"&gt;  …cards…  &lt;/div&gt;                     <span class="c">&lt;!-- up to 3 columns --&gt;</span></pre></div>
+        </div>
+
+        <div class="spec">
+          <div class="spec__name">Scroll — content that can't shrink</div>
+          <div class="spec__note">A wide table or a <code>&lt;pre&gt;</code> can't get narrower than its content. Wrap it in <code>.l-scroll</code> and it scrolls sideways inside its own box instead of pushing the whole part past the column.</div>
+          <div class="spec__preview col">
+            <div class="lay-frame">
+              <div class="l-app"><div class="l-scroll">
+                <table class="grid">
+                  <thead><tr><th>Request</th><th>Owner</th><th>Submitted</th><th>Category</th><th>Status</th><th class="num">Amount</th></tr></thead>
+                  <tbody>
+                    <tr><td>Q3 conference travel</td><td>Sam Chen</td><td>Oct 2</td><td>Travel</td><td>Pending</td><td class="num">$2,480.00</td></tr>
+                    <tr><td>Client dinner</td><td>Ana Ruiz</td><td>Oct 1</td><td>Expense</td><td>Approved</td><td class="num">$312.40</td></tr>
+                  </tbody>
+                </table>
+              </div></div>
+            </div>
+          </div>
+          <div class="codewrap"><button class="copy-btn" onclick="copyCode(this)">Copy</button><pre>&lt;div class="l-scroll"&gt;
+  &lt;table class="grid"&gt;…&lt;/table&gt;
+&lt;/div&gt;</pre></div>
         </div>
       </section>
 
@@ -1130,8 +1152,11 @@
   function setDemoWidth(px) {
     document.getElementById('layout').style.setProperty('--demo-w', px + 'px');
     document.getElementById('lay-w').value = px;
-    document.getElementById('lay-w-out').textContent = px + 'px';
+    // show the width the layouts actually get — the frame is capped on narrow screens
+    var app = document.querySelector('#layout .lay-frame .l-app');
+    document.getElementById('lay-w-out').textContent = Math.round(app.getBoundingClientRect().width) + 'px';
   }
+  setDemoWidth(document.getElementById('lay-w').value);
 </script>
 </body>
 </html>

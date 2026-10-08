@@ -99,6 +99,9 @@ Never substitute a third-party icon kit or ad-hoc web SVGs — those are out. Th
 An app part runs in a script web part inside a SharePoint column (full, half, or one-third width), so its width is the column's, not the viewport's. Lay it out with the `.l-*` primitives (TECHNICAL-REFERENCE §2 "Layout"; live demo in `examples/components.html` → Layout):
 - ✅ Root: `<div class="l-app" x-data="{…}">`. Inside: `.l-stack` (vertical), `.l-cluster` (wrapping row; `--end`/`--between`), `.l-sidebar` › `__side` + `__main`, `.l-switcher` (+ `__wide` for ⅔ + ⅓), `.l-grid--auto` / `.l-grid--2/3/4`. Spacing via `.l-gap--N` (ramp: 0 40 80 120 160 200 240 320 480).
 - ✅ Tune with `--l-side`, `--l-break`, `--l-min` (inline or page class). Own breakpoints: `@container app (max-width: …)`.
+- ✅ Keep `.l-app` a full-width block (`<div>`/`<main>` filling the column) — ❌ never inline-block, floated, absolutely positioned, or a non-growing flex item (it collapses).
+- ✅ Wrap wide tables, `<pre>` and other unshrinkable content in `.l-scroll`.
+- `.l-stack` clears only the margins of unclassed plain-content children (headings, `p`, lists…); anything with a class (e.g. `.section-head`) keeps its margins, which add to the gap.
 - ❌ No viewport `@media` breakpoints for a part's layout — they fire on the window, not the column.
 - ❌ No raw `gap:` on `.l-grid--2/3/4` — use `.l-gap--N`; the column math reads `--l-gap`.
 - ❌ No `.l-wrap` / `.l-section` inside a web part — full pages only; they double SharePoint's padding.
