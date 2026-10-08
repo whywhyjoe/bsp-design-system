@@ -9,6 +9,11 @@
     and can be diffed against a tag. The single exception is DEPLOY-INFO.txt, which
     records what landed and when.
 
+    Library files (assets/, spot-illustrations/, abacus-icons/) are assumed not to
+    change: files already at the target are left alone and only missing ones are
+    copied, so a deploy writes just the CSS/JS, the sprite and anything new. Pass
+    -RefreshAssets when an existing image or SVG really has changed.
+
     -Destination is the CONTAINER; the script creates `bsp-design` inside it. It
     defaults to the work machine's OneDrive-synced folder for the FCUPortal Code
     library:
@@ -58,6 +63,15 @@
 .PARAMETER AllowDirty
     Proceed even though the git working tree has uncommitted changes.
 
+.PARAMETER RefreshAssets
+    Overwrite library files that are already deployed. By default the asset
+    folders (assets/, spot-illustrations/, abacus-icons/) are treated as
+    unchanging: only files missing from the target are copied, and existing
+    ones are left alone — so a deploy to the OneDrive-synced folder doesn't
+    re-upload ~1,200 SVGs or force cloud-only files to download. The CSS/JS
+    and the icon sprite are always copied. Use this switch when an existing
+    SVG or image has actually changed.
+
 .EXAMPLE
     ./tools/Deploy-BspDesign.ps1 -WhatIf
     Previews:  C:\dev\fcuportal-code\bsp-design\
@@ -76,7 +90,8 @@ param(
     [switch] $SkipIllustrations,
     [switch] $SkipAbacusIcons,
     [switch] $Clean,
-    [switch] $AllowDirty
+    [switch] $AllowDirty,
+    [switch] $RefreshAssets
 )
 
 $ErrorActionPreference = 'Stop'
@@ -167,6 +182,7 @@ if (-not (Test-Path $target)) {
 
 # ----------------------------------------------------------- copy ------------
 $copied = 0
+$assetsKept = 0
 $bytes = 0
 
 foreach ($name in $rootFiles) {
@@ -187,13 +203,23 @@ foreach ($folder in $assetFolders) {
 
     $files  = @(Get-ChildItem -LiteralPath $srcDir -Include $folder.Include -File -Recurse -Depth 0)
     $outDir = Join-Path $target $folder.Name
-    if ($PSCmdlet.ShouldProcess("$($folder.Name)/", "copy $($files.Count) file(s)")) {
-        New-Item -ItemType Directory -Path $outDir -Force | Out-Null
-        foreach ($f in $files) { Copy-Item -LiteralPath $f.FullName -Destination (Join-Path $outDir $f.Name) -Force }
+
+    # Library files are treated as unchanging: copy only the ones the target
+    # doesn't have yet, unless -RefreshAssets. Test-Path reads metadata only,
+    # so it never makes OneDrive download a cloud-only file, and nothing that
+    # is already deployed gets re-uploaded.
+    $toCopy = if ($RefreshAssets) { $files } else {
+        @($files | Where-Object { -not (Test-Path -LiteralPath (Join-Path $outDir $_.Name)) })
     }
-    $copied += $files.Count
-    $bytes  += ($files | Measure-Object Length -Sum).Sum
-    Write-Host ("  {0,5} {1}/" -f $files.Count, $folder.Name) -ForegroundColor Green
+    $kept = $files.Count - $toCopy.Count
+    if ($toCopy.Count -and $PSCmdlet.ShouldProcess("$($folder.Name)/", "copy $($toCopy.Count) file(s)")) {
+        New-Item -ItemType Directory -Path $outDir -Force | Out-Null
+        foreach ($f in $toCopy) { Copy-Item -LiteralPath $f.FullName -Destination (Join-Path $outDir $f.Name) -Force }
+    }
+    $copied += $toCopy.Count
+    $assetsKept += $kept
+    $bytes  += ($toCopy | Measure-Object Length -Sum).Sum
+    Write-Host ("  {0,5} {1}/  ({2} already deployed, left as is)" -f $toCopy.Count, $folder.Name, $kept) -ForegroundColor Green
 }
 
 # ----------------------------------------------------------- stamp -----------
@@ -204,8 +230,8 @@ deployed     : $((Get-Date).ToUniversalTime().ToString('yyyy-MM-dd HH:mm:ss')) U
 commit       : $sha$(if ($isDirty) { ' (DIRTY — uncommitted changes were deployed)' })
 branch       : $branch
 deployed by  : $env:USERNAME on $env:COMPUTERNAME
-files        : $copied
-size         : $([math]::Round($bytes / 1MB, 2)) MB
+files copied : $copied ($([math]::Round($bytes / 1MB, 2)) MB)
+assets kept  : $(if ($RefreshAssets) { 'none (-RefreshAssets: all library files overwritten)' } else { "$assetsKept already-deployed library files left as is (re-run with -RefreshAssets to overwrite)" })
 illustrations: $(if ($SkipIllustrations) { 'excluded' } else { 'included' })
 abacus icons : $(if ($SkipAbacusIcons) { 'excluded' } else { 'included' })
 
