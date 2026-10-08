@@ -76,7 +76,7 @@ Alpine and pnpjs live in `/sites/FCUPortal/Code/lib/`, a sibling of `bsp-design/
 ## File map
 **The library (link these):**
 - `colors_and_type.css` — tokens (`:root`, defined once) + base element styles + utilities (`.imgph .photo .lift .reveal`). Link first.
-- `components.css` — every component as a BEM class, built from tokens. Link second.
+- `components.css` — every component as a BEM class, built from tokens. Link second. Includes the **layout primitives** (`.l-app` root, `.l-stack`, `.l-cluster`, `.l-sidebar`, `.l-switcher`, `.l-grid--auto/2/3/4`, `.l-gap--N`): they respond to the width of the SharePoint column a web part sits in, never the viewport — use them (and `@container app` for custom breakpoints) instead of viewport media queries; `.l-wrap`/`.l-section` are for full pages only. TECHNICAL-REFERENCE §2 "Layout".
 - `styles.css` — one-tag bundle: `@import`s the two above in order.
 - `editorial.css` — **Editorial mode** additive layer (the warm, content-page register): `--ed-*` tokens on a `.editorial` scope, SharePoint host chrome, hero brand-devices, editorial component blocks. Link **after** `components.css`, only on editorial pages (opt-in — not in the `styles.css` bundle). Built entirely on existing tokens; never redefines `:root`. Full guide: `docs/EDITORIAL-MODE.md`.
 
@@ -100,7 +100,9 @@ the content-labeling tier now. In native SharePoint web parts there's no markup 
 **Showcases (read for real markup; they consume the library, don't restyle):**
 - `examples/components.html` — every component live + copy-paste snippets (fastest path).
 - `examples/design-system-reference.html` — the visual/brand spec.
+- `examples/example-icons.html` — every icon method side by side (sprite `<use>`, `<fluent-icon>`, icon font, Abacus `<img>`) with setup + markup.
 - `examples/example-advanced-ui.html` — a full composed page.
+- `examples/preview/index.html` — all the single-purpose preview cards on one page, grouped by topic. Add a card there when you add one to `preview/`.
 - `examples/developer-guide.html` — in-browser onboarding guide (doc-chrome).
 - `examples/editorial-learning-catalog.html` · `examples/editorial-resource-hub.html` — the **Editorial mode** proof pages: the warm register rendered in-token, framed in SharePoint chrome, wired with inline Alpine.
 - `examples/editorial-components.html` — every editorial block live with copy-paste markup (incl. the flat **mesh register**, video player, spotlight slider) · `examples/editorial-design-guide.html` — when to use, showcase-vs-mesh, hero chooser, do/don't.

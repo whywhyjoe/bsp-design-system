@@ -1,4 +1,4 @@
-/*! BMO SharePoint Design System · v1.0.0 · editorial.css */
+/*! BMO SharePoint Design System · v1.1.0 · editorial.css */
 /* =====================================================================
    BMO SharePoint Design System — EDITORIAL MODE (additive layer)
    ---------------------------------------------------------------------
@@ -199,7 +199,8 @@
    longhands so neither shorthand can cancel the other. */
 .editorial .l-wrap { padding-left: var(--space-320); padding-right: var(--space-320); }
 .editorial .l-section { padding-top: var(--ed-section-y); padding-bottom: var(--ed-section-y); }
-.editorial .l-grid { gap: var(--ed-gap); }
+/* Set the gap through --l-gap: the .l-grid--N column math reads it. */
+.editorial .l-grid { --l-gap: var(--ed-gap); }
 
 /* Editorial chips read a touch larger + rounder for the warmer register. */
 .editorial .chip-row { gap: var(--space-100); }

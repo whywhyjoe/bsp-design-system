@@ -1,4 +1,4 @@
-/*! BMO SharePoint Design System · v1.0.0 · components.css */
+/*! BMO SharePoint Design System · v1.1.0 · components.css */
 /* =====================================================================
    BMO SharePoint Design System — Component layer
    ---------------------------------------------------------------------
@@ -694,24 +694,93 @@
    ===================================================================== */
 
 /* Centered content shell — the max-width column every section aligns to.
-   Use it directly, or use .band__inner inside a full-bleed .band. */
+   Use it directly, or use .band__inner inside a full-bleed .band.
+   FULL PAGES ONLY: inside a SharePoint web part the host column already sets
+   the width and padding — use .l-app there instead. */
 .l-wrap { max-width: 1180px; margin: 0 auto; padding: 0 var(--space-320); }
 
-/* Section rhythm — vertical padding for a content section inside a band. */
+/* Section rhythm — vertical padding for a content section inside a band.
+   Full pages only, like .l-wrap. */
 .l-section { padding: var(--space-520) 0; }
 
-/* Simple responsive column grids for card rows. Collapse to fewer columns
-   on narrow viewports. Gap is the 16/20px engagement rhythm. */
-.l-grid { display: grid; gap: var(--space-200); }
-.l-grid--2 { grid-template-columns: repeat(2, 1fr); }
-.l-grid--3 { grid-template-columns: repeat(3, 1fr); }
-.l-grid--4 { grid-template-columns: repeat(4, 1fr); gap: var(--space-160); }
-@media (max-width: 980px) {
-  .l-grid--2, .l-grid--3, .l-grid--4 { grid-template-columns: repeat(2, 1fr); }
+/* =====================================================================
+   LAYOUT PRIMITIVES — container-aware layout for app parts.
+   A web part's width comes from the SharePoint column it sits in, not the
+   browser window, so nothing here uses a viewport media query. Every
+   primitive adapts to the space it actually has: the grids fit as many
+   columns as there is room for, the sidebar and switcher stack when they
+   get narrow. They nest freely.
+
+   Knobs (custom properties — set them in page CSS or inline):
+     --l-gap   space between children   (set via the .l-gap--N modifiers)
+     --l-min   smallest column width     .l-grid           default 240px
+     --l-side  sidebar panel width       .l-sidebar        default 280px
+     --l-break stack below this width    .l-switcher       default 480px
+   Each primitive declares its own defaults, so a knob set on an outer
+   layout never leaks into a layout nested inside it.
+   ===================================================================== */
+
+/* App root — put it on the outermost element of a web part / app part
+   (usually the same element as x-data). Makes its own width the thing
+   @container rules respond to: @container app (max-width: 480px) { … } */
+.l-app { container: app / inline-size; }
+
+/* Stack — vertical flow with one consistent gap. The stack owns the
+   spacing, so it zeroes its children's own margins. */
+.l-stack { --l-gap: var(--space-160); display: flex; flex-direction: column; gap: var(--l-gap); }
+.l-stack > * { margin-block: 0; }
+
+/* Cluster — a row of items that wraps: button rows, chips, tags, toolbars. */
+.l-cluster { --l-gap: var(--space-80); display: flex; flex-wrap: wrap; align-items: center; gap: var(--l-gap); }
+.l-cluster--end     { justify-content: flex-end; }
+.l-cluster--between { justify-content: space-between; }
+
+/* Sidebar — a side panel beside a flexible main area. Stacks by itself
+   when the main area would drop below half the width. Source order sets
+   the side: put __side first for a left panel, last for a right one.
+     <div class="l-sidebar">
+       <aside class="l-sidebar__side">…</aside>
+       <div class="l-sidebar__main">…</div>
+     </div> */
+.l-sidebar { --l-gap: var(--space-240); --l-side: 280px; display: flex; flex-wrap: wrap; gap: var(--l-gap); }
+.l-sidebar__side { flex-basis: var(--l-side); flex-grow: 1; min-width: 0; }
+.l-sidebar__main { flex-basis: 0; flex-grow: 999; min-inline-size: 50%; }
+
+/* Switcher — side-by-side panels that all stack at once when the
+   container is narrower than --l-break. Equal widths by default; add
+   .l-switcher__wide to a child to give it twice the share (2:1 = ⅔ + ⅓). */
+.l-switcher { --l-gap: var(--space-240); --l-break: 480px; display: flex; flex-wrap: wrap; gap: var(--l-gap); }
+.l-switcher > * { flex-grow: 1; flex-basis: calc((var(--l-break) - 100%) * 999); min-width: 0; }
+.l-switcher > .l-switcher__wide { flex-grow: 2; }
+
+/* Grid — card and tile rows.
+   .l-grid--auto fits as many columns as there is room for, each at least
+   --l-min wide. .l-grid--2/--3/--4 do the same but never exceed that many
+   columns. Both drop columns as their container narrows — in a one-third
+   SharePoint column as much as on a phone. */
+.l-grid { --l-gap: var(--space-200); --l-min: 240px; display: grid; gap: var(--l-gap); }
+.l-grid--auto {
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, var(--l-min)), 1fr));
 }
-@media (max-width: 600px) {
-  .l-grid--2, .l-grid--3, .l-grid--4 { grid-template-columns: 1fr; }
+.l-grid--2 { --l-cols: 2; }
+.l-grid--3 { --l-cols: 3; }
+.l-grid--4 { --l-cols: 4; --l-gap: var(--space-160); }
+.l-grid--2, .l-grid--3, .l-grid--4 {
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, max(var(--l-min),
+    (100% - (var(--l-cols) - 1) * var(--l-gap)) / var(--l-cols))), 1fr));
 }
+
+/* Gap — one spacing step for any primitive above, from the 4px ramp.
+   Declared after the primitives so a modifier always wins. */
+.l-gap--0   { --l-gap: var(--space-0); }
+.l-gap--40  { --l-gap: var(--space-40); }
+.l-gap--80  { --l-gap: var(--space-80); }
+.l-gap--120 { --l-gap: var(--space-120); }
+.l-gap--160 { --l-gap: var(--space-160); }
+.l-gap--200 { --l-gap: var(--space-200); }
+.l-gap--240 { --l-gap: var(--space-240); }
+.l-gap--320 { --l-gap: var(--space-320); }
+.l-gap--480 { --l-gap: var(--space-480); }
 
 
 /* SharePoint suite bar — the app's top chrome. Midnight ground, white

@@ -1,0 +1,234 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BMO SharePoint Design System · Icons, every method</title>
+<!-- ICONS, EVERY METHOD — the same few icons shown each supported way, with the
+     setup each one needs. Paths here are relative so the page opens from disk;
+     the copy-paste snippets show the real SharePoint paths. Doc-chrome styles
+     below are page-only scaffolding; the page consumes the real library. -->
+<link rel="stylesheet" href="../colors_and_type.css">
+<link rel="stylesheet" href="../components.css">
+<!-- Method 3 setup: the Resizable icon font (a demo copy in examples/fonts/) -->
+<link rel="preload" href="fonts/FluentSystemIcons-Resizable.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="fonts/FluentSystemIcons-Resizable.css">
+<!-- Method 2 setup: the optional <fluent-icon> element -->
+<script src="../fluent-icon.js" defer></script>
+<style>
+  *,*::before,*::after{box-sizing:border-box}
+  body{margin:0;background:var(--surface-subtle);color:var(--fg-primary);font-family:var(--font-family)}
+  .wrap{max-width:960px;margin:0 auto;padding:0 32px}
+
+  header.top{background:var(--surface-canvas);border-bottom:1px solid var(--stroke-divider);padding:36px 0 28px}
+  header.top .crumb{font:var(--type-caption1);margin:0 0 10px}
+  header.top .crumb a{color:var(--accent-rest);text-decoration:none}
+  header.top h1{font:400 34px/42px var(--font-family);margin:0 0 8px;letter-spacing:-.01em}
+  header.top p{font:400 16px/24px var(--font-family);color:var(--fg-secondary);max-width:72ch;margin:0}
+
+  section{padding:32px 0 0}
+  section > h2{font:400 22px/30px var(--font-family);margin:0 0 4px;letter-spacing:-.01em}
+  section > p{font:var(--type-body1);color:var(--fg-secondary);margin:0 0 14px;max-width:72ch}
+
+  .tablewrap{overflow-x:auto}
+  table.pick{width:100%;min-width:560px;border-collapse:collapse;background:var(--surface-canvas);
+             border:1px solid var(--stroke-divider);border-radius:var(--radius-large);overflow:hidden;font:var(--type-body1)}
+  table.pick th{text-align:left;font:600 11px/14px var(--font-family);letter-spacing:.06em;text-transform:uppercase;
+                color:var(--fg-secondary);padding:10px 14px;background:var(--surface-subtle);border-bottom:1px solid var(--stroke-divider)}
+  table.pick td{padding:10px 14px;border-bottom:1px solid var(--stroke-divider);vertical-align:top;color:var(--fg-secondary)}
+  table.pick tr:last-child td{border-bottom:0}
+  table.pick td:first-child{color:var(--fg-primary);font-weight:600;white-space:nowrap}
+
+  .spec{background:var(--surface-canvas);border:1px solid var(--stroke-divider);border-radius:var(--radius-large);overflow:hidden}
+  .spec__preview{padding:20px 16px;display:flex;flex-wrap:wrap;gap:16px;align-items:center;color:var(--fg-primary)}
+  .spec__facts{display:flex;flex-wrap:wrap;gap:8px;padding:0 16px 16px}
+  .codewrap{position:relative;border-top:1px solid var(--stroke-divider)}
+  .codewrap pre{margin:0;background:#0B2233;color:#D7E6F2;padding:14px 16px;overflow-x:auto;font:400 12.5px/1.6 var(--font-family-mono)}
+  .codewrap pre .c{color:#6E8BA0}
+  .copy-btn{position:absolute;top:8px;right:8px;height:24px;padding:0 10px;font:var(--type-caption1-strong);color:#D7E6F2;
+            background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);border-radius:var(--radius-small);cursor:pointer}
+  .copy-btn:hover{background:rgba(255,255,255,.18)}
+
+  footer{padding:48px 0 64px;color:var(--fg-secondary);font:400 13px/20px var(--font-family)}
+  @media (max-width:720px){.wrap{padding:0 16px}}
+</style>
+</head>
+<body>
+
+<!-- Method 1 & 2 setup: the whole fluent-basic-icons.svg sprite, inlined once. -->
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true"><defs>
+  <symbol id="ic-fluent-add-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></g></symbol>
+  <symbol id="ic-fluent-alert-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4a5 5 0 0 1 5 5c0 5 2 6 2 6H5s2-1 2-6a5 5 0 0 1 5-5zM10.3 19a1.8 1.8 0 0 0 3.4 0"/></g></symbol>
+  <symbol id="ic-fluent-arrow-down-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v13M6 12l6 6 6-6"/></g></symbol>
+  <symbol id="ic-fluent-arrow-export-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M11 6H6a1 1 0 0 0-1 1v11a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1v-5M14 5h5v5M19 5l-8 8"/></g></symbol>
+  <symbol id="ic-fluent-arrow-right-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13M12 6l6 6-6 6"/></g></symbol>
+  <symbol id="ic-fluent-arrow-up-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V6M6 12l6-6 6 6"/></g></symbol>
+  <symbol id="ic-fluent-attach-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M16.5 8.5l-6 6a2 2 0 1 0 2.8 2.8l6-6a3.5 3.5 0 0 0-5-5l-6.5 6.5a5 5 0 0 0 7 7l5.5-5.5"/></g></symbol>
+  <symbol id="ic-fluent-calendar-ltr-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 7a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v11a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V7zM5 10h14M9 4v3M15 4v3"/></g></symbol>
+  <symbol id="ic-fluent-checkmark-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></g></symbol>
+  <symbol id="ic-fluent-checkmark-circle-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"/><path d="M8.5 12.2l2.4 2.4 4.6-4.9"/></g></symbol>
+  <symbol id="ic-fluent-chevron-down-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M7 10l5 5 5-5"/></g></symbol>
+  <symbol id="ic-fluent-chevron-left-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M14 7l-5 5 5 5"/></g></symbol>
+  <symbol id="ic-fluent-chevron-right-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M10 7l5 5-5 5"/></g></symbol>
+  <symbol id="ic-fluent-clock-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"/><path d="M12 7.5V12l3 2"/></g></symbol>
+  <symbol id="ic-fluent-closed-caption-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="6" width="17" height="12" rx="1.5"/><path d="M10.8 10.6a2 2 0 1 0 0 2.8M16.6 10.6a2 2 0 1 0 0 2.8"/></g></symbol>
+  <symbol id="ic-fluent-data-bar-vertical-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19h16M7 19v-6M12 19V6M17 19v-9"/></g></symbol>
+  <symbol id="ic-fluent-delete-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8h12M9.5 8V6a1 1 0 0 1 1-1h3a1 1 0 0 1 1 1v2M8 8l.8 11a1 1 0 0 0 1 .9h4.4a1 1 0 0 0 1-.9L16 8M10.5 11.5v5M13.5 11.5v5"/></g></symbol>
+  <symbol id="ic-fluent-dismiss-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 6l12 12M18 6L6 18"/></g></symbol>
+  <symbol id="ic-fluent-dismiss-circle-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"/><path d="M9.5 9.5l5 5M14.5 9.5l-5 5"/></g></symbol>
+  <symbol id="ic-fluent-document-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M7 4h7l4 4v11a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1zM14 4v4h4"/></g></symbol>
+  <symbol id="ic-fluent-document-pdf-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M7 4h7l4 4v11a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1zM14 4v4h4"/><path d="M8.5 15.5h7"/></g></symbol>
+  <symbol id="ic-fluent-edit-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 19l1-4 9-9 3 3-9 9-4 1zM14 6l3 3"/></g></symbol>
+  <symbol id="ic-fluent-filter-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 6h14l-5.5 7v5l-3-2v-3L5 6z"/></g></symbol>
+  <symbol id="ic-fluent-folder-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7a1 1 0 0 1 1-1h4l2 2h8a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7z"/></g></symbol>
+  <symbol id="ic-fluent-full-screen-maximize-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 9V6a1 1 0 0 1 1-1h3M15 5h3a1 1 0 0 1 1 1v3M19 15v3a1 1 0 0 1-1 1h-3M9 19H6a1 1 0 0 1-1-1v-3"/></g></symbol>
+  <symbol id="ic-fluent-grid-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="6.5" height="6.5" rx="1"/><rect x="13.5" y="4" width="6.5" height="6.5" rx="1"/><rect x="4" y="13.5" width="6.5" height="6.5" rx="1"/><rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1"/></g></symbol>
+  <symbol id="ic-fluent-home-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11.5L12 5l8 6.5V19a1 1 0 0 1-1 1h-4v-6H9v6H5a1 1 0 0 1-1-1v-7.5z"/></g></symbol>
+  <symbol id="ic-fluent-info-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"/><path d="M12 11.5v4.5"/><path d="M12 8.2h.01"/></g></symbol>
+  <symbol id="ic-fluent-mail-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 7h14a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1zM4.5 8l7.5 5 7.5-5"/></g></symbol>
+  <symbol id="ic-fluent-mail-inbox-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l1.8-6.2a1 1 0 0 1 1-.8h8.4a1 1 0 0 1 1 .8L19 13v4a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1v-4zM5 13h4a3 3 0 0 0 6 0h4"/></g></symbol>
+  <symbol id="ic-fluent-money-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="7" width="16" height="10" rx="1.5"/><circle cx="12" cy="12" r="2.3"/><path d="M7 12h.01M17 12h.01"/></g></symbol>
+  <symbol id="ic-fluent-more-horizontal-24-regular" viewBox="0 0 24 24"><g fill="currentColor" stroke="none"><circle cx="6" cy="12" r="1.4"/><circle cx="12" cy="12" r="1.4"/><circle cx="18" cy="12" r="1.4"/></g></symbol>
+  <symbol id="ic-fluent-open-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M11 6H6a1 1 0 0 0-1 1v11a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1v-5M14 5h5v5M19 5l-8 8"/></g></symbol>
+  <symbol id="ic-fluent-person-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8.5" r="3.5"/><path d="M5.5 19a6.5 6.5 0 0 1 13 0"/></g></symbol>
+  <symbol id="ic-fluent-person-add-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="9.5" cy="8.5" r="3.3"/><path d="M3.5 19a6 6 0 0 1 11-3.3M18 8v6M15 11h6"/></g></symbol>
+  <symbol id="ic-fluent-phone-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 4.5l3 .8 1 3.2-1.9 1.4a10 10 0 0 0 4.6 4.6l1.4-1.9 3.2 1 .8 3a1 1 0 0 1-1 1.1A13.5 13.5 0 0 1 5.4 5.5a1 1 0 0 1 1.1-1z"/></g></symbol>
+  <symbol id="ic-fluent-pause-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M9.2 6v12M14.8 6v12"/></g></symbol>
+  <symbol id="ic-fluent-play-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8.5 5.5l10 6.5-10 6.5z"/></g></symbol>
+  <symbol id="ic-fluent-question-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M9.6 9.4a2.4 2.4 0 1 1 3.3 2.6c-.7.3-1.1 1-1.1 1.8"/><path d="M11.8 16.5h.01"/></g></symbol>
+  <symbol id="ic-fluent-receipt-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 4h12v16l-2-1.3-2 1.3-2-1.3-2 1.3-2-1.3-2 1.3V4zM9 8h6M9 11.5h6M9 15h4"/></g></symbol>
+  <symbol id="ic-fluent-search-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="10.5" cy="10.5" r="5.5"/><path d="M15 15l4 4"/></g></symbol>
+  <symbol id="ic-fluent-settings-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 4v2.2M12 17.8V20M5 7.5l1.9 1.1M17.1 15.4L19 16.5M5 16.5l1.9-1.1M17.1 8.6L19 7.5"/></g></symbol>
+  <symbol id="ic-fluent-shield-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4l7 2.5v5c0 5-3.5 8-7 9.5-3.5-1.5-7-4.5-7-9.5v-5L12 4zM9 12l2 2 4-4"/></g></symbol>
+  <symbol id="ic-fluent-speaker-2-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10v4h3l4.5 3.5v-11L7 10H4z"/><path d="M15 9.5a4 4 0 0 1 0 5M17.5 7.5a7 7 0 0 1 0 9"/></g></symbol>
+  <symbol id="ic-fluent-star-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4.5l2.3 4.7 5.2.8-3.8 3.7.9 5.2-4.6-2.5-4.6 2.5.9-5.2L6.5 10l5.2-.8L12 4.5z"/></g></symbol>
+  <symbol id="ic-fluent-warning-24-regular" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5l8.5 14.5H3.5L12 5z"/><path d="M12 10.5v4M12 17h.01"/></g></symbol>
+  <symbol id="ic-fluent-checkmark-circle-24-filled" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5" fill="currentColor"/><path d="M8.4 12.2l2.5 2.5 4.7-5" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="ic-fluent-warning-24-filled" viewBox="0 0 24 24"><path d="M11.1 5.2a1 1 0 0 1 1.8 0l8 14a1 1 0 0 1-.9 1.5H4a1 1 0 0 1-.9-1.5l8-14z" fill="currentColor"/><path d="M12 10v4M12 17h.01" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+</defs></svg>
+
+<header class="top">
+  <div class="wrap">
+    <p class="crumb"><a href="../index.html">← Design system index</a> · <a href="components.html#icons">Components → Icons</a></p>
+    <h1>Icons, every method</h1>
+    <p>Four ways to put an icon on a page. Each section shows the same icons done that way,
+       what the page needs once, and the markup to copy. Every icon below sits in text colored
+       <code>--fg-primary</code> — watch which ones follow it.</p>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <section>
+    <h2>Which one?</h2>
+    <p>Start with the sprite. Reach for the font when the sprite doesn't have the icon. Use Abacus for BMO brand icons.</p>
+    <div class="tablewrap">
+    <table class="pick">
+      <tr><th>Method</th><th>Use it for</th><th>The page needs (once)</th><th>Color</th><th>Size</th></tr>
+      <tr><td>1 · Sprite <code>&lt;use&gt;</code></td><td>The 48 everyday UI icons — the default</td><td>The sprite pasted into <code>&lt;body&gt;</code></td><td>Follows text</td><td><code>.icon--N</code></td></tr>
+      <tr><td>2 · <code>&lt;fluent-icon&gt;</code></td><td>The same 48, with shorter markup</td><td>The sprite + <code>fluent-icon.js</code></td><td>Follows text</td><td><code>.icon--N</code></td></tr>
+      <tr><td>3 · Icon font</td><td>Any Fluent icon the sprite doesn't have</td><td>Font preload + stylesheet</td><td>Follows text</td><td><code>font-size</code></td></tr>
+      <tr><td>4 · Abacus <code>&lt;img&gt;</code></td><td>BMO brand icons that label content</td><td>Nothing</td><td>Fixed (baked in)</td><td><code>.icon--N</code></td></tr>
+    </table>
+    </div>
+  </section>
+
+  <section>
+    <h2>1 · Sprite <code>&lt;use&gt;</code> — the default</h2>
+    <p>No JavaScript. Points at a symbol in the sprite by name. A name with no symbol renders blank.</p>
+    <div class="spec">
+      <div class="spec__preview">
+        <svg class="icon icon--24" aria-hidden="true"><use href="#ic-fluent-home-24-regular"/></svg>
+        <svg class="icon icon--24" aria-hidden="true"><use href="#ic-fluent-search-24-regular"/></svg>
+        <svg class="icon icon--24" aria-hidden="true"><use href="#ic-fluent-calendar-ltr-24-regular"/></svg>
+        <svg class="icon icon--24" aria-hidden="true"><use href="#ic-fluent-mail-24-regular"/></svg>
+        <button class="btn btn--secondary"><svg class="icon icon--16" aria-hidden="true"><use href="#ic-fluent-mail-24-regular"/></svg> Email</button>
+      </div>
+      <div class="codewrap"><button class="copy-btn" onclick="copyCode(this)">Copy</button><pre><span class="c">&lt;!-- once: paste the whole fluent-basic-icons.svg as the first thing in &lt;body&gt; --&gt;</span>
+
+&lt;svg class="icon icon--24" aria-hidden="true"&gt;&lt;use href="#ic-fluent-home-24-regular"/&gt;&lt;/svg&gt;
+&lt;button class="btn btn--secondary"&gt;
+  &lt;svg class="icon icon--16" aria-hidden="true"&gt;&lt;use href="#ic-fluent-mail-24-regular"/&gt;&lt;/svg&gt; Email
+&lt;/button&gt;</pre></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>2 · <code>&lt;fluent-icon&gt;</code> — same sprite, shorter markup</h2>
+    <p>Optional. A small script turns the element into the method 1 markup, so it uses the same sprite and the same names.</p>
+    <div class="spec">
+      <div class="spec__preview">
+        <fluent-icon name="home-24-regular" class="icon--24"></fluent-icon>
+        <fluent-icon name="search-24-regular" class="icon--24"></fluent-icon>
+        <fluent-icon name="calendar-ltr-24-regular" class="icon--24"></fluent-icon>
+        <fluent-icon name="mail-24-regular" class="icon--24"></fluent-icon>
+        <button class="btn btn--secondary"><fluent-icon name="mail-24-regular" class="icon--16"></fluent-icon> Email</button>
+      </div>
+      <div class="codewrap"><button class="copy-btn" onclick="copyCode(this)">Copy</button><pre><span class="c">&lt;!-- once: the sprite (as in method 1) + this script --&gt;</span>
+&lt;script src="/sites/FCUPortal/Code/bsp-design/fluent-icon.js" defer&gt;&lt;/script&gt;
+
+&lt;fluent-icon name="home-24-regular" class="icon--24"&gt;&lt;/fluent-icon&gt;
+&lt;button class="btn btn--secondary"&gt;
+  &lt;fluent-icon name="mail-24-regular" class="icon--16"&gt;&lt;/fluent-icon&gt; Email
+&lt;/button&gt;</pre></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>3 · Icon font — every Fluent icon</h2>
+    <p>No sprite, no JavaScript. The Resizable font has every Fluent icon, outline (<code>_regular</code>) and solid (<code>_filled</code>). Names always use <code>_20_</code>; set the size with <code>font-size</code>. Link only this one icon-font stylesheet.</p>
+    <div class="spec">
+      <div class="spec__preview">
+        <i class="icon-ic_fluent_home_20_regular" aria-hidden="true" style="font-size:24px"></i>
+        <i class="icon-ic_fluent_search_20_regular" aria-hidden="true" style="font-size:24px"></i>
+        <i class="icon-ic_fluent_calendar_ltr_20_regular" aria-hidden="true" style="font-size:24px"></i>
+        <i class="icon-ic_fluent_mail_20_regular" aria-hidden="true" style="font-size:24px"></i>
+        <i class="icon-ic_fluent_mail_20_filled" aria-hidden="true" style="font-size:24px"></i>
+        <button class="btn btn--secondary"><i class="icon-ic_fluent_mail_20_regular" aria-hidden="true" style="font-size:16px"></i> Email</button>
+      </div>
+      <div class="codewrap"><button class="copy-btn" onclick="copyCode(this)">Copy</button><pre><span class="c">&lt;!-- once, in &lt;head&gt; --&gt;</span>
+&lt;link rel="preload" href="/sites/FCUPortal/Code/fluent-icons/fonts/FluentSystemIcons-Resizable.woff2" as="font" type="font/woff2" crossorigin&gt;
+&lt;link rel="stylesheet" href="/sites/FCUPortal/Code/fluent-icons/fonts/FluentSystemIcons-Resizable.css"&gt;
+
+&lt;i class="icon-ic_fluent_home_20_regular" aria-hidden="true" style="font-size:24px"&gt;&lt;/i&gt;
+&lt;i class="icon-ic_fluent_mail_20_filled" aria-hidden="true" style="font-size:24px"&gt;&lt;/i&gt;
+&lt;button class="btn btn--secondary"&gt;
+  &lt;i class="icon-ic_fluent_mail_20_regular" aria-hidden="true" style="font-size:16px"&gt;&lt;/i&gt; Email
+&lt;/button&gt;</pre></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>4 · Abacus <code>&lt;img&gt;</code> — BMO brand icons</h2>
+    <p>No setup. Point an <code>&lt;img&gt;</code> at the file. The colors are part of the file, so they stay blue here even though the text color is dark.</p>
+    <div class="spec">
+      <div class="spec__preview">
+        <img class="icon icon--24" src="../abacus-icons/home-24.svg" alt="">
+        <img class="icon icon--24" src="../abacus-icons/search-24.svg" alt="">
+        <img class="icon icon--24" src="../abacus-icons/calendar-24.svg" alt="">
+        <img class="icon icon--24" src="../abacus-icons/mail-24.svg" alt="">
+        <button class="btn btn--secondary"><img class="icon icon--16" src="../abacus-icons/mail-24.svg" alt=""> Email</button>
+      </div>
+      <div class="codewrap"><button class="copy-btn" onclick="copyCode(this)">Copy</button><pre><span class="c">&lt;!-- no setup — alt="" when decorative, real alt text when the icon carries meaning --&gt;</span>
+&lt;img class="icon icon--24" src="/sites/FCUPortal/Code/bsp-design/abacus-icons/home-24.svg" alt=""&gt;
+&lt;button class="btn btn--secondary"&gt;
+  &lt;img class="icon icon--16" src="/sites/FCUPortal/Code/bsp-design/abacus-icons/mail-24.svg" alt=""&gt; Email
+&lt;/button&gt;</pre></div>
+    </div>
+  </section>
+
+  <footer>Full details for each method: <code>docs/TECHNICAL-REFERENCE.md</code> §6 · Browse every Abacus icon in <a href="../abacus-icons/index.html" style="color:var(--accent-rest)">abacus-icons/index.html</a></footer>
+</div>
+
+<script>
+  function copyCode(btn) {
+    var pre = btn.parentElement.querySelector('pre');
+    navigator.clipboard.writeText(pre.textContent).then(function () {
+      var old = btn.textContent;
+      btn.textContent = 'Copied';
+      setTimeout(function () { btn.textContent = old; }, 1400);
+    });
+  }
+</script>
+</body>
+</html>

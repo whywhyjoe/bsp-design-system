@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BMO SharePoint Design System · Preview cards</title>
+<!-- PREVIEW CARDS INDEX — every single-purpose gallery card in this folder, shown
+     live in a frame and grouped by topic. Doc-chrome styles below are page-only
+     scaffolding; the page consumes the real library. Add a card here when you add
+     a file to this folder. -->
+<link rel="stylesheet" href="../../colors_and_type.css">
+<link rel="stylesheet" href="../../components.css">
+<style>
+  *,*::before,*::after{box-sizing:border-box}
+  body{margin:0;background:var(--surface-subtle);color:var(--fg-primary);font-family:var(--font-family)}
+  .wrap{max-width:1260px;margin:0 auto;padding:0 32px}
+
+  header.top{background:var(--surface-canvas);border-bottom:1px solid var(--stroke-divider);padding:36px 0 26px}
+  header.top .crumb{font:var(--type-caption1);margin:0 0 10px}
+  header.top .crumb a{color:var(--accent-rest);text-decoration:none}
+  header.top .eyebrow{font:600 11px/14px var(--font-family);letter-spacing:.09em;text-transform:uppercase;color:var(--accent-rest);margin:0}
+  header.top h1{font:400 34px/42px var(--font-family);margin:8px 0 8px;letter-spacing:-.01em}
+  header.top p{font:400 16px/24px var(--font-family);color:var(--fg-secondary);max-width:76ch;margin:0}
+  header.top nav{display:flex;gap:8px;flex-wrap:wrap;margin-top:18px}
+
+  section{padding:36px 0 0;scroll-margin-top:8px}
+  section > h2{font:400 22px/30px var(--font-family);margin:0 0 14px;letter-spacing:-.01em}
+
+  /* Cards are laid out for ~550px, so frames are never narrower than that unless
+     the screen is (phones scroll a wide card inside its own frame). */
+  .cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,580px),1fr));gap:16px}
+  figure.pv{margin:0;background:var(--surface-canvas);border:1px solid var(--stroke-divider);
+            border-radius:var(--radius-large);overflow:hidden;display:flex;flex-direction:column}
+  figure.pv iframe{display:block;width:100%;height:240px;border:0;background:var(--surface-canvas)}
+  figure.pv figcaption{border-top:1px solid var(--stroke-divider);padding:10px 14px;display:flex;
+                       justify-content:space-between;align-items:baseline;gap:12px;margin-top:auto}
+  figure.pv .n{font:var(--type-body1-strong)}
+  figure.pv a{font:400 11px/16px var(--font-family-mono);color:var(--accent-rest);text-decoration:none;white-space:nowrap}
+  figure.pv a:hover{text-decoration:underline}
+
+  footer{padding:48px 0 64px;color:var(--fg-secondary);font:400 13px/20px var(--font-family)}
+  @media (max-width:720px){.wrap{padding:0 16px}}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <p class="crumb"><a href="../../index.html">← Design system index</a></p>
+    <p class="eyebrow">examples/preview/</p>
+    <h1>Preview cards</h1>
+    <p>Small single-purpose cards — one token group or component each — rendered live from the
+       real library. Each frame is the card itself; open the file name to see it on its own.</p>
+    <nav aria-label="Card groups">
+      <a class="chip" href="#brand">Brand (5)</a>
+      <a class="chip" href="#color">Color (7)</a>
+      <a class="chip" href="#components">Components (8)</a>
+      <a class="chip" href="#spacing">Spacing, elevation &amp; motion (4)</a>
+      <a class="chip" href="#type">Type (3)</a>
+    </nav>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <section id="brand">
+    <h2>Brand</h2>
+    <div class="cards">
+      <figure class="pv"><iframe src="brand-logo.html" title="BMO logo · M-bar roundel" loading="lazy"></iframe><figcaption><span class="n">Logo</span><a href="brand-logo.html">brand-logo.html</a></figcaption></figure>
+      <figure class="pv"><iframe src="brand-red-rule.html" title="The red rule" loading="lazy"></iframe><figcaption><span class="n">The red rule</span><a href="brand-red-rule.html">brand-red-rule.html</a></figcaption></figure>
+      <figure class="pv"><iframe src="brand-icons.html" title="Iconography" loading="lazy"></iframe><figcaption><span class="n">Iconography</span><a href="brand-icons.html">brand-icons.html</a></figcaption></figure>
+      <figure class="pv"><iframe src="brand-icon-colors.html" title="Icon color by role" loading="lazy"></iframe><figcaption><span class="n">Icon color by role</span><a href="brand-icon-colors.html">brand-icon-colors.html</a></figcaption></figure>
+      <figure class="pv"><iframe src="brand-imagery.html" title="Imagery" loading="lazy"></iframe><figcaption><span class="n">Imagery</span><a href="brand-imagery.html">brand-imagery.html</a></figcaption></figure>
+    </div>
+  </section>
+
+  <section id="color">
+    <h2>Color</h2>
+    <div class="cards">
+      <figure class="pv"><iframe src="colors-text.html" title="Text colors" loading="lazy"></iframe><figcaption><span class="n">Text</span><a href="colors-text.html">colors-text.html</a></figcaption></figure>
+      <figure class="pv"><iframe src="colors-surfaces.html" title="Surfaces and dividers" loading="lazy"></iframe><figcaption><span class="n">Surfaces &amp; dividers</span><a href="colors-surfaces.html">colors-surfaces.html</a></figcaption></figure>
+      <figure class="pv"><iframe src="colors-surface-tints.html" title="Surface tints" loading="lazy"></iframe><figcaption><span class="n">Surface tints</span><a href="colors-surface-tints.html">colors-surface-tints.html</a></figcaption></figure>
+      <figure class="pv"><iframe src="colors-interactive.html" title="Interactive blue" loading="lazy"></iframe><figcaption><span class="n">Interactive blue</span><a href="colors-interactive.html">colors-interactive.html</a></figcaption></figure>
+      <figure class="pv"><iframe src="colors-feedback.html" title="Feedback colors" loading="lazy"></iframe><figcaption><span class="n">Feedback</span><a href="colors-feedback.html">colors-feedback.html</a></figcaption></figure>
+      <figure class="pv"><iframe src="colors-chart-primary.html" title="Chart palette, primary" loading="lazy"></iframe><figcaption><span class="n">Chart palette · primary</span><a href="colors-chart-primary.html">colors-chart-primary.html</a></figcaption></figure>
+      <figure class="pv"><iframe src="colors-chart-secondary.html" title="Chart palette, secondary" loading="lazy"></iframe><figcaption><span class="n">Chart palette · secondary</span><a href="colors-chart-secondary.html">colors-chart-secondary.html</a></figcaption></figure>
+    </div>
+  </section>
+
+  <section id="components">
+    <h2>Components</h2>
+    <div class="cards">
+      <figure class="pv"><iframe src="components-button-primary.html" title="Primary button states" loading="lazy"></iframe><figcaption><span class="n">Primary button</span><a href="components-button-primary.html">components-button-primary.html</a></figcaption></figure>
+      <figure class="pv"><iframe src="components-button-secondary.html" title="Secondary and tertiary buttons" loading="lazy"></iframe><figcaption><span class="n">Secondary &amp; tertiary buttons</span><a href="components-button-secondary.html">components-button-secondary.html</a></figcaption></figure>
+      <figure class="pv"><iframe src="components-inputs.html" title="Text input states" loading="lazy"></iframe><figcaption><span class="n">Text input</span><a href="components-inputs.html">components-inputs.html</a></figcaption></figure>
+      <figure class="pv"><iframe src="components-badges.html" title="Badges, tags and status dots" loading="lazy"></iframe><figcaption><span class="n">Badges, tags &amp; status</span><a href="components-badges.html">components-badges.html</a></figcaption></figure>
+      <figure class="pv"><iframe src="components-message-bars.html" title="Message bars" loading="lazy"></iframe><figcaption><span class="n">Message bars</span><a href="components-message-bars.html">components-message-bars.html</a></figcaption></figure>
+      <figure class="pv"><iframe src="components-tabs.html" title="Tabs" loading="lazy"></iframe><figcaption><span class="n">Tabs</span><a href="components-tabs.html">components-tabs.html</a></figcaption></figure>
+      <figure class="pv"><iframe src="components-card.html" title="Card pattern" loading="lazy"></iframe><figcaption><span class="n">Card</span><a href="components-card.html">components-card.html</a></figcaption></figure>
+      <figure class="pv"><iframe src="components-card-composition.html" title="Card composition" loading="lazy"></iframe><figcaption><span class="n">Card composition</span><a href="components-card-composition.html">components-card-composition.html</a></figcaption></figure>
+    </div>
+  </section>
+
+  <section id="spacing">
+    <h2>Spacing, elevation &amp; motion</h2>
+    <div class="cards">
+      <figure class="pv"><iframe src="spacing-scale.html" title="Spacing scale" loading="lazy"></iframe><figcaption><span class="n">Spacing scale</span><a href="spacing-scale.html">spacing-scale.html</a></figcaption></figure>
+      <figure class="pv"><iframe src="spacing-radii.html" title="Corner radius" loading="lazy"></iframe><figcaption><span class="n">Corner radius</span><a href="spacing-radii.html">spacing-radii.html</a></figcaption></figure>
+      <figure class="pv"><iframe src="spacing-elevation.html" title="Elevation" loading="lazy"></iframe><figcaption><span class="n">Elevation</span><a href="spacing-elevation.html">spacing-elevation.html</a></figcaption></figure>
+      <figure class="pv"><iframe src="spacing-motion.html" title="Motion" loading="lazy"></iframe><figcaption><span class="n">Motion</span><a href="spacing-motion.html">spacing-motion.html</a></figcaption></figure>
+    </div>
+  </section>
+
+  <section id="type">
+    <h2>Type</h2>
+    <div class="cards">
+      <figure class="pv"><iframe src="type-headings.html" title="Heading ramp" loading="lazy"></iframe><figcaption><span class="n">Heading ramp</span><a href="type-headings.html">type-headings.html</a></figcaption></figure>
+      <figure class="pv"><iframe src="type-body.html" title="Body and caption" loading="lazy"></iframe><figcaption><span class="n">Body &amp; caption</span><a href="type-body.html">type-body.html</a></figcaption></figure>
+      <figure class="pv"><iframe src="type-rules.html" title="Type rules at a glance" loading="lazy"></iframe><figcaption><span class="n">Type rules</span><a href="type-rules.html">type-rules.html</a></figcaption></figure>
+    </div>
+  </section>
+
+  <footer>27 cards · <a href="../../index.html" style="color:var(--accent-rest)">Back to the design system index</a></footer>
+</div>
+
+<script>
+  /* Fit each frame to its card's height. Works when served; opened from disk the
+     browser blocks reading the frame, and the frame keeps its fixed height. */
+  var frames = document.querySelectorAll('figure.pv iframe');
+  function fit(f) {
+    try {
+      var d = f.contentDocument, b = d && d.body;
+      if (!b || !b.firstElementChild) return;
+      // round UP — a fractional overflow of even 0.4px shows a scrollbar —
+      // and add room for a horizontal scrollbar when a card is wider than its frame
+      var bar = f.contentWindow.innerHeight - d.documentElement.clientHeight;
+      f.style.height = (Math.ceil(b.getBoundingClientRect().height) + bar) + 'px';
+    } catch (e) {}
+  }
+  function watch(f) {
+    fit(f);
+    try {
+      // cards keep changing size after load (icons, fonts) — refit whenever they do
+      if (!f._ro && f.contentDocument.body.firstElementChild) {
+        f._ro = new f.contentWindow.ResizeObserver(function () { fit(f); });
+        f._ro.observe(f.contentDocument.body);
+      }
+    } catch (e) {}
+  }
+  frames.forEach(function (f) {
+    f.addEventListener('load', function () { watch(f); });
+    watch(f);   // a frame can finish loading before this script runs
+  });
+</script>
+</body>
+</html>

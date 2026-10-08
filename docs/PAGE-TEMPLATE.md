@@ -41,8 +41,10 @@ and explained right after.
        Alpine binding below (:class, x-model, x-on) must live INSIDE this
        element. A chip or switch placed outside any x-data ancestor renders,
        but its bindings do nothing — and throws no error. This is the #1
-       first-page trap. -->
-  <main class="l-wrap" x-data="{ filter: 'all', notify: false }">
+       first-page trap.
+       .l-app makes this the layout root: the layouts inside respond to the
+       width of the SharePoint column the part sits in, not the window. -->
+  <main class="l-app l-stack l-gap--240" x-data="{ filter: 'all', notify: false }">
 
     <header class="section-head">
       <p class="section-head__eyebrow">Finance</p>
@@ -50,7 +52,10 @@ and explained right after.
       <p class="section-head__lede">Review and approve submitted reports.</p>
     </header>
 
-    <section class="l-section">
+    <section class="l-stack">
+
+      <!-- A row that wraps when the column is narrow: filters left, switch right. -->
+      <div class="l-cluster l-cluster--between">
 
       <!-- Interactive: chip row bound to `filter` (state-contract §5). The
            .is-active class + aria-pressed are DRIVEN by state, not hardcoded. -->
@@ -69,8 +74,10 @@ and explained right after.
         <span class="switch__track"></span> Email me on new requests
       </label>
 
-      <!-- Static content: cards in a responsive grid. No JS needed — icons use
-           the no-JS <use> form, which works with zero scripting. -->
+      </div>
+
+      <!-- Static content: cards in a grid of up to 3 columns, fewer when the
+           column is narrow. No JS needed — icons use the no-JS <use> form. -->
       <div class="l-grid l-grid--3">
 
         <article class="card">
@@ -182,3 +189,10 @@ the tree relocatable.
 boots — otherwise they flash visible on load. The one-line `[x-cloak]{display:none}`
 rule in `<head>` above enables it. Components that are merely *styled* by state
 (chips, tabs) don't need it.
+
+**Layout note:** a script web part's width comes from the SharePoint column it
+sits in, not the window. The root's `.l-app` plus the `.l-stack` / `.l-cluster` /
+`.l-grid` layouts inside respond to that width, so the same part works in a full,
+half, or one-third column. Don't use `.l-wrap` or `.l-section` in a web part —
+they're for full pages and would double SharePoint's own padding. All the layouts:
+TECHNICAL-REFERENCE §2 "Layout".

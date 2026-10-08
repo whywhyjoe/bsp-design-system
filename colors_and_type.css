@@ -1,4 +1,4 @@
-/*! BMO SharePoint Design System · v1.0.0 · colors_and_type.css */
+/*! BMO SharePoint Design System · v1.1.0 · colors_and_type.css */
 /* =====================================================================
    BMO SharePoint Design System — Foundational tokens
    ---------------------------------------------------------------------
@@ -20,7 +20,7 @@
      with no git and no build. Probe the live page from devtools:
        getComputedStyle(document.documentElement).getPropertyValue('--ds-version')
      ------------------------------------------------------------------ */
-  --ds-version: "1.0.0";
+  --ds-version: "1.1.0";
 
   /* ------------------------------------------------------------------
      1 · BMO BRAND COLORS — authoritative

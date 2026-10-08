@@ -95,6 +95,15 @@ Mechanical rules:
 
 Never substitute a third-party icon kit or ad-hoc web SVGs — those are out. The Fluent icon **font** is first-party Microsoft Fluent, so it's *not* a third-party kit; it's the supported way to reach the full set.
 
+## Layout — respond to the SharePoint column, not the window
+An app part runs in a script web part inside a SharePoint column (full, half, or one-third width), so its width is the column's, not the viewport's. Lay it out with the `.l-*` primitives (TECHNICAL-REFERENCE §2 "Layout"; live demo in `examples/components.html` → Layout):
+- ✅ Root: `<div class="l-app" x-data="{…}">`. Inside: `.l-stack` (vertical), `.l-cluster` (wrapping row; `--end`/`--between`), `.l-sidebar` › `__side` + `__main`, `.l-switcher` (+ `__wide` for ⅔ + ⅓), `.l-grid--auto` / `.l-grid--2/3/4`. Spacing via `.l-gap--N` (ramp: 0 40 80 120 160 200 240 320 480).
+- ✅ Tune with `--l-side`, `--l-break`, `--l-min` (inline or page class). Own breakpoints: `@container app (max-width: …)`.
+- ❌ No viewport `@media` breakpoints for a part's layout — they fire on the window, not the column.
+- ❌ No raw `gap:` on `.l-grid--2/3/4` — use `.l-gap--N`; the column math reads `--l-gap`.
+- ❌ No `.l-wrap` / `.l-section` inside a web part — full pages only; they double SharePoint's padding.
+- ❌ Don't add a grid framework (Bootstrap grid, `ms-Grid`, Tailwind) — viewport-based, and their generic class names collide with other web parts on the page.
+
 ## Reference pages consume the system — they don't re-style
 Demo/reference pages link the shared CSS and use canonical classes; no local component `<style>` forks (local inline `<style>` was a primary source of the original fragmentation). Build your pages the same way: link `colors_and_type.css` + `components.css` (or `styles.css`), don't re-declare component styles.
 

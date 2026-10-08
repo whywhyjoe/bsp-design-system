@@ -56,7 +56,14 @@
   .note { background: var(--surface-tint-blue); border: 1px solid var(--stroke-divider); border-radius: var(--radius-medium); padding: 12px 14px; font: var(--type-body1); margin-bottom: 18px; }
   .note code { font-family: var(--font-family-mono); font-size: 12.5px; background: var(--f2-grey-94); border-radius: 3px; padding: 1px 4px; }
 
-  @media (max-width: 860px) { .page { grid-template-columns: 1fr; } aside { display: none; } .inner, header.top { padding-left: 24px; padding-right: 24px; } }
+  /* Layout demo — a frame whose width the slider sets, standing in for a SharePoint column */
+  .lay-controls { position: sticky; top: 0; z-index: 2; background: var(--surface-subtle); padding: 10px 0 14px; margin-bottom: 8px; display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: center; }
+  .lay-controls input[type=range] { width: 220px; accent-color: var(--accent-rest); }
+  .lay-controls output { font: var(--type-caption1-strong); font-family: var(--font-family-mono); min-width: 52px; }
+  .lay-frame { width: var(--demo-w, 100%); max-width: 100%; align-self: flex-start; border: 1px dashed var(--stroke-control-strong); border-radius: var(--radius-medium); padding: 12px; background: var(--surface-canvas); }
+  .lay-box { background: var(--surface-tint-blue); border: 1px solid var(--stroke-divider); border-radius: var(--radius-medium); padding: 10px 12px; min-height: 44px; font: var(--type-caption1-strong); color: var(--fg-secondary); }
+
+  @media (max-width: 860px) { .lay-controls { position: static; } .page { grid-template-columns: 1fr; } aside { display: none; } .inner, header.top { padding-left: 24px; padding-right: 24px; } }
 </style>
 </head>
 <body>
@@ -128,6 +135,7 @@
       <a href="#dialog">Dialog</a>
       <a href="#toast">Toast &amp; empty</a>
       <a href="#engagement">Engagement layer</a>
+      <a href="#layout">Layout (app parts)</a>
       <a href="#page-shell">Page shell</a>
     </nav>
     <div class="links">
@@ -198,6 +206,44 @@
         <h2>Icons</h2>
         <p class="lede">Self-hosted Fluent sprite (<code style="font-family:var(--font-family-mono)">fluent-basic-icons.svg</code>, ids <code style="font-family:var(--font-family-mono)">ic-fluent-{name}-24-regular</code>). <code style="font-family:var(--font-family-mono)">.icon</code> inherits <code style="font-family:var(--font-family-mono)">currentColor</code>; use the size helpers (12 / 16 / 20 / 24 / 28 / 48). Inline the sprite once per page so same-document <code style="font-family:var(--font-family-mono)">#id</code> refs resolve.</p>
         <div class="note"><strong>Two SVG forms, one name token.</strong> The <strong>no-JS</strong> form needs only the two CSS files + the inlined sprite — a dev not ready for our scripting is never blocked. The optional <strong>sugar</strong> form <code>&lt;fluent-icon&gt;</code> needs one script tag (<code>fluent-icon.js</code>). Both resolve to the same <code>ic-fluent-*</code> symbol, so you can mix them and migrate between them mechanically. For icons beyond the sprite, use the first-party Fluent <strong>icon font</strong> (Resizable) — the whole Fluent set, outline and filled, with no sprite and no JS. See the last specimen below and the technical reference §6.</div>
+        <div class="spec">
+          <div class="spec__name">Every icon method at a glance</div>
+          <div class="spec__note">The same icons, four ways, all in text colored <code>--fg-primary</code>. The first three follow the text color; Abacus keeps the colors baked into its files. Setup and copy-paste markup for each: <a href="example-icons.html" style="color:var(--accent-rest)">example-icons.html</a>.</div>
+          <div class="spec__preview col" style="color:var(--fg-primary)">
+            <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap">
+              <svg class="icon icon--24" aria-hidden="true"><use href="#ic-fluent-home-24-regular"/></svg>
+              <svg class="icon icon--24" aria-hidden="true"><use href="#ic-fluent-search-24-regular"/></svg>
+              <svg class="icon icon--24" aria-hidden="true"><use href="#ic-fluent-mail-24-regular"/></svg>
+              <span class="spec__note" style="padding:0">1 · Sprite <code>&lt;use&gt;</code> — the default, no JS</span>
+            </div>
+            <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap">
+              <fluent-icon name="home-24-regular" class="icon--24"></fluent-icon>
+              <fluent-icon name="search-24-regular" class="icon--24"></fluent-icon>
+              <fluent-icon name="mail-24-regular" class="icon--24"></fluent-icon>
+              <span class="spec__note" style="padding:0">2 · <code>&lt;fluent-icon&gt;</code> — same sprite, shorter markup</span>
+            </div>
+            <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap">
+              <i class="icon-ic_fluent_home_20_regular" aria-hidden="true" style="font-size:24px"></i>
+              <i class="icon-ic_fluent_search_20_regular" aria-hidden="true" style="font-size:24px"></i>
+              <i class="icon-ic_fluent_mail_20_regular" aria-hidden="true" style="font-size:24px"></i>
+              <span class="spec__note" style="padding:0">3 · Icon font — every Fluent icon, no sprite</span>
+            </div>
+            <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap">
+              <img class="icon icon--24" src="../abacus-icons/home-24.svg" alt="">
+              <img class="icon icon--24" src="../abacus-icons/search-24.svg" alt="">
+              <img class="icon icon--24" src="../abacus-icons/mail-24.svg" alt="">
+              <span class="spec__note" style="padding:0">4 · Abacus <code>&lt;img&gt;</code> — BMO brand icons, colors baked in</span>
+            </div>
+          </div>
+          <div class="codewrap"><button class="copy-btn" onclick="copyCode(this)">Copy</button><pre><span class="c">&lt;!-- 1 · sprite: needs fluent-basic-icons.svg pasted into &lt;body&gt; once --&gt;</span>
+&lt;svg class="icon icon--24" aria-hidden="true"&gt;&lt;use href="#ic-fluent-home-24-regular"/&gt;&lt;/svg&gt;
+<span class="c">&lt;!-- 2 · element: needs the sprite + fluent-icon.js --&gt;</span>
+&lt;fluent-icon name="home-24-regular" class="icon--24"&gt;&lt;/fluent-icon&gt;
+<span class="c">&lt;!-- 3 · icon font: needs the Resizable font stylesheet (+ preload) --&gt;</span>
+&lt;i class="icon-ic_fluent_home_20_regular" aria-hidden="true" style="font-size:24px"&gt;&lt;/i&gt;
+<span class="c">&lt;!-- 4 · Abacus: needs nothing --&gt;</span>
+&lt;img class="icon icon--24" src="/sites/FCUPortal/Code/bsp-design/abacus-icons/home-24.svg" alt=""&gt;</pre></div>
+        </div>
         <div class="spec">
           <div class="spec__name">No-JS form (default)</div>
           <div class="spec__preview">
@@ -791,6 +837,130 @@
         </div>
       </section>
 
+      <!-- LAYOUT -->
+      <section class="group" id="layout">
+        <h2>Layout (app parts)</h2>
+        <p class="lede">A script web part gets its width from the SharePoint column it sits in, not the browser window — full width, half, or a narrow third on the same desktop screen. These layouts respond to the space they actually have, with no screen-size breakpoints. Drag the slider (or pick a column) to watch each one adapt. They nest freely.</p>
+
+        <div class="lay-controls">
+          <label for="lay-w" style="font:var(--type-caption1-strong)">Container width</label>
+          <input id="lay-w" type="range" min="280" max="900" step="10" value="900" oninput="setDemoWidth(this.value)">
+          <output id="lay-w-out">900px</output>
+          <div class="l-cluster">
+            <button class="btn btn--secondary btn--sm" onclick="setDemoWidth(320)">Narrow ≈ 320</button>
+            <button class="btn btn--secondary btn--sm" onclick="setDemoWidth(380)">⅓ column ≈ 380</button>
+            <button class="btn btn--secondary btn--sm" onclick="setDemoWidth(580)">½ column ≈ 580</button>
+            <button class="btn btn--secondary btn--sm" onclick="setDemoWidth(900)">Wide</button>
+          </div>
+        </div>
+
+        <div class="spec">
+          <div class="spec__name">App root, stack &amp; cluster — the everyday pair</div>
+          <div class="spec__note"><code>.l-app</code> goes on the web part's outermost element (usually the one with <code>x-data</code>). <code>.l-stack</code> spaces things vertically; <code>.l-cluster</code> lines things up in a row that wraps (<code>--end</code> pushes them right, <code>--between</code> spreads them). Change the spacing with <code>.l-gap--N</code> (N is a spacing token: 40 … 480).</div>
+          <div class="spec__preview col">
+            <div class="lay-frame">
+              <div class="l-app">
+                <div class="card"><div class="card__content l-stack">
+                  <div class="field"><label class="field__label">Subject</label><input class="input" placeholder="What do you need?"></div>
+                  <div class="field"><label class="field__label">Details</label><textarea class="textarea" rows="2"></textarea></div>
+                  <div class="l-cluster l-cluster--end">
+                    <button class="btn btn--secondary">Cancel</button>
+                    <button class="btn btn--primary">Submit request</button>
+                  </div>
+                </div></div>
+              </div>
+            </div>
+          </div>
+          <div class="codewrap"><button class="copy-btn" onclick="copyCode(this)">Copy</button><pre>&lt;div class="l-app" x-data="{ … }"&gt;          <span class="c">&lt;!-- the web part root --&gt;</span>
+  &lt;div class="l-stack"&gt;                    <span class="c">&lt;!-- 16px between children; .l-gap--240 for 24px --&gt;</span>
+    &lt;div class="field"&gt;…&lt;/div&gt;
+    &lt;div class="field"&gt;…&lt;/div&gt;
+    &lt;div class="l-cluster l-cluster--end"&gt;   <span class="c">&lt;!-- buttons right, wrapping when narrow --&gt;</span>
+      &lt;button class="btn btn--secondary"&gt;Cancel&lt;/button&gt;
+      &lt;button class="btn btn--primary"&gt;Submit request&lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</pre></div>
+        </div>
+
+        <div class="spec">
+          <div class="spec__name">Sidebar — a side panel beside a main area</div>
+          <div class="spec__note">The side panel is 280px (change with <code>style="--l-side: 240px"</code>); the main area takes the rest. When the main area would drop below half the width, the two stack. Put <code>__side</code> first for a left panel, last for a right one.</div>
+          <div class="spec__preview col">
+            <div class="lay-frame">
+              <div class="l-app l-sidebar">
+                <aside class="l-sidebar__side"><div class="lay-box">Side panel — filters, nav, summary</div></aside>
+                <div class="l-sidebar__main l-stack l-gap--120">
+                  <div class="lay-box">Main area</div>
+                  <div class="lay-box">Main area</div>
+                  <div class="lay-box">Main area</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="codewrap"><button class="copy-btn" onclick="copyCode(this)">Copy</button><pre>&lt;div class="l-sidebar"&gt;
+  &lt;aside class="l-sidebar__side"&gt;…filters…&lt;/aside&gt;
+  &lt;div class="l-sidebar__main"&gt;…results…&lt;/div&gt;
+&lt;/div&gt;
+
+<span class="c">&lt;!-- narrower panel on the right --&gt;</span>
+&lt;div class="l-sidebar" style="--l-side: 240px"&gt;
+  &lt;div class="l-sidebar__main"&gt;…&lt;/div&gt;
+  &lt;aside class="l-sidebar__side"&gt;…&lt;/aside&gt;
+&lt;/div&gt;</pre></div>
+        </div>
+
+        <div class="spec">
+          <div class="spec__name">Switcher — panels side by side, or all stacked</div>
+          <div class="spec__note">Children sit in one row while the container is at least 480px wide (change with <code>style="--l-break: 600px"</code>), and all stack at once below that — never an awkward 2 + 1. Equal widths by default; <code>.l-switcher__wide</code> gives a child twice the share, which makes ⅔ + ⅓.</div>
+          <div class="spec__preview col">
+            <div class="lay-frame">
+              <div class="l-app l-stack">
+                <div class="l-switcher">
+                  <div class="lay-box">Panel</div>
+                  <div class="lay-box">Panel</div>
+                  <div class="lay-box">Panel</div>
+                </div>
+                <div class="l-switcher">
+                  <div class="lay-box l-switcher__wide">Main (⅔)</div>
+                  <div class="lay-box">Summary (⅓)</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="codewrap"><button class="copy-btn" onclick="copyCode(this)">Copy</button><pre>&lt;div class="l-switcher"&gt;
+  &lt;div&gt;…&lt;/div&gt;  &lt;div&gt;…&lt;/div&gt;  &lt;div&gt;…&lt;/div&gt;
+&lt;/div&gt;
+
+<span class="c">&lt;!-- ⅔ + ⅓ --&gt;</span>
+&lt;div class="l-switcher"&gt;
+  &lt;div class="l-switcher__wide"&gt;…main…&lt;/div&gt;
+  &lt;div&gt;…summary…&lt;/div&gt;
+&lt;/div&gt;</pre></div>
+        </div>
+
+        <div class="spec">
+          <div class="spec__name">Grid — card and tile rows</div>
+          <div class="spec__note"><code>.l-grid--auto</code> fits as many columns as there's room for, each at least 240px (change with <code>style="--l-min: 180px"</code>). <code>.l-grid--2/3/4</code> work the same way but never go past that many columns.</div>
+          <div class="spec__preview col">
+            <div class="lay-frame">
+              <div class="l-app l-stack l-gap--240">
+                <div class="l-grid l-grid--auto">
+                  <div class="lay-box">Tile</div><div class="lay-box">Tile</div><div class="lay-box">Tile</div>
+                  <div class="lay-box">Tile</div><div class="lay-box">Tile</div><div class="lay-box">Tile</div>
+                </div>
+                <div class="l-grid l-grid--3">
+                  <div class="lay-box">Card</div><div class="lay-box">Card</div><div class="lay-box">Card</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="codewrap"><button class="copy-btn" onclick="copyCode(this)">Copy</button><pre>&lt;div class="l-grid l-grid--auto"&gt;  …tiles…  &lt;/div&gt;                 <span class="c">&lt;!-- as many as fit, min 240px --&gt;</span>
+&lt;div class="l-grid l-grid--auto" style="--l-min: 180px"&gt; … &lt;/div&gt;    <span class="c">&lt;!-- smaller tiles --&gt;</span>
+&lt;div class="l-grid l-grid--3"&gt;  …cards…  &lt;/div&gt;                     <span class="c">&lt;!-- up to 3 columns --&gt;</span></pre></div>
+        </div>
+      </section>
+
       <!-- PAGE SHELL -->
       <section class="group" id="page-shell">
         <h2>Page shell</h2>
@@ -955,6 +1125,12 @@
       btn.textContent = 'Copied';
       setTimeout(function () { btn.textContent = old; }, 1400);
     });
+  }
+  /* Layout demo: set the width of every .lay-frame (stands in for a SharePoint column) */
+  function setDemoWidth(px) {
+    document.getElementById('layout').style.setProperty('--demo-w', px + 'px');
+    document.getElementById('lay-w').value = px;
+    document.getElementById('lay-w-out').textContent = px + 'px';
   }
 </script>
 </body>

@@ -234,13 +234,64 @@ component that genuinely benefits from a behavior factory.
 Transient confirmation (bottom-center, animates in unless reduced-motion) and a
 calm empty state (`.empty__title` + `.empty__hint` + one action).
 
+### Layout — `.l-*` primitives (app parts)
+A script web part gets its width from the **SharePoint column** it sits in — full
+width, half, or a narrow third — not from the browser window. So these layouts
+never use a viewport media query: each one responds to the space it actually has.
+They nest freely. Live demo with a width slider: `examples/components.html` → Layout.
+
+| Class | What it does | Default |
+|---|---|---|
+| `.l-app` | Web part root. Makes its own width what `@container app` rules respond to. Put it on the outermost element (usually the `x-data` one). | — |
+| `.l-stack` | Vertical flow with one gap; zeroes its children's own margins. | 16px |
+| `.l-cluster` | Row that wraps. `--end` pushes items right, `--between` spreads them. | 8px |
+| `.l-sidebar` › `.l-sidebar__side` + `.l-sidebar__main` | Side panel + main area. Stacks when the main area would drop below half the width. Source order sets the side (`__side` first = left, last = right). | side 280px, gap 24px |
+| `.l-switcher` | Children side by side while the container is ≥ `--l-break`, all stacked below it. `.l-switcher__wide` on a child gives it twice the share of the row (roughly ⅔ + ⅓). | break 480px, gap 24px |
+| `.l-grid.l-grid--auto` | As many columns as fit, each ≥ `--l-min`. | min 240px, gap 20px |
+| `.l-grid.l-grid--2/--3/--4` | Same, but never more than N columns. | min 240px, gap 20px (`--4`: 16px) |
+| `.l-gap--N` | Spacing for any primitive above, from the ramp: `0 · 40 · 80 · 120 · 160 · 200 · 240 · 320 · 480`. | — |
+
+```html
+<div class="l-app l-stack" x-data="{ … }">            <!-- web part root -->
+  <div class="l-cluster l-cluster--between">…title… …actions…</div>
+  <div class="l-sidebar">
+    <aside class="l-sidebar__side">…filters…</aside>
+    <div class="l-sidebar__main">
+      <div class="l-grid l-grid--auto">…cards…</div>
+    </div>
+  </div>
+</div>
+```
+
+**Knobs** are custom properties, set inline or in a page class:
+`--l-side` (sidebar width), `--l-break` (switcher threshold), `--l-min` (grid
+column minimum) — e.g. `<div class="l-grid l-grid--auto" style="--l-min: 180px">`.
+Each primitive declares its own defaults, so a value set on an outer layout never
+leaks into a layout nested inside it.
+
+**Your own breakpoints:** for anything the primitives don't cover, write a
+container query against the app root — never a viewport `@media` query:
+
+```css
+@container app (max-width: 480px) {
+  .my-part__meta { display: none; }
+}
+```
+
+Rules:
+- **Change spacing with `.l-gap--N` (or `--l-gap`), never a raw `gap:`.** The
+  `.l-grid--2/3/4` column math reads `--l-gap`; a different actual gap makes the
+  grid drop a column.
+- **No `.l-wrap` / `.l-section` inside a web part.** SharePoint's column already
+  sets the width and padding; those add a second layer of both.
+
 ### Engagement & page-shell layer
 Opt-in, for richer landing/home surfaces:
 - **Bands:** `.band` + `.band--neutral/--blue/--sky/--white`, inner column `.band__inner`.
 - **Quick-action card:** `.qcard` (+ `.qcard__title/__desc`, `.card__icon-tile`).
 - **Feature banner:** `.feature` (+ `--media-right`), `.feature__media/__copy/__title/__lede/__ticks`.
 - **Page shell:** `.suite` (SharePoint suite bar + `.suite__mark/__app/__divider/__env/__spacer/__action`), `.crumbs` (breadcrumb + `.crumbs__sep/__current`), `.hero` (`.hero__eyebrow/__title/__lede/__cta/__media`, `.trust` + `.trust__item/__num/__label`), `.section-head` (+ `--flex`, `.section-head__eyebrow/__title/__lede`).
-- **Layout helpers:** `.l-wrap` (centered max-width column), `.l-section` (vertical rhythm), `.l-grid` + `.l-grid--2/--3/--4` (responsive card grids).
+- **Full-page shell:** `.l-wrap` (centered 1180px column with side padding) and `.l-section` (section vertical rhythm). Full pages only — inside a web part use the layout primitives below.
 - **Utilities** (in `colors_and_type.css`): `.imgph` (striped placeholder + `.lbl`), `.photo` (real-image crop), `.lift` (hover-rise), `.reveal` (fade-rise on scroll; visible by default).
 
 ### Process & filtering layer

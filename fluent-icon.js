@@ -1,4 +1,4 @@
-/*! BMO SharePoint Design System · v1.0.0 · fluent-icon.js */
+/*! BMO SharePoint Design System · v1.1.0 · fluent-icon.js */
 /* =====================================================================
    <fluent-icon> — BMO Design System icon element
    ---------------------------------------------------------------------
